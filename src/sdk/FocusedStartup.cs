@@ -4,6 +4,7 @@ using System.Management.Automation;
 
 namespace PowerShellFocused
 {
+    
     public abstract class FocusedStartup : PSCmdlet
     {
         public const string SERVICE_PROVIDER = "ServiceProvider";

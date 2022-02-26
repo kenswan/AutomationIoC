@@ -1,4 +1,4 @@
-﻿namespace PowerShellFocused.SDK
+﻿namespace PowerShellFocused.Test
 {
     public class TestService
     {

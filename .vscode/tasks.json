@@ -39,7 +39,7 @@
       },
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "${workspaceFolder}/src/integration"
+        "cwd": "${workspaceFolder}/test/sdk"
       }
     }
   ]

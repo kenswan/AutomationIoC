@@ -1,6 +1,23 @@
 {
   "configurations": [
     {
+      "name": "Integration",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "Build-Integration",
+      "program": "pwsh",
+      "args": [
+        "-NoExit",
+        "-NoProfile",
+        "-Command",
+        "Import-Module ${workspaceFolder}/test/sdk/bin/Debug/net6.0/PowerShellFocused.SDK.Test.dll",
+        "-Verbose"
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "console": "integratedTerminal"
+    },
+    {
       "name": "PowerShell Interactive Session",
       "type": "PowerShell",
       "request": "launch",
@@ -11,24 +28,8 @@
       "type": "PowerShell",
       "request": "launch",
       "preLaunchTask": "Build-SDK",
-      "script": "${workspaceFolder}\\src\\sdk\\Startup.ps1",
+      "script": "${workspaceFolder}\\test\\sdk\\Startup.ps1",
       "cwd": "${workspaceFolder}"
-    },
-    {
-      "name": "Cmdlets: pwsh",
-      "type": "coreclr",
-      "request": "launch",
-      "preLaunchTask": "Build-SDK",
-      "program": "pwsh",
-      "args": [
-        "-NoExit",
-        "-NoProfile",
-        "-Command",
-        "Import-Module ${workspaceFolder}/src/sdk/bin/Debug/net6.0/PowerShellFocused.dll"
-      ],
-      "cwd": "${workspaceFolder}",
-      "stopAtEntry": false,
-      "console": "integratedTerminal"
     },
     {
       "name": "Cmdlets: Windows Powershell",
@@ -40,7 +41,8 @@
         "-NoExit",
         "-NoProfile",
         "-Command",
-        "Import-Module ${workspaceFolder}/src/powershell/bin/Debug/net6.0/PowerShellFocused.dll"
+        "Import-Module ${workspaceFolder}/src/powershell/bin/Debug/net6.0/PowerShellFocused.dll",
+        "-Verbose"
       ],
       "cwd": "${workspaceFolder}",
       "stopAtEntry": false,

@@ -11,11 +11,13 @@ namespace PowerShellFocused
         {
             base.BeginProcessing();
 
+            WriteVerbose("Starting Command");
+
             PSVariable psVariable = SessionState.PSVariable.Get(FocusedStartup.SERVICE_PROVIDER);
 
-            if (psVariable is not null)
+            if (psVariable?.Value is not null)
             {
-                serviceProvider = (IServiceProvider)psVariable;
+                serviceProvider = (IServiceProvider)psVariable.Value;
             }
             else
             {
@@ -29,16 +31,12 @@ namespace PowerShellFocused
 
         protected override void ProcessRecord()
         {
-
             ExecuteCmdlet(serviceProvider);
         }
 
         protected override void EndProcessing()
         {
-            if (serviceProvider is not null)
-            {
-                (serviceProvider as ServiceProvider).Dispose();
-            }
+            WriteVerbose("Command Complete");
         }
     }
 }

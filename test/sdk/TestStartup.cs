@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PowerShellFocused.SDK;
 using System.Management.Automation;
 
-namespace PowerShellFocused
+namespace PowerShellFocused.Test
 {
     [Cmdlet(VerbsLifecycle.Build, "Dependencies")]
     public class TestStartup : FocusedStartup

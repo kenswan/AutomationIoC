@@ -1,8 +1,7 @@
 ﻿using System.Management.Automation;
 using Microsoft.Extensions.DependencyInjection;
-using PowerShellFocused.SDK;
 
-namespace PowerShellFocused
+namespace PowerShellFocused.Test
 {
     [Cmdlet(VerbsCommon.Get, "Test")]
     public class TestCmdlet : FocusedCmdlet
