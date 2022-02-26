@@ -22,7 +22,7 @@
       }
     },
     {
-      "label": "Build-PowerShell",
+      "label": "Build-Integration",
       "dependsOn": ["Build-SDK"],
       "command": "dotnet",
       "type": "shell",
@@ -39,7 +39,7 @@
       },
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "${workspaceFolder}/src/powershell"
+        "cwd": "${workspaceFolder}/src/integration"
       }
     }
   ]

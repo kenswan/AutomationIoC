@@ -10,21 +10,21 @@
       "name": "PowerShell Launch Startup",
       "type": "PowerShell",
       "request": "launch",
-      "preLaunchTask": "Build-PowerShell",
-      "script": "${workspaceFolder}\\src\\powershell\\Startup.ps1",
+      "preLaunchTask": "Build-SDK",
+      "script": "${workspaceFolder}\\src\\sdk\\Startup.ps1",
       "cwd": "${workspaceFolder}"
     },
     {
       "name": "Cmdlets: pwsh",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "Build-PowerShell",
+      "preLaunchTask": "Build-SDK",
       "program": "pwsh",
       "args": [
         "-NoExit",
         "-NoProfile",
         "-Command",
-        "Import-Module ${workspaceFolder}/src/powerShell/bin/Debug/net6.0/PowerShellFocused.dll"
+        "Import-Module ${workspaceFolder}/src/sdk/bin/Debug/net6.0/PowerShellFocused.dll"
       ],
       "cwd": "${workspaceFolder}",
       "stopAtEntry": false,
@@ -34,7 +34,7 @@
       "name": "Cmdlets: Windows Powershell",
       "type": "clr",
       "request": "launch",
-      "preLaunchTask": "Build-PowerShell",
+      "preLaunchTask": "Build-SDK",
       "program": "powershell",
       "args": [
         "-NoExit",
