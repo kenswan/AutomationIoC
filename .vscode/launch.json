@@ -1,0 +1,12 @@
+{
+  "configurations": [
+    {
+      "name": "PowerShell Launch",
+      "type": "PowerShell",
+      "request": "launch",
+      "preLaunchTask": "Build-PowerShell",
+      "script": "${workspaceFolder}\\src\\powershell\\Startup.ps1",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
