@@ -1,8 +1,6 @@
-﻿using System.Management.Automation;
-
-namespace PowerShellFocused.SDK
+﻿namespace PowerShellFocused.SDK
 {
-    public class TestService : PSCmdlet
+    public class TestService
     {
         public void CallTestMethod()
         {
