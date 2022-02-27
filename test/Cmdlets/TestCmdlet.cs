@@ -1,17 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PowerShellFocused.Services;
 using System.Management.Automation;
 
-namespace PowerShellFocused.Test
+namespace PowerShellFocused.Cmdlets
 {
     [Cmdlet(VerbsCommon.Get, "Test")]
     public class TestCmdlet : FocusedCmdlet
     {
-        public void RunInstance()
-        {
-            this.BeginProcessing();
-            this.ProcessRecord();
-            this.EndProcessing();
-        }
+        public TestCmdlet(IServiceProvider serviceProvider)
+            : base(serviceProvider) { }
 
         protected override void ExecuteCmdlet(IServiceProvider serviceProvider)
         {

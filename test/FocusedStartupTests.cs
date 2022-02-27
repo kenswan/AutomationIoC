@@ -1,29 +1,30 @@
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
+using PowerShellFocused.Cmdlets;
+using PowerShellFocused.Services;
 using System.Management.Automation;
 using Xunit;
 
-namespace PowerShellFocused.Test
+namespace PowerShellFocused
 {
     public class FocusedStartupTests
     {
         [Fact]
-        public void ShouldExecute()
+        public void ShouldExecuteStartupMethods()
         {
             var commandRuntimeMock = new Mock<ICommandRuntime>();
 
-            var startup = new TestStartup();
-            startup.CommandRuntime = commandRuntimeMock.Object;
-
-            var cmdlet = new TestCmdlet();
-            cmdlet.CommandRuntime = commandRuntimeMock.Object;
-
-            var task = Record.Exception(() =>
+            var startup = new TestStartup
             {
-                startup.RunInstance();
-                cmdlet.RunInstance();
-            });
+                CommandRuntime = commandRuntimeMock.Object
+            };
 
-            Assert.Null(task);
+            startup.RunInstance();
+
+            var serviceProvider = startup.InternalServiceProvider;
+            var testService = serviceProvider.GetRequiredService<TestService>();
+
+            Assert.Equal(2, testService.CallCount);
         }
     }
 }

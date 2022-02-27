@@ -1,27 +1,32 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PowerShellFocused.Services;
 using System.Management.Automation;
 
-namespace PowerShellFocused.Test
+namespace PowerShellFocused.Cmdlets
 {
     [Cmdlet(VerbsLifecycle.Build, "Dependencies")]
     public class TestStartup : FocusedStartup
     {
-        public void RunInstance()
+        private readonly TestService testService;
+
+        public TestStartup()
         {
-            BeginProcessing();
-            ProcessRecord();
-            EndProcessing();
+            testService = new();
         }
+
+        public IServiceProvider InternalServiceProvider => ServiceProvider;
 
         public override void Configure(IConfigurationBuilder configurationBuilder)
         {
-            // throw new NotImplementedException();
+            _ = testService.CallTestMethod();
         }
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<TestService>();
+            services.AddTransient(_ => testService);
+
+            _ = testService.CallTestMethod();
         }
     }
 }
