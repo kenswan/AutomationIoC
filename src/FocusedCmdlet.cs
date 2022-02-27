@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System.Management.Automation;
+﻿using System.Management.Automation;
 
 namespace PowerShellFocused
 {
@@ -31,11 +30,15 @@ namespace PowerShellFocused
 
         protected override void ProcessRecord()
         {
+            base.ProcessRecord();
+
             ExecuteCmdlet(serviceProvider);
         }
 
         protected override void EndProcessing()
         {
+            base.EndProcessing();
+            
             WriteVerbose("Command Complete");
         }
     }
