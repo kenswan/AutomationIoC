@@ -1,8 +1,8 @@
 ﻿using System.Management.Automation;
 
-namespace PowerShellFocused.Sample.Cmdlets
+namespace AutomationIoC.Sample.Cmdlets
 {
     [Cmdlet(VerbsLifecycle.Stop, "Game")]
-    public class StopGame : FocusedTeardown
+    public class StopGame : AutomationTeardown
     { }
 }

@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PowerShellFocused.Services;
+using AutomationIoC.Services;
 using System.Management.Automation;
 
-namespace PowerShellFocused.Cmdlets
+namespace AutomationIoC.Cmdlets
 {
     [Cmdlet(VerbsLifecycle.Build, "Dependencies")]
-    public class TestStartup : FocusedStartup
+    public class TestStartup : AutomationStartup
     {
         private readonly TestService testService;
 
@@ -15,7 +15,7 @@ namespace PowerShellFocused.Cmdlets
             testService = new();
         }
 
-        public IServiceProvider InternalServiceProvider => ServiceProvider;
+        public int CallCount => testService.CallCount;
 
         public override void Configure(IConfigurationBuilder configurationBuilder)
         {

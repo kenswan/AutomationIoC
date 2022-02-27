@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using PowerShellFocused.Sample.Models;
+using AutomationIoC.Sample.Models;
 using System.Management.Automation;
 
-namespace PowerShellFocused.Sample.Cmdlets
+namespace AutomationIoC.Sample.Cmdlets
 {
     [Cmdlet(VerbsLifecycle.Request, "Card")]
-    public class RequestCard : FocusedCmdlet
+    public class RequestCard : IoCShell
     {
         protected override void ExecuteCmdlet(IServiceProvider serviceProvider)
         {

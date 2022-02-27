@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PowerShellFocused.Services;
+using AutomationIoC.Services;
 using System.Management.Automation;
 
-namespace PowerShellFocused.Cmdlets
+namespace AutomationIoC.Cmdlets
 {
     [Cmdlet(VerbsCommon.Get, "Test")]
-    public class TestCmdlet : FocusedCmdlet
+    public class TestShell : IoCShell
     {
-        public TestCmdlet(IServiceProvider serviceProvider)
+        public TestShell(IServiceProvider serviceProvider)
             : base(serviceProvider) { }
 
         protected override void ExecuteCmdlet(IServiceProvider serviceProvider)

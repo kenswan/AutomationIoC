@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Moq;
-using PowerShellFocused.Cmdlets;
-using PowerShellFocused.Services;
+using AutomationIoC.Cmdlets;
+using AutomationIoC.Services;
 using System.Management.Automation;
 using Xunit;
 
-namespace PowerShellFocused
+namespace AutomationIoC
 {
-    public class FocusedCmdletTests
+    public class IoCShellTests
     {
         [Fact]
         public void ShouldCallExecuteMethod()
@@ -16,9 +16,9 @@ namespace PowerShellFocused
 
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddSingleton<TestService>();
-            var serviceProvider = serviceCollection.BuildServiceProvider();
+            using var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            var psCmdlet = new TestCmdlet(serviceProvider)
+            var psCmdlet = new TestShell(serviceProvider)
             {
                 CommandRuntime = commandRuntimeMock.Object
             };

@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\PowerShellFocused.csproj" />
+    <ProjectReference Include="..\src\AutomationIoC.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,10 @@
-﻿namespace PowerShellFocused
+﻿namespace AutomationIoC
 {
-    public abstract class FocusedAsyncCmdlet : FocusedCmdlet
+    public abstract class IoCShellAsync : IoCShell
     {
         protected abstract Task ExecuteCmdletAsync(IServiceProvider serviceProvider);
 
-        protected override void ExecuteCmdlet(IServiceProvider serviceProvider)
+        protected sealed override void ExecuteCmdlet(IServiceProvider serviceProvider)
         {
             ExecuteCmdletAsync(serviceProvider).Wait();
         }

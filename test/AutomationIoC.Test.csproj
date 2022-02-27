@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-	<ImplicitUsings>enable</ImplicitUsings>
+    <ImplicitUsings>enable</ImplicitUsings>
     <IsPackable>false</IsPackable>
-	<RootNamespace>PowerShellFocused</RootNamespace>
+    <RootNamespace>AutomationIoC</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\PowerShellFocused.csproj" />
+    <ProjectReference Include="..\src\AutomationIoC.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,8 +2,8 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build",
-      "dependsOn": ["PowerShellFocused"],
+      "label": "Build Sample",
+      "dependsOn": ["Build AutomationIoC"],
       "command": "dotnet",
       "type": "shell",
       "args": [
@@ -19,11 +19,11 @@
       },
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "${workspaceFolder}"
+        "cwd": "${workspaceFolder}/sample"
       }
     },
     {
-      "label": "PowerShellFocused",
+      "label": "Build AutomationIoC",
       "command": "dotnet",
       "type": "shell",
       "args": [
@@ -39,7 +39,7 @@
       },
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "../src/"
+        "cwd": "${workspaceFolder}/src"
       }
     }
   ]

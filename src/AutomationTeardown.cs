@@ -1,18 +1,18 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Management.Automation;
 
-namespace PowerShellFocused
+namespace AutomationIoC
 {
-    public class FocusedTeardown : FocusedCmdletBase
+    public class AutomationTeardown : IoCShellBase
     {
         private IServiceProvider serviceProvider;
         private PSVariable psVariable;
 
-        protected override void BeginProcessing()
+        protected sealed override void BeginProcessing()
         {
             if (SessionState is not null)
             {
-                psVariable = SessionState.PSVariable.Get(FocusedStartup.SERVICE_PROVIDER);
+                psVariable = SessionState.PSVariable.Get(AutomationStartup.SERVICE_PROVIDER);
 
                 serviceProvider = (IServiceProvider)psVariable?.Value;
             }
@@ -23,14 +23,10 @@ namespace PowerShellFocused
             WriteVerbose("Removing Dependencies");
         }
 
-        protected override void EndProcessing()
+        protected sealed override void EndProcessing()
         {
             if (serviceProvider is not null)
                 (serviceProvider as ServiceProvider).Dispose();
-
-            // TODO: Force Removal since it is readonly
-            /* if (psVariable is not null)
-                SessionState.PSVariable.Remove(psVariable); */
         }
     }
 }
