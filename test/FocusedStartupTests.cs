@@ -23,7 +23,7 @@ namespace PowerShellFocused
 
             var serviceProvider = startup.InternalServiceProvider;
             var testService = serviceProvider.GetRequiredService<TestService>();
-            
+
             Assert.Equal(2, testService.CallCount);
         }
     }
