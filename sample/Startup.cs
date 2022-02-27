@@ -21,7 +21,6 @@ namespace PowerShellFocused.Sample
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddLogging(builder => builder.AddConsole());
             services.AddSingleton<Deck>();
         }
     }

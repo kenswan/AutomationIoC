@@ -2,9 +2,19 @@
 
 namespace PowerShellFocused
 {
-    public abstract class FocusedCmdlet : PSCmdlet
+    public abstract class FocusedCmdlet : FocusedCmdletBase
     {
         private IServiceProvider serviceProvider;
+
+        public FocusedCmdlet()
+        {
+
+        }
+
+        public FocusedCmdlet(IServiceProvider serviceProvider)
+        {
+            this.serviceProvider = serviceProvider;
+        }
 
         protected override void BeginProcessing()
         {
@@ -12,17 +22,20 @@ namespace PowerShellFocused
 
             WriteVerbose("Starting Command");
 
-            PSVariable psVariable = SessionState.PSVariable.Get(FocusedStartup.SERVICE_PROVIDER);
+            if (serviceProvider is null)
+            {
+                PSVariable psVariable = SessionState.PSVariable.Get(FocusedStartup.SERVICE_PROVIDER);
 
-            if (psVariable?.Value is not null)
-            {
-                serviceProvider = (IServiceProvider)psVariable.Value;
-            }
-            else
-            {
-                throw new ArgumentNullException(
-                    nameof(serviceProvider),
-                    "Service provider is missing. Ensure Service Focused Startup was called.");
+                if (psVariable?.Value is not null)
+                {
+                    serviceProvider = (IServiceProvider)psVariable.Value;
+                }
+                else
+                {
+                    throw new ArgumentNullException(
+                        nameof(serviceProvider),
+                        "Service provider is missing. Ensure Service Focused Startup was called.");
+                }
             }
         }
 

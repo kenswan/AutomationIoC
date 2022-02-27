@@ -3,16 +3,19 @@ using System.Management.Automation;
 
 namespace PowerShellFocused
 {
-    public class FocusedTeardown : PSCmdlet
+    public class FocusedTeardown : FocusedCmdletBase
     {
         private IServiceProvider serviceProvider;
         private PSVariable psVariable;
 
         protected override void BeginProcessing()
         {
-            psVariable = SessionState.PSVariable.Get(FocusedStartup.SERVICE_PROVIDER);
+            if (SessionState is not null)
+            {
+                psVariable = SessionState.PSVariable.Get(FocusedStartup.SERVICE_PROVIDER);
 
-            serviceProvider = (IServiceProvider)psVariable?.Value;
+                serviceProvider = (IServiceProvider)psVariable?.Value;
+            }
         }
 
         protected override void ProcessRecord()

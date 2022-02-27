@@ -1,14 +1,16 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System.Management.Automation;
 
 namespace PowerShellFocused
 {
 
-    public abstract class FocusedStartup : PSCmdlet
+    public abstract class FocusedStartup : FocusedCmdletBase
     {
         public const string SERVICE_PROVIDER = "ServiceProvider";
         protected IConfiguration Configuration { get; set; }
+        protected IServiceProvider ServiceProvider { get; private set; }
 
         private readonly IConfigurationBuilder configurationBuilder;
         private readonly IServiceCollection serviceCollection;
@@ -35,15 +37,29 @@ namespace PowerShellFocused
 
             serviceCollection.AddSingleton(Configuration);
 
+            serviceCollection.AddLogging(builder => builder.AddConsole());
+
             ConfigureServices(serviceCollection);
 
-            IServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
+            ServiceProvider = serviceCollection.BuildServiceProvider();
 
             WriteVerbose("Configured Services");
 
-            PSVariable serviceVariable = new(SERVICE_PROVIDER, serviceProvider, ScopedItemOptions.ReadOnly);
+            if (SessionState is not null)
+            {
+                PSVariable serviceVariable = new(SERVICE_PROVIDER, ServiceProvider, ScopedItemOptions.ReadOnly);
 
-            SessionState.PSVariable.Set(serviceVariable);
+                SessionState.PSVariable.Set(serviceVariable);
+            }
+            else
+            {
+                using var scope = ServiceProvider.CreateScope();
+                var logger = scope.ServiceProvider.GetRequiredService<ILogger<FocusedStartup>>();
+
+                logger.LogWarning(
+                    @"PowerShell Environment has not been detected. 
+                        If this is not a test, please connect to PowerShell");
+            }
 
             WriteVerbose("Application Ready");
         }

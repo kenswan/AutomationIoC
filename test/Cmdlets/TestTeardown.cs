@@ -1,6 +1,6 @@
 using System.Management.Automation;
 
-namespace PowerShellFocused
+namespace PowerShellFocused.Cmdlets
 {
     [Cmdlet(VerbsLifecycle.Uninstall, "Dependencies")]
     public class TestTeardown : FocusedTeardown
