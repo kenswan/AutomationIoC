@@ -7,6 +7,13 @@ namespace PowerShellFocused.Test
     [Cmdlet(VerbsLifecycle.Build, "Dependencies")]
     public class TestStartup : FocusedStartup
     {
+        public void RunInstance()
+        {
+            BeginProcessing();
+            ProcessRecord();
+            EndProcessing();
+        }
+
         public override void Configure(IConfigurationBuilder configurationBuilder)
         {
             // throw new NotImplementedException();

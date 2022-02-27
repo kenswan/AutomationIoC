@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "name": "Run Sample",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "Build",
+      "program": "pwsh",
+      "args": [
+        "-NoExit",
+        "-NoProfile",
+        "-Command",
+        "Import-Module ${workspaceFolder}/bin/Debug/net6.0/PowerShellFocused.Sample.dll",
+        "-Verbose"
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "console": "integratedTerminal"
+    }
+  ]
+}

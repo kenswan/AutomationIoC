@@ -2,7 +2,8 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build-SDK",
+      "label": "Build",
+      "dependsOn": ["PowerShellFocused"],
       "command": "dotnet",
       "type": "shell",
       "args": [
@@ -18,12 +19,11 @@
       },
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "${workspaceFolder}/src/sdk"
+        "cwd": "${workspaceFolder}"
       }
     },
     {
-      "label": "Build-Integration",
-      "dependsOn": ["Build-SDK"],
+      "label": "PowerShellFocused",
       "command": "dotnet",
       "type": "shell",
       "args": [
@@ -39,7 +39,7 @@
       },
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "${workspaceFolder}/test/sdk"
+        "cwd": "../src/"
       }
     }
   ]

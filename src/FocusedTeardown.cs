@@ -26,8 +26,8 @@ namespace PowerShellFocused
                 (serviceProvider as ServiceProvider).Dispose();
 
             // TODO: Force Removal since it is readonly
-            if (psVariable is not null)
-                SessionState.PSVariable.Remove(psVariable);
+            /* if (psVariable is not null)
+                SessionState.PSVariable.Remove(psVariable); */
         }
     }
 }
