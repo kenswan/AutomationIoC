@@ -2,21 +2,19 @@
 
 namespace AutomationIoC
 {
-    public abstract class FocusedCmdlet : FocusedCmdletBase
+    public abstract class IoCShell : IoCShellBase
     {
         private IServiceProvider serviceProvider;
 
-        public FocusedCmdlet()
-        {
+        public IoCShell()
+        { }
 
-        }
-
-        public FocusedCmdlet(IServiceProvider serviceProvider)
+        public IoCShell(IServiceProvider serviceProvider)
         {
             this.serviceProvider = serviceProvider;
         }
 
-        protected override void BeginProcessing()
+        protected sealed override void BeginProcessing()
         {
             base.BeginProcessing();
 
@@ -24,7 +22,7 @@ namespace AutomationIoC
 
             if (serviceProvider is null)
             {
-                PSVariable psVariable = SessionState.PSVariable.Get(FocusedStartup.SERVICE_PROVIDER);
+                PSVariable psVariable = SessionState.PSVariable.Get(AutomationStartup.SERVICE_PROVIDER);
 
                 if (psVariable?.Value is not null)
                 {
@@ -41,14 +39,14 @@ namespace AutomationIoC
 
         protected abstract void ExecuteCmdlet(IServiceProvider serviceProvider);
 
-        protected override void ProcessRecord()
+        protected sealed override void ProcessRecord()
         {
             base.ProcessRecord();
 
             ExecuteCmdlet(serviceProvider);
         }
 
-        protected override void EndProcessing()
+        protected sealed override void EndProcessing()
         {
             base.EndProcessing();
 

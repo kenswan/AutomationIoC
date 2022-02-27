@@ -5,9 +5,9 @@ using System.Management.Automation;
 namespace AutomationIoC.Cmdlets
 {
     [Cmdlet(VerbsCommon.Get, "Test")]
-    public class TestCmdlet : FocusedCmdlet
+    public class TestShell : IoCShell
     {
-        public TestCmdlet(IServiceProvider serviceProvider)
+        public TestShell(IServiceProvider serviceProvider)
             : base(serviceProvider) { }
 
         protected override void ExecuteCmdlet(IServiceProvider serviceProvider)

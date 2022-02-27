@@ -6,7 +6,7 @@ using System.Management.Automation;
 namespace AutomationIoC.Sample
 {
     [Cmdlet(VerbsLifecycle.Start, "Game")]
-    public class Startup : FocusedStartup
+    public class Startup : AutomationStartup
     {
         public override void Configure(IConfigurationBuilder configurationBuilder)
         {

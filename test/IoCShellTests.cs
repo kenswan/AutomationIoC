@@ -7,7 +7,7 @@ using Xunit;
 
 namespace AutomationIoC
 {
-    public class FocusedCmdletTests
+    public class IoCShellTests
     {
         [Fact]
         public void ShouldCallExecuteMethod()
@@ -16,9 +16,9 @@ namespace AutomationIoC
 
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddSingleton<TestService>();
-            var serviceProvider = serviceCollection.BuildServiceProvider();
+            using var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            var psCmdlet = new TestCmdlet(serviceProvider)
+            var psCmdlet = new TestShell(serviceProvider)
             {
                 CommandRuntime = commandRuntimeMock.Object
             };

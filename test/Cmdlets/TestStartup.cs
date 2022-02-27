@@ -6,7 +6,7 @@ using System.Management.Automation;
 namespace AutomationIoC.Cmdlets
 {
     [Cmdlet(VerbsLifecycle.Build, "Dependencies")]
-    public class TestStartup : FocusedStartup
+    public class TestStartup : AutomationStartup
     {
         private readonly TestService testService;
 
@@ -15,7 +15,7 @@ namespace AutomationIoC.Cmdlets
             testService = new();
         }
 
-        public IServiceProvider InternalServiceProvider => ServiceProvider;
+        public int CallCount => testService.CallCount;
 
         public override void Configure(IConfigurationBuilder configurationBuilder)
         {

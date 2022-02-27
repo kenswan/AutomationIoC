@@ -2,7 +2,7 @@
 
 namespace AutomationIoC
 {
-    public abstract class FocusedCmdletBase : PSCmdlet
+    public abstract class IoCShellBase : PSCmdlet
     {
         public void RunInstance()
         {

@@ -7,24 +7,22 @@ using Xunit;
 
 namespace AutomationIoC
 {
-    public class FocusedStartupTests
+    public class AutomationStartupTests
     {
         [Fact]
         public void ShouldExecuteStartupMethods()
         {
             var commandRuntimeMock = new Mock<ICommandRuntime>();
 
-            var startup = new TestStartup
+            var automationStartup = new TestStartup
             {
                 CommandRuntime = commandRuntimeMock.Object
             };
 
-            startup.RunInstance();
+            automationStartup.RunInstance();
 
-            var serviceProvider = startup.InternalServiceProvider;
-            var testService = serviceProvider.GetRequiredService<TestService>();
 
-            Assert.Equal(2, testService.CallCount);
+            Assert.Equal(2, automationStartup.CallCount);
         }
     }
 }

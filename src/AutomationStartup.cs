@@ -6,34 +6,29 @@ using System.Management.Automation;
 namespace AutomationIoC
 {
 
-    public abstract class FocusedStartup : FocusedCmdletBase
+    public abstract class AutomationStartup : IoCShellBase
     {
         public const string SERVICE_PROVIDER = "ServiceProvider";
+        
         protected IConfiguration Configuration { get; set; }
-        protected IServiceProvider ServiceProvider { get; private set; }
-
-        private readonly IConfigurationBuilder configurationBuilder;
-        private readonly IServiceCollection serviceCollection;
-
-        public FocusedStartup()
-        {
-            configurationBuilder = new ConfigurationBuilder();
-            serviceCollection = new ServiceCollection();
-        }
 
         public abstract void ConfigureServices(IServiceCollection services);
 
         public abstract void Configure(IConfigurationBuilder configurationBuilder);
 
-        protected override void ProcessRecord()
+        protected sealed override void ProcessRecord()
         {
             WriteVerbose("Starting Dependency Injection Creation");
 
+            var configurationBuilder = new ConfigurationBuilder();
+            
             Configure(configurationBuilder);
 
             Configuration = configurationBuilder.Build();
 
             WriteVerbose("Configured Configuration");
+
+            var serviceCollection = new ServiceCollection();
 
             serviceCollection.AddSingleton(Configuration);
 
@@ -41,20 +36,19 @@ namespace AutomationIoC
 
             ConfigureServices(serviceCollection);
 
-            ServiceProvider = serviceCollection.BuildServiceProvider();
-
             WriteVerbose("Configured Services");
 
             if (SessionState is not null)
             {
-                PSVariable serviceVariable = new(SERVICE_PROVIDER, ServiceProvider, ScopedItemOptions.ReadOnly);
+                PSVariable serviceVariable =
+                    new(SERVICE_PROVIDER, serviceCollection.BuildServiceProvider(), ScopedItemOptions.ReadOnly);
 
                 SessionState.PSVariable.Set(serviceVariable);
             }
             else
             {
-                using var scope = ServiceProvider.CreateScope();
-                var logger = scope.ServiceProvider.GetRequiredService<ILogger<FocusedStartup>>();
+                using var serviceProvider = serviceCollection.BuildServiceProvider();
+                var logger = serviceProvider.GetRequiredService<ILogger<AutomationStartup>>();
 
                 logger.LogWarning(
                     @"PowerShell Environment has not been detected. 

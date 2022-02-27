@@ -6,7 +6,7 @@ using System.Management.Automation;
 namespace AutomationIoC.Sample.Cmdlets
 {
     [Cmdlet(VerbsLifecycle.Request, "Card")]
-    public class RequestCard : FocusedCmdlet
+    public class RequestCard : IoCShell
     {
         protected override void ExecuteCmdlet(IServiceProvider serviceProvider)
         {
