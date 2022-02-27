@@ -1,5 +1,5 @@
-﻿using System.Management.Automation;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Management.Automation;
 
 namespace PowerShellFocused.Test
 {

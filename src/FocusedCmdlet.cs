@@ -38,7 +38,7 @@ namespace PowerShellFocused
         protected override void EndProcessing()
         {
             base.EndProcessing();
-            
+
             WriteVerbose("Command Complete");
         }
     }

@@ -10,10 +10,10 @@ namespace PowerShellFocused.Test
         public void ShouldExecute()
         {
             var commandRuntimeMock = new Mock<ICommandRuntime>();
-            
+
             var startup = new TestStartup();
             startup.CommandRuntime = commandRuntimeMock.Object;
-            
+
             var cmdlet = new TestCmdlet();
             cmdlet.CommandRuntime = commandRuntimeMock.Object;
 
