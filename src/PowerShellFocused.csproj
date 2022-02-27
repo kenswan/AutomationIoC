@@ -6,11 +6,32 @@
     <Nullable>annotations</Nullable>
   </PropertyGroup>
   
+  <PropertyGroup Label="NuGet Metadata">
+    <Title>PowerShellFocused</Title>
+		<PackageId>PowerShellFocused</PackageId>
+		<PackageTags>dotnet;csharp;powershell;cmdlet</PackageTags>
+		<Description>Development tools for C# PowerShell PSCmdlets</Description>
+    <Authors>Kenneth Swan</Authors>
+    <Copyright>Copyright (c) 2022 PowerShellFocused</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/kenswan/PowerShellFocused</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/kenswan/PowerShellFocused.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>See https://github.com/kenswan/PowerShellFocused/releases</PackageReleaseNotes>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-	<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
     <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.2.1" />
+  </ItemGroup>
+
+  <ItemGroup Label="NuGet Artifacts">
+    <None Include="..\README.md" Pack="true" PackagePath="\" Visible="false"/>
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,74 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  release:
+    types:
+      - published
+
+env:
+  DOTNET_VERSION: "6.0.x"
+  NUGET_SOURCE: "https://api.nuget.org/v3/index.json"
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    env:
+      source-directory: ./src
+      source-project: PowerShellFocused.csproj
+      test-directory: ./test
+      test-project: PowerShellFocused.Test.csproj
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install Dependencies
+        run: |
+          dotnet restore ${{ env.source-directory }}/${{ env.source-project }}
+          dotnet restore ${{ env.test-directory }}/${{ env.test-project }}
+
+      - name: Build
+        working-directory: ${{ env.source-directory }}
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Test
+        working-directory: ${{ env.test-directory }}
+        run: dotnet test --no-restore --verbosity normal
+
+  release:
+    needs: [build-test]
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    env:
+      project: ./PowerShellFocused.csproj
+      release-path: ./bin/Release
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install Dependencies
+        working-directory: ./src
+        run: dotnet restore ${{ env.project }}
+
+      - name: Create Release Packages
+        working-directory: ./src
+        run: dotnet pack ${{ env.project }} -c Release --no-restore -p:PackageVersion=${{ github.event.release.tag_name }}
+
+      - name: Push Release Packages
+        working-directory: ./src
+        run: dotnet nuget push ${{ env.release-path }}/PowerShellFocused.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
