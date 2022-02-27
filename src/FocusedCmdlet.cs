@@ -1,6 +1,6 @@
 ﻿using System.Management.Automation;
 
-namespace PowerShellFocused
+namespace AutomationIoC
 {
     public abstract class FocusedCmdlet : FocusedCmdletBase
     {

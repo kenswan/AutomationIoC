@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Management.Automation;
 
-namespace PowerShellFocused
+namespace AutomationIoC
 {
 
     public abstract class FocusedStartup : FocusedCmdletBase

@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Moq;
-using PowerShellFocused.Cmdlets;
-using PowerShellFocused.Services;
+using AutomationIoC.Cmdlets;
+using AutomationIoC.Services;
 using System.Management.Automation;
 using Xunit;
 
-namespace PowerShellFocused
+namespace AutomationIoC
 {
     public class FocusedCmdletTests
     {

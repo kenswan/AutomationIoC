@@ -20,9 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       source-directory: ./src
-      source-project: PowerShellFocused.csproj
+      source-project: AutomationIoC.csproj
       test-directory: ./test
-      test-project: PowerShellFocused.Test.csproj
+      test-project: AutomationIoC.Test.csproj
 
     steps:
       - uses: actions/checkout@v2
@@ -50,7 +50,7 @@ jobs:
     if: github.event_name == 'release'
     runs-on: ubuntu-latest
     env:
-      project: ./PowerShellFocused.csproj
+      project: ./AutomationIoC.csproj
       release-path: ./bin/Release
 
     steps:
@@ -71,4 +71,4 @@ jobs:
 
       - name: Push Release Packages
         working-directory: ./src
-        run: dotnet nuget push ${{ env.release-path }}/PowerShellFocused.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
+        run: dotnet nuget push ${{ env.release-path }}/AutomationIoC.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}

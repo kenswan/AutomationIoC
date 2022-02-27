@@ -1,4 +1,4 @@
-﻿namespace PowerShellFocused.Sample.Models
+﻿namespace AutomationIoC.Sample.Models
 {
     public class Card
     {

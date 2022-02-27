@@ -1,4 +1,4 @@
-﻿namespace PowerShellFocused.Services
+﻿namespace AutomationIoC.Services
 {
     public class TestService
     {

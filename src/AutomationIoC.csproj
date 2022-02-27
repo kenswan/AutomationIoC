@@ -7,18 +7,18 @@
   </PropertyGroup>
   
   <PropertyGroup Label="NuGet Metadata">
-    <Title>PowerShellFocused</Title>
-		<PackageId>PowerShellFocused</PackageId>
+    <Title>AutomationIoC</Title>
+		<PackageId>AutomationIoC</PackageId>
 		<PackageTags>dotnet;csharp;powershell;cmdlet</PackageTags>
 		<Description>Development tools for C# PowerShell PSCmdlets</Description>
     <Authors>Kenneth Swan</Authors>
-    <Copyright>Copyright (c) 2022 PowerShellFocused</Copyright>
+    <Copyright>Copyright (c) 2022 AutomationIoC</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/kenswan/PowerShellFocused</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/kenswan/PowerShellFocused.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/kenswan/AutomationIoC</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/kenswan/AutomationIoC.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>See https://github.com/kenswan/PowerShellFocused/releases</PackageReleaseNotes>
+    <PackageReleaseNotes>See https://github.com/kenswan/AutomationIoC/releases</PackageReleaseNotes>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>

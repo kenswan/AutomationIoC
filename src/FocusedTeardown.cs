@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Management.Automation;
 
-namespace PowerShellFocused
+namespace AutomationIoC
 {
     public class FocusedTeardown : FocusedCmdletBase
     {

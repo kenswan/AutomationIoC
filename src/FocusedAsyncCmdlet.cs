@@ -1,4 +1,4 @@
-﻿namespace PowerShellFocused
+﻿namespace AutomationIoC
 {
     public abstract class FocusedAsyncCmdlet : FocusedCmdlet
     {

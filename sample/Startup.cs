@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PowerShellFocused.Sample.Models;
+using AutomationIoC.Sample.Models;
 using System.Management.Automation;
 
-namespace PowerShellFocused.Sample
+namespace AutomationIoC.Sample
 {
     [Cmdlet(VerbsLifecycle.Start, "Game")]
     public class Startup : FocusedStartup

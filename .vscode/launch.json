@@ -4,16 +4,16 @@
       "name": "Run Sample",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "Build",
+      "preLaunchTask": "Build Sample",
       "program": "pwsh",
       "args": [
         "-NoExit",
         "-NoProfile",
         "-Command",
-        "Import-Module ${workspaceFolder}/bin/Debug/net6.0/PowerShellFocused.Sample.dll",
+        "Import-Module ${workspaceFolder}/sample/bin/Debug/net6.0/AutomationIoC.Sample.dll",
         "-Verbose"
       ],
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}/sample",
       "stopAtEntry": false,
       "console": "integratedTerminal"
     }
