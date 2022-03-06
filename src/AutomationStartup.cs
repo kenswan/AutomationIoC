@@ -1,15 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System.Management.Automation;
 
 namespace AutomationIoC
 {
 
     public abstract class AutomationStartup : IoCShellBase
     {
-        public const string SERVICE_PROVIDER = "ServiceProvider";
-        
         protected IConfiguration Configuration { get; set; }
 
         public abstract void ConfigureServices(IServiceCollection services);
@@ -38,22 +35,7 @@ namespace AutomationIoC
 
             WriteVerbose("Configured Services");
 
-            if (SessionState is not null)
-            {
-                PSVariable serviceVariable =
-                    new(SERVICE_PROVIDER, serviceCollection.BuildServiceProvider(), ScopedItemOptions.ReadOnly);
-
-                SessionState.PSVariable.Set(serviceVariable);
-            }
-            else
-            {
-                using var serviceProvider = serviceCollection.BuildServiceProvider();
-                var logger = serviceProvider.GetRequiredService<ILogger<AutomationStartup>>();
-
-                logger.LogWarning(
-                    @"PowerShell Environment has not been detected. 
-                        If this is not a test, please connect to PowerShell");
-            }
+            Context.GenerateServices(serviceCollection);
 
             WriteVerbose("Application Ready");
         }
