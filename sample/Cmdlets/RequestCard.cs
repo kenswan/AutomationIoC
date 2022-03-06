@@ -1,6 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AutomationIoC.Sample.Models;
 using Microsoft.Extensions.Logging;
-using AutomationIoC.Sample.Models;
 using System.Management.Automation;
 
 namespace AutomationIoC.Sample.Cmdlets
@@ -8,11 +7,15 @@ namespace AutomationIoC.Sample.Cmdlets
     [Cmdlet(VerbsLifecycle.Request, "Card")]
     public class RequestCard : IoCShell
     {
-        protected override void ExecuteCmdlet(IServiceProvider serviceProvider)
+        [AutomationDependency]
+        public ILogger<RequestCard> logger { get; set; }
+
+        [AutomationDependency]
+        public Deck cardDeck { get; set; }
+
+        protected override void ExecuteCmdlet()
         {
-            using var scope = serviceProvider.CreateScope();
-            var logger = scope.ServiceProvider.GetRequiredService<ILogger<RequestCard>>();
-            var card = scope.ServiceProvider.GetRequiredService<Deck>().Draw();
+            var card = cardDeck.Draw();
 
             logger.LogInformation("Card Drawn: {Name}", card.ToString());
         }

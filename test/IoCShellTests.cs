@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Moq;
-using AutomationIoC.Cmdlets;
+﻿using AutomationIoC.Context;
 using AutomationIoC.Services;
+using Moq;
 using System.Management.Automation;
 using Xunit;
 
@@ -12,22 +11,38 @@ namespace AutomationIoC
         [Fact]
         public void ShouldCallExecuteMethod()
         {
+            var automationContext = new Mock<IAutomationContext>();
+            var testService = new TestService();
+
+            automationContext.Setup(context =>
+                context.GetDependency(typeof(TestService)))
+                    .Returns(testService);
+
             var commandRuntimeMock = new Mock<ICommandRuntime>();
 
-            var serviceCollection = new ServiceCollection();
-            serviceCollection.AddSingleton<TestService>();
-            using var serviceProvider = serviceCollection.BuildServiceProvider();
-
-            var psCmdlet = new TestShell(serviceProvider)
+            var psCmdlet = new TestShell()
             {
+                Context = automationContext.Object,
                 CommandRuntime = commandRuntimeMock.Object
             };
 
             psCmdlet.RunInstance();
+            psCmdlet.RunInstance();
+            psCmdlet.RunInstance();
 
-            var testService = serviceProvider.GetRequiredService<TestService>();
+            Assert.Equal(3, testService.CallCount);
+        }
 
-            Assert.Equal(1, testService.CallCount);
+        [Cmdlet(VerbsCommon.Get, "Test")]
+        public class TestShell : IoCShell
+        {
+            [AutomationDependency]
+            public TestService TestService { get; set; }
+
+            protected override void ExecuteCmdlet()
+            {
+                TestService.CallTestMethod();
+            }
         }
     }
 }

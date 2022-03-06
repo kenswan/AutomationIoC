@@ -6,8 +6,6 @@
 
         public string CallTestMethod()
         {
-            Console.WriteLine("Test Method Call");
-
             CallCount += 1;
 
             return "This is a message Test";
