@@ -18,7 +18,7 @@ namespace AutomationIoC
             WriteVerbose("Starting Dependency Injection Creation");
 
             var configurationBuilder = new ConfigurationBuilder();
-            
+
             Configure(configurationBuilder);
 
             Configuration = configurationBuilder.Build();

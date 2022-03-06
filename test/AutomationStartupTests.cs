@@ -1,10 +1,10 @@
+using AutomationIoC.Context;
+using AutomationIoC.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
-using AutomationIoC.Services;
 using System.Management.Automation;
 using Xunit;
-using Microsoft.Extensions.Configuration;
-using AutomationIoC.Context;
 
 namespace AutomationIoC
 {

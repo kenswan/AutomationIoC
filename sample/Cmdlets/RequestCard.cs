@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using AutomationIoC.Sample.Models;
+﻿using AutomationIoC.Sample.Models;
+using Microsoft.Extensions.Logging;
 using System.Management.Automation;
 
 namespace AutomationIoC.Sample.Cmdlets

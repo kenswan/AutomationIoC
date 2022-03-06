@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AutomationIoC.Sample.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AutomationIoC.Sample.Models;
 using System.Management.Automation;
 
 namespace AutomationIoC.Sample

@@ -1,8 +1,8 @@
-﻿using Moq;
+﻿using AutomationIoC.Context;
 using AutomationIoC.Services;
+using Moq;
 using System.Management.Automation;
 using Xunit;
-using AutomationIoC.Context;
 
 namespace AutomationIoC
 {

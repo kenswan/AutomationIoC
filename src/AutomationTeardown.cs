@@ -1,6 +1,3 @@
-using Microsoft.Extensions.DependencyInjection;
-using System.Management.Automation;
-
 namespace AutomationIoC
 {
     public class AutomationTeardown : IoCShellBase
