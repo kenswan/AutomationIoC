@@ -1,5 +1,4 @@
 ﻿using AutomationIoC.Context;
-using Microsoft.Extensions.DependencyInjection;
 using System.Management.Automation;
 using System.Reflection;
 
@@ -30,8 +29,8 @@ namespace AutomationIoC
 
             foreach (PropertyInfo property in properties)
             {
-                AutoInjectAttribute attribute =
-                    Attribute.GetCustomAttribute(property, typeof(AutoInjectAttribute)) as AutoInjectAttribute;
+                AutomationDependencyAttribute attribute =
+                    Attribute.GetCustomAttribute(property, typeof(AutomationDependencyAttribute)) as AutomationDependencyAttribute;
 
                 if (attribute is not null)
                 {

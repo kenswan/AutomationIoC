@@ -7,10 +7,10 @@ namespace AutomationIoC.Sample.Cmdlets
     [Cmdlet(VerbsLifecycle.Request, "Card")]
     public class RequestCard : IoCShell
     {
-        [AutoInject]
+        [AutomationDependency]
         public ILogger<RequestCard> logger { get; set; }
 
-        [AutoInject]
+        [AutomationDependency]
         public Deck cardDeck { get; set; }
 
         protected override void ExecuteCmdlet()

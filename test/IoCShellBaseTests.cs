@@ -34,7 +34,7 @@ namespace AutomationIoC
 
         private class TestDependencyInjection : IoCShellBase
         {
-            [AutoInject]
+            [AutomationDependency]
             public TestService TestService { get; set; }
         }
     }

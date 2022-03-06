@@ -36,7 +36,7 @@ namespace AutomationIoC
         [Cmdlet(VerbsCommon.Get, "Test")]
         public class TestShell : IoCShell
         {
-            [AutoInject]
+            [AutomationDependency]
             public TestService TestService { get; set; }
 
             protected override void ExecuteCmdlet()
