@@ -2,15 +2,6 @@
 {
     public abstract class IoCShell : IoCShellBase
     {
-        protected sealed override void BeginProcessing()
-        {
-            base.BeginProcessing();
-
-            WriteVerbose("Starting Command");
-
-            LoadDependencies();
-        }
-
         protected abstract void ExecuteCmdlet();
 
         protected sealed override void ProcessRecord()

@@ -8,10 +8,16 @@ namespace AutomationIoC.Sample.Cmdlets
     public class RequestCard : IoCShell
     {
         [AutomationDependency]
-        public ILogger<RequestCard> logger { get; set; }
+        private readonly Deck cardDeck;
 
         [AutomationDependency]
-        public Deck cardDeck { get; set; }
+        private readonly ILogger<RequestCard> logger;
+
+        public RequestCard(Deck cardDeck, ILogger<RequestCard> logger)
+        {
+            this.cardDeck = cardDeck;
+            this.logger = logger;
+        }
 
         protected override void ExecuteCmdlet()
         {

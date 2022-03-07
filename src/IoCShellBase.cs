@@ -8,12 +8,14 @@ namespace AutomationIoC
     {
         internal IAutomationContext Context { get; set; }
 
-        protected override void BeginProcessing()
+        protected sealed override void BeginProcessing()
         {
             base.BeginProcessing();
 
             if (Context is null)
                 Context = new AutomationContext(SessionState);
+
+            LoadDependencies();
         }
 
         internal void RunInstance()
@@ -25,7 +27,7 @@ namespace AutomationIoC
 
         internal void LoadDependencies()
         {
-            PropertyInfo[] properties = this.GetType().GetProperties();
+            PropertyInfo[] properties = this.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (PropertyInfo property in properties)
             {
@@ -41,7 +43,29 @@ namespace AutomationIoC
                     }
                     else
                     {
-                        throw new ArgumentNullException(property.Name, "Injected Member is not registered in container");
+                        throw new ArgumentNullException(property.Name, $"Injected Member {property.Name} does not have a registered type");
+                    }
+                }
+            }
+
+            FieldInfo[] fields = this.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+
+            foreach (FieldInfo field in fields)
+            {
+                AutomationDependencyAttribute attribute =
+                    Attribute.GetCustomAttribute(field, typeof(AutomationDependencyAttribute)) as AutomationDependencyAttribute;
+
+                if (attribute is not null)
+                {
+                    var service = Context.GetDependency(field.FieldType);
+
+                    if (service is not null)
+                    {
+                        field.SetValue(this, service);
+                    }
+                    else
+                    {
+                        throw new ArgumentNullException(field.Name, $"Injected Member {field.Name} does not have a registered type");
                     }
                 }
             }

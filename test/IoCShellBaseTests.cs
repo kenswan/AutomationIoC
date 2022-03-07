@@ -12,30 +12,45 @@ namespace AutomationIoC
         public void ShouldInjectDependencies()
         {
             var automationContext = new Mock<IAutomationContext>();
-            var expectedTestService = new TestService();
+            var testServiceMock = new Mock<ITestService>();
+            var testServiceForPropertyMock = new Mock<ITestServiceForProperty>();
 
             automationContext.Setup(context =>
-                context.GetDependency(typeof(TestService)))
-                    .Returns(expectedTestService);
+                context.GetDependency(typeof(ITestService)))
+                    .Returns(testServiceMock.Object);
 
-            var testDependencyInjection = new TestDependencyInjection();
+            automationContext.Setup(context =>
+                context.GetDependency(typeof(ITestServiceForProperty)))
+                    .Returns(testServiceForPropertyMock.Object);
 
-            testDependencyInjection.Context = automationContext.Object;
+            var testIoCShellBase = new TestIoCShellBase
+            {
+                Context = automationContext.Object
+            };
 
-            Assert.Null(testDependencyInjection.TestService);
+            testIoCShellBase.RunInstance();
 
-            testDependencyInjection.LoadDependencies();
+            testServiceMock.Verify(service =>
+                service.CallTestMethod(), Times.Once);
 
-            var actualTestService = testDependencyInjection.TestService;
-
-            actualTestService.Should().NotBeNull()
-                .And.BeEquivalentTo(expectedTestService);
+            testServiceForPropertyMock.Verify(service =>
+                service.CallTestMethod(), Times.Once);
         }
 
-        private class TestDependencyInjection : IoCShellBase
+        private class TestIoCShellBase : IoCShellBase
         {
             [AutomationDependency]
-            public TestService TestService { get; set; }
+            protected ITestServiceForProperty TestServiceForProperty { get; set; }
+
+            [AutomationDependency]
+            private readonly ITestService testService = default;
+
+            protected override void ProcessRecord()
+            {
+                testService.CallTestMethod();
+
+                TestServiceForProperty.CallTestMethod();
+            }
         }
     }
 }
