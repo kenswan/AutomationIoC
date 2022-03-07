@@ -1,6 +1,5 @@
 ﻿using AutomationIoC.Context;
 using AutomationIoC.Services;
-using FluentAssertions;
 using Moq;
 using Xunit;
 
