@@ -7,7 +7,7 @@ namespace AutomationIoC
 
     public abstract class AutomationStartup : IoCShellBase
     {
-        protected IConfiguration Configuration { get; set; }
+        protected IConfiguration Configuration { get; private set; }
 
         public abstract void ConfigureServices(IServiceCollection services);
 

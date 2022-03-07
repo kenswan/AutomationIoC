@@ -20,7 +20,7 @@ namespace AutomationIoC
 
             var commandRuntimeMock = new Mock<ICommandRuntime>();
 
-            var psCmdlet = new TestShell()
+            var psCmdlet = new TestIoCShell()
             {
                 Context = automationContext.Object,
                 CommandRuntime = commandRuntimeMock.Object
@@ -34,14 +34,24 @@ namespace AutomationIoC
         }
 
         [Cmdlet(VerbsCommon.Get, "Test")]
-        public class TestShell : IoCShell
+        public class TestIoCShell : IoCShell
         {
             [AutomationDependency]
-            public TestService TestService { get; set; }
+            private readonly TestService testService;
+
+            public TestIoCShell()
+            {
+
+            }
+
+            public TestIoCShell(TestService testService)
+            {
+                this.testService = testService;
+            }
 
             protected override void ExecuteCmdlet()
             {
-                TestService.CallTestMethod();
+                testService.CallTestMethod();
             }
         }
     }

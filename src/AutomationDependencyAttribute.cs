@@ -1,6 +1,6 @@
 ﻿namespace AutomationIoC
 {
-    [AttributeUsage(AttributeTargets.Property)]
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public class AutomationDependencyAttribute : Attribute
     {
     }
