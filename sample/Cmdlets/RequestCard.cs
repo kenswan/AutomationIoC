@@ -13,6 +13,10 @@ namespace AutomationIoC.Sample.Cmdlets
         [AutomationDependency]
         private readonly ILogger<RequestCard> logger;
 
+        public RequestCard()
+        {
+        }
+
         public RequestCard(Deck cardDeck, ILogger<RequestCard> logger)
         {
             this.cardDeck = cardDeck;
