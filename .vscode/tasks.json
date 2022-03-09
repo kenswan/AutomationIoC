@@ -3,7 +3,6 @@
   "tasks": [
     {
       "label": "Build Sample",
-      "dependsOn": ["Build AutomationIoC"],
       "command": "dotnet",
       "type": "shell",
       "args": [
@@ -23,7 +22,7 @@
       }
     },
     {
-      "label": "Build AutomationIoC",
+      "label": "Build Framework",
       "command": "dotnet",
       "type": "shell",
       "args": [
@@ -39,7 +38,7 @@
       },
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "${workspaceFolder}/src"
+        "cwd": "${workspaceFolder}"
       }
     }
   ]
