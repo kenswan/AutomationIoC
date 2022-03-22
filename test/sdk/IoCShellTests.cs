@@ -14,9 +14,9 @@ namespace AutomationIoC
             var automationContext = new Mock<IAutomationContext>();
             var testService = new TestService();
 
-            automationContext.Setup(context =>
-                context.GetDependency(typeof(TestService)))
-                    .Returns(testService);
+            /* automationContext.Setup(context =>
+                context.GetRequiredService<TestService>())
+                    .Returns(testService); */
 
             var commandRuntimeMock = new Mock<ICommandRuntime>();
 

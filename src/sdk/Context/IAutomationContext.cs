@@ -4,8 +4,8 @@ namespace AutomationIoC.Context
 {
     public interface IAutomationContext
     {
-        void GenerateServices(IServiceCollection serviceCollection);
+        void BuildServices(IServiceCollection serviceCollection);
 
-        object GetDependency(Type injectedType);
+        void InitializeCurrentInstance(object instance);
     }
 }

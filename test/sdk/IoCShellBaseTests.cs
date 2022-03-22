@@ -14,13 +14,13 @@ namespace AutomationIoC
             var testServiceMock = new Mock<ITestService>();
             var testServiceForPropertyMock = new Mock<ITestServiceForProperty>();
 
-            automationContext.Setup(context =>
-                context.GetDependency(typeof(ITestService)))
+            /* automationContext.Setup(context =>
+                context.GetRequiredService<ITestService>())
                     .Returns(testServiceMock.Object);
 
             automationContext.Setup(context =>
-                context.GetDependency(typeof(ITestServiceForProperty)))
-                    .Returns(testServiceForPropertyMock.Object);
+                context.GetRequiredService<ITestServiceForProperty>())
+                    .Returns(testServiceForPropertyMock.Object); */
 
             var testIoCShellBase = new TestIoCShellBase
             {

@@ -25,7 +25,7 @@ namespace AutomationIoC
             automationStartup.RunInstance();
 
             automationContext.Verify(context =>
-                context.GenerateServices(It.Is<IServiceCollection>(collection =>
+                context.BuildServices(It.Is<IServiceCollection>(collection =>
                     ContainsServices(collection))), Times.Once);
         }
 

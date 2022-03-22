@@ -35,7 +35,7 @@ namespace AutomationIoC
 
             WriteVerbose("Configured Services");
 
-            Context.GenerateServices(serviceCollection);
+            Context.BuildServices(serviceCollection);
 
             WriteVerbose("Application Ready");
         }
