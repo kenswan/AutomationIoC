@@ -8,7 +8,7 @@ using Xunit;
 
 namespace AutomationIoC
 {
-    public class AutomationStartupTests
+    public class IoCStartupTests
     {
         [Fact]
         public void ShouldExecuteStartupMethods()
@@ -40,7 +40,7 @@ namespace AutomationIoC
         }
 
         [Cmdlet(VerbsLifecycle.Build, "Dependencies")]
-        public class TestStartup : AutomationStartup
+        public class TestStartup : IoCStartup
         {
             private readonly TestService testService;
 

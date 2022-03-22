@@ -8,9 +8,15 @@ namespace AutomationIoC
         internal IAutomationContext Context { get; set; }
         internal string CommandName { get { return MyInvocation.InvocationName; } }
 
+        internal void RunInstance()
+        {
+            BeginProcessing();
+            ProcessRecord();
+            EndProcessing();
+        }
+
         protected sealed override void BeginProcessing()
         {
-            ;
             WriteVerbose($"Command {CommandName} Started");
 
             base.BeginProcessing();
@@ -28,13 +34,6 @@ namespace AutomationIoC
             base.EndProcessing();
 
             WriteVerbose($"{CommandName} operation completed");
-        }
-
-        internal void RunInstance()
-        {
-            BeginProcessing();
-            ProcessRecord();
-            EndProcessing();
         }
     }
 }

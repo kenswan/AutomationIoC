@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 namespace AutomationIoC
 {
 
-    public abstract class AutomationStartup : IoCShellBase
+    public abstract class IoCStartup : IoCShellBase
     {
         protected IConfiguration Configuration { get; private set; }
 
