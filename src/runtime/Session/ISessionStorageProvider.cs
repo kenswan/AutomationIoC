@@ -1,6 +1,6 @@
 ﻿namespace AutomationIoC.Runtime.Session
 {
-    public interface ISessionStorageProvider
+    internal interface ISessionStorageProvider
     {
         IServiceProvider GetCurrentServiceProvider();
 

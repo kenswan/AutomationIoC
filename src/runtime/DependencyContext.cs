@@ -8,6 +8,6 @@ namespace AutomationIoC.Runtime
     {
         public SessionState SessionState { get; set; }
 
-        public object ClassInstance { get; set; }
+        public object Instance { get; set; }
     }
 }

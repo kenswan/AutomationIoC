@@ -14,7 +14,7 @@ namespace AutomationIoC.Runtime.Dependency
 
         public void LoadFieldsByAttribute<TAttribute>(object instance) where TAttribute : Attribute
         {
-            FieldInfo[] fields = this.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+            FieldInfo[] fields = instance.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (FieldInfo field in fields)
             {
@@ -38,7 +38,7 @@ namespace AutomationIoC.Runtime.Dependency
 
         public void LoadPropertiesByAttribute<TAttribute>(object instance) where TAttribute : Attribute
         {
-            PropertyInfo[] properties = this.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Instance);
+            PropertyInfo[] properties = instance.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Instance);
 
             foreach (PropertyInfo property in properties)
             {

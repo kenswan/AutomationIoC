@@ -15,11 +15,11 @@ namespace AutomationIoC
 
             var dependencyContext = new DependencyContext<AutomationDependencyAttribute, TStartup>
             {
-                ClassInstance = this,
+                Instance = this,
                 SessionState = SessionState
             };
 
-            AutomationIoCRuntime.Bind(dependencyContext);
+            AutomationIoCRuntime.BindContext(dependencyContext);
 
             WriteVerbose($"{CommandName} Context Initialized");
         }
@@ -40,7 +40,7 @@ namespace AutomationIoC
 
         internal void RunInstance()
         {
-            BeginProcessing();
+            // BeginProcessing();
             ProcessRecord();
             EndProcessing();
         }
