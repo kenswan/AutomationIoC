@@ -2,7 +2,7 @@
 
 namespace AutomationIoC.Tools
 {
-    public class TestAutomationShell<TShell, TStartup> : IoCShell<TStartup>
+    public class TestAutomationShell<TShell, TStartup>
             where TShell : IoCShell<TStartup>, new ()
             where TStartup : IIoCStartup, new ()
     {
@@ -11,10 +11,6 @@ namespace AutomationIoC.Tools
         public TestAutomationShell(TShell shell)
         {
             this.shell = shell;
-        }
-
-        protected sealed override void BeginProcessing()
-        {
         }
 
         public void Execute()

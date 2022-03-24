@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Management.Automation;
+﻿using System.Management.Automation;
 using System.Management.Automation.Host;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AutomationIoC.Tools
+namespace AutomationIoC.Tools.Runtime
 {
     internal class MockCommandRuntime : ICommandRuntime
     {

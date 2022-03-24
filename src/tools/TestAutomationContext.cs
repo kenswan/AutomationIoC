@@ -1,4 +1,5 @@
 ﻿using AutomationIoC.Runtime;
+using AutomationIoC.Tools.Runtime;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AutomationIoC.Tools
@@ -11,7 +12,8 @@ namespace AutomationIoC.Tools
         {
             var shell = new TShell
             {
-                CommandRuntime = new MockCommandRuntime()
+                CommandRuntime = new MockCommandRuntime(),
+                InitializeContext = false
             };
 
             IServiceCollection serviceCollection = new ServiceCollection();

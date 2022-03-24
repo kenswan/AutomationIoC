@@ -11,7 +11,7 @@ namespace AutomationIoC
     public class TestAutomationContextTests
     {
         [Fact]
-        public void ShouldCreateTestShell()
+        public void ShouldLoadDependency()
         {
             var testServiceMock = new Mock<ITestService>();
 
