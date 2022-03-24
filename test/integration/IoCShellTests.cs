@@ -1,7 +1,6 @@
 ﻿using AutomationIoC.Commands;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
-using System.Reflection;
 using System.Text.Json;
 using Xunit;
 using Xunit.Abstractions;
