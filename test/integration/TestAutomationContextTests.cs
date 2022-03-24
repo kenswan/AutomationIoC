@@ -22,7 +22,7 @@ namespace AutomationIoC
 
             testShell.Execute();
 
-            testServiceMock.Verify(service => service.CallTestMethod(), Times.Once);
+            testServiceMock.Verify(service => service.CallTestMethod(), Times.Exactly(3));
         }
 
         public class TestIoCShell : IoCShell<TestStartup>
@@ -30,9 +30,23 @@ namespace AutomationIoC
             [AutomationDependency]
             protected readonly ITestService testService;
 
+            protected override void BeginProcessing()
+            {
+                base.BeginProcessing();
+
+                testService.CallTestMethod();
+            }
+
             protected override void ProcessRecord()
             {
                 base.ProcessRecord();
+
+                testService.CallTestMethod();
+            }
+
+            protected override void EndProcessing()
+            {
+                base.EndProcessing();
 
                 testService.CallTestMethod();
             }

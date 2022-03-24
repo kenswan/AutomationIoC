@@ -1,4 +1,5 @@
-﻿using AutomationIoC.Runtime.Context;
+﻿using AutomationIoC.Runtime.Binder;
+using AutomationIoC.Runtime.Context;
 using AutomationIoC.Runtime.Dependency;
 using AutomationIoC.Runtime.Session;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,37 +13,18 @@ namespace AutomationIoC.Runtime
             where TAttribute : Attribute
             where TStartup : IIoCStartup, new()
         {
-            IServiceCollection serviceCollection = new ServiceCollection();
+            IAutomationIoCBinder binder =
+                new AutomationIoCBinder(RuntimeFactory.RuntimeServiceProvider(context.SessionState, new TStartup()));
 
-            serviceCollection.AddSingleton(context.SessionState);
-            serviceCollection.AddTransient<IContextBuilder, ContextBuilder>();
-            serviceCollection.AddSingleton<ISessionState, InternalSessionState>();
-            serviceCollection.AddTransient<IDependencyBinder, DependencyBinder>();
-            serviceCollection.AddTransient<IIoCStartup>(_ => new TStartup());
-
-            using var serviceProvider = serviceCollection.BuildServiceProvider();
-            using var scope = serviceProvider.CreateScope();
-
-            var contextBuilder = scope.ServiceProvider.GetRequiredService<IContextBuilder>();
-
-            if(!contextBuilder.IsInitialized)
-                contextBuilder.BuildServices();
-
-            contextBuilder.InitializeCurrentInstance<TAttribute>(context.Instance);
+            binder.BindContext(context);
         }
 
         public static void BindServiceCollection<TAttribute>(IServiceCollection serviceCollection, object instance)
             where TAttribute : Attribute
         {
-            serviceCollection.TryAddTransient<IDependencyBinder, DependencyBinder>();
+            IAutomationIoCBinder binder = new AutomationIoCBinder(RuntimeFactory.RuntimeServiceProvider(serviceCollection));
 
-            using var serviceProvider = serviceCollection.BuildServiceProvider();
-            using var scope = serviceProvider.CreateScope();
-
-            var dependencyBinder = scope.ServiceProvider.GetRequiredService<IDependencyBinder>();
-
-            dependencyBinder.LoadFieldsByAttribute<TAttribute>(instance);
-            dependencyBinder.LoadPropertiesByAttribute<TAttribute>(instance);
+            binder.BindServiceCollection<TAttribute>(serviceCollection, instance);
         }
     }
 }

@@ -8,16 +8,11 @@ namespace AutomationIoC.Runtime.Context
 {
     internal class ContextBuilder : IContextBuilder
     {
-        private readonly IDependencyBinder dependencyBinder;
         private readonly IIoCStartup startup;
         private readonly ISessionStorageProvider sessionStorageProvider;
 
-        public ContextBuilder(
-            IDependencyBinder dependencyBinder,
-            IIoCStartup startup,
-            ISessionStorageProvider sessionStorageProvider)
+        public ContextBuilder(IIoCStartup startup, ISessionStorageProvider sessionStorageProvider)
         {
-            this.dependencyBinder = dependencyBinder;
             this.startup = startup;
             this.sessionStorageProvider = sessionStorageProvider;
         }
@@ -38,6 +33,8 @@ namespace AutomationIoC.Runtime.Context
 
             serviceCollection.AddLogging(builder => builder.AddConsole());
 
+            serviceCollection.AddTransient<IDependencyBinder, DependencyBinder>();
+
             startup.ConfigureServices(serviceCollection);
 
             sessionStorageProvider.StoreServiceProvider(serviceCollection.BuildServiceProvider());
@@ -45,6 +42,10 @@ namespace AutomationIoC.Runtime.Context
 
         public void InitializeCurrentInstance<TAttribute>(object instance) where TAttribute : Attribute
         {
+            var serviceProvider = sessionStorageProvider.GetCurrentServiceProvider();
+            using var scope = serviceProvider.CreateScope();
+            var dependencyBinder = scope.ServiceProvider.GetRequiredService<IDependencyBinder>();
+
             dependencyBinder.LoadFieldsByAttribute<TAttribute>(instance);
             
             dependencyBinder.LoadPropertiesByAttribute<TAttribute>(instance);

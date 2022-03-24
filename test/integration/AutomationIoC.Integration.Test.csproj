@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>false</IsPackable>
 	<RootNamespace>AutomationIoC</RootNamespace>
+	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,8 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\sdk\AutomationIoC.SDK.csproj" />
-    <ProjectReference Include="..\..\src\tools\AutomationIoC.Tools.csproj" />
+    <ProjectReference Include="..\..\src\automation\AutomationIoC.csproj" />
   </ItemGroup>
 
 </Project>
