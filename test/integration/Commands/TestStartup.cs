@@ -11,7 +11,12 @@ namespace AutomationIoC.Commands
 
         public void Configure(IConfigurationBuilder configurationBuilder)
         {
-            
+            var appSettings = new Dictionary<string, string>()
+            {
+                ["testOptions:mode"] = "basic-test",
+            };
+
+            configurationBuilder.AddInMemoryCollection(appSettings);
         }
 
         public void ConfigureServices(IServiceCollection services)

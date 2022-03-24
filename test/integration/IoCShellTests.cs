@@ -1,5 +1,7 @@
-﻿using System.Management.Automation;
+﻿using AutomationIoC.Commands;
+using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using System.Reflection;
 using System.Text.Json;
 using Xunit;
 using Xunit.Abstractions;
@@ -19,9 +21,8 @@ namespace AutomationIoC
         public void ShouldAddDependencies()
         {
             var expectedCount = 3;
-
             InitialSessionState initial = InitialSessionState.CreateDefault();
-            initial.ImportPSModule(new string[] { $"{Directory.GetCurrentDirectory()}\\AutomationIoC.Integration.Test.dll" });
+            initial.ImportPSModule(new string[] { typeof(TestModule).Assembly.Location });
             
             Runspace runspace = RunspaceFactory.CreateRunspace(initial);
             runspace.Open();
