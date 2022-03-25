@@ -1,7 +1,6 @@
 ﻿using AutomationIoC.Runtime.Context;
 using AutomationIoC.Runtime.Session;
 using Microsoft.Extensions.DependencyInjection;
-using System.Management.Automation;
 
 namespace AutomationIoC.Runtime.Dependency
 {

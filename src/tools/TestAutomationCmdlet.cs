@@ -3,8 +3,8 @@
 namespace AutomationIoC.Tools
 {
     public class TestAutomationCmdlet<TShell, TStartup>
-            where TShell : IoCShell<TStartup>, new ()
-            where TStartup : IIoCStartup, new ()
+            where TShell : IoCShell<TStartup>, new()
+            where TStartup : IIoCStartup, new()
     {
         private readonly TShell shell;
 

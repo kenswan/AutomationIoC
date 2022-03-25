@@ -14,7 +14,7 @@ namespace AutomationIoC.Runtime.Dependency
         {
             var sessionState = new SessionStateProxy(null);
             var startup = new TestRuntimeStartup();
-      
+
             var actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionState, startup);
 
             var providerSessionState = actualServiceProvider.GetRequiredService<ISessionState>();
@@ -32,7 +32,7 @@ namespace AutomationIoC.Runtime.Dependency
         public void ShouldBuildRuntimeProviderFromCollection()
         {
             var actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(new ServiceCollection());
-            
+
             Assert.NotNull(actualServiceProvider);
             Assert.NotNull(actualServiceProvider.GetRequiredService<IDependencyBinder>());
         }
