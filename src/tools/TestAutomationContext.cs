@@ -13,7 +13,7 @@ namespace AutomationIoC.Tools
             var shell = new TShell
             {
                 CommandRuntime = new MockCommandRuntime(),
-                InitializeContext = false
+                ShouldInitializeContext = false
             };
 
             IServiceCollection serviceCollection = new ServiceCollection();

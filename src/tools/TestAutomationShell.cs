@@ -14,7 +14,7 @@ namespace AutomationIoC.Tools
 
             Runspace runspace = RunspaceFactory.CreateRunspace(initial);
             runspace.Open();
-
+            
             PowerShell ps = PowerShell.Create();
             ps.Runspace = runspace;
             

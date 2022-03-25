@@ -7,14 +7,13 @@ namespace AutomationIoC.Runtime.Dependency
 {
     internal static class RuntimeFactory
     {
-        public static IServiceProvider RuntimeServiceProvider(SessionState sessionState, IIoCStartup startup)
+        public static IServiceProvider RuntimeServiceProvider(SessionStateProxy sessionState, IIoCStartup startup)
         {
             IServiceCollection serviceCollection = new ServiceCollection();
 
-            serviceCollection.AddSingleton(sessionState);
             serviceCollection.AddTransient<IContextBuilder, ContextBuilder>();
             serviceCollection.AddTransient<ISessionStorageProvider, SessionStorageProvider>();
-            serviceCollection.AddSingleton<ISessionState, SessionStateProxy>();
+            serviceCollection.AddSingleton<ISessionState>(_ => sessionState);
             serviceCollection.AddTransient(_ => startup);
 
             return serviceCollection.BuildServiceProvider();

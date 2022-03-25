@@ -6,7 +6,7 @@ namespace AutomationIoC
     public abstract class IoCShell<TStartup> : PSCmdlet where TStartup : IIoCStartup, new()
     {
         internal string CommandName { get { return MyInvocation.InvocationName; } }
-        internal bool InitializeContext { get; set; } = true;
+        internal bool ShouldInitializeContext { get; set; } = true;
 
         protected override void BeginProcessing()
         {
@@ -14,7 +14,7 @@ namespace AutomationIoC
 
             base.BeginProcessing();
 
-            if (InitializeContext)
+            if (ShouldInitializeContext)
             { 
                 var dependencyContext = new DependencyContext<AutomationDependencyAttribute, TStartup>
                 {

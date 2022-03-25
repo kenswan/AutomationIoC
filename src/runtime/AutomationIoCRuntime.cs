@@ -1,5 +1,6 @@
 ﻿using AutomationIoC.Runtime.Binder;
 using AutomationIoC.Runtime.Dependency;
+using AutomationIoC.Runtime.Session;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AutomationIoC.Runtime
@@ -10,8 +11,10 @@ namespace AutomationIoC.Runtime
             where TAttribute : Attribute
             where TStartup : IIoCStartup, new()
         {
+            var sessionState = new SessionStateProxy(context.SessionState);
+
             IAutomationIoCBinder binder =
-                new AutomationIoCBinder(RuntimeFactory.RuntimeServiceProvider(context.SessionState, new TStartup()));
+                new AutomationIoCBinder(RuntimeFactory.RuntimeServiceProvider(sessionState, new TStartup()));
 
             binder.BindContext(context);
         }
