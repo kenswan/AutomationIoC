@@ -47,7 +47,7 @@ namespace AutomationIoC.Runtime.Context
             var dependencyBinder = scope.ServiceProvider.GetRequiredService<IDependencyBinder>();
 
             dependencyBinder.LoadFieldsByAttribute<TAttribute>(instance);
-            
+
             dependencyBinder.LoadPropertiesByAttribute<TAttribute>(instance);
         }
     }

@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace AutomationIoC.Runtime.Context
+﻿namespace AutomationIoC.Runtime.Context
 {
     internal interface IContextBuilder
     {

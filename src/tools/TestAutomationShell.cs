@@ -14,10 +14,10 @@ namespace AutomationIoC.Tools
 
             Runspace runspace = RunspaceFactory.CreateRunspace(initial);
             runspace.Open();
-            
+
             PowerShell ps = PowerShell.Create();
             ps.Runspace = runspace;
-            
+
             var command = ps.Commands.AddCommand(commandName);
 
             if (buildCommand is not null)

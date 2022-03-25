@@ -15,7 +15,7 @@ namespace AutomationIoC
             base.BeginProcessing();
 
             if (ShouldInitializeContext)
-            { 
+            {
                 var dependencyContext = new DependencyContext<AutomationDependencyAttribute, TStartup>
                 {
                     Instance = this,

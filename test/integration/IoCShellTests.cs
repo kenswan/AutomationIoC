@@ -26,7 +26,7 @@ namespace AutomationIoC
             testOutputHelper.WriteLine($"Call Count: {serializedResult}");
 
             var actualCount = Convert.ToInt32(result);
-            
+
             Assert.Equal(expectedCount, actualCount);
         }
     }
