@@ -1,4 +1,4 @@
-﻿namespace AutomationIoC.Services
+﻿namespace AutomationIoC.Integration.Services
 {
     public interface ITestService
     {

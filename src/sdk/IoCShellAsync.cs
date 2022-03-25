@@ -1,12 +1,14 @@
-﻿namespace AutomationIoC
-{
-    public abstract class IoCShellAsync : IoCShell
-    {
-        protected abstract Task ExecuteCmdletAsync();
+﻿using AutomationIoC.Runtime;
 
-        protected sealed override void ExecuteCmdlet()
+namespace AutomationIoC
+{
+    public abstract class IoCShellAsync<TStartup> : IoCShell<TStartup> where TStartup : IIoCStartup, new()
+    {
+        protected abstract Task ProcessRecordAsync();
+
+        protected sealed override void ProcessRecord()
         {
-            ExecuteCmdletAsync().Wait();
+            ProcessRecordAsync().Wait();
         }
     }
 }

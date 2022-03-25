@@ -1,21 +1,52 @@
-﻿namespace AutomationIoC
-{
-    public abstract class IoCShell : IoCShellBase
-    {
-        protected abstract void ExecuteCmdlet();
+﻿using AutomationIoC.Runtime;
+using System.Management.Automation;
 
-        protected sealed override void ProcessRecord()
+namespace AutomationIoC
+{
+    public abstract class IoCShell<TStartup> : PSCmdlet where TStartup : IIoCStartup, new()
+    {
+        internal string CommandName { get { return MyInvocation.InvocationName; } }
+        internal bool ShouldInitializeContext { get; set; } = true;
+
+        protected override void BeginProcessing()
+        {
+            WriteVerbose($"Command {CommandName} Started");
+
+            base.BeginProcessing();
+
+            if (ShouldInitializeContext)
+            { 
+                var dependencyContext = new DependencyContext<AutomationDependencyAttribute, TStartup>
+                {
+                    Instance = this,
+                    SessionState = SessionState
+                };
+
+                AutomationIoCRuntime.BindContext(dependencyContext);
+            }
+
+            WriteVerbose($"{CommandName} Context Initialized");
+        }
+
+        protected override void ProcessRecord()
         {
             base.ProcessRecord();
 
-            ExecuteCmdlet();
+            WriteVerbose($"{CommandName} process completed");
         }
 
-        protected sealed override void EndProcessing()
+        protected override void EndProcessing()
         {
             base.EndProcessing();
 
-            WriteVerbose("Command Complete");
+            WriteVerbose($"{CommandName} operation completed");
+        }
+
+        internal void RunInstance()
+        {
+            BeginProcessing();
+            ProcessRecord();
+            EndProcessing();
         }
     }
 }
