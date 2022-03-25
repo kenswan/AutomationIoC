@@ -1,9 +1,6 @@
 ﻿using AutomationIoC.Runtime.Binder;
-using AutomationIoC.Runtime.Context;
 using AutomationIoC.Runtime.Dependency;
-using AutomationIoC.Runtime.Session;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace AutomationIoC.Runtime
 {
@@ -22,7 +19,8 @@ namespace AutomationIoC.Runtime
         public static void BindServiceCollection<TAttribute>(IServiceCollection serviceCollection, object instance)
             where TAttribute : Attribute
         {
-            IAutomationIoCBinder binder = new AutomationIoCBinder(RuntimeFactory.RuntimeServiceProvider(serviceCollection));
+            IAutomationIoCBinder binder =
+                new AutomationIoCBinder(RuntimeFactory.RuntimeServiceProvider(serviceCollection));
 
             binder.BindServiceCollection<TAttribute>(serviceCollection, instance);
         }

@@ -1,21 +1,43 @@
-﻿using AutomationIoC.Runtime;
+﻿using System.Management.Automation;
+using System.Management.Automation.Runspaces;
 
 namespace AutomationIoC.Tools
 {
-    public class TestAutomationShell<TShell, TStartup>
-            where TShell : IoCShell<TStartup>, new ()
-            where TStartup : IIoCStartup, new ()
+    public static class TestAutomationShell
     {
-        private readonly TShell shell;
-
-        public TestAutomationShell(TShell shell)
+        public static ICollection<PSObject> RunCommand<T>(
+            string commandName,
+            Action<PSCommand> buildCommand = null)
         {
-            this.shell = shell;
+            InitialSessionState initial = InitialSessionState.CreateDefault();
+            initial.ImportPSModule(new string[] { typeof(T).Assembly.Location });
+
+            Runspace runspace = RunspaceFactory.CreateRunspace(initial);
+            runspace.Open();
+
+            PowerShell ps = PowerShell.Create();
+            ps.Runspace = runspace;
+            
+            var command = ps.Commands.AddCommand(commandName);
+
+            if (buildCommand is not null)
+                buildCommand(command);
+
+            return ps.Invoke();
         }
 
-        public void Execute()
+        public static ICollection<PSObject> RunCommand(Action<PSCommand> buildCommands)
         {
-            shell.RunInstance();
+            InitialSessionState initial = InitialSessionState.CreateDefault();
+            Runspace runspace = RunspaceFactory.CreateRunspace(initial);
+            runspace.Open();
+
+            PowerShell ps = PowerShell.Create();
+            ps.Runspace = runspace;
+
+            buildCommands(ps.Commands);
+
+            return ps.Invoke();
         }
     }
 }

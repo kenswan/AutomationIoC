@@ -1,6 +1,5 @@
 ﻿using AutomationIoC.Commands;
-using System.Management.Automation;
-using System.Management.Automation.Runspaces;
+using AutomationIoC.Tools;
 using System.Text.Json;
 using Xunit;
 using Xunit.Abstractions;
@@ -20,17 +19,9 @@ namespace AutomationIoC
         public void ShouldAddDependencies()
         {
             var expectedCount = 3;
-            InitialSessionState initial = InitialSessionState.CreateDefault();
-            initial.ImportPSModule(new string[] { typeof(TestModule).Assembly.Location });
-            
-            Runspace runspace = RunspaceFactory.CreateRunspace(initial);
-            runspace.Open();
-            
-            PowerShell ps = PowerShell.Create();
-            ps.Runspace = runspace;
-            ps.Commands.AddCommand("Get-Test");
+            var results = TestAutomationShell.RunCommand<TestModule>("Get-Test");
+            var result = results.First().BaseObject;
 
-            var result = ps.Invoke().First().BaseObject;
             var serializedResult = JsonSerializer.Serialize(result);
             testOutputHelper.WriteLine($"Call Count: {serializedResult}");
 

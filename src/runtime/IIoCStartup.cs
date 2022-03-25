@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Runtime.CompilerServices;
 
 namespace AutomationIoC.Runtime
 {
@@ -7,8 +8,8 @@ namespace AutomationIoC.Runtime
     {
         IConfiguration Configuration { get; internal set; }
 
-        void ConfigureServices(IServiceCollection services);
-
         void Configure(IConfigurationBuilder configurationBuilder);
+
+        void ConfigureServices(IServiceCollection services);
     }
 }

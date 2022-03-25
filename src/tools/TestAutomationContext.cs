@@ -6,7 +6,7 @@ namespace AutomationIoC.Tools
 {
     public class TestAutomationContext
     {
-        public static TestAutomationShell<TShell, TStartup> CreateInstance<TShell, TStartup>(Action<IServiceCollection> serviceAction)
+        public static TestAutomationCmdlet<TShell, TStartup> CreateInstance<TShell, TStartup>(Action<IServiceCollection> serviceAction)
             where TShell : IoCShell<TStartup>, new()
             where TStartup : IIoCStartup, new()
         {
@@ -22,7 +22,7 @@ namespace AutomationIoC.Tools
 
             AutomationIoCRuntime.BindServiceCollection<AutomationDependencyAttribute>(serviceCollection, shell);
 
-            return new TestAutomationShell<TShell, TStartup>(shell);
+            return new TestAutomationCmdlet<TShell, TStartup>(shell);
         }
     }
 }
