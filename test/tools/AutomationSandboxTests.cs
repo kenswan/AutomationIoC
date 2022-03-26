@@ -59,6 +59,8 @@ namespace AutomationIoC.Tools
         {
             public IConfiguration Configuration { get; set; }
 
+            public IAutomationEnvironment Environment { get; set; }
+
             public void Configure(IConfigurationBuilder configurationBuilder)
             {
                 var appSettings = new Dictionary<string, string>()

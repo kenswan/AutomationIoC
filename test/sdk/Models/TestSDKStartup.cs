@@ -8,6 +8,8 @@ namespace AutomationIoC.Models
     {
         public IConfiguration Configuration { get; set; }
 
+        public IAutomationEnvironment Environment { get; set; }
+
         public void Configure(IConfigurationBuilder configurationBuilder)
         {
             throw new NotImplementedException();
