@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\sdk\AutomationIoC.SDK.csproj" />
+    <ProjectReference Include="..\runtime\AutomationIoC.Runtime.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@ using System.Management.Automation.Runspaces;
 namespace AutomationIoC.Tools.Context
 {
     internal class AutomationContext<TCommand, TStartup> : IAutomationContext<TCommand, TStartup>
-        where TCommand : IoCShell<TStartup>
+        where TCommand : PSCmdlet
         where TStartup : IIoCStartup, new()
     {
         private readonly PowerShell powerShellSession;

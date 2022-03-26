@@ -5,7 +5,7 @@ using System.Management.Automation;
 namespace AutomationIoC.Tools
 {
     public interface IAutomationContext<TCommand, TStartup>
-        where TCommand : IoCShell<TStartup>
+        where TCommand : PSCmdlet
         where TStartup : IIoCStartup, new()
     {
         void ConfigureServices(Action<IServiceCollection> buildServices);
