@@ -1,9 +1,8 @@
 ﻿using AutomationIoC.Models;
-using AutomationIoC.Runtime;
 using AutomationIoC.Tools;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
+using System.Management.Automation;
 using Xunit;
 
 namespace AutomationIoC
@@ -15,17 +14,20 @@ namespace AutomationIoC
         {
             var testServiceMock = new Mock<ITestSdkService>();
 
-            var testShell = TestAutomationContext.CreateInstance<TestIoCShell, TestSDKStartup>(serviceCollection =>
+            var context = AutomationSandbox.CreateContext<TestIoCShell, TestSDKStartup>();
+
+            context.ConfigureServices(serviceCollection =>
             {
                 serviceCollection.AddTransient(_ => testServiceMock.Object);
             });
 
-            testShell.Execute();
+            context.RunCommand();
 
             testServiceMock.Verify(service => service.RunMethod(), Times.Exactly(3));
         }
 
-        internal class TestIoCShell : IoCShell<TestSDKStartup>
+        [Cmdlet(VerbsData.Mount, "Test")]
+        public class TestIoCShell : IoCShell<TestSDKStartup>
         {
             [AutomationDependency]
             protected ITestSdkService TestService { get; set; }
