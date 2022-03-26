@@ -15,7 +15,7 @@ namespace AutomationIoC.Tools.Context
         {
             InitialSessionState initial = InitialSessionState.CreateDefault();
             initial.ImportPSModule(new string[] { typeof(TCommand).Assembly.Location });
-            
+
             Runspace runspace = RunspaceFactory.CreateRunspace(initial);
             runspace.Open();
 
@@ -50,10 +50,10 @@ namespace AutomationIoC.Tools.Context
 
         private static string GetCommandName()
         {
-            CmdletAttribute cmdletAttribute = 
+            CmdletAttribute cmdletAttribute =
                 Attribute.GetCustomAttribute(typeof(TCommand), typeof(CmdletAttribute)) as CmdletAttribute;
 
-            if(cmdletAttribute is null)
+            if (cmdletAttribute is null)
                 throw new ArgumentException("CmdletAttribute not found on class", nameof(cmdletAttribute));
 
             return $"{cmdletAttribute.VerbName}-{cmdletAttribute.NounName}";
