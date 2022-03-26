@@ -18,11 +18,11 @@ namespace AutomationIoC.Runtime.Dependency
             return serviceCollection.BuildServiceProvider();
         }
 
-        public static IServiceProvider RuntimeServiceProvider(IServiceCollection serviceCollection)
+        public static IServiceCollection RuntimeDependencyCollection()
         {
-            serviceCollection.AddTransient<IDependencyBinder, DependencyBinder>();
+            IServiceCollection serviceCollection = new ServiceCollection();
 
-            return serviceCollection.BuildServiceProvider();
+            return serviceCollection.AddTransient<IDependencyBinder, DependencyBinder>();
         }
     }
 }

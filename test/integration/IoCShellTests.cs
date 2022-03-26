@@ -19,7 +19,9 @@ namespace AutomationIoC
         public void ShouldAddDependencies()
         {
             var expectedCount = 3;
-            var results = TestAutomationShell.RunCommand<TestModule>("Get-Test");
+            var context = AutomationSandbox.CreateContext<TestModule, TestStartup>();
+
+            var results = context.RunCommand();
             var result = results.First().BaseObject;
 
             var serializedResult = JsonSerializer.Serialize(result);

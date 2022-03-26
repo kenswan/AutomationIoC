@@ -2,6 +2,7 @@
 using AutomationIoC.Runtime.Dependency;
 using AutomationIoC.Runtime.Session;
 using Microsoft.Extensions.DependencyInjection;
+using System.Management.Automation;
 
 namespace AutomationIoC.Runtime
 {
@@ -11,21 +12,25 @@ namespace AutomationIoC.Runtime
             where TAttribute : Attribute
             where TStartup : IIoCStartup, new()
         {
-            var sessionState = new SessionStateProxy(context.SessionState);
+            var sessionStateProxy = new SessionStateProxy(context.SessionState);
 
             IAutomationIoCBinder binder =
-                new AutomationIoCBinder(RuntimeFactory.RuntimeServiceProvider(sessionState, new TStartup()));
+                new AutomationIoCBinder(RuntimeFactory.RuntimeServiceProvider(sessionStateProxy, new TStartup()));
 
-            binder.BindContext(context);
+            binder.BindContext<TAttribute>(context.Instance);
         }
 
-        public static void BindServiceCollection<TAttribute>(IServiceCollection serviceCollection, object instance)
-            where TAttribute : Attribute
+        public static void ImportContext<TStartup>(SessionState sessionState, IServiceCollection serviceCollection)
+            where TStartup : IIoCStartup, new()
         {
-            IAutomationIoCBinder binder =
-                new AutomationIoCBinder(RuntimeFactory.RuntimeServiceProvider(serviceCollection));
+            var sessionStateProxy = new SessionStateProxy(sessionState);
 
-            binder.BindServiceCollection<TAttribute>(serviceCollection, instance);
+            IAutomationIoCBinder binder =
+                new AutomationIoCBinder(RuntimeFactory.RuntimeServiceProvider(sessionStateProxy, new TStartup()));
+
+            binder.ImportServices(serviceCollection);
         }
+
+        public static IServiceCollection ExportRuntimeDependencies() => RuntimeFactory.RuntimeDependencyCollection();
     }
 }

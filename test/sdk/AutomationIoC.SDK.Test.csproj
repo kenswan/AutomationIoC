@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\sdk\AutomationIoC.SDK.csproj" />
+    <ProjectReference Include="..\..\src\tools\AutomationIoC.Tools.csproj" />
   </ItemGroup>
 
 </Project>

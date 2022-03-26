@@ -1,7 +1,7 @@
 ﻿using System.Management.Automation;
 using System.Management.Automation.Host;
 
-namespace AutomationIoC.Tools.Runtime
+namespace AutomationIoC.Tools.Context
 {
     internal class MockCommandRuntime : ICommandRuntime
     {

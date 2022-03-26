@@ -1,5 +1,5 @@
 ﻿using AutomationIoC.Runtime.Context;
-using AutomationIoC.Runtime.Dependency;
+using AutomationIoC.Runtime.Session;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AutomationIoC.Runtime.Binder
@@ -13,9 +13,8 @@ namespace AutomationIoC.Runtime.Binder
             this.serviceProvider = serviceProvider;
         }
 
-        public void BindContext<TAttribute, TStartup>(DependencyContext<TAttribute, TStartup> context)
+        public void BindContext<TAttribute>(object instance)
             where TAttribute : Attribute
-            where TStartup : IIoCStartup, new()
         {
             using var scope = serviceProvider.CreateScope();
 
@@ -24,17 +23,16 @@ namespace AutomationIoC.Runtime.Binder
             if (!contextBuilder.IsInitialized)
                 contextBuilder.BuildServices();
 
-            contextBuilder.InitializeCurrentInstance<TAttribute>(context.Instance);
+            contextBuilder.InitializeCurrentInstance<TAttribute>(instance);
         }
 
-        public void BindServiceCollection<TAttribute>(IServiceCollection serviceCollection, object instance) where TAttribute : Attribute
+        public void ImportServices(IServiceCollection serviceCollection)
         {
             using var scope = serviceProvider.CreateScope();
 
-            var dependencyBinder = scope.ServiceProvider.GetRequiredService<IDependencyBinder>();
+            var sessionStorageProvider = scope.ServiceProvider.GetRequiredService<ISessionStorageProvider>();
 
-            dependencyBinder.LoadFieldsByAttribute<TAttribute>(instance);
-            dependencyBinder.LoadPropertiesByAttribute<TAttribute>(instance);
+            sessionStorageProvider.StoreServiceProvider(serviceCollection.BuildServiceProvider());
         }
     }
 }

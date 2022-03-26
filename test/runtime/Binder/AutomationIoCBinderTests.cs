@@ -1,6 +1,6 @@
 ﻿using AutomationIoC.Runtime.Context;
-using AutomationIoC.Runtime.Dependency;
 using AutomationIoC.Runtime.Models;
+using AutomationIoC.Runtime.Session;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Xunit;
@@ -12,10 +12,7 @@ namespace AutomationIoC.Runtime.Binder
         [Fact]
         public void ShouldInitializeyContext()
         {
-            var dependencyContext = new DependencyContext<TestRuntimeAttribute, TestRuntimeStartup>()
-            {
-                Instance = new TestInstance(2)
-            };
+            var instance = new TestInstance(123);
             var contextBuilderMock = new Mock<IContextBuilder>();
             contextBuilderMock.Setup(builder => builder.IsInitialized).Returns(false);
 
@@ -24,12 +21,12 @@ namespace AutomationIoC.Runtime.Binder
                     .AddTransient(_ => contextBuilderMock.Object)
                     .BuildServiceProvider();
 
-            new AutomationIoCBinder(serviceProvider).BindContext(dependencyContext);
+            new AutomationIoCBinder(serviceProvider).BindContext<TestRuntimeAttribute>(instance);
 
             contextBuilderMock.Verify(builder => builder.BuildServices(), Times.Once);
 
             contextBuilderMock.Verify(builder =>
-                builder.InitializeCurrentInstance<TestRuntimeAttribute>(dependencyContext.Instance),
+                builder.InitializeCurrentInstance<TestRuntimeAttribute>(instance),
                     Times.Once);
         }
 
@@ -44,40 +41,42 @@ namespace AutomationIoC.Runtime.Binder
                     .AddTransient(_ => contextBuilderMock.Object)
                     .BuildServiceProvider();
 
-            var dependencyContext = new DependencyContext<TestRuntimeAttribute, TestRuntimeStartup>()
-            {
-                Instance = new TestInstance(2)
-            };
+            var instance = new TestInstance(2);
 
-            new AutomationIoCBinder(serviceProvider).BindContext(dependencyContext);
+            new AutomationIoCBinder(serviceProvider).BindContext<TestRuntimeAttribute>(instance);
 
             contextBuilderMock.Verify(builder => builder.BuildServices(), Times.Never);
 
             contextBuilderMock.Verify(builder =>
-                builder.InitializeCurrentInstance<TestRuntimeAttribute>(dependencyContext.Instance),
+                builder.InitializeCurrentInstance<TestRuntimeAttribute>(instance),
                     Times.Once);
         }
 
         [Fact]
         public void ShouldBindExistingServiceCollection()
         {
-            var dependencyBinderMock = new Mock<IDependencyBinder>();
+            var sessionStorageProvider = new Mock<ISessionStorageProvider>();
             var instance = new TestInstance(2);
 
-            IServiceCollection serviceCollection =
+            IServiceProvider runtimeServiceProvider =
                 new ServiceCollection()
-                    .AddTransient(_ => dependencyBinderMock.Object);
+                    .AddTransient(_ => sessionStorageProvider.Object)
+                    .BuildServiceProvider();
 
-            new AutomationIoCBinder(serviceCollection.BuildServiceProvider())
-                .BindServiceCollection<TestRuntimeAttribute>(serviceCollection, instance);
+            IServiceCollection importedServiceCollection =
+                new ServiceCollection()
+                    .AddTransient<ITestRuntimeService, TestRuntimeService>();
 
-            dependencyBinderMock.Verify(binder =>
-                binder.LoadFieldsByAttribute<TestRuntimeAttribute>(instance),
+            new AutomationIoCBinder(runtimeServiceProvider).ImportServices(importedServiceCollection);
+
+            sessionStorageProvider.Verify(provider =>
+                provider.StoreServiceProvider(It.Is<IServiceProvider>(provider => ServiceProviderIsConfigured(provider))),
                     Times.Once);
+        }
 
-            dependencyBinderMock.Verify(binder =>
-                binder.LoadPropertiesByAttribute<TestRuntimeAttribute>(instance),
-                    Times.Once);
+        private bool ServiceProviderIsConfigured(IServiceProvider serviceProvider)
+        {
+            return serviceProvider.GetService<ITestRuntimeService>() is not null;
         }
     }
 }

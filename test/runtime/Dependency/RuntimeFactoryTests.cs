@@ -27,14 +27,5 @@ namespace AutomationIoC.Runtime.Dependency
             Assert.NotNull(actualServiceProvider.GetService<ISessionStorageProvider>());
             Assert.NotNull(actualServiceProvider.GetService<ISessionState>());
         }
-
-        [Fact]
-        public void ShouldBuildRuntimeProviderFromCollection()
-        {
-            var actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(new ServiceCollection());
-
-            Assert.NotNull(actualServiceProvider);
-            Assert.NotNull(actualServiceProvider.GetRequiredService<IDependencyBinder>());
-        }
     }
 }
