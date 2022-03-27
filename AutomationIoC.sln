@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC", "src\automa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Integration.Test", "test\integration\AutomationIoC.Integration.Test.csproj", "{F570BB2D-E8AF-4431-8440-ABEB177F95F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationIoC.Runtime", "src\runtime\AutomationIoC.Runtime.csproj", "{D8FB5D4D-4EA8-402D-B369-863180D9F22E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Runtime", "src\runtime\AutomationIoC.Runtime.csproj", "{D8FB5D4D-4EA8-402D-B369-863180D9F22E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationIoC.Runtime.Test", "test\runtime\AutomationIoC.Runtime.Test.csproj", "{BE9C4E88-7636-401D-8575-CD46DD134A3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Runtime.Test", "test\runtime\AutomationIoC.Runtime.Test.csproj", "{BE9C4E88-7636-401D-8575-CD46DD134A3D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.SDK", "src\sdk\AutomationIoC.SDK.csproj", "{E713E238-1058-4028-924C-591BD85C175B}"
 EndProject
@@ -23,6 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.targets = Directory.Build.targets
 		Packages.props = Packages.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9191277E-F49D-4DDC-AB35-46D8073B3B41}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.targets = src\Directory.Build.targets
 	EndProjectSection
 EndProject
 Global
@@ -66,6 +71,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9191277E-F49D-4DDC-AB35-46D8073B3B41} = {3F2D5702-0944-4940-BBD1-1505E55A12CA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {71C72244-D386-47DC-A2A0-D35FAA9EBFF2}
