@@ -18,26 +18,6 @@
       },
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "${workspaceFolder}/sample"
-      }
-    },
-    {
-      "label": "Build Framework",
-      "command": "dotnet",
-      "type": "shell",
-      "args": [
-        "build",
-        "-c",
-        "Debug",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "group": "build",
-      "presentation": {
-        "reveal": "silent"
-      },
-      "problemMatcher": "$msCompile",
-      "options": {
         "cwd": "${workspaceFolder}"
       }
     }

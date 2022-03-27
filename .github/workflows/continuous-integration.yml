@@ -107,8 +107,14 @@ jobs:
     if: github.event_name == 'release'
     runs-on: ubuntu-latest
     env:
-      project: ./automation/AutomationIoC.csproj
-      release-path: ./automation/bin/Release
+      base-project: ./automation/AutomationIoC.csproj
+      base-release-path: ./automation/bin/Release
+      runtime-project: ./runtime/AutomationIoC.Runtime.csproj
+      runtime-release-path: ./runtime/bin/Release
+      sdk-project: ./sdk/AutomationIoC.SDK.csproj
+      sdk-release-path: ./sdk/bin/Release
+      tools-project: ./tools/AutomationIoC.Tools.csproj
+      tools-release-path: ./tools/bin/Release
 
     steps:
       - uses: actions/checkout@v2
@@ -120,12 +126,23 @@ jobs:
 
       - name: Install Dependencies
         working-directory: ./src
-        run: dotnet restore ${{ env.project }}
+        run: |
+          dotnet restore ${{ env.runtime-project }}
+          dotnet restore ${{ env.sdk-project }}
+          dotnet restore ${{ env.tools-project }}
 
       - name: Create Release Packages
         working-directory: ./src
-        run: dotnet pack ${{ env.project }} -c Release -p:PackageVersion=${{ github.event.release.tag_name }}
+        run: |
+          dotnet pack ${{ env.runtime-project }} -c Release --no-restore -p:PackageVersion=${{ github.event.release.tag_name }}
+          dotnet pack ${{ env.sdk-project }} -c Release --no-restore -p:PackageVersion=${{ github.event.release.tag_name }}
+          dotnet pack ${{ env.tools-project }} -c Release --no-restore -p:PackageVersion=${{ github.event.release.tag_name }}
+          dotnet pack ${{ env.base-project }} -c Release -p:PackageVersion=${{ github.event.release.tag_name }}
 
       - name: Push Release Packages
         working-directory: ./src
-        run: dotnet nuget push ${{ env.release-path }}/AutomationIoC.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
+        run: |
+          dotnet nuget push ${{ env.runtime-release-path }}/AutomationIoC.Runtime.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
+          dotnet nuget push ${{ env.sdk-release-path }}/AutomationIoC.SDK.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
+          dotnet nuget push ${{ env.tools-release-path }}/AutomationIoC.Tools.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
+          dotnet nuget push ${{ env.base-release-path }}/AutomationIoC.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}

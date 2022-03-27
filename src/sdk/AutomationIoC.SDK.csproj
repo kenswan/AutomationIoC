@@ -5,6 +5,12 @@
     <RootNamespace>AutomationIoC</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Label="NuGet Metadata">
+		<Title>AutomationIoC.SDK</Title>
+		<PackageId>AutomationIoC.SDK</PackageId>
+		<Description>SDK utilities for AutomationIoC framework development</Description>
+	</PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\runtime\AutomationIoC.Runtime.csproj" />
   </ItemGroup>

@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "name": "Start Sample",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "Build Sample",
+      "program": "pwsh",
+      "args": [
+        "-NoExit",
+        "-NoProfile",
+        "-Command",
+        "Import-Module ${workspaceFolder}/bin/Debug/net6.0/AutomationIoC.Sample.dll",
+        "-Verbose"
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "console": "integratedTerminal"
+    }
+  ]
+}
