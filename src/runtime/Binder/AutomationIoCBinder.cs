@@ -6,20 +6,20 @@ namespace AutomationIoC.Runtime.Binder
 {
     internal class AutomationIoCBinder : IAutomationIoCBinder
     {
-        private readonly IServiceProvider serviceProvider;
+        private readonly IContextBuilder contextBuilder;
+        private readonly ISessionStorageProvider sessionStorageProvider;
 
-        public AutomationIoCBinder(IServiceProvider serviceProvider)
+        public AutomationIoCBinder(
+            IContextBuilder contextBuilder,
+            ISessionStorageProvider sessionStorageProvider)
         {
-            this.serviceProvider = serviceProvider;
+            this.contextBuilder = contextBuilder;
+            this.sessionStorageProvider = sessionStorageProvider;
         }
 
         public void BindContext<TAttribute>(object instance)
             where TAttribute : Attribute
         {
-            using var scope = serviceProvider.CreateScope();
-
-            var contextBuilder = scope.ServiceProvider.GetRequiredService<IContextBuilder>();
-
             if (!contextBuilder.IsInitialized)
                 contextBuilder.BuildServices();
 
@@ -28,10 +28,6 @@ namespace AutomationIoC.Runtime.Binder
 
         public void ImportServices(IServiceCollection serviceCollection)
         {
-            using var scope = serviceProvider.CreateScope();
-
-            var sessionStorageProvider = scope.ServiceProvider.GetRequiredService<ISessionStorageProvider>();
-
             sessionStorageProvider.StoreServiceProvider(serviceCollection.BuildServiceProvider());
         }
     }

@@ -34,29 +34,26 @@ namespace AutomationIoC.Tools.Context
 
         public void ConfigureServices(Action<IServiceCollection> buildServices)
         {
-            IServiceCollection serviceCollection = AutomationIoCRuntime.ExportRuntimeDependencies();
+            IServiceCollection services = new ServiceCollection();
 
-            buildServices(serviceCollection);
+            buildServices(services);
 
-            IServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
-
-            PSVariable serviceProviderVariable =
-                    new(typeof(TStartup).Name, serviceProvider, ScopedItemOptions.ReadOnly);
-
-            powerShellSession.Runspace.SessionStateProxy.PSVariable.Set(serviceProviderVariable);
+            AutomationIoCRuntime.BuildServices<TStartup>(powerShellSession.Runspace.SessionStateProxy, services);
         }
 
         public ICollection<PSObject> RunCommand() => powerShellSession.Invoke();
 
         private static string GetCommandName()
         {
-            CmdletAttribute cmdletAttribute =
-                Attribute.GetCustomAttribute(typeof(TCommand), typeof(CmdletAttribute)) as CmdletAttribute;
-
-            if (cmdletAttribute is null)
+            if (Attribute.GetCustomAttribute(typeof(TCommand), typeof(CmdletAttribute)) is not CmdletAttribute cmdletAttribute)
                 throw new ArgumentException("CmdletAttribute not found on class", nameof(cmdletAttribute));
 
             return $"{cmdletAttribute.VerbName}-{cmdletAttribute.NounName}";
+        }
+
+        public void SetVariable(string name, object value)
+        {
+            AutomationIoCRuntime.SetEnvironment(powerShellSession.Runspace.SessionStateProxy, name, value);
         }
     }
 }

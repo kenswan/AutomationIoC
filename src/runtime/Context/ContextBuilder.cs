@@ -33,9 +33,18 @@ namespace AutomationIoC.Runtime.Context
 
             serviceCollection.AddLogging(builder => builder.AddConsole());
 
-            serviceCollection.AddTransient<IDependencyBinder, DependencyBinder>();
-
             startup.ConfigureServices(serviceCollection);
+
+            RuntimeFactory.AddClientRuntime(serviceCollection);
+
+            sessionStorageProvider.StoreServiceProvider(serviceCollection.BuildServiceProvider());
+        }
+
+        public void BuildServices(IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddLogging(builder => builder.AddConsole());
+
+            RuntimeFactory.AddClientRuntime(serviceCollection);
 
             sessionStorageProvider.StoreServiceProvider(serviceCollection.BuildServiceProvider());
         }

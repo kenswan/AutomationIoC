@@ -13,5 +13,7 @@ namespace AutomationIoC.Tools
         void ConfigureParameters(Action<PSCommand> buildCommand);
 
         ICollection<PSObject> RunCommand();
+
+        void SetVariable(string name, object value);
     }
 }

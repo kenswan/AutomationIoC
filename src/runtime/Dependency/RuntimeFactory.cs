@@ -1,4 +1,6 @@
-﻿using AutomationIoC.Runtime.Context;
+﻿using AutomationIoC.Runtime.Binder;
+using AutomationIoC.Runtime.Context;
+using AutomationIoC.Runtime.Environment;
 using AutomationIoC.Runtime.Session;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -6,23 +8,26 @@ namespace AutomationIoC.Runtime.Dependency
 {
     internal static class RuntimeFactory
     {
-        public static IServiceProvider RuntimeServiceProvider(SessionStateProxy sessionState, IIoCStartup startup)
-        {
-            IServiceCollection serviceCollection = new ServiceCollection();
+        public static IServiceProvider RuntimeServiceProvider(SessionStateProxy sessionState, IIoCStartup startup) =>
+            GenerateRuntimeDependencies(sessionState)
+                .AddTransient<IAutomationIoCBinder, AutomationIoCBinder>()
+                .AddTransient<IContextBuilder, ContextBuilder>()
+                .AddTransient<ISessionStorageProvider, SessionStorageProvider>()
+                .AddTransient(_ => startup)
+                .BuildServiceProvider();
 
-            serviceCollection.AddTransient<IContextBuilder, ContextBuilder>();
-            serviceCollection.AddTransient<ISessionStorageProvider, SessionStorageProvider>();
-            serviceCollection.AddSingleton<ISessionState>(_ => sessionState);
-            serviceCollection.AddTransient(_ => startup);
+        public static IServiceProvider RuntimeServiceProvider(SessionStateProxy sessionState) =>
+            GenerateRuntimeDependencies(sessionState)
+                .BuildServiceProvider();
 
-            return serviceCollection.BuildServiceProvider();
-        }
+        public static void AddClientRuntime(IServiceCollection serviceCollection) =>
+            serviceCollection
+                .AddTransient<IDependencyBinder, DependencyBinder>();
 
-        public static IServiceCollection RuntimeDependencyCollection()
-        {
-            IServiceCollection serviceCollection = new ServiceCollection();
-
-            return serviceCollection.AddTransient<IDependencyBinder, DependencyBinder>();
-        }
+        private static IServiceCollection GenerateRuntimeDependencies(SessionStateProxy sessionState) =>
+            new ServiceCollection()
+                .AddTransient<IAutomationEnvironment, AutomationEnvironment>()
+                .AddTransient<IEnvironmentStorageProvider, EnvironmentStorageProvider>()
+                .AddSingleton<ISessionState>(_ => sessionState);
     }
 }

@@ -26,7 +26,7 @@ namespace AutomationIoC.Runtime.Context
 
             sessionStorageProviderMock.Verify(provider =>
                 provider.StoreServiceProvider(It.Is<IServiceProvider>(provider =>
-                ServiceProviderIsConfigured(provider))));
+                    ServiceProviderIsConfigured(provider))));
         }
 
         [Fact]
