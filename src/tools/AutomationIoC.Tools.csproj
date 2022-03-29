@@ -4,8 +4,14 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Label="NuGet Metadata">
+		<Title>AutomationIoC.Tools</Title>
+		<PackageId>AutomationIoC.Tools</PackageId>
+		<Description>Development tools for running/testing Cmdlets built with AutomationIoC framework</Description>
+	</PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\sdk\AutomationIoC.SDK.csproj" />
+    <ProjectReference Include="..\runtime\AutomationIoC.Runtime.csproj" />
   </ItemGroup>
 
 </Project>

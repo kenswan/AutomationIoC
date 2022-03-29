@@ -4,8 +4,8 @@ using System.Management.Automation;
 
 namespace AutomationIoC.Tools
 {
-    public interface IAutomationContext<TCommand, TStartup>
-        where TCommand : IoCShell<TStartup>
+    public interface IAutomationContext<TCommand, TStartup> : IDisposable
+        where TCommand : PSCmdlet
         where TStartup : IIoCStartup, new()
     {
         void ConfigureServices(Action<IServiceCollection> buildServices);
@@ -13,5 +13,7 @@ namespace AutomationIoC.Tools
         void ConfigureParameters(Action<PSCommand> buildCommand);
 
         ICollection<PSObject> RunCommand();
+
+        void SetVariable(string name, object value);
     }
 }

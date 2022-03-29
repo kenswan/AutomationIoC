@@ -5,7 +5,9 @@ namespace AutomationIoC.Runtime
 {
     public interface IIoCStartup
     {
-        IConfiguration Configuration { get; internal set; }
+        IAutomationEnvironment AutomationEnvironment { get; set; }
+
+        IConfiguration Configuration { get; set; }
 
         void Configure(IConfigurationBuilder configurationBuilder);
 

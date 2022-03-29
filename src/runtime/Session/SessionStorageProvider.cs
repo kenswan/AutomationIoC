@@ -1,38 +1,25 @@
-﻿using System.Management.Automation;
+﻿using AutomationIoC.Runtime.Environment;
+using System.Management.Automation;
 
 namespace AutomationIoC.Runtime.Session
 {
     internal class SessionStorageProvider : ISessionStorageProvider
     {
-        private readonly ISessionState sessionState;
+        private readonly IEnvironmentStorageProvider environmentStorageProvider;
         private readonly IIoCStartup startup;
 
         private string StorageKey => startup.GetType().Name;
 
-        public SessionStorageProvider(ISessionState sessionState, IIoCStartup startup)
+        public SessionStorageProvider(IEnvironmentStorageProvider environmentStorageProvider, IIoCStartup startup)
         {
-            this.sessionState = sessionState;
+            this.environmentStorageProvider = environmentStorageProvider;
             this.startup = startup;
         }
 
-        public IServiceProvider GetCurrentServiceProvider()
-        {
-            PSVariable psVariable = sessionState.PSVariable.Get(StorageKey);
+        public IServiceProvider GetCurrentServiceProvider() =>
+            environmentStorageProvider.GetEnvironmentVariable<IServiceProvider>(StorageKey);
 
-            if (psVariable?.Value is not null)
-            {
-                return (IServiceProvider)psVariable.Value;
-            }
-
-            return null;
-        }
-
-        public void StoreServiceProvider(IServiceProvider serviceProvider)
-        {
-            PSVariable serviceVariable =
-                    new(StorageKey, serviceProvider, ScopedItemOptions.ReadOnly);
-
-            sessionState.PSVariable.Set(serviceVariable);
-        }
+        public void StoreServiceProvider(IServiceProvider serviceProvider) =>
+            environmentStorageProvider.SetEnvironmentVariable(StorageKey, serviceProvider, ScopedItemOptions.ReadOnly);
     }
 }

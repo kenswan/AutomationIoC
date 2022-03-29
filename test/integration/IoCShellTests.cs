@@ -19,7 +19,7 @@ namespace AutomationIoC
         public void ShouldAddDependencies()
         {
             var expectedCount = 3;
-            var context = AutomationSandbox.CreateContext<TestModule, TestStartup>();
+            using var context = AutomationSandbox.CreateContext<TestModule, TestStartup>();
 
             var results = context.RunCommand();
             var result = results.First().BaseObject;

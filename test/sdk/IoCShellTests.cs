@@ -14,7 +14,7 @@ namespace AutomationIoC
         {
             var testServiceMock = new Mock<ITestSdkService>();
 
-            var context = AutomationSandbox.CreateContext<TestIoCShell, TestSDKStartup>();
+            using var context = AutomationSandbox.CreateContext<TestIoCShell, TestSDKStartup>();
 
             context.ConfigureServices(serviceCollection =>
             {

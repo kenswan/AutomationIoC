@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AutomationIoC.Runtime;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Management.Automation;
 using Xunit;
@@ -10,7 +11,7 @@ namespace AutomationIoC.Tools
         [Fact]
         public void ShouldRunCommand()
         {
-            var context = AutomationSandbox.CreateContext<TestModule, TestStartup>();
+            using var context = AutomationSandbox.CreateContext<TestModule, TestStartup>();
 
             context.ConfigureServices(services =>
             {
@@ -23,10 +24,24 @@ namespace AutomationIoC.Tools
         }
 
         [Cmdlet(VerbsCommon.Get, "Test")]
-        public class TestModule : IoCShell<TestStartup>
+        public class TestModule : PSCmdlet
         {
-            [AutomationDependency]
+            [Tools]
             protected readonly ITestService testService;
+
+            protected override void BeginProcessing()
+            {
+                base.BeginProcessing();
+
+                var dependencyContext = new DependencyContext<ToolsAttribute, TestStartup>
+                {
+                    Instance = this,
+                    SessionState = SessionState
+                };
+
+                AutomationIoCRuntime.BindContext(dependencyContext);
+
+            }
 
             protected override void ProcessRecord()
             {
@@ -40,9 +55,13 @@ namespace AutomationIoC.Tools
             }
         }
 
-        public class TestStartup : IoCStartup
+        public class TestStartup : IIoCStartup
         {
-            public override void Configure(IConfigurationBuilder configurationBuilder)
+            public IConfiguration Configuration { get; set; }
+
+            public IAutomationEnvironment AutomationEnvironment { get; set; }
+
+            public void Configure(IConfigurationBuilder configurationBuilder)
             {
                 var appSettings = new Dictionary<string, string>()
                 {
@@ -52,7 +71,7 @@ namespace AutomationIoC.Tools
                 configurationBuilder.AddInMemoryCollection(appSettings);
             }
 
-            public override void ConfigureServices(IServiceCollection services)
+            public void ConfigureServices(IServiceCollection services)
             {
                 services.AddTransient<ITestService, TestService>();
             }
@@ -75,5 +94,8 @@ namespace AutomationIoC.Tools
                 return "This is a message Test";
             }
         }
+
+        [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
+        public class ToolsAttribute : Attribute { }
     }
 }

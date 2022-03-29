@@ -10,6 +10,8 @@ namespace AutomationIoC.Runtime.Models
 
         public IConfiguration Configuration { get; set; }
 
+        public IAutomationEnvironment AutomationEnvironment { get; set; }
+
         public void Configure(IConfigurationBuilder configurationBuilder)
         {
             var appSettings = new Dictionary<string, string>()
