@@ -3,6 +3,7 @@ using AutomationIoC.Runtime.Context;
 using AutomationIoC.Runtime.Environment;
 using AutomationIoC.Runtime.Session;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace AutomationIoC.Runtime.Dependency
 {
@@ -22,7 +23,8 @@ namespace AutomationIoC.Runtime.Dependency
 
         public static void AddClientRuntime(IServiceCollection serviceCollection) =>
             serviceCollection
-                .AddTransient<IDependencyBinder, DependencyBinder>();
+                .AddTransient<IDependencyBinder, DependencyBinder>()
+                .AddLogging(builder => builder.AddConsole());
 
         private static IServiceCollection GenerateRuntimeDependencies(SessionStateProxy sessionState) =>
             new ServiceCollection()

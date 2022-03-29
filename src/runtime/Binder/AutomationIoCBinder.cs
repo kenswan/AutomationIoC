@@ -7,14 +7,10 @@ namespace AutomationIoC.Runtime.Binder
     internal class AutomationIoCBinder : IAutomationIoCBinder
     {
         private readonly IContextBuilder contextBuilder;
-        private readonly ISessionStorageProvider sessionStorageProvider;
 
-        public AutomationIoCBinder(
-            IContextBuilder contextBuilder,
-            ISessionStorageProvider sessionStorageProvider)
+        public AutomationIoCBinder(IContextBuilder contextBuilder)
         {
             this.contextBuilder = contextBuilder;
-            this.sessionStorageProvider = sessionStorageProvider;
         }
 
         public void BindContext<TAttribute>(object instance)
@@ -24,11 +20,6 @@ namespace AutomationIoC.Runtime.Binder
                 contextBuilder.BuildServices();
 
             contextBuilder.InitializeCurrentInstance<TAttribute>(instance);
-        }
-
-        public void ImportServices(IServiceCollection serviceCollection)
-        {
-            sessionStorageProvider.StoreServiceProvider(serviceCollection.BuildServiceProvider());
         }
     }
 }

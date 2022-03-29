@@ -2,17 +2,21 @@
 using AutomationIoC.Runtime.Session;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace AutomationIoC.Runtime.Context
 {
     internal class ContextBuilder : IContextBuilder
     {
+        private readonly IAutomationEnvironment automationEnvironment;
         private readonly IIoCStartup startup;
         private readonly ISessionStorageProvider sessionStorageProvider;
 
-        public ContextBuilder(IIoCStartup startup, ISessionStorageProvider sessionStorageProvider)
+        public ContextBuilder(
+            IAutomationEnvironment automationEnvironment,
+            IIoCStartup startup, 
+            ISessionStorageProvider sessionStorageProvider)
         {
+            this.automationEnvironment = automationEnvironment;
             this.startup = startup;
             this.sessionStorageProvider = sessionStorageProvider;
         }
@@ -21,6 +25,8 @@ namespace AutomationIoC.Runtime.Context
 
         public void BuildServices()
         {
+            startup.AutomationEnvironment = automationEnvironment;
+
             var configurationBuilder = new ConfigurationBuilder();
 
             startup.Configure(configurationBuilder);
@@ -31,8 +37,6 @@ namespace AutomationIoC.Runtime.Context
 
             serviceCollection.AddSingleton(startup.Configuration);
 
-            serviceCollection.AddLogging(builder => builder.AddConsole());
-
             startup.ConfigureServices(serviceCollection);
 
             RuntimeFactory.AddClientRuntime(serviceCollection);
@@ -42,8 +46,6 @@ namespace AutomationIoC.Runtime.Context
 
         public void BuildServices(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddLogging(builder => builder.AddConsole());
-
             RuntimeFactory.AddClientRuntime(serviceCollection);
 
             sessionStorageProvider.StoreServiceProvider(serviceCollection.BuildServiceProvider());

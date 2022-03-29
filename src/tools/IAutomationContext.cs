@@ -4,7 +4,7 @@ using System.Management.Automation;
 
 namespace AutomationIoC.Tools
 {
-    public interface IAutomationContext<TCommand, TStartup>
+    public interface IAutomationContext<TCommand, TStartup> : IDisposable
         where TCommand : PSCmdlet
         where TStartup : IIoCStartup, new()
     {

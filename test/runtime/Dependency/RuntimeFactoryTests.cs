@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Management.Automation;
 using Runspace = System.Management.Automation.Runspaces;
 using Xunit;
+using Microsoft.Extensions.Logging;
 
 namespace AutomationIoC.Runtime.Dependency
 {
@@ -62,6 +63,7 @@ namespace AutomationIoC.Runtime.Dependency
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             Assert.NotNull(serviceProvider.GetService<IDependencyBinder>());
+            Assert.NotNull(serviceProvider.GetService<ILogger<RuntimeFactoryTests>>());
         }
     }
 }

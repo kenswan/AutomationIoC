@@ -7,7 +7,7 @@ namespace AutomationIoC
     public abstract class IoCStartup : IIoCStartup
     {
         public IConfiguration Configuration { get; set; }
-        public IAutomationEnvironment Environment { get; set; }
+        public IAutomationEnvironment AutomationEnvironment { get; set; }
 
         public abstract void Configure(IConfigurationBuilder configurationBuilder);
 

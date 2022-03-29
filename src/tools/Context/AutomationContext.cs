@@ -10,13 +10,13 @@ namespace AutomationIoC.Tools.Context
         where TStartup : IIoCStartup, new()
     {
         private readonly PowerShell powerShellSession;
-
+        private readonly Runspace runspace;
         public AutomationContext()
         {
             InitialSessionState initial = InitialSessionState.CreateDefault();
             initial.ImportPSModule(new string[] { typeof(TCommand).Assembly.Location });
 
-            Runspace runspace = RunspaceFactory.CreateRunspace(initial);
+            runspace = RunspaceFactory.CreateRunspace(initial);
             runspace.Open();
 
             powerShellSession = PowerShell.Create();
@@ -32,6 +32,10 @@ namespace AutomationIoC.Tools.Context
             buildCommand(powerShellSession.Commands);
         }
 
+        /// <summary>
+        /// This method will override original services set in <see cref="IIoCStartup" /> class
+        /// </summary>
+        /// <param name="buildServices">Configured services (usually mocks for testing)</param>
         public void ConfigureServices(Action<IServiceCollection> buildServices)
         {
             IServiceCollection services = new ServiceCollection();
@@ -43,6 +47,11 @@ namespace AutomationIoC.Tools.Context
 
         public ICollection<PSObject> RunCommand() => powerShellSession.Invoke();
 
+        public void SetVariable(string name, object value)
+        {
+            AutomationIoCRuntime.SetEnvironment(powerShellSession.Runspace.SessionStateProxy, name, value);
+        }
+
         private static string GetCommandName()
         {
             if (Attribute.GetCustomAttribute(typeof(TCommand), typeof(CmdletAttribute)) is not CmdletAttribute cmdletAttribute)
@@ -51,9 +60,19 @@ namespace AutomationIoC.Tools.Context
             return $"{cmdletAttribute.VerbName}-{cmdletAttribute.NounName}";
         }
 
-        public void SetVariable(string name, object value)
+        public void Dispose()
         {
-            AutomationIoCRuntime.SetEnvironment(powerShellSession.Runspace.SessionStateProxy, name, value);
+            if(runspace is not null)
+            {
+                runspace.Close();
+                runspace.Dispose();
+            }
+
+            if(powerShellSession is not null)
+            {
+                powerShellSession.Stop();
+                powerShellSession.Dispose();
+            }
         }
     }
 }
