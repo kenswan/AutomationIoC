@@ -9,9 +9,9 @@ namespace AutomationIoC.Tools
     public class AutomationSandboxTests
     {
         [Fact]
-        public void ShouldRunCommand()
+        public void ShouldRunCommandContext()
         {
-            using var context = AutomationSandbox.CreateContext<TestModule, TestStartup>();
+            using var context = AutomationSandbox.CreateContext<TestModuleContext, TestStartup>();
 
             context.ConfigureServices(services =>
             {
@@ -23,8 +23,22 @@ namespace AutomationIoC.Tools
             Assert.Single(results);
         }
 
+        [Fact]
+        public void ShouldRunCommand()
+        {
+            var expectedValue = Guid.NewGuid().ToString();
+
+            using var context = AutomationSandbox.CreateCommand<TestModuleCommand>();
+
+            context.ConfigureParameters(command => command.AddParameter("Test", expectedValue));
+            var results = context.RunCommand();
+
+            Assert.Single(results);
+            Assert.Equal(expectedValue, results.First());
+        }
+
         [Cmdlet(VerbsCommon.Get, "Test")]
-        public class TestModule : PSCmdlet
+        public class TestModuleContext : PSCmdlet
         {
             [Tools]
             protected readonly ITestService testService;
@@ -52,6 +66,20 @@ namespace AutomationIoC.Tools
                 testService.CallTestMethod();
 
                 WriteObject(testService.CallCount);
+            }
+        }
+
+        [Cmdlet(VerbsCommon.Get, "TestCommand")]
+        public class TestModuleCommand : PSCmdlet
+        {
+            [Parameter(Mandatory = true)]
+            public string Test;
+
+            protected override void ProcessRecord()
+            {
+                base.ProcessRecord();
+
+                WriteObject(Test);
             }
         }
 
