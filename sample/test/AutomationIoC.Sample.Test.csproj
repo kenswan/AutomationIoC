@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AutomationIoC.Sample.csproj" />
+    <ProjectReference Include="..\src\AutomationIoC.Sample.csproj" />
   </ItemGroup>
 
 </Project>
