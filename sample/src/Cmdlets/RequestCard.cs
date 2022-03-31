@@ -5,29 +5,23 @@ using System.Management.Automation;
 namespace AutomationIoC.Sample.Cmdlets
 {
     [Cmdlet(VerbsLifecycle.Request, "Card")]
-    public class RequestCard : IoCShell
+    public class RequestCard : IoCShell<Startup>
     {
         [AutomationDependency]
-        private readonly Deck cardDeck;
+        protected IDeck CardDeck { get; set; }
 
         [AutomationDependency]
-        private readonly ILogger<RequestCard> logger;
+        private readonly ILogger<RequestCard> logger = default;
 
-        public RequestCard()
+        protected override void ProcessRecord()
         {
-        }
+            base.ProcessRecord();
 
-        public RequestCard(Deck cardDeck, ILogger<RequestCard> logger)
-        {
-            this.cardDeck = cardDeck;
-            this.logger = logger;
-        }
-
-        protected override void ExecuteCmdlet()
-        {
-            var card = cardDeck.Draw();
+            var card = CardDeck.Draw();
 
             logger.LogInformation("Card Drawn: {Name}", card.ToString());
+
+            WriteObject(card);
         }
     }
 }
