@@ -8,12 +8,12 @@ namespace AutomationIoC.Tools.Command
         protected readonly PowerShell powerShellSession;
         protected readonly Runspace runspace;
 
-        public NativeCommand()
+        public NativeCommand(string modulePath)
         {
             InitialSessionState initial = InitialSessionState.CreateDefault();
 
-            /* if (modulePath is not null)
-                initial.ImportPSModule(new string[] { modulePath }); */
+            if (modulePath is not null)
+                initial.ImportPSModule(new string[] { modulePath });
 
             runspace = RunspaceFactory.CreateRunspace(initial);
             runspace.Open();
@@ -32,7 +32,7 @@ namespace AutomationIoC.Tools.Command
             powerShellSession.Commands.Clear();
 
             var command = powerShellSession.Commands.AddCommand(commandName);
-            
+
             if (buildCommand is not null)
                 buildCommand(command);
 

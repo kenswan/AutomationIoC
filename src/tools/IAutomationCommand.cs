@@ -9,7 +9,7 @@ namespace AutomationIoC.Tools
         ICollection<PSObject> RunCommand(Action<PSCommand> buildCommand = null);
 
         ICollection<T> RunCommand<T>(Action<PSCommand> buildCommand = null);
-        
+
         ICollection<PSObject> RunExternalCommand(string name, Action<PSCommand> buildCommand = null);
 
         ICollection<T> RunExternalCommand<T>(string name, Action<PSCommand> buildCommand = null);

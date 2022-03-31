@@ -5,10 +5,10 @@ using AutomationIoC.Runtime.Models;
 using AutomationIoC.Runtime.Session;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using System.Management.Automation;
-using Runspace = System.Management.Automation.Runspaces;
-using Xunit;
 using Microsoft.Extensions.Logging;
+using System.Management.Automation;
+using Xunit;
+using Runspace = System.Management.Automation.Runspaces;
 
 namespace AutomationIoC.Runtime.Dependency
 {
@@ -55,7 +55,7 @@ namespace AutomationIoC.Runtime.Dependency
 
         [Fact]
         public void ShouldAddServicesForClientRuntime()
-        { 
+        {
             var serviceCollection = new ServiceCollection();
 
             RuntimeFactory.AddClientRuntime(serviceCollection);

@@ -8,10 +8,8 @@ namespace AutomationIoC.Tools.Command
     {
         protected readonly string commandName;
 
-        public AutomationCommand() : base()
+        public AutomationCommand() : base(typeof(TCommand).Assembly.Location)
         {
-            ImportModule(typeof(TCommand).Assembly.Location);
-
             commandName = GetCommandName();
         }
 

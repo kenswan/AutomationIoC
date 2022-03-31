@@ -13,7 +13,7 @@ namespace AutomationIoC.Runtime.Context
 
         public ContextBuilder(
             IAutomationEnvironment automationEnvironment,
-            IIoCStartup startup, 
+            IIoCStartup startup,
             ISessionStorageProvider sessionStorageProvider)
         {
             this.automationEnvironment = automationEnvironment;

@@ -13,7 +13,7 @@ namespace AutomationIoC.Tools
             var expectedValue = Guid.NewGuid().ToString();
 
             using var automationCommand = new AutomationCommand<TestAutomationCommand>();
-            
+
             automationCommand.RunExternalCommand("Set-Variable", command =>
                 command
                     .AddParameter("Name", environmentKey)

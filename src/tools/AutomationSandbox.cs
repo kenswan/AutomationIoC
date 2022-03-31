@@ -11,7 +11,7 @@ namespace AutomationIoC.Tools
             where TCommand : PSCmdlet
             where TStartup : IIoCStartup, new() =>
                 new AutomationContextCommand<TCommand, TStartup>(buildServices);
-                
+
 
         public static IAutomationCommand<TCommand> CreateCommand<TCommand>()
             where TCommand : PSCmdlet, new() =>
