@@ -1,4 +1,4 @@
-﻿using AutomationIoC.Runtime.Models;
+﻿using AutomationIoC.Integration.Models;
 using FluentAssertions;
 using Moq;
 using Xunit;

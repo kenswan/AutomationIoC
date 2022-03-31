@@ -1,7 +1,7 @@
-﻿using AutomationIoC.Runtime.Binder;
+﻿using AutomationIoC.Integration.Models;
+using AutomationIoC.Runtime.Binder;
 using AutomationIoC.Runtime.Context;
 using AutomationIoC.Runtime.Environment;
-using AutomationIoC.Runtime.Models;
 using AutomationIoC.Runtime.Session;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;

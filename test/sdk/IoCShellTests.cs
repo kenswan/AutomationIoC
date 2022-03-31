@@ -1,4 +1,5 @@
-﻿using AutomationIoC.Models;
+﻿using AutomationIoC.Integration.Services;
+using AutomationIoC.Integration.Startup;
 using AutomationIoC.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;

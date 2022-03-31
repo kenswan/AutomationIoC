@@ -3,7 +3,7 @@ using System.Management.Automation.Runspaces;
 
 namespace AutomationIoC.Tools.Command
 {
-    internal abstract class NativeCommand : IDisposable
+    internal class NativeCommand : IDisposable
     {
         protected readonly PowerShell powerShellSession;
         protected readonly Runspace runspace;

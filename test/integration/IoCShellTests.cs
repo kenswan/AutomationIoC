@@ -11,7 +11,7 @@ namespace AutomationIoC
         {
             var expectedValue = 3;
 
-            using var context = AutomationSandbox.CreateCommand<TestModule>();
+            using var context = AutomationSandbox.CreateCommand<TestSDKCommand>();
 
             var actualValue = context.RunCommand<int>().FirstOrDefault();
 

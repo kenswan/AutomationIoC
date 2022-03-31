@@ -1,4 +1,4 @@
-﻿namespace AutomationIoC.Models
+﻿namespace AutomationIoC.Integration.Services
 {
     public class TestSdkFieldService : TestSdkService
     {
@@ -57,9 +57,5 @@
 
     public interface ITestSdkInternalServiceOne : ITestSdkService { }
 
-    public class TestRuntimeInternalServiceOne : TestSdkService, ITestSdkInternalServiceOne { }
-
     public interface ITestSdkInternalServiceTwo : ITestSdkService { }
-
-    public class TestRuntimeInternalServiceTwo : TestSdkService, ITestSdkInternalServiceTwo { }
 }

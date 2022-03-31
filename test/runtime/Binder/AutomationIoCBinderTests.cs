@@ -1,5 +1,6 @@
-﻿using AutomationIoC.Runtime.Context;
-using AutomationIoC.Runtime.Models;
+﻿using AutomationIoC.Integration.Attributes;
+using AutomationIoC.Integration.Models;
+using AutomationIoC.Runtime.Context;
 using Moq;
 using Xunit;
 

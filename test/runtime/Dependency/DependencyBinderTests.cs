@@ -1,4 +1,5 @@
-﻿using AutomationIoC.Runtime.Models;
+﻿using AutomationIoC.Integration.Attributes;
+using AutomationIoC.Integration.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 

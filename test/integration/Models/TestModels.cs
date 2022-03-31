@@ -1,4 +1,4 @@
-﻿namespace AutomationIoC.Runtime.Models
+﻿namespace AutomationIoC.Integration.Models
 {
     public record TestInstance(int Id);
 

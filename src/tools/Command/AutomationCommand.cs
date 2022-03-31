@@ -15,7 +15,10 @@ namespace AutomationIoC.Tools.Command
 
         public void SetVariable(string name, object value)
         {
-            AutomationIoCRuntime.SetEnvironment(powerShellSession.Runspace.SessionStateProxy, name, value);
+            RunExternalCommand("Set-Variable", command =>
+                command
+                    .AddParameter("Name", name)
+                    .AddParameter("Value", value));
         }
 
         public ICollection<PSObject> RunCommand(Action<PSCommand> buildCommand = null)

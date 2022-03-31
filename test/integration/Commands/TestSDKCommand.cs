@@ -1,10 +1,11 @@
 ﻿using AutomationIoC.Integration.Services;
+using AutomationIoC.Integration.Startup;
 using System.Management.Automation;
 
 namespace AutomationIoC.Commands
 {
-    [Cmdlet(VerbsCommon.Get, "Test")]
-    public class TestModule : IoCShell<TestStartup>
+    [Cmdlet(VerbsCommon.Get, "TestSDKCommand")]
+    public class TestSDKCommand : IoCShell<TestStartup>
     {
         [AutomationDependency]
         protected readonly ITestService testService;

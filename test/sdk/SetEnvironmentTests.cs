@@ -20,13 +20,11 @@ namespace AutomationIoC
                     .AddParameter("Key", environmentKey)
                     .AddParameter("Value", expectedValue));
 
-            var results = command.RunExternalCommand("Get-Variable", command =>
+            var results = command.RunExternalCommand<PSVariable>("Get-Variable", command =>
                 command.AddParameter("Name", environmentKey));
 
-            var result = results.FirstOrDefault().BaseObject as PSVariable;
-
             Assert.Single(results);
-            Assert.Equal(expectedValue, result.Value);
+            Assert.Equal(expectedValue, results.First().Value);
         }
     }
 }

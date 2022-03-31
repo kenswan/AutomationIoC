@@ -1,8 +1,8 @@
-﻿using AutomationIoC.Tools.Command;
+﻿using AutomationIoC.Integration.Commands;
 using System.Management.Automation;
 using Xunit;
 
-namespace AutomationIoC.Tools
+namespace AutomationIoC.Tools.Command
 {
     public class AutomationCommandTests
     {
@@ -12,7 +12,7 @@ namespace AutomationIoC.Tools
             var environmentKey = Guid.NewGuid().ToString();
             var expectedValue = Guid.NewGuid().ToString();
 
-            using var automationCommand = new AutomationCommand<TestAutomationCommand>();
+            using var automationCommand = new AutomationCommand<TestCommand>();
 
             automationCommand.RunExternalCommand("Set-Variable", command =>
                 command
@@ -26,20 +26,6 @@ namespace AutomationIoC.Tools
 
             Assert.Single(results);
             Assert.Equal(expectedValue, result.Value);
-        }
-
-        [Cmdlet(VerbsCommon.Get, "AutomationCommand")]
-        public class TestAutomationCommand : PSCmdlet
-        {
-            [Parameter(Mandatory = true)]
-            public string Test;
-
-            protected override void ProcessRecord()
-            {
-                base.ProcessRecord();
-
-                WriteObject(Test);
-            }
         }
     }
 }
