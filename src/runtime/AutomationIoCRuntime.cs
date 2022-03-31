@@ -40,20 +40,8 @@ namespace AutomationIoC.Runtime
 
         public static void SetEnvironment(SessionState sessionState, string key, object value)
         {
-            var automationStateProxy = new SessionStateProxy(sessionState);
+            var sessionStateProxy = new SessionStateProxy(sessionState);
 
-            SetEnvironment(automationStateProxy, key, value);
-        }
-
-        public static void SetEnvironment(Runspace.SessionStateProxy sessionStateProxy, string key, object value)
-        {
-            var automationStateProxy = new SessionStateProxy(sessionStateProxy);
-
-            SetEnvironment(automationStateProxy, key, value);
-        }
-
-        private static void SetEnvironment(SessionStateProxy sessionStateProxy, string key, object value)
-        {
             var runtimeServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionStateProxy);
             using var scope = runtimeServiceProvider.CreateScope();
 

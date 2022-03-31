@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AutomationIoC.Models
+namespace AutomationIoC.Integration.Startup
 {
     public class TestSDKStartup : IIoCStartup
     {

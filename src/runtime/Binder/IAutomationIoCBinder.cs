@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace AutomationIoC.Runtime.Binder
+﻿namespace AutomationIoC.Runtime.Binder
 {
     internal interface IAutomationIoCBinder
     {

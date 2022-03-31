@@ -1,4 +1,5 @@
-﻿using AutomationIoC.Models;
+﻿using AutomationIoC.Integration.Services;
+using AutomationIoC.Integration.Startup;
 using AutomationIoC.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
@@ -14,12 +15,11 @@ namespace AutomationIoC
         {
             var testServiceMock = new Mock<ITestSdkService>();
 
-            using var context = AutomationSandbox.CreateContext<TestIoCShell, TestSDKStartup>();
-
-            context.ConfigureServices(serviceCollection =>
-            {
-                serviceCollection.AddTransient(_ => testServiceMock.Object);
-            });
+            using var context = AutomationSandbox.CreateContext<TestIoCShell, TestSDKStartup>(
+                serviceCollection =>
+                {
+                    serviceCollection.AddTransient(_ => testServiceMock.Object);
+                });
 
             context.RunCommand();
 

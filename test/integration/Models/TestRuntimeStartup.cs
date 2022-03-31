@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AutomationIoC.Integration.Services;
+using AutomationIoC.Runtime;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AutomationIoC.Runtime.Models
+namespace AutomationIoC.Integration.Models
 {
     public class TestRuntimeStartup : IIoCStartup
     {

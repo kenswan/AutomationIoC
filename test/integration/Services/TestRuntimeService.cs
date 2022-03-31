@@ -1,6 +1,8 @@
-﻿namespace AutomationIoC.Runtime.Models
+﻿using AutomationIoC.Integration.Attributes;
+
+namespace AutomationIoC.Integration.Services
 {
-    internal class TestRuntimeFieldService : TestRuntimeService
+    public class TestRuntimeFieldService : TestRuntimeService
     {
         [TestRuntime]
         protected ITestRuntimeInternalServiceOne testRuntimeInternalServiceOne = default;
@@ -17,7 +19,7 @@
         }
     }
 
-    internal class TestRuntimePropertyService : TestRuntimeService
+    public class TestRuntimePropertyService : TestRuntimeService
     {
         [TestRuntime]
         protected ITestRuntimeInternalServiceOne TestRuntimeInternalServiceOne { get; set; }
@@ -34,7 +36,7 @@
         }
     }
 
-    internal class TestRuntimeService : ITestRuntimeService
+    public class TestRuntimeService : ITestRuntimeService
     {
         public int CallCount { get; protected set; } = 0;
 
@@ -47,7 +49,7 @@
         }
     }
 
-    internal interface ITestRuntimeService
+    public interface ITestRuntimeService
     {
         int CallCount { get; }
         bool WasCalled { get; }
@@ -55,11 +57,11 @@
         void RunMethod();
     }
 
-    internal interface ITestRuntimeInternalServiceOne : ITestRuntimeService { }
+    public interface ITestRuntimeInternalServiceOne : ITestRuntimeService { }
 
-    internal class TestRuntimeInternalServiceOne : TestRuntimeService, ITestRuntimeInternalServiceOne { }
+    public class TestRuntimeInternalServiceOne : TestRuntimeService, ITestRuntimeInternalServiceOne { }
 
-    internal interface ITestRuntimeInternalServiceTwo : ITestRuntimeService { }
+    public interface ITestRuntimeInternalServiceTwo : ITestRuntimeService { }
 
-    internal class TestRuntimeInternalServiceTwo : TestRuntimeService, ITestRuntimeInternalServiceTwo { }
+    public class TestRuntimeInternalServiceTwo : TestRuntimeService, ITestRuntimeInternalServiceTwo { }
 }

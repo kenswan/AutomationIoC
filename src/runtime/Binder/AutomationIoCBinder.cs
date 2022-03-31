@@ -1,6 +1,4 @@
 ﻿using AutomationIoC.Runtime.Context;
-using AutomationIoC.Runtime.Session;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace AutomationIoC.Runtime.Binder
 {

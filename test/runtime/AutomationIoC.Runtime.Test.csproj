@@ -23,5 +23,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\src\runtime\AutomationIoC.Runtime.csproj" />
+	  <ProjectReference Include="..\integration\AutomationIoC.Integration.Test.csproj" />
 	</ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
-﻿using AutomationIoC.Runtime;
-using Microsoft.Extensions.Configuration;
+﻿using AutomationIoC.Integration.Commands;
+using AutomationIoC.Integration.Services;
+using AutomationIoC.Integration.Startup;
 using Microsoft.Extensions.DependencyInjection;
-using System.Management.Automation;
 using Xunit;
 
 namespace AutomationIoC.Tools
@@ -9,11 +9,9 @@ namespace AutomationIoC.Tools
     public class AutomationSandboxTests
     {
         [Fact]
-        public void ShouldRunCommand()
+        public void ShouldRunCommandContext()
         {
-            using var context = AutomationSandbox.CreateContext<TestModule, TestStartup>();
-
-            context.ConfigureServices(services =>
+            using var context = AutomationSandbox.CreateContext<TestContextCommand, TestStartup>(services =>
             {
                 services.AddTransient<ITestService, TestService>();
             });
@@ -23,79 +21,17 @@ namespace AutomationIoC.Tools
             Assert.Single(results);
         }
 
-        [Cmdlet(VerbsCommon.Get, "Test")]
-        public class TestModule : PSCmdlet
+        [Fact]
+        public void ShouldRunCommand()
         {
-            [Tools]
-            protected readonly ITestService testService;
+            var expectedValue = Guid.NewGuid().ToString();
 
-            protected override void BeginProcessing()
-            {
-                base.BeginProcessing();
+            using var command = AutomationSandbox.CreateCommand<TestCommand>();
 
-                var dependencyContext = new DependencyContext<ToolsAttribute, TestStartup>
-                {
-                    Instance = this,
-                    SessionState = SessionState
-                };
+            var results = command.RunCommand(command => command.AddParameter("Test", expectedValue));
 
-                AutomationIoCRuntime.BindContext(dependencyContext);
-
-            }
-
-            protected override void ProcessRecord()
-            {
-                base.ProcessRecord();
-
-                testService.CallTestMethod();
-                testService.CallTestMethod();
-                testService.CallTestMethod();
-
-                WriteObject(testService.CallCount);
-            }
+            Assert.Single(results);
+            Assert.Equal(expectedValue, results.First());
         }
-
-        public class TestStartup : IIoCStartup
-        {
-            public IConfiguration Configuration { get; set; }
-
-            public IAutomationEnvironment AutomationEnvironment { get; set; }
-
-            public void Configure(IConfigurationBuilder configurationBuilder)
-            {
-                var appSettings = new Dictionary<string, string>()
-                {
-                    ["testOptions:mode"] = "basic-test",
-                };
-
-                configurationBuilder.AddInMemoryCollection(appSettings);
-            }
-
-            public void ConfigureServices(IServiceCollection services)
-            {
-                services.AddTransient<ITestService, TestService>();
-            }
-        }
-
-        public interface ITestService
-        {
-            int CallCount { get; }
-            string CallTestMethod();
-        }
-
-        public class TestService : ITestService
-        {
-            public int CallCount { get; private set; }
-
-            public string CallTestMethod()
-            {
-                CallCount += 1;
-
-                return "This is a message Test";
-            }
-        }
-
-        [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
-        public class ToolsAttribute : Attribute { }
     }
 }

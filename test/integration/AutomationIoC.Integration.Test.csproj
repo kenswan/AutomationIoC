@@ -3,8 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>false</IsPackable>
-	<RootNamespace>AutomationIoC</RootNamespace>
-	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	<RootNamespace>AutomationIoC.Integration</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
