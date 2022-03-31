@@ -1,5 +1,4 @@
-﻿using AutomationIoC.Runtime;
-using System.Management.Automation;
+﻿using System.Management.Automation;
 
 namespace AutomationIoC.Tools.Command
 {
