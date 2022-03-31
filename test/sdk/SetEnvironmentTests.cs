@@ -13,26 +13,15 @@ namespace AutomationIoC
             var environmentKey = "TestKey";
             var expectedValue = Guid.NewGuid().ToString();
 
-            using var context = AutomationSandbox.CreateCommand<SetEnvironment>();
+            using var command = AutomationSandbox.CreateCommand<SetEnvironment>();
 
-            context.ConfigureParameters(command =>
-            {
+            command.RunCommand(command =>
                 command
                     .AddParameter("Key", environmentKey)
-                    .AddParameter("Value", expectedValue);
-            });
-           
-            _ = context.RunCommand();
+                    .AddParameter("Value", expectedValue));
 
-            context.ConfigureParameters(command =>
-            {
-                command.Clear();
-
-                command.AddCommand("Get-Variable")
-                    .AddParameter("Name", environmentKey);
-            });
-
-            var results = context.RunCommand();
+            var results = command.RunExternalCommand("Get-Variable", command =>
+                command.AddParameter("Name", environmentKey));
 
             var result = results.FirstOrDefault().BaseObject as PSVariable;
 

@@ -11,9 +11,7 @@ namespace AutomationIoC.Tools
         [Fact]
         public void ShouldRunCommandContext()
         {
-            using var context = AutomationSandbox.CreateContext<TestModuleContext, TestStartup>();
-
-            context.ConfigureServices(services =>
+            using var context = AutomationSandbox.CreateContext<TestModuleContext, TestStartup>(services =>
             {
                 services.AddTransient<ITestService, TestService>();
             });
@@ -28,10 +26,9 @@ namespace AutomationIoC.Tools
         {
             var expectedValue = Guid.NewGuid().ToString();
 
-            using var context = AutomationSandbox.CreateCommand<TestModuleCommand>();
+            using var command = AutomationSandbox.CreateCommand<TestModuleCommand>();
 
-            context.ConfigureParameters(command => command.AddParameter("Test", expectedValue));
-            var results = context.RunCommand();
+            var results = command.RunCommand(command => command.AddParameter("Test", expectedValue));
 
             Assert.Single(results);
             Assert.Equal(expectedValue, results.First());

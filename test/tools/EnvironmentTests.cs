@@ -24,8 +24,13 @@ namespace AutomationIoC.Tools
 
             powerShellSession.Commands.AddCommand("Set-Variable")
                     .AddParameter("Name", key)
-                    .AddParameter("Value", value)
-                    .AddCommand("Get-Variable").AddParameter("Name", key);
+                    .AddParameter("Value", value);
+
+            powerShellSession.Invoke();
+
+            powerShellSession.Commands.Clear();
+
+            powerShellSession.Commands.AddCommand("Get-Variable").AddParameter("Name", key);
 
             var results = powerShellSession.Invoke();
 

@@ -3,14 +3,17 @@ using System.Management.Automation.Runspaces;
 
 namespace AutomationIoC.Tools.Command
 {
-    internal class OpenCommandSession : IOpenCommandSession, IDisposable
+    internal abstract class NativeCommand : IDisposable
     {
         protected readonly PowerShell powerShellSession;
         protected readonly Runspace runspace;
 
-        public OpenCommandSession()
+        public NativeCommand()
         {
             InitialSessionState initial = InitialSessionState.CreateDefault();
+
+            /* if (modulePath is not null)
+                initial.ImportPSModule(new string[] { modulePath }); */
 
             runspace = RunspaceFactory.CreateRunspace(initial);
             runspace.Open();
@@ -19,21 +22,24 @@ namespace AutomationIoC.Tools.Command
             powerShellSession.Runspace = runspace;
         }
 
-        public void ImportModule(params string[] modulePaths)
+        public void ImportModule(string modulePath)
         {
-            powerShellSession.Runspace.InitialSessionState.ImportPSModule(modulePaths);
+            InvokeCommand<PSObject>("Import-Module", command => command.AddParameter("Name", modulePath));
         }
 
-        public ICollection<PSObject> RunCommand(string commandName, Action<PSCommand> buildCommand)
+        public ICollection<T> InvokeCommand<T>(string commandName, Action<PSCommand> buildCommand)
         {
             powerShellSession.Commands.Clear();
 
-            buildCommand(powerShellSession.Commands.AddCommand(commandName));
+            var command = powerShellSession.Commands.AddCommand(commandName);
+            
+            if (buildCommand is not null)
+                buildCommand(command);
 
-            return powerShellSession.Invoke();
+            return powerShellSession.Invoke<T>();
         }
 
-        ~OpenCommandSession()
+        ~NativeCommand()
         {
             Dispose(disposing: false);
         }

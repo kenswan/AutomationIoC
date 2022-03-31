@@ -1,41 +1,43 @@
 ﻿using AutomationIoC.Runtime;
 using System.Management.Automation;
-using System.Management.Automation.Runspaces;
 
 namespace AutomationIoC.Tools.Command
 {
-    public class AutomationCommand<TCommand> : IAutomationCommand<TCommand>
+    internal class AutomationCommand<TCommand> : NativeCommand, IAutomationCommand<TCommand>
         where TCommand : PSCmdlet
     {
-        protected readonly PowerShell powerShellSession;
-        protected readonly Runspace runspace;
+        protected readonly string commandName;
 
-        public AutomationCommand()
+        public AutomationCommand() : base()
         {
-            InitialSessionState initial = InitialSessionState.CreateDefault();
-            initial.ImportPSModule(new string[] { typeof(TCommand).Assembly.Location });
+            ImportModule(typeof(TCommand).Assembly.Location);
 
-            runspace = RunspaceFactory.CreateRunspace(initial);
-            runspace.Open();
-
-            powerShellSession = PowerShell.Create();
-            powerShellSession.Runspace = runspace;
-
-            var commandName = GetCommandName();
-
-            powerShellSession.Commands.AddCommand(commandName);
+            commandName = GetCommandName();
         }
-
-        public void ConfigureParameters(Action<PSCommand> buildCommand)
-        {
-            buildCommand(powerShellSession.Commands);
-        }
-
-        public ICollection<PSObject> RunCommand() => powerShellSession.Invoke();
 
         public void SetVariable(string name, object value)
         {
             AutomationIoCRuntime.SetEnvironment(powerShellSession.Runspace.SessionStateProxy, name, value);
+        }
+
+        public ICollection<PSObject> RunCommand(Action<PSCommand> buildCommand = null)
+        {
+            return InvokeCommand<PSObject>(commandName, buildCommand);
+        }
+
+        public ICollection<T> RunCommand<T>(Action<PSCommand> buildCommand = null)
+        {
+            return InvokeCommand<T>(commandName, buildCommand);
+        }
+
+        public ICollection<PSObject> RunExternalCommand(string name, Action<PSCommand> buildCommand = null)
+        {
+            return InvokeCommand<PSObject>(name, buildCommand);
+        }
+
+        public ICollection<T> RunExternalCommand<T>(string name, Action<PSCommand> buildCommand = null)
+        {
+            return InvokeCommand<T>(name, buildCommand);
         }
 
         private static string GetCommandName()
@@ -44,33 +46,6 @@ namespace AutomationIoC.Tools.Command
                 throw new ArgumentException("CmdletAttribute not found on class", nameof(cmdletAttribute));
 
             return $"{cmdletAttribute.VerbName}-{cmdletAttribute.NounName}";
-        }
-
-        ~AutomationCommand()
-        {
-            Dispose(disposing: false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(disposing: true);
-
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (runspace is not null)
-            {
-                runspace.Close();
-                runspace.Dispose();
-            }
-
-            if (powerShellSession is not null)
-            {
-                powerShellSession.Stop();
-                powerShellSession.Dispose();
-            }
         }
     }
 }
