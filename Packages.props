@@ -21,7 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup Label="Sample Projects">
-		<PackageReference Update="AutomationIoC" Version="1.0.0" />
+		<PackageReference Update="AutomationIoC" Version="1.1.0-beta1" />
 	</ItemGroup>
 	
 </Project>
