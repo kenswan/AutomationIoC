@@ -1,6 +1,6 @@
 ﻿namespace AutomationIoC.Sample.Models
 {
-    public class Deck
+    public class Deck : IDeck
     {
         private readonly Stack<Card> cards;
 
