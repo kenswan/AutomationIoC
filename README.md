@@ -87,8 +87,10 @@ public class SubmitData : IoCShell<Startup>
     [AutomationDependency]
     private ILogger<RequestCard> logger { get; set; }
 
-    protected override void ExecuteCmdlet()
+    protected override void ProcessRecord()
     {
+        base.ProcessRecord();
+
         TestDependencyOne.PushTestId(Id);
 
         TestData testData = testDependencyTwo.GetTestData(Id);
@@ -118,7 +120,7 @@ public class SubmitDataAsync : IoCShellAsync<Startup>
     [AutomationDependency]
     private ILogger<RequestCard> logger { get; set; }
 
-    protected override async Task ExecuteCmdletAsync()
+    protected override async Task ProcessRecordAsync()
     {
         await TestDependencyOne.PushTestIdAsync(Id);
 
