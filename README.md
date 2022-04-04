@@ -8,7 +8,6 @@ Dependency Injection Framework for C# PowerShell Cmdlets
 
 ## Requirements
 
-- [Visual Studio Code](https://code.visualstudio.com/download)
 - [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - [PowerShell 7](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.2)
 
@@ -33,18 +32,23 @@ Add the following to your .csproj file
 </PropertyGroup>
 ```
 
-Add a PowerShell Startup Command
+Add a Startup class
 
 ```csharp
-[Cmdlet(VerbsLifecycle.Install, "Dependencies")]
-public class Startup : AutomationStartup
+public class Startup : IoCStartup
 {
     // Add any configuration sources or data needed
     public override void Configure(IConfigurationBuilder configurationBuilder)
     {
+        // AutomationEnvironment class allows retrieving global PowerShell
+        // variables during service configuration.
+        var environment =
+            AutomationEnvironment.GetVariable<string>("AppEnvironment");
+
         var appSettings = new Dictionary<string, string>()
         {
             ["TestOptionsConfig:TestProperty"] = "This is an example",
+            ["AppEnvironment"] = environment
         };
 
         configurationBuilder.AddInMemoryCollection(appSettings);
@@ -55,8 +59,9 @@ public class Startup : AutomationStartup
     {
         services.Configure<TestOptions>(Configuration.GetSection("TestOptionsConfig"));
 
-        services.AddSingleton<TestService>();
-
+        services.AddTransient<ITestDependencyOne, TestDependencyOne>();
+        services.AddTransient<ITestDependencyTwo, TestDependencyTwo>();
+        // ...
         // other services, client, etc.
     }
 }
@@ -67,29 +72,30 @@ Add a PowerShell Command with Dependencies Injected
 Synchronous process example
 
 ```csharp
-[Cmdlet(VerbsLifecycle.Submit, "TestData")]
-public class SubmitTestData : IoCShell
+[Cmdlet(VerbsLifecycle.Submit, "Data")]
+public class SubmitData : IoCShell<Startup>
 {
-    // Supports non-public properties
-    [AutomationDependency]
-    protected TestDependencyOne TestDependencyOne { get; set; }
-
-    // Supports non-public fields
-    [AutomationDependency]
-    private readonly TestDependencyTwo testDependencyTwo;
+    [Parameter(Mandatory = true)]
+    public string Id { get; set; }
 
     [AutomationDependency]
-    private readonly ILogger<RequestCard> logger;
+    protected ITestDependencyOne TestDependencyOne { get; set; }
+
+    [AutomationDependency]
+    protected ITestDependencyTwo testDependencyTwo { get; set; }
+
+    [AutomationDependency]
+    private ILogger<RequestCard> logger { get; set; }
 
     protected override void ExecuteCmdlet()
     {
-        string id = Guid.NewGuid();
+        TestDependencyOne.PushTestId(Id);
 
-        TestDependencyOne.PushTestId(id);
+        TestData testData = testDependencyTwo.GetTestData(Id);
 
-        TestData testData = testDependencyTwo.GetTestData(id);
+        logger.LogInformation("Auto Generated Data: {Id} - {Name}", Id, testData.Name);
 
-        logger.LogInformation("Auto Generated Data: {Id} - {Name}", id, testData.Name);
+        WriteObject(testData);
     }
 }
 ```
@@ -97,29 +103,30 @@ public class SubmitTestData : IoCShell
 Asynchronous process example
 
 ```csharp
-[Cmdlet(VerbsLifecycle.Submit, "TestDataAsync")]
-public class SubmitTestDataAsync : IoCShellAsync
+[Cmdlet(VerbsLifecycle.Submit, "DataAsync")]
+public class SubmitDataAsync : IoCShellAsync<Startup>
 {
-    // Supports non-public properties
-    [AutomationDependency]
-    protected TestDependencyOne TestDependencyOne { get; set; }
-
-    // Supports non-public fields
-    [AutomationDependency]
-    private readonly TestDependencyTwo testDependencyTwo;
+    [Parameter(Mandatory = true)]
+    public string Id { get; set; }
 
     [AutomationDependency]
-    private readonly ILogger<RequestCard> logger;
+    protected ITestDependencyOne TestDependencyOne { get; set; }
+
+    [AutomationDependency]
+    protected ITestDependencyTwo testDependencyTwo { get; set; }
+
+    [AutomationDependency]
+    private ILogger<RequestCard> logger { get; set; }
 
     protected override async Task ExecuteCmdletAsync()
     {
-        string id = Guid.NewGuid();
+        await TestDependencyOne.PushTestIdAsync(Id);
 
-        await TestDependencyOne.PushTestIdAsync(id);
+        TestData testData = await testDependencyTwo.GetTestDataAsync(Id);
 
-        TestData testData = await testDependencyTwo.GetTestDataAsync(id);
+        logger.LogInformation("Auto Generated Data: {Id} - {Name}", Id, testData.Name);
 
-        logger.LogInformation("Auto Generated Data: {Id} - {Name}", id, testData.Name);
+        WriteObject(testData);
     }
 }
 ```
@@ -132,25 +139,56 @@ In PowerShell terminal run the following:
 Import-Module <path-to-your-dll>/<your-assembly>.dll -V
 ```
 
-You should see your custom commands listed in the verbose output (signaled by `-v`)
-
-_See [Project - launch.json](https://github.com/kenswan/AutomationIoC/blob/main/.vscode/launch.json) for a sample
-on launching your module through VS Code_
-
-Load the dependency injection (this will be the command you created for startup). _The following example is based on command name from above startup example_
-
-```powershell
-Load-Dependencies
-```
+You should see your custom commands listed in the verbose output (signaled by `-v`).
 
 Now you are ready to run your own custom commands!
 
+The following example is based on command name from above:
+
+```powershell
+Submit-Data -id "ThisIsATestId"
+```
+
+_See [Project - launch.json](https://github.com/kenswan/AutomationIoC/blob/main/sample/.vscode/launch.json) for a sample
+on launching your module through VS Code_
+
 ### Testing
 
-_NOTE: If using a constructor to inject dependencies for testing purposes, be sure to add an empty default
-constructor as well_
+```csharp
+using AutomationIoC.Tools;
+using FluentAssertions;
+using Xunit;
 
-Test Example Coming Soon
+public class RequestCardTests
+{
+    [Fact]
+    public void ShouldSubmitData()
+    {
+        var testDependencyOneMock = new Mock<ITestDependencyOne>();
+        var testDependencyTwoMock = new Mock<ITestDependencyTwo>();
+        var testId = "ThisIsATestId";
+        var expectedTestData = new TestData { Id = testId, Name = "ThisIsTestName" };
+
+        testDependencyTwoMock.Setup(dependency =>
+            dependency.GetTestDataAsync(testId))
+                .Returns(expectedTestData);
+
+        using var submitDataCommand =
+            AutomationSandbox.CreateContext<SubmitData, Startup>(services =>
+            {
+                services.AddTransient(_ => testDependencyOneMock.Object);
+                services.AddTransient(_ => testDependencyTwoMock.Object);
+            });
+
+        submitDataCommand.AddParameter(command =>
+            command.AddParameter("id", testId));
+
+        var actualTestData = submitDataCommand.RunCommand<TestData>().First();
+
+        actualTestData.Should().BeEquivalentTo(expectedTestData);
+    }
+}
+```
 
 ## Other Resources
 

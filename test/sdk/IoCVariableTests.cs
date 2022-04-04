@@ -1,11 +1,11 @@
-﻿using AutomationIoC.SDK;
+﻿using AutomationIoC.Integration.Commands;
 using AutomationIoC.Tools;
 using System.Management.Automation;
 using Xunit;
 
 namespace AutomationIoC
 {
-    public class SetEnvironmentTests
+    public class IoCVariableTests
     {
         [Fact]
         public void ShouldSetEnvironmentVariables()
@@ -13,7 +13,7 @@ namespace AutomationIoC
             var environmentKey = "TestKey";
             var expectedValue = Guid.NewGuid().ToString();
 
-            using var command = AutomationSandbox.CreateCommand<SetEnvironment>();
+            using var command = AutomationSandbox.CreateCommand<TestVariableCommand>();
 
             command.RunCommand(command =>
                 command

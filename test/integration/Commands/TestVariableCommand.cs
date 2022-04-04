@@ -1,10 +1,11 @@
 ﻿using AutomationIoC.Runtime;
+using AutomationIoC.SDK;
 using System.Management.Automation;
 
-namespace AutomationIoC.SDK
+namespace AutomationIoC.Integration.Commands
 {
-    [Cmdlet(VerbsCommon.Set, "Environment")]
-    public sealed class SetEnvironment : PSCmdlet
+    [Cmdlet(VerbsDiagnostic.Test, "Variable")]
+    public sealed class TestVariableCommand : IoCVariable
     {
         [Parameter(Mandatory = true)]
         [Alias("k")]
@@ -18,7 +19,7 @@ namespace AutomationIoC.SDK
         {
             base.ProcessRecord();
 
-            AutomationIoCRuntime.SetEnvironment(SessionState, Key, Value);
+            SetVariable(Key, Value);
         }
     }
 }
