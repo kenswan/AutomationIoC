@@ -156,6 +156,8 @@ on launching your module through VS Code_
 
 ```csharp
 using AutomationIoC.Tools;
+using FluentAssertions;
+using Xunit;
 
 public class RequestCardTests
 {
