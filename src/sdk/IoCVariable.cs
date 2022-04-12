@@ -1,13 +1,12 @@
 ﻿using AutomationIoC.Runtime;
 using System.Management.Automation;
 
-namespace AutomationIoC.SDK
+namespace AutomationIoC.SDK;
+
+public abstract class IoCVariable : PSCmdlet
 {
-    public abstract class IoCVariable : PSCmdlet
+    protected void SetVariable(string key, object value)
     {
-        protected void SetVariable(string key, object value)
-        {
-            AutomationIoCRuntime.SetEnvironment(SessionState, key, value);
-        }
+        AutomationIoCRuntime.SetEnvironment(SessionState, key, value);
     }
 }

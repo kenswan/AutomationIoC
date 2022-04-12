@@ -4,34 +4,33 @@ using AutomationIoC.Integration.Startup;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace AutomationIoC.Tools
+namespace AutomationIoC.Tools;
+
+public class AutomationSandboxTests
 {
-    public class AutomationSandboxTests
+    [Fact]
+    public void ShouldRunCommandContext()
     {
-        [Fact]
-        public void ShouldRunCommandContext()
+        using var context = AutomationSandbox.CreateContext<TestContextCommand, TestStartup>(services =>
         {
-            using var context = AutomationSandbox.CreateContext<TestContextCommand, TestStartup>(services =>
-            {
-                services.AddTransient<ITestService, TestService>();
-            });
+            services.AddTransient<ITestService, TestService>();
+        });
 
-            var results = context.RunCommand();
+        var results = context.RunCommand();
 
-            Assert.Single(results);
-        }
+        Assert.Single(results);
+    }
 
-        [Fact]
-        public void ShouldRunCommand()
-        {
-            var expectedValue = Guid.NewGuid().ToString();
+    [Fact]
+    public void ShouldRunCommand()
+    {
+        var expectedValue = Guid.NewGuid().ToString();
 
-            using var command = AutomationSandbox.CreateCommand<TestCommand>();
+        using var command = AutomationSandbox.CreateCommand<TestCommand>();
 
-            var results = command.RunCommand(command => command.AddParameter("Test", expectedValue));
+        var results = command.RunCommand(command => command.AddParameter("Test", expectedValue));
 
-            Assert.Single(results);
-            Assert.Equal(expectedValue, results.First());
-        }
+        Assert.Single(results);
+        Assert.Equal(expectedValue, results.First());
     }
 }

@@ -1,29 +1,28 @@
 ﻿using System.Management.Automation;
 
-namespace AutomationIoC.Runtime.Session
+namespace AutomationIoC.Runtime.Session;
+
+internal interface ISessionState
 {
-    internal interface ISessionState
-    {
-        List<string> Applications { get; }
+    List<string> Applications { get; }
 
-        DriveManagementIntrinsics Drive { get; }
+    DriveManagementIntrinsics Drive { get; }
 
-        CommandInvocationIntrinsics InvokeCommand { get; }
+    CommandInvocationIntrinsics InvokeCommand { get; }
 
-        ProviderIntrinsics InvokeProvider { get; }
+    ProviderIntrinsics InvokeProvider { get; }
 
-        PSLanguageMode LanguageMode { get; }
+    PSLanguageMode LanguageMode { get; }
 
-        PSModuleInfo Module { get; }
+    PSModuleInfo Module { get; }
 
-        PathIntrinsics Path { get; }
+    PathIntrinsics Path { get; }
 
-        CmdletProviderManagementIntrinsics Provider { get; }
+    CmdletProviderManagementIntrinsics Provider { get; }
 
-        PSVariableIntrinsics PSVariable { get; }
+    PSVariableIntrinsics PSVariable { get; }
 
-        List<string> Scripts { get; }
+    List<string> Scripts { get; }
 
-        bool UseFullLanguageModeInDebugger { get; }
-    }
+    bool UseFullLanguageModeInDebugger { get; }
 }

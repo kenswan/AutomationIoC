@@ -3,65 +3,64 @@ using FluentAssertions;
 using Moq;
 using Xunit;
 
-namespace AutomationIoC.Runtime.Environment
+namespace AutomationIoC.Runtime.Environment;
+
+public class AutomationEnvironmentTests
 {
-    public class AutomationEnvironmentTests
+    private Mock<IEnvironmentStorageProvider> storageProviderMock;
+
+    private IAutomationEnvironment automationEnvironment;
+
+    public AutomationEnvironmentTests()
     {
-        private Mock<IEnvironmentStorageProvider> storageProviderMock;
+        storageProviderMock = new Mock<IEnvironmentStorageProvider>();
 
-        private IAutomationEnvironment automationEnvironment;
+        automationEnvironment = new AutomationEnvironment(storageProviderMock.Object);
+    }
 
-        public AutomationEnvironmentTests()
-        {
-            storageProviderMock = new Mock<IEnvironmentStorageProvider>();
+    [Fact]
+    public void ShouldGetEnvironmentVariable()
+    {
+        var id = Guid.NewGuid();
+        var key = id.ToString();
+        var model = new TestModel(id);
 
-            automationEnvironment = new AutomationEnvironment(storageProviderMock.Object);
-        }
+        storageProviderMock.Setup(provider =>
+            provider.GetEnvironmentVariable<TestModel>(key)).Returns(model);
 
-        [Fact]
-        public void ShouldGetEnvironmentVariable()
-        {
-            var id = Guid.NewGuid();
-            var key = id.ToString();
-            var model = new TestModel(id);
+        var actualModel = automationEnvironment.GetVariable<TestModel>(key);
 
-            storageProviderMock.Setup(provider =>
-                provider.GetEnvironmentVariable<TestModel>(key)).Returns(model);
+        actualModel.Should().BeEquivalentTo(model);
+    }
 
-            var actualModel = automationEnvironment.GetVariable<TestModel>(key);
+    [Fact]
+    public void ShouldThrowIfVariableNotFound()
+    {
+        var key = Guid.NewGuid().ToString();
 
-            actualModel.Should().BeEquivalentTo(model);
-        }
+        storageProviderMock.Setup(provider =>
+            provider.GetEnvironmentVariable<TestModel>(key)).Returns(null as TestModel);
 
-        [Fact]
-        public void ShouldThrowIfVariableNotFound()
-        {
-            var key = Guid.NewGuid().ToString();
+        Assert.Throws<ArgumentException>(() => automationEnvironment.GetVariable<TestModel>(key));
+    }
 
-            storageProviderMock.Setup(provider =>
-                provider.GetEnvironmentVariable<TestModel>(key)).Returns(null as TestModel);
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void ShouldSendVaraibleIfExistReturnFalseIfNot(bool variableExists)
+    {
+        var id = Guid.NewGuid();
+        var key = id.ToString();
+        TestModel model = variableExists ? new TestModel(id) : null as TestModel;
 
-            Assert.Throws<ArgumentException>(() => automationEnvironment.GetVariable<TestModel>(key));
-        }
+        storageProviderMock.Setup(provider =>
+            provider.GetEnvironmentVariable<TestModel>(key)).Returns(model);
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void ShouldSendVaraibleIfExistReturnFalseIfNot(bool variableExists)
-        {
-            var id = Guid.NewGuid();
-            var key = id.ToString();
-            TestModel model = variableExists ? new TestModel(id) : null as TestModel;
+        var actualVariableExists =
+            automationEnvironment.TryGetVariable<TestModel>(key, out TestModel actualValue);
 
-            storageProviderMock.Setup(provider =>
-                provider.GetEnvironmentVariable<TestModel>(key)).Returns(model);
+        actualValue.Should().BeEquivalentTo(model);
 
-            var actualVariableExists =
-                automationEnvironment.TryGetVariable<TestModel>(key, out TestModel actualValue);
-
-            actualValue.Should().BeEquivalentTo(model);
-
-            Assert.Equal(variableExists, actualVariableExists);
-        }
+        Assert.Equal(variableExists, actualVariableExists);
     }
 }

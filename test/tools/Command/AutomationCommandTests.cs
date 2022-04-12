@@ -2,28 +2,27 @@
 using System.Management.Automation;
 using Xunit;
 
-namespace AutomationIoC.Tools.Command
+namespace AutomationIoC.Tools.Command;
+
+public class AutomationCommandTests
 {
-    public class AutomationCommandTests
+    [Fact]
+    public void ShouldRunExternalCommands()
     {
-        [Fact]
-        public void ShouldRunExternalCommands()
-        {
-            var environmentKey = Guid.NewGuid().ToString();
-            var expectedValue = Guid.NewGuid().ToString();
+        var environmentKey = Guid.NewGuid().ToString();
+        var expectedValue = Guid.NewGuid().ToString();
 
-            using var automationCommand = new AutomationCommand<TestCommand>();
+        using var automationCommand = new AutomationCommand<TestCommand>();
 
-            automationCommand.RunExternalCommand("Set-Variable", command =>
-                command
-                    .AddParameter("Name", environmentKey)
-                    .AddParameter("Value", expectedValue));
+        automationCommand.RunExternalCommand("Set-Variable", command =>
+            command
+                .AddParameter("Name", environmentKey)
+                .AddParameter("Value", expectedValue));
 
-            var results = automationCommand.RunExternalCommand<PSVariable>("Get-Variable", command =>
-                command.AddParameter("Name", environmentKey));
+        var results = automationCommand.RunExternalCommand<PSVariable>("Get-Variable", command =>
+            command.AddParameter("Name", environmentKey));
 
-            Assert.Single(results);
-            Assert.Equal(expectedValue, results.First().Value);
-        }
+        Assert.Single(results);
+        Assert.Equal(expectedValue, results.First().Value);
     }
 }

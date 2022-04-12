@@ -1,6 +1,5 @@
-﻿namespace AutomationIoC.Integration.Models
-{
-    public record TestInstance(int Id);
+﻿namespace AutomationIoC.Integration.Models;
 
-    public record TestModel(Guid Id);
-}
+public record TestInstance(int Id);
+
+public record TestModel(Guid Id);

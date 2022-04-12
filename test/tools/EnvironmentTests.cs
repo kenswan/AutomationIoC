@@ -2,39 +2,38 @@
 using System.Management.Automation.Runspaces;
 using Xunit;
 
-namespace AutomationIoC.Tools
+namespace AutomationIoC.Tools;
+
+public class EnvironmentTests
 {
-    public class EnvironmentTests
+    protected readonly PowerShell powerShellSession;
+    protected readonly Runspace runspace;
+
+    [Fact]
+    public void Test()
     {
-        protected readonly PowerShell powerShellSession;
-        protected readonly Runspace runspace;
+        var key = "TestKey";
+        var value = "TestValue";
 
-        [Fact]
-        public void Test()
-        {
-            var key = "TestKey";
-            var value = "TestValue";
+        InitialSessionState initial = InitialSessionState.CreateDefault();
+        Runspace runspace = RunspaceFactory.CreateRunspace(initial);
+        runspace.Open();
 
-            InitialSessionState initial = InitialSessionState.CreateDefault();
-            Runspace runspace = RunspaceFactory.CreateRunspace(initial);
-            runspace.Open();
+        PowerShell powerShellSession = PowerShell.Create();
+        powerShellSession.Runspace = runspace;
 
-            PowerShell powerShellSession = PowerShell.Create();
-            powerShellSession.Runspace = runspace;
+        powerShellSession.Commands.AddCommand("Set-Variable")
+                .AddParameter("Name", key)
+                .AddParameter("Value", value);
 
-            powerShellSession.Commands.AddCommand("Set-Variable")
-                    .AddParameter("Name", key)
-                    .AddParameter("Value", value);
+        powerShellSession.Invoke();
 
-            powerShellSession.Invoke();
+        powerShellSession.Commands.Clear();
 
-            powerShellSession.Commands.Clear();
+        powerShellSession.Commands.AddCommand("Get-Variable").AddParameter("Name", key);
 
-            powerShellSession.Commands.AddCommand("Get-Variable").AddParameter("Name", key);
+        var results = powerShellSession.Invoke();
 
-            var results = powerShellSession.Invoke();
-
-            Assert.Single(results);
-        }
+        Assert.Single(results);
     }
 }

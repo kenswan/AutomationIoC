@@ -3,53 +3,52 @@ using AutomationIoC.Integration.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace AutomationIoC.Runtime.Dependency
+namespace AutomationIoC.Runtime.Dependency;
+
+public class DependencyBinderTests
 {
-    public class DependencyBinderTests
+    [Fact]
+    public void ShouldBindAttributeFields()
     {
-        [Fact]
-        public void ShouldBindAttributeFields()
-        {
-            IServiceProvider serviceProvider = GenerateServiceProvider();
-            var dependencyBinder = new DependencyBinder(serviceProvider);
-            var fieldInstance = new TestRuntimeFieldService();
+        IServiceProvider serviceProvider = GenerateServiceProvider();
+        var dependencyBinder = new DependencyBinder(serviceProvider);
+        var fieldInstance = new TestRuntimeFieldService();
 
-            dependencyBinder.LoadFieldsByAttribute<TestRuntimeAttribute>(fieldInstance);
+        dependencyBinder.LoadFieldsByAttribute<TestRuntimeAttribute>(fieldInstance);
 
-            fieldInstance.RunMethod();
+        fieldInstance.RunMethod();
 
-            Assert.True(fieldInstance.WasCalled);
-            Assert.Equal(1, fieldInstance.CallCount);
-        }
+        Assert.True(fieldInstance.WasCalled);
+        Assert.Equal(1, fieldInstance.CallCount);
+    }
 
-        [Fact]
-        public void ShouldBindAttributeProperties()
-        {
-            IServiceProvider serviceProvider = GenerateServiceProvider();
-            var propertyInstance = new TestRuntimePropertyService();
-            var dependencyBinder = new DependencyBinder(serviceProvider);
+    [Fact]
+    public void ShouldBindAttributeProperties()
+    {
+        IServiceProvider serviceProvider = GenerateServiceProvider();
+        var propertyInstance = new TestRuntimePropertyService();
+        var dependencyBinder = new DependencyBinder(serviceProvider);
 
-            dependencyBinder.LoadPropertiesByAttribute<TestRuntimeAttribute>(propertyInstance);
+        dependencyBinder.LoadPropertiesByAttribute<TestRuntimeAttribute>(propertyInstance);
 
-            propertyInstance.RunMethod();
+        propertyInstance.RunMethod();
 
-            Assert.True(propertyInstance.WasCalled);
-            Assert.Equal(1, propertyInstance.CallCount);
-        }
+        Assert.True(propertyInstance.WasCalled);
+        Assert.Equal(1, propertyInstance.CallCount);
+    }
 
-        [Fact]
-        public void ShouldThrowIfServiceProviderIsNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new DependencyBinder(null));
-        }
+    [Fact]
+    public void ShouldThrowIfServiceProviderIsNull()
+    {
+        Assert.Throws<ArgumentNullException>(() => new DependencyBinder(null));
+    }
 
-        private static IServiceProvider GenerateServiceProvider()
-        {
-            return new ServiceCollection()
-                .AddTransient<ITestRuntimeService, TestRuntimeFieldService>()
-                .AddTransient<ITestRuntimeInternalServiceOne, TestRuntimeInternalServiceOne>()
-                .AddTransient<ITestRuntimeInternalServiceTwo, TestRuntimeInternalServiceTwo>()
-                .BuildServiceProvider();
-        }
+    private static IServiceProvider GenerateServiceProvider()
+    {
+        return new ServiceCollection()
+            .AddTransient<ITestRuntimeService, TestRuntimeFieldService>()
+            .AddTransient<ITestRuntimeInternalServiceOne, TestRuntimeInternalServiceOne>()
+            .AddTransient<ITestRuntimeInternalServiceTwo, TestRuntimeInternalServiceTwo>()
+            .BuildServiceProvider();
     }
 }

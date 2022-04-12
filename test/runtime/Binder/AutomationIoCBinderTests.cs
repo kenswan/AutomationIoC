@@ -4,51 +4,50 @@ using AutomationIoC.Runtime.Context;
 using Moq;
 using Xunit;
 
-namespace AutomationIoC.Runtime.Binder
+namespace AutomationIoC.Runtime.Binder;
+
+public class AutomationIoCBinderTests
 {
-    public class AutomationIoCBinderTests
+    private readonly Mock<IContextBuilder> contextBuilderMock;
+
+    private readonly AutomationIoCBinder binder;
+
+    public AutomationIoCBinderTests()
     {
-        private readonly Mock<IContextBuilder> contextBuilderMock;
+        contextBuilderMock = new();
 
-        private readonly AutomationIoCBinder binder;
+        binder = new(contextBuilderMock.Object);
+    }
 
-        public AutomationIoCBinderTests()
-        {
-            contextBuilderMock = new();
+    [Fact]
+    public void ShouldInitializeyContext()
+    {
+        var instance = new TestInstance(123);
 
-            binder = new(contextBuilderMock.Object);
-        }
+        contextBuilderMock.Setup(builder => builder.IsInitialized).Returns(false);
 
-        [Fact]
-        public void ShouldInitializeyContext()
-        {
-            var instance = new TestInstance(123);
+        binder.BindContext<TestRuntimeAttribute>(instance);
 
-            contextBuilderMock.Setup(builder => builder.IsInitialized).Returns(false);
+        contextBuilderMock.Verify(builder => builder.BuildServices(), Times.Once);
 
-            binder.BindContext<TestRuntimeAttribute>(instance);
+        contextBuilderMock.Verify(builder =>
+            builder.InitializeCurrentInstance<TestRuntimeAttribute>(instance),
+                Times.Once);
+    }
 
-            contextBuilderMock.Verify(builder => builder.BuildServices(), Times.Once);
+    [Fact]
+    public void ShouldNotInitializeContextIfAlreadySet()
+    {
+        var instance = new TestInstance(2);
 
-            contextBuilderMock.Verify(builder =>
-                builder.InitializeCurrentInstance<TestRuntimeAttribute>(instance),
-                    Times.Once);
-        }
+        contextBuilderMock.Setup(builder => builder.IsInitialized).Returns(true);
 
-        [Fact]
-        public void ShouldNotInitializeContextIfAlreadySet()
-        {
-            var instance = new TestInstance(2);
+        binder.BindContext<TestRuntimeAttribute>(instance);
 
-            contextBuilderMock.Setup(builder => builder.IsInitialized).Returns(true);
+        contextBuilderMock.Verify(builder => builder.BuildServices(), Times.Never);
 
-            binder.BindContext<TestRuntimeAttribute>(instance);
-
-            contextBuilderMock.Verify(builder => builder.BuildServices(), Times.Never);
-
-            contextBuilderMock.Verify(builder =>
-                builder.InitializeCurrentInstance<TestRuntimeAttribute>(instance),
-                    Times.Once);
-        }
+        contextBuilderMock.Verify(builder =>
+            builder.InitializeCurrentInstance<TestRuntimeAttribute>(instance),
+                Times.Once);
     }
 }

@@ -1,35 +1,34 @@
 ﻿using AutomationIoC.Runtime.Session;
 using System.Management.Automation;
 
-namespace AutomationIoC.Runtime.Environment
+namespace AutomationIoC.Runtime.Environment;
+
+internal class EnvironmentStorageProvider : IEnvironmentStorageProvider
 {
-    internal class EnvironmentStorageProvider : IEnvironmentStorageProvider
+    private readonly ISessionState sessionState;
+
+    public EnvironmentStorageProvider(ISessionState sessionState)
     {
-        private readonly ISessionState sessionState;
+        this.sessionState = sessionState;
+    }
 
-        public EnvironmentStorageProvider(ISessionState sessionState)
+    public T GetEnvironmentVariable<T>(string key)
+    {
+        PSVariable psVariable = sessionState.PSVariable.Get(key);
+
+        if (psVariable?.Value is not null)
         {
-            this.sessionState = sessionState;
+            return (T)psVariable.Value;
         }
 
-        public T GetEnvironmentVariable<T>(string key)
-        {
-            PSVariable psVariable = sessionState.PSVariable.Get(key);
+        return default;
+    }
 
-            if (psVariable?.Value is not null)
-            {
-                return (T)psVariable.Value;
-            }
+    public void SetEnvironmentVariable(string key, object value, ScopedItemOptions scopedItemOptions)
+    {
+        PSVariable serviceVariable =
+                new(key, value, scopedItemOptions);
 
-            return default;
-        }
-
-        public void SetEnvironmentVariable(string key, object value, ScopedItemOptions scopedItemOptions)
-        {
-            PSVariable serviceVariable =
-                    new(key, value, scopedItemOptions);
-
-            sessionState.PSVariable.Set(serviceVariable);
-        }
+        sessionState.PSVariable.Set(serviceVariable);
     }
 }

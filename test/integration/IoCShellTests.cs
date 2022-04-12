@@ -2,20 +2,19 @@
 using AutomationIoC.Tools;
 using Xunit;
 
-namespace AutomationIoC
+namespace AutomationIoC;
+
+public class IoCShellTests
 {
-    public class IoCShellTests
+    [Fact]
+    public void ShouldAddDependencies()
     {
-        [Fact]
-        public void ShouldAddDependencies()
-        {
-            var expectedValue = 3;
+        var expectedValue = 3;
 
-            using var context = AutomationSandbox.CreateCommand<TestSDKCommand>();
+        using var context = AutomationSandbox.CreateCommand<TestSDKCommand>();
 
-            var actualValue = context.RunCommand<int>().FirstOrDefault();
+        var actualValue = context.RunCommand<int>().FirstOrDefault();
 
-            Assert.Equal(expectedValue, actualValue);
-        }
+        Assert.Equal(expectedValue, actualValue);
     }
 }

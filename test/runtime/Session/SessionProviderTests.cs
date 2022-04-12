@@ -1,19 +1,18 @@
 ﻿using Xunit;
 
-namespace AutomationIoC.Runtime.Session
+namespace AutomationIoC.Runtime.Session;
+
+public class SessionProviderTests
 {
-    public class SessionProviderTests
+    [Fact]
+    public void ShouldGetCurrentServiceProviderFromSession()
     {
-        [Fact]
-        public void ShouldGetCurrentServiceProviderFromSession()
-        {
 
-        }
+    }
 
-        [Fact]
-        public void ShouldStoreServiceProvider()
-        {
+    [Fact]
+    public void ShouldStoreServiceProvider()
+    {
 
-        }
     }
 }
