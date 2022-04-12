@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
 
-	<PropertyGroup Label="NuGet Metadata">
-		<Title>AutomationIoC</Title>
-		<PackageId>AutomationIoC</PackageId>
-		<Description>Development tools for C# PowerShell PSCmdlets</Description>
-	</PropertyGroup>
+  <PropertyGroup Label="NuGet Metadata">
+    <Title>AutomationIoC</Title>
+    <PackageId>AutomationIoC</PackageId>
+    <Description>Development tools for C# PowerShell PSCmdlets</Description>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\sdk\AutomationIoC.SDK.csproj" />
-		<ProjectReference Include="..\tools\AutomationIoC.Tools.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\sdk\AutomationIoC.SDK.csproj" />
+    <ProjectReference Include="..\tools\AutomationIoC.Tools.csproj" />
+  </ItemGroup>
 </Project>
