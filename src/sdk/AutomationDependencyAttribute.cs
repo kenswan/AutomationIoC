@@ -1,7 +1,6 @@
-﻿namespace AutomationIoC
+﻿namespace AutomationIoC;
+
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
+public class AutomationDependencyAttribute : Attribute
 {
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
-    public class AutomationDependencyAttribute : Attribute
-    {
-    }
 }

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>false</IsPackable>
-	<RootNamespace>AutomationIoC.Tools</RootNamespace>
+    <RootNamespace>AutomationIoC.Tools</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

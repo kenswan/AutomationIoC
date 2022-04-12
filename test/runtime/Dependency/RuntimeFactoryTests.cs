@@ -10,60 +10,59 @@ using System.Management.Automation;
 using Xunit;
 using Runspace = System.Management.Automation.Runspaces;
 
-namespace AutomationIoC.Runtime.Dependency
+namespace AutomationIoC.Runtime.Dependency;
+
+public class RuntimeFactoryTests
 {
-    public class RuntimeFactoryTests
+    [Fact]
+    public void ShouldBuildRuntimeProviderFromSession()
     {
-        [Fact]
-        public void ShouldBuildRuntimeProviderFromSession()
-        {
-            var sessionState = new SessionStateProxy(null as SessionState);
-            var startup = new TestRuntimeStartup();
+        var sessionState = new SessionStateProxy(null as SessionState);
+        var startup = new TestRuntimeStartup();
 
-            var actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionState, startup);
+        var actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionState, startup);
 
-            var providerSessionState = actualServiceProvider.GetRequiredService<ISessionState>();
-            var providerStartup = actualServiceProvider.GetRequiredService<IIoCStartup>();
+        var providerSessionState = actualServiceProvider.GetRequiredService<ISessionState>();
+        var providerStartup = actualServiceProvider.GetRequiredService<IIoCStartup>();
 
-            providerSessionState.Should().BeEquivalentTo(sessionState);
-            providerStartup.Should().BeEquivalentTo(startup);
+        providerSessionState.Should().BeEquivalentTo(sessionState);
+        providerStartup.Should().BeEquivalentTo(startup);
 
-            Assert.NotNull(actualServiceProvider.GetService<IAutomationIoCBinder>());
-            Assert.NotNull(actualServiceProvider.GetService<IAutomationEnvironment>());
-            Assert.NotNull(actualServiceProvider.GetService<IContextBuilder>());
-            Assert.NotNull(actualServiceProvider.GetService<IEnvironmentStorageProvider>());
-            Assert.NotNull(actualServiceProvider.GetService<ISessionStorageProvider>());
-            Assert.NotNull(actualServiceProvider.GetService<ISessionState>());
-        }
+        Assert.NotNull(actualServiceProvider.GetService<IAutomationIoCBinder>());
+        Assert.NotNull(actualServiceProvider.GetService<IAutomationEnvironment>());
+        Assert.NotNull(actualServiceProvider.GetService<IContextBuilder>());
+        Assert.NotNull(actualServiceProvider.GetService<IEnvironmentStorageProvider>());
+        Assert.NotNull(actualServiceProvider.GetService<ISessionStorageProvider>());
+        Assert.NotNull(actualServiceProvider.GetService<ISessionState>());
+    }
 
-        [Fact]
-        public void ShouldBuildRuntimeProviderFromSessionStatProxy()
-        {
-            var sessionState = new SessionStateProxy(null as Runspace.SessionStateProxy);
-            var startup = new TestRuntimeStartup();
+    [Fact]
+    public void ShouldBuildRuntimeProviderFromSessionStatProxy()
+    {
+        var sessionState = new SessionStateProxy(null as Runspace.SessionStateProxy);
+        var startup = new TestRuntimeStartup();
 
-            var actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionState);
+        var actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionState);
 
-            var providerSessionState = actualServiceProvider.GetRequiredService<ISessionState>();
+        var providerSessionState = actualServiceProvider.GetRequiredService<ISessionState>();
 
-            providerSessionState.Should().BeEquivalentTo(sessionState);
+        providerSessionState.Should().BeEquivalentTo(sessionState);
 
-            Assert.NotNull(actualServiceProvider.GetService<IAutomationEnvironment>());
-            Assert.NotNull(actualServiceProvider.GetService<IEnvironmentStorageProvider>());
-            Assert.NotNull(actualServiceProvider.GetService<ISessionState>());
-        }
+        Assert.NotNull(actualServiceProvider.GetService<IAutomationEnvironment>());
+        Assert.NotNull(actualServiceProvider.GetService<IEnvironmentStorageProvider>());
+        Assert.NotNull(actualServiceProvider.GetService<ISessionState>());
+    }
 
-        [Fact]
-        public void ShouldAddServicesForClientRuntime()
-        {
-            var serviceCollection = new ServiceCollection();
+    [Fact]
+    public void ShouldAddServicesForClientRuntime()
+    {
+        var serviceCollection = new ServiceCollection();
 
-            RuntimeFactory.AddClientRuntime(serviceCollection);
+        RuntimeFactory.AddClientRuntime(serviceCollection);
 
-            var serviceProvider = serviceCollection.BuildServiceProvider();
+        var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            Assert.NotNull(serviceProvider.GetService<IDependencyBinder>());
-            Assert.NotNull(serviceProvider.GetService<ILogger<RuntimeFactoryTests>>());
-        }
+        Assert.NotNull(serviceProvider.GetService<IDependencyBinder>());
+        Assert.NotNull(serviceProvider.GetService<ILogger<RuntimeFactoryTests>>());
     }
 }

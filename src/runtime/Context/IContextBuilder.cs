@@ -1,15 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace AutomationIoC.Runtime.Context
+namespace AutomationIoC.Runtime.Context;
+
+internal interface IContextBuilder
 {
-    internal interface IContextBuilder
-    {
-        bool IsInitialized { get; }
+    bool IsInitialized { get; }
 
-        void BuildServices();
+    void BuildServices();
 
-        void BuildServices(IServiceCollection serviceCollection);
+    void BuildServices(IServiceCollection serviceCollection);
 
-        void InitializeCurrentInstance<TAttribute>(object instance) where TAttribute : Attribute;
-    }
+    void InitializeCurrentInstance<TAttribute>(object instance) where TAttribute : Attribute;
 }

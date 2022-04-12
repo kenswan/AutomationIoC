@@ -1,9 +1,8 @@
-﻿namespace AutomationIoC.Runtime.Session
-{
-    internal interface ISessionStorageProvider
-    {
-        IServiceProvider GetCurrentServiceProvider();
+﻿namespace AutomationIoC.Runtime.Session;
 
-        void StoreServiceProvider(IServiceProvider serviceProvider);
-    }
+internal interface ISessionStorageProvider
+{
+    IServiceProvider GetCurrentServiceProvider();
+
+    void StoreServiceProvider(IServiceProvider serviceProvider);
 }

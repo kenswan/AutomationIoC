@@ -1,7 +1,6 @@
-﻿namespace AutomationIoC.Runtime.Binder
+﻿namespace AutomationIoC.Runtime.Binder;
+
+internal interface IAutomationIoCBinder
 {
-    internal interface IAutomationIoCBinder
-    {
-        void BindContext<TAttribute>(object instance) where TAttribute : Attribute;
-    }
+    void BindContext<TAttribute>(object instance) where TAttribute : Attribute;
 }

@@ -3,13 +3,13 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>false</IsPackable>
-	<RootNamespace>AutomationIoC.Integration</RootNamespace>
+    <RootNamespace>AutomationIoC.Integration</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="FluentAssertions" />
-	<PackageReference Include="Microsoft.NET.Test.Sdk" />
-	<PackageReference Include="Moq" />
+    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="Moq" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

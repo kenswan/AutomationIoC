@@ -3,28 +3,27 @@ using AutomationIoC.Tools;
 using System.Management.Automation;
 using Xunit;
 
-namespace AutomationIoC
+namespace AutomationIoC;
+
+public class IoCVariableTests
 {
-    public class IoCVariableTests
+    [Fact]
+    public void ShouldSetEnvironmentVariables()
     {
-        [Fact]
-        public void ShouldSetEnvironmentVariables()
-        {
-            var environmentKey = "TestKey";
-            var expectedValue = Guid.NewGuid().ToString();
+        var environmentKey = "TestKey";
+        var expectedValue = Guid.NewGuid().ToString();
 
-            using var command = AutomationSandbox.CreateCommand<TestVariableCommand>();
+        using var command = AutomationSandbox.CreateCommand<TestVariableCommand>();
 
-            command.RunCommand(command =>
-                command
-                    .AddParameter("Key", environmentKey)
-                    .AddParameter("Value", expectedValue));
+        command.RunCommand(command =>
+            command
+                .AddParameter("Key", environmentKey)
+                .AddParameter("Value", expectedValue));
 
-            var results = command.RunExternalCommand<PSVariable>("Get-Variable", command =>
-                command.AddParameter("Name", environmentKey));
+        var results = command.RunExternalCommand<PSVariable>("Get-Variable", command =>
+            command.AddParameter("Name", environmentKey));
 
-            Assert.Single(results);
-            Assert.Equal(expectedValue, results.First().Value);
-        }
+        Assert.Single(results);
+        Assert.Equal(expectedValue, results.First().Value);
     }
 }

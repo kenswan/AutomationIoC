@@ -1,41 +1,40 @@
 ﻿using AutomationIoC.Runtime;
 using System.Management.Automation;
 
-namespace AutomationIoC
+namespace AutomationIoC;
+
+public abstract class IoCShell<TStartup> : PSCmdlet where TStartup : IIoCStartup, new()
 {
-    public abstract class IoCShell<TStartup> : PSCmdlet where TStartup : IIoCStartup, new()
+    internal string CommandName { get { return MyInvocation.InvocationName; } }
+
+    protected override void BeginProcessing()
     {
-        internal string CommandName { get { return MyInvocation.InvocationName; } }
+        WriteVerbose($"Command {CommandName} Started");
 
-        protected override void BeginProcessing()
+        base.BeginProcessing();
+
+        var dependencyContext = new DependencyContext<AutomationDependencyAttribute, TStartup>
         {
-            WriteVerbose($"Command {CommandName} Started");
+            Instance = this,
+            SessionState = SessionState
+        };
 
-            base.BeginProcessing();
+        AutomationIoCRuntime.BindContext(dependencyContext);
 
-            var dependencyContext = new DependencyContext<AutomationDependencyAttribute, TStartup>
-            {
-                Instance = this,
-                SessionState = SessionState
-            };
+        WriteVerbose($"{CommandName} Context Initialized");
+    }
 
-            AutomationIoCRuntime.BindContext(dependencyContext);
+    protected override void ProcessRecord()
+    {
+        base.ProcessRecord();
 
-            WriteVerbose($"{CommandName} Context Initialized");
-        }
+        WriteVerbose($"{CommandName} process completed");
+    }
 
-        protected override void ProcessRecord()
-        {
-            base.ProcessRecord();
+    protected override void EndProcessing()
+    {
+        base.EndProcessing();
 
-            WriteVerbose($"{CommandName} process completed");
-        }
-
-        protected override void EndProcessing()
-        {
-            base.EndProcessing();
-
-            WriteVerbose($"{CommandName} operation completed");
-        }
+        WriteVerbose($"{CommandName} operation completed");
     }
 }
