@@ -8,21 +8,19 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
-
-  <ItemGroup Label="Microsoft NuGet Packages (Source)">
-    <PackageVersion Include="Microsoft.PowerShell.SDK" Version="7.2.1" />
-  </ItemGroup>
   
   <ItemGroup Label="Microsoft NuGet Packages (Source) (.NET 6)" Condition="'$(TargetFramework)' == 'net6.0'">
     <PackageVersion Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+    <PackageVersion Include="Microsoft.PowerShell.SDK" Version="7.2.7" />
   </ItemGroup>
 
   <ItemGroup Label="Microsoft NuGet Packages (Source) (.NET 7)" Condition="'$(TargetFramework)' == 'net7.0'">
     <PackageVersion Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
+    <PackageVersion Include="Microsoft.PowerShell.SDK" Version="7.3.0" />
   </ItemGroup>
 
   <ItemGroup Label="Microsoft NuGet Packages (Test)">
