@@ -15,7 +15,9 @@ internal class AutomationIoCBinder : IAutomationIoCBinder
         where TAttribute : Attribute
     {
         if (!contextBuilder.IsInitialized)
+        {
             contextBuilder.BuildServices();
+        }
 
         contextBuilder.InitializeCurrentInstance<TAttribute>(instance);
     }

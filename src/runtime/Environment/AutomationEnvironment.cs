@@ -14,7 +14,9 @@ internal class AutomationEnvironment : IAutomationEnvironment
         var value = GetEnvironmentValue<T>(key);
 
         if (value is null)
+        {
             throw new ArgumentException($"Environment Variable {key} does not exist");
+        }
 
         return value;
     }

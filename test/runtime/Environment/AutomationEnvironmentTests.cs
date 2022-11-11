@@ -7,9 +7,9 @@ namespace AutomationIoC.Runtime.Environment;
 
 public class AutomationEnvironmentTests
 {
-    private Mock<IEnvironmentStorageProvider> storageProviderMock;
+    private readonly Mock<IEnvironmentStorageProvider> storageProviderMock;
 
-    private IAutomationEnvironment automationEnvironment;
+    private readonly IAutomationEnvironment automationEnvironment;
 
     public AutomationEnvironmentTests()
     {

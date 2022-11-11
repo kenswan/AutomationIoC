@@ -12,7 +12,6 @@ public static class AutomationSandbox
         where TStartup : IIoCStartup, new() =>
             new AutomationContextCommand<TCommand, TStartup>(buildServices);
 
-
     public static IAutomationCommand<TCommand> CreateCommand<TCommand>()
         where TCommand : PSCmdlet, new() =>
             new AutomationCommand<TCommand>();
