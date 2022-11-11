@@ -38,9 +38,9 @@ public class TestRuntimePropertyService : TestRuntimeService
 
 public class TestRuntimeService : ITestRuntimeService
 {
-    public int CallCount { get; protected set; } = 0;
+    public int CallCount { get; protected set; }
 
-    public bool WasCalled { get; protected set; } = false;
+    public bool WasCalled { get; protected set; }
 
     public virtual void RunMethod()
     {

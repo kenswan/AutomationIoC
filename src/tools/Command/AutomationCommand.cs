@@ -40,11 +40,8 @@ internal class AutomationCommand<TCommand> : NativeCommand, IAutomationCommand<T
         return InvokeCommand<T>(name, buildCommand);
     }
 
-    private static string GetCommandName()
-    {
-        if (Attribute.GetCustomAttribute(typeof(TCommand), typeof(CmdletAttribute)) is not CmdletAttribute cmdletAttribute)
-            throw new ArgumentException("CmdletAttribute not found on class", nameof(cmdletAttribute));
-
-        return $"{cmdletAttribute.VerbName}-{cmdletAttribute.NounName}";
-    }
+    private static string GetCommandName() =>
+        Attribute.GetCustomAttribute(typeof(TCommand), typeof(CmdletAttribute)) is not CmdletAttribute cmdletAttribute
+            ? throw new ArgumentException("CmdletAttribute not found on class", nameof(cmdletAttribute))
+            : $"{cmdletAttribute.VerbName}-{cmdletAttribute.NounName}";
 }

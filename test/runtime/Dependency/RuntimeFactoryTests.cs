@@ -40,7 +40,6 @@ public class RuntimeFactoryTests
     public void ShouldBuildRuntimeProviderFromSessionStatProxy()
     {
         var sessionState = new SessionStateProxy(null as Runspace.SessionStateProxy);
-        var startup = new TestRuntimeStartup();
 
         var actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionState);
 

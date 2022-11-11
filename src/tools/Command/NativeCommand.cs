@@ -7,13 +7,16 @@ internal class NativeCommand : IDisposable
 {
     protected readonly PowerShell powerShellSession;
     protected readonly Runspace runspace;
+    private bool disposedResources;
 
     public NativeCommand(string modulePath)
     {
         InitialSessionState initial = InitialSessionState.CreateDefault();
 
         if (modulePath is not null)
+        {
             initial.ImportPSModule(new string[] { modulePath });
+        }
 
         runspace = RunspaceFactory.CreateRunspace(initial);
         runspace.Open();
@@ -34,7 +37,9 @@ internal class NativeCommand : IDisposable
         var command = powerShellSession.Commands.AddCommand(commandName);
 
         if (buildCommand is not null)
+        {
             buildCommand(command);
+        }
 
         return powerShellSession.Invoke<T>();
     }
@@ -53,16 +58,21 @@ internal class NativeCommand : IDisposable
 
     private void Dispose(bool disposing)
     {
-        if (runspace is not null)
+        if (disposing || !disposedResources)
         {
-            runspace.Close();
-            runspace.Dispose();
+            if (runspace is not null)
+            {
+                runspace.Close();
+                runspace.Dispose();
+            }
+
+            if (powerShellSession is not null)
+            {
+                powerShellSession.Stop();
+                powerShellSession.Dispose();
+            }
         }
 
-        if (powerShellSession is not null)
-        {
-            powerShellSession.Stop();
-            powerShellSession.Dispose();
-        }
+        disposedResources = true;
     }
 }
