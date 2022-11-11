@@ -8,10 +8,6 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
-
-  <ItemGroup Label="Microsoft NuGet Packages (Source)">
-    
-  </ItemGroup>
   
   <ItemGroup Label="Microsoft NuGet Packages (Source) (.NET 6)" Condition="'$(TargetFramework)' == 'net6.0'">
     <PackageVersion Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
