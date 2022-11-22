@@ -19,7 +19,7 @@ public class AutomationCommandTests
                 .AddParameter("Name", environmentKey)
                 .AddParameter("Value", expectedValue));
 
-        var results = automationCommand.RunExternalCommand<PSVariable>("Get-Variable", command =>
+        ICollection<PSVariable> results = automationCommand.RunExternalCommand<PSVariable>("Get-Variable", command =>
             command.AddParameter("Name", environmentKey));
 
         Assert.Single(results);

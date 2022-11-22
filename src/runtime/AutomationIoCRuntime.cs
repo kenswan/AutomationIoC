@@ -18,7 +18,7 @@ public static class AutomationIoCRuntime
         var sessionStateProxy = new SessionStateProxy(context.SessionState);
 
         IServiceProvider serviceProvider = RuntimeFactory.RuntimeServiceProvider(sessionStateProxy, new TStartup());
-        using var scope = serviceProvider.CreateScope();
+        using IServiceScope scope = serviceProvider.CreateScope();
 
         IAutomationIoCBinder binder = scope.ServiceProvider.GetRequiredService<IAutomationIoCBinder>();
 
@@ -30,8 +30,8 @@ public static class AutomationIoCRuntime
     {
         var automationSessionStateProxy = new SessionStateProxy(sessionStateProxy);
 
-        var serviceProvider = RuntimeFactory.RuntimeServiceProvider(automationSessionStateProxy, new TStartup());
-        using var scope = serviceProvider.CreateScope();
+        IServiceProvider serviceProvider = RuntimeFactory.RuntimeServiceProvider(automationSessionStateProxy, new TStartup());
+        using IServiceScope scope = serviceProvider.CreateScope();
 
         IContextBuilder contextBuilder = scope.ServiceProvider.GetRequiredService<IContextBuilder>();
 
@@ -42,8 +42,8 @@ public static class AutomationIoCRuntime
     {
         var sessionStateProxy = new SessionStateProxy(sessionState);
 
-        var runtimeServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionStateProxy);
-        using var scope = runtimeServiceProvider.CreateScope();
+        IServiceProvider runtimeServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionStateProxy);
+        using IServiceScope scope = runtimeServiceProvider.CreateScope();
 
         IEnvironmentStorageProvider environmentStorageProvider = scope.ServiceProvider.GetService<IEnvironmentStorageProvider>();
 

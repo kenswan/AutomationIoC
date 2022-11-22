@@ -1,8 +1,8 @@
-﻿using AutomationIoC.Commands;
+﻿using AutomationIoC.Integration.Commands;
 using AutomationIoC.Tools;
 using Xunit;
 
-namespace AutomationIoC;
+namespace AutomationIoC.Integration;
 
 public class IoCShellTests
 {
@@ -11,7 +11,7 @@ public class IoCShellTests
     {
         var expectedValue = 3;
 
-        using var context = AutomationSandbox.CreateCommand<TestSDKCommand>();
+        using IAutomationCommand<TestSDKCommand> context = AutomationSandbox.CreateCommand<TestSDKCommand>();
 
         var actualValue = context.RunCommand<int>().FirstOrDefault();
 

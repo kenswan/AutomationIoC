@@ -15,11 +15,11 @@ public class EnvironmentTests
         var key = "TestKey";
         var value = "TestValue";
 
-        InitialSessionState initial = InitialSessionState.CreateDefault();
+        var initial = InitialSessionState.CreateDefault();
         Runspace runspace = RunspaceFactory.CreateRunspace(initial);
         runspace.Open();
 
-        PowerShell powerShellSession = PowerShell.Create();
+        var powerShellSession = PowerShell.Create();
         powerShellSession.Runspace = runspace;
 
         powerShellSession.Commands.AddCommand("Set-Variable")
@@ -32,7 +32,7 @@ public class EnvironmentTests
 
         powerShellSession.Commands.AddCommand("Get-Variable").AddParameter("Name", key);
 
-        var results = powerShellSession.Invoke();
+        System.Collections.ObjectModel.Collection<PSObject> results = powerShellSession.Invoke();
 
         Assert.Single(results);
     }

@@ -15,7 +15,7 @@ public class IoCShellTests
     {
         var testServiceMock = new Mock<ITestSdkService>();
 
-        using var context = AutomationSandbox.CreateContext<TestIoCShell, TestSDKStartup>(
+        using IAutomationCommand<TestIoCShell> context = AutomationSandbox.CreateContext<TestIoCShell, TestSDKStartup>(
             serviceCollection =>
             {
                 serviceCollection.AddTransient(_ => testServiceMock.Object);

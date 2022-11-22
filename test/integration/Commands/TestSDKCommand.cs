@@ -2,7 +2,7 @@
 using AutomationIoC.Integration.Startup;
 using System.Management.Automation;
 
-namespace AutomationIoC.Commands;
+namespace AutomationIoC.Integration.Commands;
 
 [Cmdlet(VerbsCommon.Get, "TestSDKCommand")]
 public class TestSDKCommand : IoCShell<TestStartup>

@@ -11,12 +11,12 @@ public class AutomationSandboxTests
     [Fact]
     public void ShouldRunCommandContext()
     {
-        using var context = AutomationSandbox.CreateContext<TestContextCommand, TestStartup>(services =>
+        using IAutomationCommand<TestContextCommand> context = AutomationSandbox.CreateContext<TestContextCommand, TestStartup>(services =>
         {
             services.AddTransient<ITestService, TestService>();
         });
 
-        var results = context.RunCommand();
+        ICollection<System.Management.Automation.PSObject> results = context.RunCommand();
 
         Assert.Single(results);
     }
@@ -26,9 +26,9 @@ public class AutomationSandboxTests
     {
         var expectedValue = Guid.NewGuid().ToString();
 
-        using var command = AutomationSandbox.CreateCommand<TestCommand>();
+        using IAutomationCommand<TestCommand> command = AutomationSandbox.CreateCommand<TestCommand>();
 
-        var results = command.RunCommand(command => command.AddParameter("Test", expectedValue));
+        ICollection<System.Management.Automation.PSObject> results = command.RunCommand(command => command.AddParameter("Test", expectedValue));
 
         Assert.Single(results);
         Assert.Equal(expectedValue, results.First());

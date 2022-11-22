@@ -44,7 +44,7 @@ public class ContextBuilderTests
     [Fact]
     public void ShouldBuildServicesWithCollection()
     {
-        var serviceCollection = new ServiceCollection()
+        IServiceCollection serviceCollection = new ServiceCollection()
             .AddTransient<ITestRuntimeService, TestRuntimeService>()
             .AddTransient<ITestRuntimeInternalServiceOne, TestRuntimeInternalServiceOne>()
             .AddTransient<ITestRuntimeInternalServiceTwo, TestRuntimeInternalServiceTwo>();
@@ -93,9 +93,9 @@ public class ContextBuilderTests
 
     private static bool ServiceProviderIsConfiguredFromStartup(IServiceProvider serviceProvider)
     {
-        var configuration = serviceProvider.GetService<IConfiguration>();
-        var dependencyBinder = serviceProvider.GetService<IDependencyBinder>();
-        var testService = serviceProvider.GetService<ITestRuntimeService>();
+        IConfiguration configuration = serviceProvider.GetService<IConfiguration>();
+        IDependencyBinder dependencyBinder = serviceProvider.GetService<IDependencyBinder>();
+        ITestRuntimeService testService = serviceProvider.GetService<ITestRuntimeService>();
 
         return configuration.GetValue<string>(TestRuntimeStartup.CONFIGURATION_KEY) == TestRuntimeStartup.CONFIGURATION_VALUE &&
             dependencyBinder is not null &&
@@ -104,10 +104,10 @@ public class ContextBuilderTests
 
     private static bool ServiceProviderIsConfiguredFromCollection(IServiceProvider serviceProvider)
     {
-        var dependencyBinder = serviceProvider.GetService<IDependencyBinder>();
-        var service = serviceProvider.GetService<ITestRuntimeService>();
-        var serviceOne = serviceProvider.GetService<ITestRuntimeInternalServiceOne>();
-        var serviceTwo = serviceProvider.GetService<ITestRuntimeInternalServiceTwo>();
+        IDependencyBinder dependencyBinder = serviceProvider.GetService<IDependencyBinder>();
+        ITestRuntimeService service = serviceProvider.GetService<ITestRuntimeService>();
+        ITestRuntimeInternalServiceOne serviceOne = serviceProvider.GetService<ITestRuntimeInternalServiceOne>();
+        ITestRuntimeInternalServiceTwo serviceTwo = serviceProvider.GetService<ITestRuntimeInternalServiceTwo>();
 
         return dependencyBinder is not null &&
             service is not null &&
