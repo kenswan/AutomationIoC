@@ -6,6 +6,7 @@ using AutomationIoC.Runtime.Session;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Moq;
 using Xunit;
 
@@ -33,15 +34,11 @@ public class ContextBuilderTests
     {
         contextBuilder.BuildServices();
 
-        var actualValue = startup.Configuration.GetValue<string>(TestRuntimeStartup.CONFIGURATION_KEY);
-
         startup.AutomationEnvironment.Should().BeEquivalentTo(environmentMock.Object);
 
-        Assert.Equal(TestRuntimeStartup.CONFIGURATION_VALUE, actualValue);
-
         storageProviderMock.Verify(provider =>
-            provider.StoreServiceProvider(It.Is<IServiceProvider>(provider =>
-                ServiceProviderIsConfiguredFromStartup(provider))));
+            provider.StoreHostProvider(It.Is<IHost>(host =>
+                ServiceProviderIsConfiguredFromStartup(host.Services))));
     }
 
     [Fact]
@@ -55,8 +52,8 @@ public class ContextBuilderTests
         contextBuilder.BuildServices(serviceCollection);
 
         storageProviderMock.Verify(provider =>
-            provider.StoreServiceProvider(It.Is<IServiceProvider>(provider =>
-                ServiceProviderIsConfiguredFromCollection(provider))));
+            provider.StoreHostProvider(It.Is<IHost>(host =>
+                ServiceProviderIsConfiguredFromCollection(host.Services))));
     }
 
     [Fact]

@@ -1,8 +1,10 @@
-﻿namespace AutomationIoC.Runtime.Session;
+﻿using Microsoft.Extensions.Hosting;
+
+namespace AutomationIoC.Runtime.Session;
 
 internal interface ISessionStorageProvider
 {
     IServiceProvider GetCurrentServiceProvider();
 
-    void StoreServiceProvider(IServiceProvider serviceProvider);
+    void StoreHostProvider(IHost host);
 }

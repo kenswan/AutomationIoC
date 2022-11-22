@@ -1,4 +1,5 @@
 ﻿using AutomationIoC.Runtime.Environment;
+using Microsoft.Extensions.Hosting;
 using System.Management.Automation;
 
 namespace AutomationIoC.Runtime.Session;
@@ -17,8 +18,8 @@ internal class SessionStorageProvider : ISessionStorageProvider
     }
 
     public IServiceProvider GetCurrentServiceProvider() =>
-        environmentStorageProvider.GetEnvironmentVariable<IServiceProvider>(StorageKey);
+        environmentStorageProvider.GetEnvironmentVariable<IHost>(StorageKey)?.Services;
 
-    public void StoreServiceProvider(IServiceProvider serviceProvider) =>
-        environmentStorageProvider.SetEnvironmentVariable(StorageKey, serviceProvider, ScopedItemOptions.ReadOnly);
+    public void StoreHostProvider(IHost hostProvider) =>
+        environmentStorageProvider.SetEnvironmentVariable(StorageKey, hostProvider, ScopedItemOptions.ReadOnly);
 }

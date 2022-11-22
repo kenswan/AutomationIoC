@@ -11,7 +11,7 @@ internal class NativeCommand : IDisposable
 
     public NativeCommand(string modulePath)
     {
-        InitialSessionState initial = InitialSessionState.CreateDefault();
+        var initial = InitialSessionState.CreateDefault();
 
         if (modulePath is not null)
         {
@@ -34,7 +34,7 @@ internal class NativeCommand : IDisposable
     {
         powerShellSession.Commands.Clear();
 
-        var command = powerShellSession.Commands.AddCommand(commandName);
+        PSCommand command = powerShellSession.Commands.AddCommand(commandName);
 
         if (buildCommand is not null)
         {
