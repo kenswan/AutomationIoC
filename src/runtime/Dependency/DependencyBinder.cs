@@ -18,7 +18,7 @@ internal class DependencyBinder : IDependencyBinder
 
         foreach (FieldInfo field in fields)
         {
-            TAttribute attribute =
+            var attribute =
                 Attribute.GetCustomAttribute(field, typeof(TAttribute)) as TAttribute;
 
             if (attribute is not null)
@@ -42,7 +42,7 @@ internal class DependencyBinder : IDependencyBinder
 
         foreach (PropertyInfo property in properties)
         {
-            TAttribute attribute =
+            var attribute =
                 Attribute.GetCustomAttribute(property, typeof(TAttribute)) as TAttribute;
 
             if (attribute is not null)

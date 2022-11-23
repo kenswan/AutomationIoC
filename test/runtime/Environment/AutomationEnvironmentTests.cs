@@ -28,7 +28,7 @@ public class AutomationEnvironmentTests
         storageProviderMock.Setup(provider =>
             provider.GetEnvironmentVariable<TestModel>(key)).Returns(model);
 
-        var actualModel = automationEnvironment.GetVariable<TestModel>(key);
+        TestModel actualModel = automationEnvironment.GetVariable<TestModel>(key);
 
         actualModel.Should().BeEquivalentTo(model);
     }
@@ -51,7 +51,7 @@ public class AutomationEnvironmentTests
     {
         var id = Guid.NewGuid();
         var key = id.ToString();
-        TestModel model = variableExists ? new TestModel(id) : null as TestModel;
+        TestModel model = variableExists ? new TestModel(id) : null;
 
         storageProviderMock.Setup(provider =>
             provider.GetEnvironmentVariable<TestModel>(key)).Returns(model);

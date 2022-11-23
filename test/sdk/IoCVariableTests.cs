@@ -13,14 +13,14 @@ public class IoCVariableTests
         var environmentKey = "TestKey";
         var expectedValue = Guid.NewGuid().ToString();
 
-        using var command = AutomationSandbox.CreateCommand<TestVariableCommand>();
+        using IAutomationCommand<TestVariableCommand> command = AutomationSandbox.CreateCommand<TestVariableCommand>();
 
         command.RunCommand(command =>
             command
                 .AddParameter("Key", environmentKey)
                 .AddParameter("Value", expectedValue));
 
-        var results = command.RunExternalCommand<PSVariable>("Get-Variable", command =>
+        ICollection<PSVariable> results = command.RunExternalCommand<PSVariable>("Get-Variable", command =>
             command.AddParameter("Name", environmentKey));
 
         Assert.Single(results);

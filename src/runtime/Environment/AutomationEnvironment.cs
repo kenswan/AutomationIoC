@@ -11,7 +11,7 @@ internal class AutomationEnvironment : IAutomationEnvironment
 
     public T GetVariable<T>(string key)
     {
-        var value = GetEnvironmentValue<T>(key);
+        T value = GetEnvironmentValue<T>(key);
 
         if (value is null)
         {

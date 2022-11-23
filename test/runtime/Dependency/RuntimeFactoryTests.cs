@@ -20,10 +20,10 @@ public class RuntimeFactoryTests
         var sessionState = new SessionStateProxy(null as SessionState);
         var startup = new TestRuntimeStartup();
 
-        var actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionState, startup);
+        IServiceProvider actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionState, startup);
 
-        var providerSessionState = actualServiceProvider.GetRequiredService<ISessionState>();
-        var providerStartup = actualServiceProvider.GetRequiredService<IIoCStartup>();
+        ISessionState providerSessionState = actualServiceProvider.GetRequiredService<ISessionState>();
+        IIoCStartup providerStartup = actualServiceProvider.GetRequiredService<IIoCStartup>();
 
         providerSessionState.Should().BeEquivalentTo(sessionState);
         providerStartup.Should().BeEquivalentTo(startup);
@@ -41,9 +41,9 @@ public class RuntimeFactoryTests
     {
         var sessionState = new SessionStateProxy(null as Runspace.SessionStateProxy);
 
-        var actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionState);
+        IServiceProvider actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionState);
 
-        var providerSessionState = actualServiceProvider.GetRequiredService<ISessionState>();
+        ISessionState providerSessionState = actualServiceProvider.GetRequiredService<ISessionState>();
 
         providerSessionState.Should().BeEquivalentTo(sessionState);
 
@@ -59,7 +59,7 @@ public class RuntimeFactoryTests
 
         RuntimeFactory.AddClientRuntime(serviceCollection);
 
-        var serviceProvider = serviceCollection.BuildServiceProvider();
+        ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 
         Assert.NotNull(serviceProvider.GetService<IDependencyBinder>());
         Assert.NotNull(serviceProvider.GetService<ILogger<RuntimeFactoryTests>>());
