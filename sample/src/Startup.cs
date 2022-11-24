@@ -2,23 +2,22 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AutomationIoC.Sample
+namespace AutomationIoC.Sample;
+
+public class Startup : IoCStartup
 {
-    public class Startup : IoCStartup
+    public override void Configure(IConfigurationBuilder configurationBuilder)
     {
-        public override void Configure(IConfigurationBuilder configurationBuilder)
+        var appSettings = new Dictionary<string, string>()
         {
-            var appSettings = new Dictionary<string, string>()
-            {
-                ["player:mode"] = "Beginner",
-            };
+            ["player:mode"] = "Beginner",
+        };
 
-            configurationBuilder.AddInMemoryCollection(appSettings);
-        }
+        configurationBuilder.AddInMemoryCollection(appSettings);
+    }
 
-        public override void ConfigureServices(IServiceCollection services)
-        {
-            services.AddSingleton<IDeck, Deck>();
-        }
+    public override void ConfigureServices(IServiceCollection services)
+    {
+        services.AddSingleton<IDeck, Deck>();
     }
 }

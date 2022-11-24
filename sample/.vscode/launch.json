@@ -10,7 +10,7 @@
         "-NoExit",
         "-NoProfile",
         "-Command",
-        "Import-Module ${workspaceFolder}/src/bin/Debug/net6.0/AutomationIoC.Sample.dll",
+        "Import-Module ${workspaceFolder}/src/bin/Debug/net7.0/AutomationIoC.Sample.dll",
         "-Verbose"
       ],
       "cwd": "${workspaceFolder}",

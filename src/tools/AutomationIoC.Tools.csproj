@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
@@ -10,6 +10,10 @@
     <Description>Development tools for running/testing Cmdlets built with AutomationIoC framework</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.PowerShell.SDK" />
+  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\runtime\AutomationIoC.Runtime.csproj" />
   </ItemGroup>

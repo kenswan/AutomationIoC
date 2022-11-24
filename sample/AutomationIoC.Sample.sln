@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Sample", "src\AutomationIoC.Sample.csproj", "{9DE9C1DC-2514-42C7-A746-45FC27DEAD21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationIoC.Sample.Test", "test\AutomationIoC.Sample.Test.csproj", "{D49B9B29-9694-476E-94D6-1F0DE3B7A784}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Sample.Test", "test\AutomationIoC.Sample.Test.csproj", "{D49B9B29-9694-476E-94D6-1F0DE3B7A784}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC", "..\src\automation\AutomationIoC.csproj", "{07D5D71D-6278-4BC3-AF06-C5B430EEFF8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D49B9B29-9694-476E-94D6-1F0DE3B7A784}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D49B9B29-9694-476E-94D6-1F0DE3B7A784}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D49B9B29-9694-476E-94D6-1F0DE3B7A784}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07D5D71D-6278-4BC3-AF06-C5B430EEFF8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D5D71D-6278-4BC3-AF06-C5B430EEFF8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D5D71D-6278-4BC3-AF06-C5B430EEFF8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D5D71D-6278-4BC3-AF06-C5B430EEFF8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
