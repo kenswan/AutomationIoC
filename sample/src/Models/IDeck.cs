@@ -1,9 +1,8 @@
-﻿namespace AutomationIoC.Sample.Models
-{
-    public interface IDeck
-    {
-        Card Draw();
+﻿namespace AutomationIoC.Sample.Models;
 
-        void Load();
-    }
+public interface IDeck
+{
+    Card Draw();
+
+    void Load();
 }

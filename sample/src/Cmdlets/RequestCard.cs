@@ -2,26 +2,25 @@
 using Microsoft.Extensions.Logging;
 using System.Management.Automation;
 
-namespace AutomationIoC.Sample.Cmdlets
+namespace AutomationIoC.Sample.Cmdlets;
+
+[Cmdlet(VerbsLifecycle.Request, "Card")]
+public class RequestCard : IoCShell<Startup>
 {
-    [Cmdlet(VerbsLifecycle.Request, "Card")]
-    public class RequestCard : IoCShell<Startup>
+    [AutomationDependency]
+    protected IDeck CardDeck { get; set; }
+
+    [AutomationDependency]
+    private readonly ILogger<RequestCard> logger = default;
+
+    protected override void ProcessRecord()
     {
-        [AutomationDependency]
-        protected IDeck CardDeck { get; set; }
+        base.ProcessRecord();
 
-        [AutomationDependency]
-        private readonly ILogger<RequestCard> logger = default;
+        var card = CardDeck.Draw();
 
-        protected override void ProcessRecord()
-        {
-            base.ProcessRecord();
+        logger.LogInformation("Card Drawn: {Name}", card.ToString());
 
-            var card = CardDeck.Draw();
-
-            logger.LogInformation("Card Drawn: {Name}", card.ToString());
-
-            WriteObject(card);
-        }
+        WriteObject(card);
     }
 }

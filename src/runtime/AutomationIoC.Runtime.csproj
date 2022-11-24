@@ -12,6 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" />
-    <PackageReference Include="Microsoft.PowerShell.SDK" />
+    <PackageReference Include="PowerShellStandard.Library" />
   </ItemGroup>
 </Project>
