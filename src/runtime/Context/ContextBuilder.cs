@@ -28,22 +28,21 @@ internal class ContextBuilder : IContextBuilder
     {
         startup.AutomationEnvironment = automationEnvironment;
 
-        IHost hostApplication = GenerateHostBuilder()
+        IHostBuilder hostApplicationBuilder = GenerateHostBuilder()
             .ConfigureAppConfiguration(startup.Configure)
             .ConfigureServices(services =>
             {
                 startup.ConfigureServices(services);
 
                 RuntimeFactory.AddClientRuntime(services);
-            })
-            .Build();
+            });
 
-        sessionStorageProvider.StoreHostProvider(hostApplication);
+        sessionStorageProvider.StoreHostProvider(hostApplicationBuilder.Build());
     }
 
     public void BuildServices(IServiceCollection serviceCollection)
     {
-        IHost hostApplication = GenerateHostBuilder()
+        IHostBuilder hostApplicationBuilder = GenerateHostBuilder()
             .ConfigureServices(services =>
             {
                 foreach (ServiceDescriptor service in serviceCollection)
@@ -52,10 +51,9 @@ internal class ContextBuilder : IContextBuilder
                 }
 
                 RuntimeFactory.AddClientRuntime(services);
-            })
-            .Build();
+            });
 
-        sessionStorageProvider.StoreHostProvider(hostApplication);
+        sessionStorageProvider.StoreHostProvider(hostApplicationBuilder.Build());
     }
 
     public void InitializeCurrentInstance<TAttribute>(object instance) where TAttribute : Attribute

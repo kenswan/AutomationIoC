@@ -7,8 +7,6 @@ public interface IIoCStartup
 {
     IAutomationEnvironment AutomationEnvironment { get; set; }
 
-    IConfiguration Configuration { get; set; }
-
     void Configure(IConfigurationBuilder configurationBuilder);
 
     void ConfigureServices(IServiceCollection services);
