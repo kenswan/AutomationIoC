@@ -13,9 +13,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.PowerShell.SDK" />
   </ItemGroup>
-  
+
   <ItemGroup>
-    <ProjectReference Include="..\runtime\AutomationIoC.Runtime.csproj" />
+    <ProjectReference Include="..\..\runtime\src\AutomationIoC.Runtime.csproj" />
   </ItemGroup>
 
 </Project>

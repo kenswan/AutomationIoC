@@ -27,9 +27,9 @@ jobs:
           - dotnet-install-framework: 7.0.x
             dotnet-target-framework: net7.0
     env:
-      source-directory: ./src/runtime
+      source-directory: ./src/runtime/src
       source-project: AutomationIoC.Runtime.csproj
-      test-directory: ./test/runtime
+      test-directory: ./src/runtime/test
       test-project: AutomationIoC.Runtime.Test.csproj
 
     steps:
@@ -65,9 +65,9 @@ jobs:
           - dotnet-install-framework: 7.0.x
             dotnet-target-framework: net7.0
     env:
-      source-directory: ./src/sdk
+      source-directory: ./src/sdk/src
       source-project: AutomationIoC.SDK.csproj
-      test-directory: ./test/sdk
+      test-directory: ./src/sdk/test
       test-project: AutomationIoC.SDK.Test.csproj
 
     steps:
@@ -104,9 +104,9 @@ jobs:
           - dotnet-install-framework: 7.0.x
             dotnet-target-framework: net7.0
     env:
-      source-directory: ./src/tools
+      source-directory: ./src/tools/src
       source-project: AutomationIoC.Tools.csproj
-      test-directory: ./test/tools
+      test-directory: ./src/tools/test
       test-project: AutomationIoC.Tools.Test.csproj
 
     steps:
@@ -136,14 +136,14 @@ jobs:
     if: github.event_name == 'release'
     runs-on: ubuntu-latest
     env:
-      base-project: ./automation/AutomationIoC.csproj
-      base-release-path: ./automation/bin/Release
-      runtime-project: ./runtime/AutomationIoC.Runtime.csproj
-      runtime-release-path: ./runtime/bin/Release
-      sdk-project: ./sdk/AutomationIoC.SDK.csproj
-      sdk-release-path: ./sdk/bin/Release
-      tools-project: ./tools/AutomationIoC.Tools.csproj
-      tools-release-path: ./tools/bin/Release
+      base-project: ./automation/src/AutomationIoC.csproj
+      base-release-path: ./automation/src/bin/Release
+      runtime-project: ./runtime/src/AutomationIoC.Runtime.csproj
+      runtime-release-path: ./runtime/src/bin/Release
+      sdk-project: ./sdk/src/AutomationIoC.SDK.csproj
+      sdk-release-path: ./sdk/src/bin/Release
+      tools-project: ./tools/src/AutomationIoC.Tools.csproj
+      tools-release-path: ./tools/src/bin/Release
 
     steps:
       - uses: actions/checkout@v2

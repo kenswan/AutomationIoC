@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
-    <RootNamespace>AutomationIoC</RootNamespace>
+    <RootNamespace>AutomationIoC.Integration</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,9 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\sdk\AutomationIoC.SDK.csproj" />
-    <ProjectReference Include="..\..\src\tools\AutomationIoC.Tools.csproj" />
-    <ProjectReference Include="..\integration\AutomationIoC.Integration.Test.csproj" />
+    <ProjectReference Include="..\..\automation\src\AutomationIoC.csproj" />
   </ItemGroup>
 
 </Project>
