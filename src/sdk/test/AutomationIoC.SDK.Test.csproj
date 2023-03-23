@@ -1,19 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
-    <RootNamespace>AutomationIoC.Tools</RootNamespace>
+    <RootNamespace>AutomationIoC</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Properties\**" />
-    <EmbeddedResource Remove="Properties\**" />
-    <None Remove="Properties\**" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="FluentAssertions" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="Moq" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -26,7 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\tools\AutomationIoC.Tools.csproj" />
+    <ProjectReference Include="..\src\AutomationIoC.SDK.csproj" />
+    <ProjectReference Include="..\..\tools\src\AutomationIoC.Tools.csproj" />
     <ProjectReference Include="..\integration\AutomationIoC.Integration.Test.csproj" />
   </ItemGroup>
 

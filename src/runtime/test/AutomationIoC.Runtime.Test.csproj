@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\runtime\AutomationIoC.Runtime.csproj" />
-    <ProjectReference Include="..\integration\AutomationIoC.Integration.Test.csproj" />
+    <ProjectReference Include="..\src\AutomationIoC.Runtime.csproj" />
+    <ProjectReference Include="..\..\sdk\integration\AutomationIoC.Integration.Test.csproj" />
   </ItemGroup>
 </Project>

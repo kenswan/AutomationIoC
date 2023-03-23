@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\sdk\AutomationIoC.SDK.csproj" />
-    <ProjectReference Include="..\tools\AutomationIoC.Tools.csproj" />
+    <ProjectReference Include="..\..\sdk\src\AutomationIoC.SDK.csproj" />
+    <ProjectReference Include="..\..\tools\src\AutomationIoC.Tools.csproj" />
   </ItemGroup>
 </Project>

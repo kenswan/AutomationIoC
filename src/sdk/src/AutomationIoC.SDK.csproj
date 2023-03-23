@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\runtime\AutomationIoC.Runtime.csproj" />
+    <ProjectReference Include="..\..\runtime\src\AutomationIoC.Runtime.csproj" />
   </ItemGroup>
 
 </Project>
