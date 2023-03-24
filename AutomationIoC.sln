@@ -17,9 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoc.PSCmdlets.Too
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoc.PSCmdlets.Tools.Test", "src\pscmdlets\tools\test\AutomationIoc.PSCmdlets.Tools.Test.csproj", "{70C32BB6-C7FC-4A8D-8013-1BAB7C414667}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{3F2D5702-0944-4940-BBD1-1505E55A12CA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3F2D5702-0944-4940-BBD1-1505E55A12CA}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.github\workflows\continuous-integration.yml = .github\workflows\continuous-integration.yml
 		Directory.Build.targets = Directory.Build.targets
 		Directory.Packages.props = Directory.Packages.props
 		NuGet.config = NuGet.config
