@@ -5,4 +5,19 @@
     <Nullable>annotations</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup Label="NuGet Metadata">
+    <Authors>Kenneth Swan</Authors>
+    <Copyright>Copyright (c) 2023 AutomationIoC</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageTags>dotnet;csharp;powershell;cmdlet</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/kenswan/AutomationIoC</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/kenswan/AutomationIoC.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>See https://github.com/kenswan/AutomationIoC/releases</PackageReleaseNotes>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+    <PackageIcon>AutomationIoC.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
 </Project>

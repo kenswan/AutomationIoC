@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
@@ -8,8 +8,13 @@
   <PropertyGroup Label="NuGet Metadata">
     <Title>AutomationIoc.PSCmdlets</Title>
     <PackageId>AutomationIoc.PSCmdlets</PackageId>
-    <Description>SDK utilities for AutomationIoC framework development</Description>
+    <Description>PSCmdlet SDK utilities for AutomationIoC framework development</Description>
   </PropertyGroup>
+
+  <ItemGroup Label="NuGet Artifacts">
+    <None Include="..\..\..\..\AutomationIoC.png" Pack="true" PackagePath="\" Visible="false"  />
+    <None Include="..\..\..\..\README.md" Pack="true" PackagePath="\" Visible="false"/>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\runtime\src\AutomationIoC.Runtime.csproj" />
