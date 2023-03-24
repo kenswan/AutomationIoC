@@ -3,6 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using AutomationIoC.PSCmdlets.Session;
 using AutomationIoC.Runtime;
 using System.Management.Automation;
 
@@ -21,7 +22,7 @@ public abstract class IoCShell<TStartup> : PSCmdlet where TStartup : IIoCStartup
         var dependencyContext = new DependencyContext<AutomationDependencyAttribute, TStartup>
         {
             Instance = this,
-            SessionState = SessionState
+            SessionState = new SessionStateProxy(SessionState)
         };
 
         AutomationIoCRuntime.BindContext(dependencyContext);

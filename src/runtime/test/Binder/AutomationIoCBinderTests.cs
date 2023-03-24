@@ -4,8 +4,8 @@
 // -------------------------------------------------------
 
 using AutomationIoC.Runtime.Attributes;
-using AutomationIoC.Runtime.Models;
 using AutomationIoC.Runtime.Context;
+using AutomationIoC.Runtime.Models;
 using Moq;
 using Xunit;
 
@@ -25,7 +25,7 @@ public class AutomationIoCBinderTests
     }
 
     [Fact]
-    public void ShouldInitializeyContext()
+    public void ShouldInitializeContext()
     {
         var instance = new TestInstance(123);
 

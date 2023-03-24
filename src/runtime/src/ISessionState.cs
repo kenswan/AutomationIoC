@@ -5,11 +5,9 @@
 
 namespace AutomationIoC.Runtime;
 
-public class DependencyContext<TAttribute, TStartup>
-    where TAttribute : Attribute
-    where TStartup : IIoCStartup, new()
+public interface ISessionState
 {
-    public ISessionState SessionState { get; set; }
+    T GetValue<T>(string key);
 
-    public object Instance { get; set; }
+    void SetValue<T>(string key, T item);
 }

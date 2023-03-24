@@ -4,7 +4,6 @@
 // -------------------------------------------------------
 
 using AutomationIoC.Runtime.Services;
-using AutomationIoC.Runtime;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

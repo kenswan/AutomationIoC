@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\runtime\src\AutomationIoC.Runtime.csproj" />
+    <ProjectReference Include="..\..\core\src\AutomationIoC.PSCmdlets.csproj" />
   </ItemGroup>
 
 </Project>

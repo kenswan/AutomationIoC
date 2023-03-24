@@ -52,7 +52,7 @@ public class AutomationEnvironmentTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void ShouldSendVaraibleIfExistReturnFalseIfNot(bool variableExists)
+    public void ShouldSendVariableIfExistReturnFalseIfNot(bool variableExists)
     {
         var id = Guid.NewGuid();
         var key = id.ToString();
