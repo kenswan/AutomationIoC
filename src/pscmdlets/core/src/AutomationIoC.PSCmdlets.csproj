@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <RootNamespace>AutomationIoc.PSCmdlets</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Label="NuGet Metadata">
+    <Title>AutomationIoc.PSCmdlets</Title>
+    <PackageId>AutomationIoc.PSCmdlets</PackageId>
+    <Description>SDK utilities for AutomationIoC framework development</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\runtime\src\AutomationIoC.Runtime.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -9,6 +9,10 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+# XML project files
+[*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
+indent_size = 2
+
 # XML config files
 [*.{xml,config,*proj,nuspec,props,targets,ruleset,resx,vsixmanifest,vsct,yml,tasks}]
 indent_size = 2
@@ -37,6 +41,9 @@ charset = utf-8-bom
 # Directive sorting
 dotnet_sort_system_directives_first = false
 
+# Expression Bodied Members (method() => body)
+csharp_style_expression_bodied_methods = true:warning
+
 # Require var when apparent
 csharp_style_implicit_object_creation_when_type_is_apparent = true:suggestion
 
@@ -57,8 +64,8 @@ csharp_new_line_before_members_in_object_initializers = true
 csharp_new_line_before_members_in_anonymous_types = true
 
 # IDE0073: File header
-#dotnet_diagnostic.IDE0073.severity = warning
-#file_header_template = -------------------------------------------------------\n[License or Copyright Info]. All rights reserced. \n-------------------------------------------------------
+dotnet_diagnostic.IDE0073.severity = warning
+file_header_template = -------------------------------------------------------\nCopyright (c) Ken Swan All rights reserved.\nLicensed under the MIT License\n-------------------------------------------------------
 
 # CA1047: Do not declare protected member in sealed type
 dotnet_diagnostic.CA1047.severity = warning
@@ -67,7 +74,7 @@ dotnet_diagnostic.CA1047.severity = warning
 dotnet_diagnostic.CA1507.severity = warning
 
 # CA1725: Parameter names should match base declaration
-dotnet_diagnostic.CA1725.severity = suggestion
+dotnet_diagnostic.CA1725.severity = warning
 
 # CA1802: Use literals where appropriate
 dotnet_diagnostic.CA1802.severity = warning
@@ -172,6 +179,9 @@ dotnet_diagnostic.IDE0011.severity = warning
 # IDE0020: Use pattern matching to avoid is check followed by a cast (with variable)
 dotnet_diagnostic.IDE0020.severity = warning
 
+# IDE0022: Use expression body for methods (method() => body)
+dotnet_diagnostic.IDE0022.severity = warning
+
 # IDE0029: Use coalesce expression (non-nullable types)
 dotnet_diagnostic.IDE0029.severity = warning
 
@@ -202,6 +212,9 @@ dotnet_diagnostic.IDE0044.severity = warning
 
 # IDE0051: Remove unused private members
 dotnet_diagnostic.IDE0051.severity = warning
+
+# IDE0052: Remove unread private members
+dotnet_diagnostic.IDE0052.severity = warning
 
 # IDE0055: All formatting rules
 dotnet_diagnostic.IDE0055.severity = suggestion

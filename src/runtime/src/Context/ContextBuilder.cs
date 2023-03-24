@@ -1,4 +1,9 @@
-﻿using AutomationIoC.Runtime.Dependency;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using AutomationIoC.Runtime.Dependency;
 using AutomationIoC.Runtime.Session;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

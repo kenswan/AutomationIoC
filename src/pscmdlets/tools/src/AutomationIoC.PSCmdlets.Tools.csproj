@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup Label="NuGet Metadata">
+    <Title>AutomationIoc.PSCmdlets.Tools</Title>
+    <PackageId>AutomationIoc.PSCmdlets.Tools</PackageId>
+    <Description>Development tools for running/testing Cmdlets built with AutomationIoC framework</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.PowerShell.SDK" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\runtime\src\AutomationIoC.Runtime.csproj" />
+  </ItemGroup>
+
+</Project>

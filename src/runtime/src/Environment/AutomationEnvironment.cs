@@ -1,4 +1,9 @@
-﻿namespace AutomationIoC.Runtime.Environment;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+namespace AutomationIoC.Runtime.Environment;
 
 internal class AutomationEnvironment : IAutomationEnvironment
 {
@@ -13,12 +18,7 @@ internal class AutomationEnvironment : IAutomationEnvironment
     {
         T value = GetEnvironmentValue<T>(key);
 
-        if (value is null)
-        {
-            throw new ArgumentException($"Environment Variable {key} does not exist");
-        }
-
-        return value;
+        return value is null ? throw new ArgumentException($"Environment Variable {key} does not exist") : value;
     }
 
     public bool TryGetVariable<T>(string key, out T value)

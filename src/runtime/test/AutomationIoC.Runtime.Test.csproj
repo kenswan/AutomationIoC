@@ -23,6 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\src\AutomationIoC.Runtime.csproj" />
-    <ProjectReference Include="..\..\sdk\integration\AutomationIoC.Integration.Test.csproj" />
+    <ProjectReference Include="..\..\pscmdlets\core\integration\AutomationIoc.PSCmdlets.Integration.Test.csproj" />
   </ItemGroup>
 </Project>

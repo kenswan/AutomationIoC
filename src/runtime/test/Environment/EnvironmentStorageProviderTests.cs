@@ -1,4 +1,9 @@
-﻿using AutomationIoC.Runtime.Session;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using AutomationIoC.Runtime.Session;
 using Moq;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;

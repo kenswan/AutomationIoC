@@ -1,4 +1,9 @@
-﻿using AutomationIoC.Integration.Models;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using AutomationIoc.PSCmdlets.Integration.Models;
 using AutomationIoC.Runtime.Binder;
 using AutomationIoC.Runtime.Context;
 using AutomationIoC.Runtime.Environment;

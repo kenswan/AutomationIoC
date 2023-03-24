@@ -1,4 +1,9 @@
-﻿using AutomationIoC.Runtime.Context;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using AutomationIoC.Runtime.Context;
 
 namespace AutomationIoC.Runtime.Binder;
 

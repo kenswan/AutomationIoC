@@ -3,21 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC", "src\automation\src\AutomationIoC.csproj", "{D241C1E1-AC90-4B5A-932B-F3E9A586904E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Runtime", "src\runtime\src\AutomationIoC.Runtime.csproj", "{D8FB5D4D-4EA8-402D-B369-863180D9F22E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Runtime.Test", "src\runtime\test\AutomationIoC.Runtime.Test.csproj", "{BE9C4E88-7636-401D-8575-CD46DD134A3D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.SDK", "src\sdk\src\AutomationIoC.SDK.csproj", "{E713E238-1058-4028-924C-591BD85C175B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoc.PSCmdlets", "src\pscmdlets\core\src\AutomationIoc.PSCmdlets.csproj", "{E713E238-1058-4028-924C-591BD85C175B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.SDK.Test", "src\sdk\test\AutomationIoC.SDK.Test.csproj", "{34F3CE88-8AE7-4FCA-BADA-02EA7367F21C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoc.PSCmdlets.Test", "src\pscmdlets\core\test\AutomationIoc.PSCmdlets.Test.csproj", "{34F3CE88-8AE7-4FCA-BADA-02EA7367F21C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Integration.Test", "src\sdk\integration\AutomationIoC.Integration.Test.csproj", "{F570BB2D-E8AF-4431-8440-ABEB177F95F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoc.PSCmdlets.Integration.Test", "src\pscmdlets\core\integration\AutomationIoc.PSCmdlets.Integration.Test.csproj", "{F570BB2D-E8AF-4431-8440-ABEB177F95F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Tools", "src\tools\src\AutomationIoC.Tools.csproj", "{67DB33B8-7C6D-4697-BB12-5EE2EE5B84B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoc.PSCmdlets.Tools", "src\pscmdlets\tools\src\AutomationIoc.PSCmdlets.Tools.csproj", "{67DB33B8-7C6D-4697-BB12-5EE2EE5B84B8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Tools.Test", "src\tools\test\AutomationIoC.Tools.Test.csproj", "{70C32BB6-C7FC-4A8D-8013-1BAB7C414667}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoc.PSCmdlets.Tools.Test", "src\pscmdlets\tools\test\AutomationIoc.PSCmdlets.Tools.Test.csproj", "{70C32BB6-C7FC-4A8D-8013-1BAB7C414667}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{3F2D5702-0944-4940-BBD1-1505E55A12CA}"
 	ProjectSection(SolutionItems) = preProject

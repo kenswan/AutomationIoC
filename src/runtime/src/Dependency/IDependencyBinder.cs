@@ -1,4 +1,9 @@
-﻿namespace AutomationIoC.Runtime.Dependency;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+namespace AutomationIoC.Runtime.Dependency;
 
 internal interface IDependencyBinder
 {

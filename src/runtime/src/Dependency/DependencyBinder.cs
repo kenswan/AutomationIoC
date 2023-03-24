@@ -1,4 +1,9 @@
-﻿using System.Reflection;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using System.Reflection;
 
 namespace AutomationIoC.Runtime.Dependency;
 

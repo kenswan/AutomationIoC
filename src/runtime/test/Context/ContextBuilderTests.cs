@@ -1,6 +1,11 @@
-﻿using AutomationIoC.Integration.Attributes;
-using AutomationIoC.Integration.Models;
-using AutomationIoC.Integration.Services;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using AutomationIoc.PSCmdlets.Integration.Attributes;
+using AutomationIoc.PSCmdlets.Integration.Models;
+using AutomationIoc.PSCmdlets.Integration.Services;
 using AutomationIoC.Runtime.Dependency;
 using AutomationIoC.Runtime.Session;
 using FluentAssertions;
