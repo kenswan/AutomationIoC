@@ -3,7 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-namespace AutomationIoc.Runtime.Attributes;
+namespace AutomationIoC.Runtime.Attributes;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 public class TestToolsAttribute : Attribute { }

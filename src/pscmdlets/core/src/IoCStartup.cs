@@ -7,7 +7,7 @@ using AutomationIoC.Runtime;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AutomationIoc.PSCmdlets;
+namespace AutomationIoC.PSCmdlets;
 
 public abstract class IoCStartup : IIoCStartup
 {

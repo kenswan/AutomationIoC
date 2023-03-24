@@ -3,12 +3,12 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.Runtime.Services;
+using AutomationIoC.Runtime.Services;
 using AutomationIoC.Runtime;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AutomationIoc.Runtime.Startup;
+namespace AutomationIoC.Runtime.Startup;
 
 public class TestRuntimeStartup : IIoCStartup
 {

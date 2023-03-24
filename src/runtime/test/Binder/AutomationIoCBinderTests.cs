@@ -3,8 +3,8 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.Runtime.Attributes;
-using AutomationIoc.Runtime.Models;
+using AutomationIoC.Runtime.Attributes;
+using AutomationIoC.Runtime.Models;
 using AutomationIoC.Runtime.Context;
 using Moq;
 using Xunit;

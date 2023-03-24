@@ -3,10 +3,10 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.Runtime.Attributes;
-using AutomationIoc.Runtime.Models;
-using AutomationIoc.Runtime.Services;
-using AutomationIoc.Runtime.Startup;
+using AutomationIoC.Runtime.Attributes;
+using AutomationIoC.Runtime.Models;
+using AutomationIoC.Runtime.Services;
+using AutomationIoC.Runtime.Startup;
 using AutomationIoC.Runtime.Dependency;
 using AutomationIoC.Runtime.Session;
 using FluentAssertions;

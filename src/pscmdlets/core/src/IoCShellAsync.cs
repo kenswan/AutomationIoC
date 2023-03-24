@@ -5,7 +5,7 @@
 
 using AutomationIoC.Runtime;
 
-namespace AutomationIoc.PSCmdlets;
+namespace AutomationIoC.PSCmdlets;
 
 public abstract class IoCShellAsync<TStartup> : IoCShell<TStartup> where TStartup : IIoCStartup, new()
 {

@@ -3,9 +3,9 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.PSCmdlets.Integration.Attributes;
+using AutomationIoC.PSCmdlets.Integration.Attributes;
 
-namespace AutomationIoc.PSCmdlets.Integration.Services;
+namespace AutomationIoC.PSCmdlets.Integration.Services;
 
 public class TestRuntimeFieldService : TestRuntimeService
 {

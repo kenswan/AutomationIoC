@@ -3,7 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.Runtime.Models;
+using AutomationIoC.Runtime.Models;
 using FluentAssertions;
 using Moq;
 using Xunit;

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
-    <RootNamespace>AutomationIoc.PSCmdlets</RootNamespace>
+    <RootNamespace>AutomationIoC.PSCmdlets</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\AutomationIoc.PSCmdlets.csproj" />
-    <ProjectReference Include="..\..\tools\src\AutomationIoc.PSCmdlets.Tools.csproj" />
-    <ProjectReference Include="..\integration\AutomationIoc.PSCmdlets.Integration.Test.csproj" />
+    <ProjectReference Include="..\src\AutomationIoC.PSCmdlets.csproj" />
+    <ProjectReference Include="..\..\tools\src\AutomationIoC.PSCmdlets.Tools.csproj" />
+    <ProjectReference Include="..\integration\AutomationIoC.PSCmdlets.Integration.Test.csproj" />
   </ItemGroup>
 
 </Project>

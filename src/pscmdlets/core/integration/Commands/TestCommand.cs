@@ -5,7 +5,7 @@
 
 using System.Management.Automation;
 
-namespace AutomationIoc.PSCmdlets.Integration.Commands;
+namespace AutomationIoC.PSCmdlets.Integration.Commands;
 
 [Cmdlet(VerbsDiagnostic.Test, "Command")]
 public class TestCommand : PSCmdlet

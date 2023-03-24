@@ -5,7 +5,7 @@
 
 using System.Management.Automation;
 
-namespace AutomationIoc.PSCmdlets.Tools;
+namespace AutomationIoC.PSCmdlets.Tools;
 
 public interface IAutomationCommand<TCommand> : IDisposable where TCommand : PSCmdlet
 {

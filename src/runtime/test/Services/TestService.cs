@@ -3,7 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-namespace AutomationIoc.Runtime.Services;
+namespace AutomationIoC.Runtime.Services;
 
 public interface ITestService
 {

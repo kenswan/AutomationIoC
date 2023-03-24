@@ -3,13 +3,13 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.PSCmdlets.Integration.Attributes;
-using AutomationIoc.PSCmdlets.Integration.Services;
-using AutomationIoc.PSCmdlets.Integration.Startup;
+using AutomationIoC.PSCmdlets.Integration.Attributes;
+using AutomationIoC.PSCmdlets.Integration.Services;
+using AutomationIoC.PSCmdlets.Integration.Startup;
 using AutomationIoC.Runtime;
 using System.Management.Automation;
 
-namespace AutomationIoc.PSCmdlets.Integration.Commands;
+namespace AutomationIoC.PSCmdlets.Integration.Commands;
 
 [Cmdlet(VerbsDiagnostic.Test, "Context")]
 public class TestContextCommand : PSCmdlet

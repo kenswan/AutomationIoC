@@ -3,11 +3,11 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.PSCmdlets.Integration.Commands;
+using AutomationIoC.PSCmdlets.Integration.Commands;
 using System.Management.Automation;
 using Xunit;
 
-namespace AutomationIoc.PSCmdlets.Tools.Command;
+namespace AutomationIoC.PSCmdlets.Tools.Command;
 
 public class AutomationCommandTests
 {

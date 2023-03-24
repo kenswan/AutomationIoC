@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <PropertyGroup Label="NuGet Metadata">
-    <Title>AutomationIoc.PSCmdlets.Tools</Title>
-    <PackageId>AutomationIoc.PSCmdlets.Tools</PackageId>
+    <Title>AutomationIoC.PSCmdlets.Tools</Title>
+    <PackageId>AutomationIoC.PSCmdlets.Tools</PackageId>
     <Description>Development tools for running/testing Cmdlets built with AutomationIoC framework</Description>
   </PropertyGroup>
 

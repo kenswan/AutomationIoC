@@ -7,7 +7,7 @@ using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using Xunit;
 
-namespace AutomationIoc.PSCmdlets.Tools;
+namespace AutomationIoC.PSCmdlets.Tools;
 
 public class EnvironmentTests
 {

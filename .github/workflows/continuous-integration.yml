@@ -67,11 +67,11 @@ jobs:
             dotnet-target-framework: net7.0
     env:
       source-directory: ./src/pscmdlets/core/src
-      source-project: AutomationIoc.PSCmdlets.csproj
+      source-project: AutomationIoC.PSCmdlets.csproj
       test-directory: ./src/pscmdlets/core/test
-      test-project: AutomationIoc.PSCmdlets.Test.csproj
+      test-project: AutomationIoC.PSCmdlets.Test.csproj
       integration-directory: ./src/pscmdlets/core/integration
-      integration-project: AutomationIoc.PSCmdlets.Integration.Test.csproj
+      integration-project: AutomationIoC.PSCmdlets.Integration.Test.csproj
     steps:
       - uses: actions/checkout@v2
 
@@ -112,9 +112,9 @@ jobs:
             dotnet-target-framework: net7.0
     env:
       source-directory: ./src/pscmdlets/tools/src
-      source-project: AutomationIoc.PSCmdlets.Tools.csproj
+      source-project: AutomationIoC.PSCmdlets.Tools.csproj
       test-directory: ./src/pscmdlets/tools/test
-      test-project: AutomationIoc.PSCmdlets.Tools.Test.csproj
+      test-project: AutomationIoC.PSCmdlets.Tools.Test.csproj
 
     steps:
       - uses: actions/checkout@v2
@@ -145,9 +145,9 @@ jobs:
     env:
       runtime-project: ./runtime/src/AutomationIoC.Runtime.csproj
       runtime-release-path: ./runtime/src/bin/Release
-      pscmdlets-project: ./pscmdlets/core/src/AutomationIoc.PSCmdlets.csproj
+      pscmdlets-project: ./pscmdlets/core/src/AutomationIoC.PSCmdlets.csproj
       pscmdlets-release-path: ./pscmdlets/core/src/bin/Release
-      pscmdlets-tools-project: ./pscmdlets/tools/src/AutomationIoc.PSCmdlets.Tools.csproj
+      pscmdlets-tools-project: ./pscmdlets/tools/src/AutomationIoC.PSCmdlets.Tools.csproj
       pscmdlets-tools-release-path: ./pscmdlets/tools/src/bin/Release
 
     steps:
@@ -177,5 +177,5 @@ jobs:
         working-directory: ./src
         run: |
           dotnet nuget push ${{ env.runtime-release-path }}/AutomationIoC.Runtime.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
-          dotnet nuget push ${{ env.pscmdlets-release-path }}/AutomationIoc.PSCmdlets.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
-          dotnet nuget push ${{ env.pscmdlets-tools-release-path }}/AutomationIoc.PSCmdlets.Tools.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
+          dotnet nuget push ${{ env.pscmdlets-release-path }}/AutomationIoC.PSCmdlets.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
+          dotnet nuget push ${{ env.pscmdlets-tools-release-path }}/AutomationIoC.PSCmdlets.Tools.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}

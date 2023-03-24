@@ -3,11 +3,11 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.PSCmdlets.Integration.Services;
+using AutomationIoC.PSCmdlets.Integration.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AutomationIoc.PSCmdlets.Integration.Startup;
+namespace AutomationIoC.PSCmdlets.Integration.Startup;
 
 public class TestStartup : IoCStartup
 {

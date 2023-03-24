@@ -3,7 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-namespace AutomationIoc.Runtime.Models;
+namespace AutomationIoC.Runtime.Models;
 
 public record TestInstance(int Id);
 

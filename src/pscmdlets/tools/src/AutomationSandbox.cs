@@ -3,12 +3,12 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.PSCmdlets.Tools.Command;
+using AutomationIoC.PSCmdlets.Tools.Command;
 using AutomationIoC.Runtime;
 using Microsoft.Extensions.DependencyInjection;
 using System.Management.Automation;
 
-namespace AutomationIoc.PSCmdlets.Tools;
+namespace AutomationIoC.PSCmdlets.Tools;
 
 public static class AutomationSandbox
 {

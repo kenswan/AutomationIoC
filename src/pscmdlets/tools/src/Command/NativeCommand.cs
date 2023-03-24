@@ -6,7 +6,7 @@
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 
-namespace AutomationIoc.PSCmdlets.Tools.Command;
+namespace AutomationIoC.PSCmdlets.Tools.Command;
 
 internal class NativeCommand : IDisposable
 {

@@ -3,12 +3,12 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.PSCmdlets.Integration.Services;
+using AutomationIoC.PSCmdlets.Integration.Services;
 using AutomationIoC.Runtime;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AutomationIoc.PSCmdlets.Integration.Models;
+namespace AutomationIoC.PSCmdlets.Integration.Models;
 
 public class TestRuntimeStartup : IIoCStartup
 {

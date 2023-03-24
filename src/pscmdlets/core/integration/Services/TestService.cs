@@ -3,7 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-namespace AutomationIoc.PSCmdlets.Integration.Services;
+namespace AutomationIoC.PSCmdlets.Integration.Services;
 
 public interface ITestService
 {

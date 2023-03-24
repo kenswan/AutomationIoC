@@ -3,15 +3,15 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.PSCmdlets.Integration.Services;
-using AutomationIoc.PSCmdlets.Integration.Startup;
-using AutomationIoc.PSCmdlets.Tools;
+using AutomationIoC.PSCmdlets.Integration.Services;
+using AutomationIoC.PSCmdlets.Integration.Startup;
+using AutomationIoC.PSCmdlets.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using System.Management.Automation;
 using Xunit;
 
-namespace AutomationIoc.PSCmdlets;
+namespace AutomationIoC.PSCmdlets;
 
 public class IoCShellTests
 {

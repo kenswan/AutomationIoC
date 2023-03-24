@@ -7,7 +7,7 @@ using AutomationIoC.Runtime;
 using Microsoft.Extensions.DependencyInjection;
 using System.Management.Automation;
 
-namespace AutomationIoc.PSCmdlets.Tools.Command;
+namespace AutomationIoC.PSCmdlets.Tools.Command;
 
 internal class AutomationContextCommand<TCommand, TStartup> : AutomationCommand<TCommand>
     where TCommand : PSCmdlet

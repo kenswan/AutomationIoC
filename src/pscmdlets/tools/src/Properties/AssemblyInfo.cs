@@ -5,4 +5,4 @@
 
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("AutomationIoc.PSCmdlets.Tools.Test")]
+[assembly: InternalsVisibleTo("AutomationIoC.PSCmdlets.Tools.Test")]

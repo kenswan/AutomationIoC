@@ -7,7 +7,7 @@ using AutomationIoC.Runtime;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AutomationIoc.PSCmdlets.Integration.Startup;
+namespace AutomationIoC.PSCmdlets.Integration.Startup;
 
 public class TestSDKStartup : IIoCStartup
 {

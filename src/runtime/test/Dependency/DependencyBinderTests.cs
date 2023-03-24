@@ -3,8 +3,8 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.Runtime.Attributes;
-using AutomationIoc.Runtime.Services;
+using AutomationIoC.Runtime.Attributes;
+using AutomationIoC.Runtime.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 

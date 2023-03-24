@@ -3,11 +3,11 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.PSCmdlets.Integration.Commands;
-using AutomationIoc.PSCmdlets.Tools;
+using AutomationIoC.PSCmdlets.Integration.Commands;
+using AutomationIoC.PSCmdlets.Tools;
 using Xunit;
 
-namespace AutomationIoc.PSCmdlets.Integration;
+namespace AutomationIoC.PSCmdlets.Integration;
 
 public class IoCShellTests
 {

@@ -6,7 +6,7 @@
 using AutomationIoC.Runtime;
 using System.Management.Automation;
 
-namespace AutomationIoc.PSCmdlets;
+namespace AutomationIoC.PSCmdlets;
 
 public abstract class IoCVariable : PSCmdlet
 {

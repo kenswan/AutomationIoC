@@ -3,11 +3,11 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.PSCmdlets.Integration.Services;
-using AutomationIoc.PSCmdlets.Integration.Startup;
+using AutomationIoC.PSCmdlets.Integration.Services;
+using AutomationIoC.PSCmdlets.Integration.Startup;
 using System.Management.Automation;
 
-namespace AutomationIoc.PSCmdlets.Integration.Commands;
+namespace AutomationIoC.PSCmdlets.Integration.Commands;
 
 [Cmdlet(VerbsCommon.Get, "TestSDKCommand")]
 public class TestSDKCommand : IoCShell<TestStartup>

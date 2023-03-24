@@ -3,7 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-namespace AutomationIoc.PSCmdlets.Integration.Models;
+namespace AutomationIoC.PSCmdlets.Integration.Models;
 
 public record TestInstance(int Id);
 

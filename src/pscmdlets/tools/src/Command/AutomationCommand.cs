@@ -5,7 +5,7 @@
 
 using System.Management.Automation;
 
-namespace AutomationIoc.PSCmdlets.Tools.Command;
+namespace AutomationIoC.PSCmdlets.Tools.Command;
 
 internal class AutomationCommand<TCommand> : NativeCommand, IAutomationCommand<TCommand>
     where TCommand : PSCmdlet

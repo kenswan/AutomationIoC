@@ -3,14 +3,14 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.PSCmdlets.Integration.Commands;
-using AutomationIoc.PSCmdlets.Integration.Services;
-using AutomationIoc.PSCmdlets.Integration.Startup;
+using AutomationIoC.PSCmdlets.Integration.Commands;
+using AutomationIoC.PSCmdlets.Integration.Services;
+using AutomationIoC.PSCmdlets.Integration.Startup;
 using Microsoft.Extensions.DependencyInjection;
 using System.Management.Automation;
 using Xunit;
 
-namespace AutomationIoc.PSCmdlets.Tools;
+namespace AutomationIoC.PSCmdlets.Tools;
 
 public class AutomationSandboxTests
 {

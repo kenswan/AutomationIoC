@@ -3,9 +3,9 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.Runtime.Attributes;
+using AutomationIoC.Runtime.Attributes;
 
-namespace AutomationIoc.Runtime.Services;
+namespace AutomationIoC.Runtime.Services;
 
 public class TestRuntimeFieldService : TestRuntimeService
 {

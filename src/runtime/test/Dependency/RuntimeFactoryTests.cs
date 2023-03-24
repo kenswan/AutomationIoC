@@ -3,7 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.Runtime.Startup;
+using AutomationIoC.Runtime.Startup;
 using AutomationIoC.Runtime.Binder;
 using AutomationIoC.Runtime.Context;
 using AutomationIoC.Runtime.Environment;
