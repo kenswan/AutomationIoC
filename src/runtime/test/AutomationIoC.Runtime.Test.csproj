@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
@@ -23,6 +23,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\src\AutomationIoC.Runtime.csproj" />
-    <ProjectReference Include="..\..\pscmdlets\core\integration\AutomationIoc.PSCmdlets.Integration.Test.csproj" />
   </ItemGroup>
 </Project>

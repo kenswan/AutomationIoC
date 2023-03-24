@@ -55,7 +55,7 @@ jobs:
         run: dotnet test -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore --verbosity normal
 
   pscmdlets:
-    name: PSCmdlet Core (${{ matrix.dotnet-target-framework }})
+    name: PSCmdlets Core (${{ matrix.dotnet-target-framework }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -70,7 +70,7 @@ jobs:
       source-project: AutomationIoc.PSCmdlets.csproj
       test-directory: ./src/pscmdlets/core/test
       test-project: AutomationIoc.PSCmdlets.Test.csproj
-      integration-directory: ./src/pscmdlets/integration
+      integration-directory: ./src/pscmdlets/core/integration
       integration-project: AutomationIoc.PSCmdlets.Integration.Test.csproj
     steps:
       - uses: actions/checkout@v2
@@ -100,7 +100,7 @@ jobs:
         run: dotnet test -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore --verbosity normal
 
   pscmdlets_tools:
-    name: PSCmdlet Tools (${{ matrix.dotnet-target-framework }})
+    name: PSCmdlets Tools (${{ matrix.dotnet-target-framework }})
     runs-on: ubuntu-latest
     strategy:
       matrix:

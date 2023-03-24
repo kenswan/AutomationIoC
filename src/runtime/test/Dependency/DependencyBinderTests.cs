@@ -3,8 +3,8 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.PSCmdlets.Integration.Attributes;
-using AutomationIoc.PSCmdlets.Integration.Services;
+using AutomationIoc.Runtime.Attributes;
+using AutomationIoc.Runtime.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 

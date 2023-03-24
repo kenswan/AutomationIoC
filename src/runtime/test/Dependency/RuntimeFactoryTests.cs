@@ -3,7 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.PSCmdlets.Integration.Models;
+using AutomationIoc.Runtime.Startup;
 using AutomationIoC.Runtime.Binder;
 using AutomationIoC.Runtime.Context;
 using AutomationIoC.Runtime.Environment;

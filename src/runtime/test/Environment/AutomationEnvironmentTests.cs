@@ -3,7 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoc.PSCmdlets.Integration.Models;
+using AutomationIoc.Runtime.Models;
 using FluentAssertions;
 using Moq;
 using Xunit;

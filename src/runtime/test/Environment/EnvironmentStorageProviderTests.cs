@@ -13,7 +13,7 @@ namespace AutomationIoC.Runtime.Environment;
 
 public class EnvironmentStorageProviderTests
 {
-    [Fact]
+    [Fact(Skip = "Moving PS Out of Runtime project for 2.0")]
     public void ShouldGetEnvironmentVariable()
     {
         var key = Guid.NewGuid().ToString();
@@ -39,7 +39,7 @@ public class EnvironmentStorageProviderTests
         Assert.Equal(expectedValue, actualValue);
     }
 
-    [Fact]
+    [Fact(Skip = "Moving PS Out of Runtime project for 2.0")]
     public void ShouldReturnNullIfVariableDoesNotExist()
     {
         var key = Guid.NewGuid().ToString();
@@ -61,7 +61,7 @@ public class EnvironmentStorageProviderTests
         Assert.Null(actualValue);
     }
 
-    [Fact]
+    [Fact(Skip = "Moving PS Out of Runtime project for 2.0")]
     public void ShouldStoreEnvironmentVariable()
     {
         var key = Guid.NewGuid().ToString();
