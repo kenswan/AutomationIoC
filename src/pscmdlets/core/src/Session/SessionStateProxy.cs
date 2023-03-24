@@ -48,7 +48,7 @@ internal class SessionStateProxy : IPowerShellSessionState, ISessionState
 
     public T GetValue<T>(string key)
     {
-        PSVariable psVariable = sessionState.PSVariable.Get(key);
+        PSVariable psVariable = PSVariable.Get(key);
 
         return psVariable?.Value is not null ? (T)psVariable.Value : default;
     }
@@ -58,6 +58,6 @@ internal class SessionStateProxy : IPowerShellSessionState, ISessionState
         PSVariable serviceVariable =
                 new(key, value, ScopedItemOptions.None);
 
-        sessionState.PSVariable.Set(serviceVariable);
+        PSVariable.Set(serviceVariable);
     }
 }
