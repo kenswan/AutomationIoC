@@ -1,4 +1,9 @@
-﻿using System.Management.Automation;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using System.Management.Automation;
 using Runspace = System.Management.Automation.Runspaces;
 
 namespace AutomationIoC.Runtime.Session;

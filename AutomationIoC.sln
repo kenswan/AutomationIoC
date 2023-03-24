@@ -3,33 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC", "src\automation\src\AutomationIoC.csproj", "{D241C1E1-AC90-4B5A-932B-F3E9A586904E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Runtime", "src\runtime\src\AutomationIoC.Runtime.csproj", "{D8FB5D4D-4EA8-402D-B369-863180D9F22E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Runtime.Test", "src\runtime\test\AutomationIoC.Runtime.Test.csproj", "{BE9C4E88-7636-401D-8575-CD46DD134A3D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.SDK", "src\sdk\src\AutomationIoC.SDK.csproj", "{E713E238-1058-4028-924C-591BD85C175B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.PSCmdlets", "src\pscmdlets\core\src\AutomationIoC.PSCmdlets.csproj", "{E713E238-1058-4028-924C-591BD85C175B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.SDK.Test", "src\sdk\test\AutomationIoC.SDK.Test.csproj", "{34F3CE88-8AE7-4FCA-BADA-02EA7367F21C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.PSCmdlets.Test", "src\pscmdlets\core\test\AutomationIoC.PSCmdlets.Test.csproj", "{34F3CE88-8AE7-4FCA-BADA-02EA7367F21C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Integration.Test", "src\sdk\integration\AutomationIoC.Integration.Test.csproj", "{F570BB2D-E8AF-4431-8440-ABEB177F95F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.PSCmdlets.Integration.Test", "src\pscmdlets\core\integration\AutomationIoC.PSCmdlets.Integration.Test.csproj", "{F570BB2D-E8AF-4431-8440-ABEB177F95F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Tools", "src\tools\src\AutomationIoC.Tools.csproj", "{67DB33B8-7C6D-4697-BB12-5EE2EE5B84B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.PSCmdlets.Tools", "src\pscmdlets\tools\src\AutomationIoC.PSCmdlets.Tools.csproj", "{67DB33B8-7C6D-4697-BB12-5EE2EE5B84B8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Tools.Test", "src\tools\test\AutomationIoC.Tools.Test.csproj", "{70C32BB6-C7FC-4A8D-8013-1BAB7C414667}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.PSCmdlets.Tools.Test", "src\pscmdlets\tools\test\AutomationIoC.PSCmdlets.Tools.Test.csproj", "{70C32BB6-C7FC-4A8D-8013-1BAB7C414667}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{3F2D5702-0944-4940-BBD1-1505E55A12CA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3F2D5702-0944-4940-BBD1-1505E55A12CA}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.github\workflows\continuous-integration.yml = .github\workflows\continuous-integration.yml
 		Directory.Build.targets = Directory.Build.targets
 		Directory.Packages.props = Directory.Packages.props
 		NuGet.config = NuGet.config
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9191277E-F49D-4DDC-AB35-46D8073B3B41}"
-	ProjectSection(SolutionItems) = preProject
-		src\Directory.Build.targets = src\Directory.Build.targets
 	EndProjectSection
 EndProject
 Global
@@ -38,14 +32,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D241C1E1-AC90-4B5A-932B-F3E9A586904E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D241C1E1-AC90-4B5A-932B-F3E9A586904E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D241C1E1-AC90-4B5A-932B-F3E9A586904E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D241C1E1-AC90-4B5A-932B-F3E9A586904E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F570BB2D-E8AF-4431-8440-ABEB177F95F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F570BB2D-E8AF-4431-8440-ABEB177F95F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F570BB2D-E8AF-4431-8440-ABEB177F95F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F570BB2D-E8AF-4431-8440-ABEB177F95F5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D8FB5D4D-4EA8-402D-B369-863180D9F22E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D8FB5D4D-4EA8-402D-B369-863180D9F22E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8FB5D4D-4EA8-402D-B369-863180D9F22E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,6 +48,10 @@ Global
 		{34F3CE88-8AE7-4FCA-BADA-02EA7367F21C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34F3CE88-8AE7-4FCA-BADA-02EA7367F21C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34F3CE88-8AE7-4FCA-BADA-02EA7367F21C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F570BB2D-E8AF-4431-8440-ABEB177F95F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F570BB2D-E8AF-4431-8440-ABEB177F95F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F570BB2D-E8AF-4431-8440-ABEB177F95F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F570BB2D-E8AF-4431-8440-ABEB177F95F5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{67DB33B8-7C6D-4697-BB12-5EE2EE5B84B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{67DB33B8-7C6D-4697-BB12-5EE2EE5B84B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67DB33B8-7C6D-4697-BB12-5EE2EE5B84B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -73,9 +63,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{9191277E-F49D-4DDC-AB35-46D8073B3B41} = {3F2D5702-0944-4940-BBD1-1505E55A12CA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {71C72244-D386-47DC-A2A0-D35FAA9EBFF2}

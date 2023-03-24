@@ -1,4 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AutomationIoC.Runtime.Context;
 

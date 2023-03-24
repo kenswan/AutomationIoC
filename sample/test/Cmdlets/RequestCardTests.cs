@@ -1,6 +1,6 @@
 ﻿using AutomationIoC.Sample.Cmdlets;
 using AutomationIoC.Sample.Models;
-using AutomationIoC.Tools;
+using AutomationIoC.PSCmdlets.Tools;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;

@@ -1,6 +1,12 @@
-﻿using AutomationIoC.Integration.Attributes;
-using AutomationIoC.Integration.Models;
-using AutomationIoC.Integration.Services;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using AutomationIoC.Runtime.Attributes;
+using AutomationIoC.Runtime.Models;
+using AutomationIoC.Runtime.Services;
+using AutomationIoC.Runtime.Startup;
 using AutomationIoC.Runtime.Dependency;
 using AutomationIoC.Runtime.Session;
 using FluentAssertions;

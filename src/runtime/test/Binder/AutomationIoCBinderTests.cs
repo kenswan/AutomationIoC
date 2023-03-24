@@ -1,5 +1,10 @@
-﻿using AutomationIoC.Integration.Attributes;
-using AutomationIoC.Integration.Models;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using AutomationIoC.Runtime.Attributes;
+using AutomationIoC.Runtime.Models;
 using AutomationIoC.Runtime.Context;
 using Moq;
 using Xunit;

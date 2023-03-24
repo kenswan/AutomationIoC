@@ -1,4 +1,9 @@
-﻿using Xunit;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using Xunit;
 
 namespace AutomationIoC.Runtime.Session;
 

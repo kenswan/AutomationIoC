@@ -53,8 +53,9 @@ jobs:
       - name: Test
         working-directory: ${{ env.test-directory }}
         run: dotnet test -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore --verbosity normal
-  sdk:
-    name: SDK (${{ matrix.dotnet-target-framework }})
+
+  pscmdlets:
+    name: PSCmdlets Core (${{ matrix.dotnet-target-framework }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -65,11 +66,12 @@ jobs:
           - dotnet-install-framework: 7.0.x
             dotnet-target-framework: net7.0
     env:
-      source-directory: ./src/sdk/src
-      source-project: AutomationIoC.SDK.csproj
-      test-directory: ./src/sdk/test
-      test-project: AutomationIoC.SDK.Test.csproj
-
+      source-directory: ./src/pscmdlets/core/src
+      source-project: AutomationIoC.PSCmdlets.csproj
+      test-directory: ./src/pscmdlets/core/test
+      test-project: AutomationIoC.PSCmdlets.Test.csproj
+      integration-directory: ./src/pscmdlets/core/integration
+      integration-project: AutomationIoC.PSCmdlets.Integration.Test.csproj
     steps:
       - uses: actions/checkout@v2
 
@@ -83,6 +85,7 @@ jobs:
         run: |
           dotnet restore ${{ env.source-directory }}/${{ env.source-project }} -p:TargetFramework=${{ matrix.dotnet-target-framework }}
           dotnet restore ${{ env.test-directory }}/${{ env.test-project }} -p:TargetFramework=${{ matrix.dotnet-target-framework }}
+          dotnet restore ${{ env.integration-directory }}/${{ env.integration-project }} -p:TargetFramework=${{ matrix.dotnet-target-framework }}
 
       - name: Build
         working-directory: ${{ env.source-directory }}
@@ -92,8 +95,12 @@ jobs:
         working-directory: ${{ env.test-directory }}
         run: dotnet test -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore --verbosity normal
 
-  tools:
-    name: Tools (${{ matrix.dotnet-target-framework }})
+      - name: Integration Test
+        working-directory: ${{ env.integration-directory }}
+        run: dotnet test -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore --verbosity normal
+
+  pscmdlets_tools:
+    name: PSCmdlets Tools (${{ matrix.dotnet-target-framework }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -104,10 +111,10 @@ jobs:
           - dotnet-install-framework: 7.0.x
             dotnet-target-framework: net7.0
     env:
-      source-directory: ./src/tools/src
-      source-project: AutomationIoC.Tools.csproj
-      test-directory: ./src/tools/test
-      test-project: AutomationIoC.Tools.Test.csproj
+      source-directory: ./src/pscmdlets/tools/src
+      source-project: AutomationIoC.PSCmdlets.Tools.csproj
+      test-directory: ./src/pscmdlets/tools/test
+      test-project: AutomationIoC.PSCmdlets.Tools.Test.csproj
 
     steps:
       - uses: actions/checkout@v2
@@ -132,18 +139,16 @@ jobs:
         run: dotnet test -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore --verbosity normal
 
   release:
-    needs: [runtime, sdk, tools]
+    needs: [runtime, pscmdlets, pscmdlets_tools]
     if: github.event_name == 'release'
     runs-on: ubuntu-latest
     env:
-      base-project: ./automation/src/AutomationIoC.csproj
-      base-release-path: ./automation/src/bin/Release
       runtime-project: ./runtime/src/AutomationIoC.Runtime.csproj
       runtime-release-path: ./runtime/src/bin/Release
-      sdk-project: ./sdk/src/AutomationIoC.SDK.csproj
-      sdk-release-path: ./sdk/src/bin/Release
-      tools-project: ./tools/src/AutomationIoC.Tools.csproj
-      tools-release-path: ./tools/src/bin/Release
+      pscmdlets-project: ./pscmdlets/core/src/AutomationIoC.PSCmdlets.csproj
+      pscmdlets-release-path: ./pscmdlets/core/src/bin/Release
+      pscmdlets-tools-project: ./pscmdlets/tools/src/AutomationIoC.PSCmdlets.Tools.csproj
+      pscmdlets-tools-release-path: ./pscmdlets/tools/src/bin/Release
 
     steps:
       - uses: actions/checkout@v2
@@ -158,21 +163,19 @@ jobs:
         working-directory: ./src
         run: |
           dotnet restore ${{ env.runtime-project }}
-          dotnet restore ${{ env.sdk-project }}
-          dotnet restore ${{ env.tools-project }}
+          dotnet restore ${{ env.pscmdlets-project }}
+          dotnet restore ${{ env.pscmdlets-tools-project }}
 
       - name: Create Release Packages
         working-directory: ./src
         run: |
           dotnet pack ${{ env.runtime-project }} -c Release --no-restore -p:PackageVersion=${{ github.event.release.tag_name }}
-          dotnet pack ${{ env.sdk-project }} -c Release --no-restore -p:PackageVersion=${{ github.event.release.tag_name }}
-          dotnet pack ${{ env.tools-project }} -c Release --no-restore -p:PackageVersion=${{ github.event.release.tag_name }}
-          dotnet pack ${{ env.base-project }} -c Release -p:PackageVersion=${{ github.event.release.tag_name }}
+          dotnet pack ${{ env.pscmdlets-project }} -c Release --no-restore -p:PackageVersion=${{ github.event.release.tag_name }}
+          dotnet pack ${{ env.pscmdlets-tools-project }} -c Release --no-restore -p:PackageVersion=${{ github.event.release.tag_name }}
 
       - name: Push Release Packages
         working-directory: ./src
         run: |
           dotnet nuget push ${{ env.runtime-release-path }}/AutomationIoC.Runtime.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
-          dotnet nuget push ${{ env.sdk-release-path }}/AutomationIoC.SDK.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
-          dotnet nuget push ${{ env.tools-release-path }}/AutomationIoC.Tools.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
-          dotnet nuget push ${{ env.base-release-path }}/AutomationIoC.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
+          dotnet nuget push ${{ env.pscmdlets-release-path }}/AutomationIoC.PSCmdlets.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
+          dotnet nuget push ${{ env.pscmdlets-tools-release-path }}/AutomationIoC.PSCmdlets.Tools.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}

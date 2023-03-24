@@ -1,4 +1,9 @@
-﻿using AutomationIoC.Runtime.Environment;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using AutomationIoC.Runtime.Environment;
 using Microsoft.Extensions.Hosting;
 using System.Management.Automation;
 

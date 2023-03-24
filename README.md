@@ -157,7 +157,7 @@ on launching your module through VS Code_
 ### Testing
 
 ```csharp
-using AutomationIoC.Tools;
+using AutomationIoC.PSCmdlets.Tools;
 using FluentAssertions;
 using Xunit;
 

@@ -1,4 +1,9 @@
-﻿using AutomationIoC.Runtime.Session;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using AutomationIoC.Runtime.Session;
 using System.Management.Automation;
 
 namespace AutomationIoC.Runtime.Environment;
@@ -16,12 +21,7 @@ internal class EnvironmentStorageProvider : IEnvironmentStorageProvider
     {
         PSVariable psVariable = sessionState.PSVariable.Get(key);
 
-        if (psVariable?.Value is not null)
-        {
-            return (T)psVariable.Value;
-        }
-
-        return default;
+        return psVariable?.Value is not null ? (T)psVariable.Value : default;
     }
 
     public void SetEnvironmentVariable(string key, object value, ScopedItemOptions scopedItemOptions)

@@ -1,5 +1,10 @@
-﻿using AutomationIoC.Integration.Attributes;
-using AutomationIoC.Integration.Services;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using AutomationIoC.Runtime.Attributes;
+using AutomationIoC.Runtime.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
@@ -38,17 +43,11 @@ public class DependencyBinderTests
     }
 
     [Fact]
-    public void ShouldThrowIfServiceProviderIsNull()
-    {
-        Assert.Throws<ArgumentNullException>(() => new DependencyBinder(null));
-    }
+    public void ShouldThrowIfServiceProviderIsNull() => Assert.Throws<ArgumentNullException>(() => new DependencyBinder(null));
 
-    private static IServiceProvider GenerateServiceProvider()
-    {
-        return new ServiceCollection()
+    private static IServiceProvider GenerateServiceProvider() => new ServiceCollection()
             .AddTransient<ITestRuntimeService, TestRuntimeFieldService>()
             .AddTransient<ITestRuntimeInternalServiceOne, TestRuntimeInternalServiceOne>()
             .AddTransient<ITestRuntimeInternalServiceTwo, TestRuntimeInternalServiceTwo>()
             .BuildServiceProvider();
-    }
 }

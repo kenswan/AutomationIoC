@@ -1,4 +1,9 @@
-﻿using AutomationIoC.Integration.Models;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using AutomationIoC.Runtime.Models;
 using FluentAssertions;
 using Moq;
 using Xunit;
