@@ -14,7 +14,7 @@ namespace AutomationIoC.Runtime.Dependency;
 
 internal static class RuntimeFactory
 {
-    public static IServiceProvider RuntimeServiceProvider(SessionStateProxy sessionState, IIoCStartup startup) =>
+    public static IServiceProvider RuntimeServiceProvider(ISessionState sessionState, IIoCStartup startup) =>
         GenerateRuntimeDependencies(sessionState)
             .AddTransient<IAutomationIoCBinder, AutomationIoCBinder>()
             .AddTransient<IContextBuilder, ContextBuilder>()
@@ -22,7 +22,7 @@ internal static class RuntimeFactory
             .AddTransient(_ => startup)
             .BuildServiceProvider();
 
-    public static IServiceProvider RuntimeServiceProvider(SessionStateProxy sessionState) =>
+    public static IServiceProvider RuntimeServiceProvider(ISessionState sessionState) =>
         GenerateRuntimeDependencies(sessionState)
             .BuildServiceProvider();
 
@@ -31,7 +31,7 @@ internal static class RuntimeFactory
             .AddTransient<IDependencyBinder, DependencyBinder>()
             .AddLogging(builder => builder.AddConsole());
 
-    private static IServiceCollection GenerateRuntimeDependencies(SessionStateProxy sessionState) =>
+    private static IServiceCollection GenerateRuntimeDependencies(ISessionState sessionState) =>
         new ServiceCollection()
             .AddTransient<IAutomationEnvironment, AutomationEnvironment>()
             .AddTransient<IEnvironmentStorageProvider, EnvironmentStorageProvider>()

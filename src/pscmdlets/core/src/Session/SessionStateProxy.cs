@@ -3,12 +3,13 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using AutomationIoC.Runtime;
 using System.Management.Automation;
 using Runspace = System.Management.Automation.Runspaces;
 
-namespace AutomationIoC.Runtime.Session;
+namespace AutomationIoC.PSCmdlets.Session;
 
-internal class SessionStateProxy : ISessionState
+internal class SessionStateProxy : IPowerShellSessionState, ISessionState
 {
     private readonly SessionState sessionState;
     private readonly Runspace.SessionStateProxy sessionStateProxy;
@@ -44,4 +45,19 @@ internal class SessionStateProxy : ISessionState
     public List<string> Scripts => sessionState?.Scripts ?? sessionStateProxy.Scripts;
 
     public bool UseFullLanguageModeInDebugger => sessionState?.UseFullLanguageModeInDebugger ?? false;
+
+    public T GetValue<T>(string key)
+    {
+        PSVariable psVariable = sessionState.PSVariable.Get(key);
+
+        return psVariable?.Value is not null ? (T)psVariable.Value : default;
+    }
+
+    public void SetValue<T>(string key, T value)
+    {
+        PSVariable serviceVariable =
+                new(key, value, ScopedItemOptions.None);
+
+        sessionState.PSVariable.Set(serviceVariable);
+    }
 }

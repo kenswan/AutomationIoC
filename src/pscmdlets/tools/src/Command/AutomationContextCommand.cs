@@ -3,6 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using AutomationIoC.PSCmdlets.Session;
 using AutomationIoC.Runtime;
 using Microsoft.Extensions.DependencyInjection;
 using System.Management.Automation;
@@ -19,6 +20,7 @@ internal class AutomationContextCommand<TCommand, TStartup> : AutomationCommand<
 
         buildServices(services);
 
-        AutomationIoCRuntime.BuildServices<TStartup>(powerShellSession.Runspace.SessionStateProxy, services);
+        AutomationIoCRuntime.BuildServices<TStartup>(
+            new SessionStateProxy(powerShellSession.Runspace.SessionStateProxy), services);
     }
 }

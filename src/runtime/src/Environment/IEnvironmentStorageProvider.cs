@@ -3,13 +3,11 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using System.Management.Automation;
-
 namespace AutomationIoC.Runtime.Environment;
 
 internal interface IEnvironmentStorageProvider
 {
-    void SetEnvironmentVariable(string key, object value, ScopedItemOptions scopedItemOptions);
+    void SetEnvironmentVariable<T>(string key, T value);
 
     T GetEnvironmentVariable<T>(string key);
 }

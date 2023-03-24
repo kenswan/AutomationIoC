@@ -3,9 +3,6 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoC.Runtime.Session;
-using System.Management.Automation;
-
 namespace AutomationIoC.Runtime.Environment;
 
 internal class EnvironmentStorageProvider : IEnvironmentStorageProvider
@@ -17,18 +14,7 @@ internal class EnvironmentStorageProvider : IEnvironmentStorageProvider
         this.sessionState = sessionState;
     }
 
-    public T GetEnvironmentVariable<T>(string key)
-    {
-        PSVariable psVariable = sessionState.PSVariable.Get(key);
+    public T GetEnvironmentVariable<T>(string key) => sessionState.GetValue<T>(key);
 
-        return psVariable?.Value is not null ? (T)psVariable.Value : default;
-    }
-
-    public void SetEnvironmentVariable(string key, object value, ScopedItemOptions scopedItemOptions)
-    {
-        PSVariable serviceVariable =
-                new(key, value, scopedItemOptions);
-
-        sessionState.PSVariable.Set(serviceVariable);
-    }
+    public void SetEnvironmentVariable<T>(string key, T value) => sessionState.SetValue<T>(key, value);
 }

@@ -5,9 +5,9 @@
 
 using System.Management.Automation;
 
-namespace AutomationIoC.Runtime.Session;
+namespace AutomationIoC.PSCmdlets.Session;
 
-internal interface ISessionState
+internal interface IPowerShellSessionState
 {
     List<string> Applications { get; }
 

@@ -6,6 +6,7 @@
 using AutomationIoC.PSCmdlets.Integration.Attributes;
 using AutomationIoC.PSCmdlets.Integration.Services;
 using AutomationIoC.PSCmdlets.Integration.Startup;
+using AutomationIoC.PSCmdlets.Session;
 using AutomationIoC.Runtime;
 using System.Management.Automation;
 
@@ -24,7 +25,7 @@ public class TestContextCommand : PSCmdlet
         var dependencyContext = new DependencyContext<TestToolsAttribute, TestStartup>
         {
             Instance = this,
-            SessionState = SessionState
+            SessionState = new SessionStateProxy(SessionState)
         };
 
         AutomationIoCRuntime.BindContext(dependencyContext);

@@ -3,17 +3,16 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoC.Runtime.Startup;
 using AutomationIoC.Runtime.Binder;
 using AutomationIoC.Runtime.Context;
 using AutomationIoC.Runtime.Environment;
+using AutomationIoC.Runtime.Models;
 using AutomationIoC.Runtime.Session;
+using AutomationIoC.Runtime.Startup;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System.Management.Automation;
 using Xunit;
-using Runspace = System.Management.Automation.Runspaces;
 
 namespace AutomationIoC.Runtime.Dependency;
 
@@ -22,7 +21,7 @@ public class RuntimeFactoryTests
     [Fact]
     public void ShouldBuildRuntimeProviderFromSession()
     {
-        var sessionState = new SessionStateProxy(null as SessionState);
+        var sessionState = new TestSessionState();
         var startup = new TestRuntimeStartup();
 
         IServiceProvider actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionState, startup);
@@ -44,7 +43,7 @@ public class RuntimeFactoryTests
     [Fact]
     public void ShouldBuildRuntimeProviderFromSessionStatProxy()
     {
-        var sessionState = new SessionStateProxy(null as Runspace.SessionStateProxy);
+        var sessionState = new TestSessionState();
 
         IServiceProvider actualServiceProvider = RuntimeFactory.RuntimeServiceProvider(sessionState);
 

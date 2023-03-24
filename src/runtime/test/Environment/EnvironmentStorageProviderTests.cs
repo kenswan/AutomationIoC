@@ -3,83 +3,62 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoC.Runtime.Session;
 using Moq;
-using System.Management.Automation;
-using System.Management.Automation.Runspaces;
 using Xunit;
 
 namespace AutomationIoC.Runtime.Environment;
 
 public class EnvironmentStorageProviderTests
 {
-    [Fact(Skip = "Moving PS Out of Runtime project for 2.0")]
+    private readonly Mock<ISessionState> sessionStateMock;
+
+    private readonly IEnvironmentStorageProvider environmentStorageProvider;
+
+    public EnvironmentStorageProviderTests()
+    {
+        sessionStateMock = new();
+
+        environmentStorageProvider = new EnvironmentStorageProvider(sessionStateMock.Object);
+    }
+
+    [Fact]
     public void ShouldGetEnvironmentVariable()
     {
         var key = Guid.NewGuid().ToString();
         var expectedValue = Guid.NewGuid();
-        ScopedItemOptions scope = ScopedItemOptions.Unspecified;
 
-        var sessionStateMock = new Mock<ISessionState>();
-        PSVariable serviceVariable = new(key, expectedValue, scope);
+        sessionStateMock.Setup(state => state.GetValue<Guid>(key)).Returns(expectedValue);
 
-        Runspace runspace = RunspaceFactory.CreateRunspace(InitialSessionState.CreateDefault());
-        runspace.Open();
-
-        PSVariableIntrinsics psVariableIntrinsics = runspace.SessionStateProxy.PSVariable;
-
-        psVariableIntrinsics.Set(serviceVariable);
-
-        sessionStateMock.SetupGet(state => state.PSVariable).Returns(psVariableIntrinsics);
-
-        var storageProvider = new EnvironmentStorageProvider(sessionStateMock.Object);
-
-        Guid actualValue = storageProvider.GetEnvironmentVariable<Guid>(key);
+        Guid actualValue = environmentStorageProvider.GetEnvironmentVariable<Guid>(key);
 
         Assert.Equal(expectedValue, actualValue);
     }
 
-    [Fact(Skip = "Moving PS Out of Runtime project for 2.0")]
+    [Fact]
     public void ShouldReturnNullIfVariableDoesNotExist()
     {
         var key = Guid.NewGuid().ToString();
-        var value = Guid.NewGuid().ToString();
+        string expectedValue = null;
 
-        var sessionStateMock = new Mock<ISessionState>();
+        sessionStateMock.Setup(state => state.GetValue<string>(key)).Returns(expectedValue);
 
-        Runspace runspace = RunspaceFactory.CreateRunspace(InitialSessionState.CreateDefault());
-        runspace.Open();
-
-        PSVariableIntrinsics psVariableIntrinsics = runspace.SessionStateProxy.PSVariable;
-
-        sessionStateMock.SetupGet(state => state.PSVariable).Returns(psVariableIntrinsics);
-
-        var storageProvider = new EnvironmentStorageProvider(sessionStateMock.Object);
-
-        Guid? actualValue = storageProvider.GetEnvironmentVariable<Guid?>(key);
+        var actualValue = environmentStorageProvider.GetEnvironmentVariable<string>(key);
 
         Assert.Null(actualValue);
     }
 
-    [Fact(Skip = "Moving PS Out of Runtime project for 2.0")]
+    [Fact]
     public void ShouldStoreEnvironmentVariable()
     {
         var key = Guid.NewGuid().ToString();
         var value = Guid.NewGuid();
-        ScopedItemOptions scope = ScopedItemOptions.Constant;
 
-        var sessionStateMock = new Mock<ISessionState>();
+        sessionStateMock.Setup(state => state.SetValue(key, value));
 
-        PSVariable serviceVariable =
-                new(key, value, scope);
+        var storageProvider = new EnvironmentStorageProvider(sessionStateMock.Object);
 
-        Runspace runspace = RunspaceFactory.CreateRunspace(InitialSessionState.CreateDefault());
-        runspace.Open();
+        storageProvider.SetEnvironmentVariable(key, value);
 
-        PSVariableIntrinsics psVariableIntrinsics = runspace.SessionStateProxy.PSVariable;
-
-        psVariableIntrinsics.Set(serviceVariable);
-
-        sessionStateMock.SetupGet(state => state.PSVariable).Returns(psVariableIntrinsics);
+        sessionStateMock.Verify(state => state.SetValue(key, value), Times.Once);
     }
 }
