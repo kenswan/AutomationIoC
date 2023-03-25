@@ -10,7 +10,7 @@ using System.Management.Automation;
 namespace AutomationIoC.PSCmdlets.Integration.Commands;
 
 [Cmdlet(VerbsCommon.Get, "TestSDKCommand")]
-public class TestSDKCommand : IoCShell<TestStartup>
+public class TestPSCmdletCommand : IoCShell<TestStartup>
 {
     [AutomationDependency]
     protected readonly ITestService testService;

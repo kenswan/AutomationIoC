@@ -18,9 +18,9 @@ public class IoCShellTests
     [Fact]
     public void ShouldLoadDependency()
     {
-        var testServiceMock = new Mock<ITestSdkService>();
+        var testServiceMock = new Mock<ITestPSCmdletService>();
 
-        using IAutomationCommand<TestIoCShell> context = AutomationSandbox.CreateContext<TestIoCShell, TestSDKStartup>(
+        using IAutomationCommand<TestIoCShell> context = AutomationSandbox.CreateContext<TestIoCShell, TestPSCmdletStartup>(
             serviceCollection =>
             {
                 serviceCollection.AddTransient(_ => testServiceMock.Object);
@@ -32,10 +32,10 @@ public class IoCShellTests
     }
 
     [Cmdlet(VerbsData.Mount, "Test")]
-    public class TestIoCShell : IoCShell<TestSDKStartup>
+    public class TestIoCShell : IoCShell<TestPSCmdletStartup>
     {
         [AutomationDependency]
-        protected ITestSdkService TestService { get; set; }
+        protected ITestPSCmdletService TestService { get; set; }
 
         protected override void BeginProcessing()
         {

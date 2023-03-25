@@ -35,9 +35,9 @@ internal class ContextBuilder : IContextBuilder
 
         IHost hostApplication = GenerateHostBuilder()
             .ConfigureAppConfiguration(startup.Configure)
-            .ConfigureServices(services =>
+            .ConfigureServices((hostBuilderContext, services) =>
             {
-                startup.ConfigureServices(services);
+                startup.ConfigureServices(hostBuilderContext, services);
 
                 RuntimeFactory.AddClientRuntime(services);
             })
