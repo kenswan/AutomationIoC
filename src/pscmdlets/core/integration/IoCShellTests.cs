@@ -16,7 +16,7 @@ public class IoCShellTests
     {
         var expectedValue = 3;
 
-        using IAutomationCommand<TestSDKCommand> context = AutomationSandbox.CreateCommand<TestSDKCommand>();
+        using IAutomationCommand<TestPSCmdletCommand> context = AutomationSandbox.CreateCommand<TestPSCmdletCommand>();
 
         var actualValue = context.RunCommand<int>().FirstOrDefault();
 

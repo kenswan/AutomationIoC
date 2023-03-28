@@ -6,6 +6,7 @@
 using AutomationIoC.PSCmdlets.Integration.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace AutomationIoC.PSCmdlets.Integration.Startup;
 
@@ -21,5 +22,6 @@ public class TestStartup : IoCStartup
         configurationBuilder.AddInMemoryCollection(appSettings);
     }
 
-    public override void ConfigureServices(IServiceCollection services) => services.AddTransient<ITestService, TestService>();
+    public override void ConfigureServices(HostBuilderContext hostBuilderContext, IServiceCollection services) =>
+        services.AddTransient<ITestService, TestService>();
 }

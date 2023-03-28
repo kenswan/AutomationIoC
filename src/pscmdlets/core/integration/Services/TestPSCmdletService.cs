@@ -5,13 +5,13 @@
 
 namespace AutomationIoC.PSCmdlets.Integration.Services;
 
-public class TestSdkFieldService : TestSdkService
+public class TestPSCmdletFieldService : TestPSCmdletService
 {
     [AutomationDependency]
-    protected ITestSdkInternalServiceOne testRuntimeInternalServiceOne = default;
+    protected ITestPSCmdletInternalServiceOne testRuntimeInternalServiceOne = default;
 
     [AutomationDependency]
-    protected ITestSdkInternalServiceTwo testRuntimeInternalServiceTwo = default;
+    protected ITestPSCmdletInternalServiceTwo testRuntimeInternalServiceTwo = default;
 
     public override void RunMethod()
     {
@@ -22,13 +22,13 @@ public class TestSdkFieldService : TestSdkService
     }
 }
 
-public class TestSdkPropertyService : TestSdkService
+public class TestPSCmdletPropertyService : TestPSCmdletService
 {
     [AutomationDependency]
-    protected ITestSdkInternalServiceOne TestSdkInternalServiceOne { get; set; }
+    protected ITestPSCmdletInternalServiceOne TestSdkInternalServiceOne { get; set; }
 
     [AutomationDependency]
-    protected ITestSdkInternalServiceTwo TestSdkInternalServiceTwo { get; set; }
+    protected ITestPSCmdletInternalServiceTwo TestSdkInternalServiceTwo { get; set; }
 
     public override void RunMethod()
     {
@@ -39,7 +39,7 @@ public class TestSdkPropertyService : TestSdkService
     }
 }
 
-public class TestSdkService : ITestSdkService
+public class TestPSCmdletService : ITestPSCmdletService
 {
     public int CallCount { get; protected set; }
 
@@ -52,7 +52,7 @@ public class TestSdkService : ITestSdkService
     }
 }
 
-public interface ITestSdkService
+public interface ITestPSCmdletService
 {
     int CallCount { get; }
     bool WasCalled { get; }
@@ -60,6 +60,6 @@ public interface ITestSdkService
     void RunMethod();
 }
 
-public interface ITestSdkInternalServiceOne : ITestSdkService { }
+public interface ITestPSCmdletInternalServiceOne : ITestPSCmdletService { }
 
-public interface ITestSdkInternalServiceTwo : ITestSdkService { }
+public interface ITestPSCmdletInternalServiceTwo : ITestPSCmdletService { }

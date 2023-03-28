@@ -6,6 +6,7 @@
 using AutomationIoC.Runtime.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace AutomationIoC.Runtime.Startup;
 
@@ -28,7 +29,7 @@ public class TestRuntimeStartup : IIoCStartup
         configurationBuilder.AddInMemoryCollection(appSettings);
     }
 
-    public void ConfigureServices(IServiceCollection services) => services
+    public void ConfigureServices(HostBuilderContext hostBuilderContext, IServiceCollection services) => services
             .AddTransient<ITestRuntimeService, TestRuntimePropertyService>()
             .AddTransient<ITestRuntimeService, TestRuntimeFieldService>()
             .AddTransient<ITestRuntimeInternalServiceOne, TestRuntimeInternalServiceOne>()

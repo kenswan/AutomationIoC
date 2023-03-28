@@ -4,11 +4,12 @@
 // -------------------------------------------------------
 
 using AutomationIoC.Runtime.Attributes;
+using AutomationIoC.Runtime.Dependency;
 using AutomationIoC.Runtime.Models;
 using AutomationIoC.Runtime.Services;
-using AutomationIoC.Runtime.Startup;
-using AutomationIoC.Runtime.Dependency;
 using AutomationIoC.Runtime.Session;
+using AutomationIoC.Runtime.Startup;
+using Bogus;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,7 +37,7 @@ public class ContextBuilderTests
     }
 
     [Fact]
-    public void ShouldBuildServices()
+    public void ShouldBuildStartupServices()
     {
         contextBuilder.BuildServices();
 
@@ -44,7 +45,43 @@ public class ContextBuilderTests
 
         storageProviderMock.Verify(provider =>
             provider.StoreHostProvider(It.Is<IHost>(host =>
-                ServiceProviderIsConfiguredFromStartup(host.Services))));
+                ServiceProviderIsConfiguredFromStartup(host.Services))), Times.Once());
+    }
+
+    [Fact]
+    public void ShouldBuildStartupServicesWithHostBuilderContext()
+    {
+        var environmentName = "Staging";
+        var connectionString = new Faker().Internet.Password();
+        var configurationKey = "IPAddress";
+        var configurationValue = new Faker().Internet.Ipv6();
+
+        var hostContextBuilderStartup = new TestHostBuildContextStartup(
+            environmentName: environmentName,
+            connectionString: connectionString,
+            configurationCheckKey: configurationKey,
+            configurationCheckValue: configurationValue);
+
+        var hostContextBuilder = new ContextBuilder(environmentMock.Object, hostContextBuilderStartup, storageProviderMock.Object);
+
+        storageProviderMock.Setup(provider =>
+            provider.StoreHostProvider(It.Is<IHost>(host => ServiceProviderIsConfiguredFromHostContextStartup(host.Services))))
+                .Callback<IHost>((host) =>
+                {
+                    TestHostBuilderContextService test = host.Services.GetRequiredService<TestHostBuilderContextService>();
+
+                    // TODO: Configure environment name in host
+                    // Assert.Equal(environmentName, test.EnvironmentName);
+
+                    Assert.Equal(connectionString, test.ConnectionString);
+                    Assert.Equal(configurationValue, test.ConfigurationValue);
+                });
+
+        hostContextBuilder.BuildServices();
+
+        storageProviderMock.Verify(provider =>
+            provider.StoreHostProvider(It.Is<IHost>(host => ServiceProviderIsConfiguredFromHostContextStartup(host.Services))),
+                Times.Once());
     }
 
     [Fact]
@@ -59,7 +96,7 @@ public class ContextBuilderTests
 
         storageProviderMock.Verify(provider =>
             provider.StoreHostProvider(It.Is<IHost>(host =>
-                ServiceProviderIsConfiguredFromCollection(host.Services))));
+                ServiceProviderIsConfiguredFromCollection(host.Services))), Times.Once());
     }
 
     [Fact]
@@ -106,6 +143,16 @@ public class ContextBuilderTests
         return configuration.GetValue<string>(TestRuntimeStartup.CONFIGURATION_KEY) == TestRuntimeStartup.CONFIGURATION_VALUE &&
             dependencyBinder is not null &&
             testService is not null;
+    }
+
+    private static bool ServiceProviderIsConfiguredFromHostContextStartup(IServiceProvider serviceProvider)
+    {
+        IConfiguration configuration = serviceProvider.GetService<IConfiguration>();
+
+        TestHostBuilderContextService testHostBuilderContextService =
+            serviceProvider.GetService<TestHostBuilderContextService>();
+
+        return configuration is not null && testHostBuilderContextService is not null;
     }
 
     private static bool ServiceProviderIsConfiguredFromCollection(IServiceProvider serviceProvider)
