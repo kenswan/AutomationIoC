@@ -34,6 +34,7 @@ internal class ContextBuilder : IContextBuilder
         startup.AutomationEnvironment = automationEnvironment;
 
         IHost hostApplication = GenerateHostBuilder()
+            // .UseEnvironment("Staging")
             .ConfigureAppConfiguration(startup.Configure)
             .ConfigureServices((hostBuilderContext, services) =>
             {
@@ -75,10 +76,10 @@ internal class ContextBuilder : IContextBuilder
     }
 
     private static IHostBuilder GenerateHostBuilder() =>
-        new HostBuilder()
-        .ConfigureLogging(loggingBuilder =>
-        {
-            loggingBuilder.AddDebug();
-            loggingBuilder.AddConsole();
-        });
+        Host.CreateDefaultBuilder()
+            .ConfigureLogging(loggingBuilder =>
+            {
+                loggingBuilder.AddDebug();
+                loggingBuilder.AddConsole();
+            });
 }
