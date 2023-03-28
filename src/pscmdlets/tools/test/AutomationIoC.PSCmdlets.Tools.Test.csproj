@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\src\AutomationIoC.PSCmdlets.Tools.csproj" />
-    <ProjectReference Include="..\..\core\integration\AutomationIoC.PSCmdlets.Integration.Test.csproj" />
+    <ProjectReference Include="..\..\core\integration\AutomationIoC.PSCmdlets.Integration.csproj" />
   </ItemGroup>
 
 </Project>

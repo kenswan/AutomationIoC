@@ -5,6 +5,6 @@
 
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("AutomationIoC.PSCmdlets.Integration.Test")]
+[assembly: InternalsVisibleTo("AutomationIoC.PSCmdlets.Integration")]
 [assembly: InternalsVisibleTo("AutomationIoC.PSCmdlets.Test")]
 [assembly: InternalsVisibleTo("AutomationIoC.PSCmdlets.Tools")]

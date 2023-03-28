@@ -71,7 +71,7 @@ jobs:
       test-directory: ./src/pscmdlets/core/test
       test-project: AutomationIoC.PSCmdlets.Test.csproj
       integration-directory: ./src/pscmdlets/core/integration
-      integration-project: AutomationIoC.PSCmdlets.Integration.Test.csproj
+      integration-project: AutomationIoC.PSCmdlets.Integration.csproj
     steps:
       - uses: actions/checkout@v2
 
