@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.PSCmdlets", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.PSCmdlets.Test", "src\pscmdlets\core\test\AutomationIoC.PSCmdlets.Test.csproj", "{34F3CE88-8AE7-4FCA-BADA-02EA7367F21C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.PSCmdlets.Integration.Test", "src\pscmdlets\core\integration\AutomationIoC.PSCmdlets.Integration.Test.csproj", "{F570BB2D-E8AF-4431-8440-ABEB177F95F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.PSCmdlets.Integration", "src\pscmdlets\core\integration\AutomationIoC.PSCmdlets.Integration.csproj", "{F570BB2D-E8AF-4431-8440-ABEB177F95F5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.PSCmdlets.Tools", "src\pscmdlets\tools\src\AutomationIoC.PSCmdlets.Tools.csproj", "{67DB33B8-7C6D-4697-BB12-5EE2EE5B84B8}"
 EndProject
