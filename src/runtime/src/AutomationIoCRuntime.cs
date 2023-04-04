@@ -7,7 +7,10 @@ using AutomationIoC.Runtime.Binder;
 using AutomationIoC.Runtime.Context;
 using AutomationIoC.Runtime.Dependency;
 using AutomationIoC.Runtime.Environment;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace AutomationIoC.Runtime;
 
@@ -35,6 +38,46 @@ public static class AutomationIoCRuntime
 
         contextBuilder.BuildServices(serviceCollection);
     }
+
+    public static IHost GenerateRuntimeHost(
+        Action<IConfigurationBuilder> buildConfiguration,
+        Action<IServiceCollection> buildServices,
+        string[] parameters,
+        IDictionary<string, string> parameterConfigurationMappings) => new HostBuilder()
+            .ConfigureAppConfiguration(builder =>
+            {
+                var additionalSettings = new Dictionary<string, string>()
+                {
+                    ["ProjectBasePath"] = Directory.GetCurrentDirectory(),
+                };
+
+                builder
+                    .AddEnvironmentVariables()
+                    .AddInMemoryCollection(additionalSettings);
+
+                if (parameterConfigurationMappings is not null)
+                {
+                    builder.AddCommandLine(parameters, parameterConfigurationMappings);
+                }
+
+                if (buildConfiguration is not null)
+                {
+                    buildConfiguration(builder);
+                }
+            })
+            .ConfigureLogging(builder =>
+            {
+                builder.AddDebug();
+                builder.AddConsole();
+            })
+            .ConfigureServices((hostContext, services) =>
+            {
+                if (buildServices is not null)
+                {
+                    buildServices(services);
+                }
+            })
+            .Build();
 
     public static void SetEnvironment(ISessionState sessionState, string key, object value)
     {
