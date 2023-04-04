@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Consoles", "src\consoles\src\AutomationIoC.Consoles.csproj", "{A321C5D5-661B-4C2E-B3AB-B7C4CD320699}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Consoles.Test", "src\consoles\test\AutomationIoC.Consoles.Test.csproj", "{68DE48EF-478D-4C53-BEAC-2650420F9E45}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Runtime", "src\runtime\src\AutomationIoC.Runtime.csproj", "{D8FB5D4D-4EA8-402D-B369-863180D9F22E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Runtime.Test", "src\runtime\test\AutomationIoC.Runtime.Test.csproj", "{BE9C4E88-7636-401D-8575-CD46DD134A3D}"
@@ -32,6 +36,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A321C5D5-661B-4C2E-B3AB-B7C4CD320699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A321C5D5-661B-4C2E-B3AB-B7C4CD320699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A321C5D5-661B-4C2E-B3AB-B7C4CD320699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A321C5D5-661B-4C2E-B3AB-B7C4CD320699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68DE48EF-478D-4C53-BEAC-2650420F9E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68DE48EF-478D-4C53-BEAC-2650420F9E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68DE48EF-478D-4C53-BEAC-2650420F9E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68DE48EF-478D-4C53-BEAC-2650420F9E45}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D8FB5D4D-4EA8-402D-B369-863180D9F22E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D8FB5D4D-4EA8-402D-B369-863180D9F22E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8FB5D4D-4EA8-402D-B369-863180D9F22E}.Release|Any CPU.ActiveCfg = Release|Any CPU
