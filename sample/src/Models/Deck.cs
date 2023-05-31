@@ -1,4 +1,9 @@
-﻿namespace AutomationIoC.Sample.Models;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+namespace AutomationIoC.Sample.Models;
 
 public class Deck : IDeck
 {
@@ -10,10 +15,7 @@ public class Deck : IDeck
         Load();
     }
 
-    public Card Draw()
-    {
-        return cards.Pop();
-    }
+    public Card Draw() => cards.Pop();
 
     public void Load()
     {

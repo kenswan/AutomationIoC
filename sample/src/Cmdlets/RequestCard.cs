@@ -1,4 +1,10 @@
-﻿using AutomationIoC.Sample.Models;
+﻿// -------------------------------------------------------
+// Copyright (c) Ken Swan All rights reserved.
+// Licensed under the MIT License
+// -------------------------------------------------------
+
+using AutomationIoC.PSCmdlets;
+using AutomationIoC.Sample.Models;
 using Microsoft.Extensions.Logging;
 using System.Management.Automation;
 
@@ -17,7 +23,7 @@ public class RequestCard : IoCShell<Startup>
     {
         base.ProcessRecord();
 
-        var card = CardDeck.Draw();
+        Card card = CardDeck.Draw();
 
         logger.LogInformation("Card Drawn: {Name}", card.ToString());
 
