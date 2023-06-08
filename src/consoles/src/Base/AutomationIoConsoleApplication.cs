@@ -7,16 +7,18 @@ using System.CommandLine;
 
 namespace AutomationIoC.Consoles.Base;
 
-internal class DependencyConsole : IAutomationIoConsole
+internal class AutomationIoConsoleApplication : IAutomationIoConsole
 {
     private readonly RootCommand rootCommand;
+    private readonly string[] arguments;
 
-    public DependencyConsole(RootCommand rootCommand)
+    public AutomationIoConsoleApplication(RootCommand rootCommand, string[] arguments)
     {
         this.rootCommand = rootCommand;
+        this.arguments = arguments;
     }
 
-    public int Run(string[] args) => rootCommand.Invoke(args);
+    public int Run() => rootCommand.Invoke(arguments);
 
-    public Task<int> RunAsync(string[] args) => rootCommand.InvokeAsync(args);
+    public Task<int> RunAsync() => rootCommand.InvokeAsync(arguments);
 }

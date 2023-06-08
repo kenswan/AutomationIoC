@@ -11,11 +11,13 @@ namespace AutomationIoC.Consoles;
 
 public abstract class ActionCommand : ICommand
 {
-    public abstract void ConfigureCommand(Action<Command> configure);
+    public string ApplicationName => RootCommand.ExecutableName;
 
-    public virtual IDictionary<string, string> ConfigurationMapping { get; private set; }
+    public abstract void ConfigureCommand(IServiceBinderFactory serviceBinderFactory, Command command);
 
-    public virtual Action<IServiceCollection> Services { get; private set; }
+    public virtual IDictionary<string, string> ConfigurationMapping { get; }
 
-    public virtual Action<IConfigurationBuilder> ConfigurationBuilder { get; private set; }
+    public virtual Action<IServiceCollection> Services { get; }
+
+    public virtual Action<IConfigurationBuilder> ConfigurationBuilder { get; }
 }

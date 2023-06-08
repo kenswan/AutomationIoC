@@ -11,7 +11,7 @@ namespace AutomationIoC.Consoles;
 
 public interface ICommand
 {
-    void ConfigureCommand(Action<Command> configure);
+    void ConfigureCommand(IServiceBinderFactory serviceBinderFactory, Command command);
 
     IDictionary<string, string> ConfigurationMapping { get; }
 

@@ -7,7 +7,7 @@ namespace AutomationIoC.Consoles;
 
 public interface IAutomationIoConsole
 {
-    int Run(string[] args);
+    int Run();
 
-    Task<int> RunAsync(string[] args);
+    Task<int> RunAsync();
 }

@@ -3,18 +3,67 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using AutomationIoC.Consoles.Base;
+using System.CommandLine;
+
 namespace AutomationIoC.Consoles.Builder;
 
 internal class AutomationIoConsoleBuilder : IAutomationIoConsoleBuilder
 {
-    public string AppName { get; private set; }
+    private readonly RootCommand rootCommand;
+    private readonly string[] arguments;
 
-    public AutomationIoConsoleBuilder(string appName)
+    public AutomationIoConsoleBuilder(RootCommand rootCommand, string[] arguments)
     {
-        AppName = appName;
+        this.rootCommand = rootCommand;
+        this.arguments = arguments;
     }
 
-    public IAutomationIoConsoleBuilder AddCommand<T>(string[] commandPath) where T : ICommand => throw new NotImplementedException();
+    public IAutomationIoConsoleBuilder AddCommand<T>(params string[] commandPath) where T : ICommand, new()
+    {
+        var addedCommandName = commandPath.Last();
 
-    public IAutomationIoConsole Build() => throw new NotImplementedException();
+        Command currentCommand = this.rootCommand;
+
+        // Traverse to proper parent command
+        for (var i = 0; i < commandPath.Length - 1; i++)
+        {
+            var currentName = commandPath[i];
+
+            Command subCommand = currentCommand.Subcommands.FirstOrDefault(command => command.Name == currentName);
+
+            if (subCommand is null)
+            {
+                currentCommand.AddCommand(new Command(currentName));
+
+                subCommand = currentCommand.Subcommands.First(command => command.Name == currentName);
+            }
+
+            currentCommand = subCommand;
+        }
+
+        // Check if command already exists in this path
+        // This could happen if the caller registers the command out of order
+        // (once in a path, and the other for adding command implementation)
+        Command existingCommand = currentCommand.Subcommands.FirstOrDefault(command => command.Name == addedCommandName);
+
+        var internalCommand = new T();
+
+        // Add new command if not found at proper path as already existing
+        if (existingCommand is null)
+        {
+            Command newCommand = internalCommand.Register(addedCommandName, arguments);
+
+            currentCommand.AddCommand(newCommand);
+        }
+        // Update existing command if found
+        else
+        {
+            internalCommand.Register(existingCommand, arguments);
+        }
+
+        return this;
+    }
+
+    public IAutomationIoConsole Build() => new AutomationIoConsoleApplication(rootCommand, arguments);
 }

@@ -7,7 +7,7 @@ namespace AutomationIoC.Consoles;
 
 public interface IAutomationIoConsoleBuilder
 {
-    IAutomationIoConsoleBuilder AddCommand<T>(params string[] commandPath) where T : ICommand;
+    IAutomationIoConsoleBuilder AddCommand<T>(params string[] commandPath) where T : ICommand, new();
 
     IAutomationIoConsole Build();
 }
