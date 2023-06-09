@@ -5,9 +5,9 @@
 
 using System.CommandLine.Binding;
 
-namespace AutomationIoC.Consoles.Binder;
+namespace AutomationIoC.Consoles;
 
-internal interface IServiceBinderFactory
+public interface IServiceBinderFactory
 {
     public BinderBase<T> Create<T>();
 }
