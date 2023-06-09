@@ -49,9 +49,9 @@ public class TestHostBuildContextStartup : IIoCStartup
 
     public void ConfigureServices(HostBuilderContext hostBuilderContext, IServiceCollection services)
     {
-        var environmentName = hostBuilderContext.HostingEnvironment.EnvironmentName;
-        var connectionString = hostBuilderContext.Configuration.GetConnectionString(connectionStringKey);
-        var configurationValue = hostBuilderContext.Configuration.GetValue<string>(configurationCheckKey);
+        string environmentName = hostBuilderContext.HostingEnvironment.EnvironmentName;
+        string connectionString = hostBuilderContext.Configuration.GetConnectionString(connectionStringKey);
+        string configurationValue = hostBuilderContext.Configuration.GetValue<string>(configurationCheckKey);
 
         services.AddScoped(_ => new TestHostBuilderContextService(
             environmentName: environmentName,

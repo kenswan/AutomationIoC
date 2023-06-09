@@ -15,8 +15,8 @@ public class IoCVariableTests
     [Fact]
     public void ShouldSetEnvironmentVariables()
     {
-        var environmentKey = "TestKey";
-        var expectedValue = Guid.NewGuid().ToString();
+        string environmentKey = "TestKey";
+        string expectedValue = Guid.NewGuid().ToString();
 
         using IAutomationCommand<TestVariableCommand> command = AutomationSandbox.CreateCommand<TestVariableCommand>();
 

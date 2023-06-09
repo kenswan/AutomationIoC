@@ -14,8 +14,8 @@ public class AutomationCommandTests
     [Fact]
     public void ShouldRunExternalCommands()
     {
-        var environmentKey = Guid.NewGuid().ToString();
-        var expectedValue = Guid.NewGuid().ToString();
+        string environmentKey = Guid.NewGuid().ToString();
+        string expectedValue = Guid.NewGuid().ToString();
 
         using var automationCommand = new AutomationCommand<TestCommand>();
 

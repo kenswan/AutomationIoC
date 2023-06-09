@@ -28,7 +28,7 @@ internal class DependencyBinder : IDependencyBinder
 
             if (attribute is not null)
             {
-                var service = serviceProvider.GetService(field.FieldType);
+                object service = serviceProvider.GetService(field.FieldType);
                 if (service is not null)
                 {
                     field.SetValue(instance, service);
@@ -52,7 +52,7 @@ internal class DependencyBinder : IDependencyBinder
 
             if (attribute is not null)
             {
-                var service = serviceProvider.GetService(property.PropertyType);
+                object service = serviceProvider.GetService(property.PropertyType);
                 if (service is not null)
                 {
                     property.SetValue(instance, service, null);

@@ -21,14 +21,14 @@ internal class AutomationIoConsoleBuilder : IAutomationIoConsoleBuilder
 
     public IAutomationIoConsoleBuilder AddCommand<T>(params string[] commandPath) where T : ICommand, new()
     {
-        var addedCommandName = commandPath.Last();
+        string addedCommandName = commandPath.Last();
 
         Command currentCommand = this.rootCommand;
 
         // Traverse to proper parent command
-        for (var i = 0; i < commandPath.Length - 1; i++)
+        for (int i = 0; i < commandPath.Length - 1; i++)
         {
-            var currentName = commandPath[i];
+            string currentName = commandPath[i];
 
             Command subCommand = currentCommand.Subcommands.FirstOrDefault(command => command.Name == currentName);
 

@@ -4,7 +4,7 @@
 
 # AutomationIoC
 
-Dependency Injection Framework for C# PowerShell Cmdlets
+Dependency Injection Framework for C# PowerShell Cmdlets and Console Applications
 
 ## Requirements
 

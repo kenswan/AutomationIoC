@@ -14,11 +14,11 @@ public class IoCShellTests
     [Fact]
     public void ShouldAddDependencies()
     {
-        var expectedValue = 3;
+        int expectedValue = 3;
 
         using IAutomationCommand<TestPSCmdletCommand> context = AutomationSandbox.CreateCommand<TestPSCmdletCommand>();
 
-        var actualValue = context.RunCommand<int>().FirstOrDefault();
+        int actualValue = context.RunCommand<int>().FirstOrDefault();
 
         Assert.Equal(expectedValue, actualValue);
     }
