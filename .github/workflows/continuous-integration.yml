@@ -203,6 +203,7 @@ jobs:
         working-directory: ./src
         run: |
           dotnet restore ${{ env.runtime-project }}
+          dotnet restore ${{ env.consoles-project }}
           dotnet restore ${{ env.pscmdlets-project }}
           dotnet restore ${{ env.pscmdlets-tools-project }}
 
