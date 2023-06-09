@@ -45,7 +45,7 @@ public class AutomationIoConsoleTests
         Assert.True(resultCode >= 0);
     }
 
-    private class TestCommand : ActionCommand
+    private class TestCommand : BaseCommand
     {
         private readonly string internalTestData;
 

@@ -6,7 +6,7 @@
 using AutomationIoC.Consoles.Binder;
 using System.CommandLine;
 
-namespace AutomationIoC.Consoles.Base;
+namespace AutomationIoC.Consoles.Builder;
 
 internal static class CommandExtensions
 {

@@ -9,7 +9,7 @@ using System.CommandLine;
 
 namespace AutomationIoC.Consoles;
 
-public abstract class ActionCommand : ICommand
+public abstract class BaseCommand : ICommand
 {
     public string ApplicationName => RootCommand.ExecutableName;
 

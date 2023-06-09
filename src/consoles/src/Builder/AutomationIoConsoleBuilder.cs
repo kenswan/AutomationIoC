@@ -3,7 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoC.Consoles.Base;
+using AutomationIoC.Consoles.Application;
 using System.CommandLine;
 
 namespace AutomationIoC.Consoles.Builder;

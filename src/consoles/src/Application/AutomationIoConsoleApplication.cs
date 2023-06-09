@@ -5,7 +5,7 @@
 
 using System.CommandLine;
 
-namespace AutomationIoC.Consoles.Base;
+namespace AutomationIoC.Consoles.Application;
 
 internal class AutomationIoConsoleApplication : IAutomationIoConsole
 {
