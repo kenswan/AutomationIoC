@@ -218,7 +218,7 @@ jobs:
       - name: Push Release Packages
         working-directory: ./src
         run: |
-          dotnet nuget push ${{ env.runtime-release-path }}/AutomationIoC.Runtime.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
+          dotnet nuget push ${{ env.runtime-release-path }}/AutomationIoC.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
           dotnet nuget push ${{ env.consoles-release-path }}/AutomationIoC.Consoles.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
           dotnet nuget push ${{ env.pscmdlets-release-path }}/AutomationIoC.PSCmdlets.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
           dotnet nuget push ${{ env.pscmdlets-tools-release-path }}/AutomationIoC.PSCmdlets.Tools.${{ github.event.release.tag_name }}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SOURCE }}
