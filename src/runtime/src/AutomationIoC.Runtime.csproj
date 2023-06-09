@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <PropertyGroup Label="NuGet Metadata">
-    <Title>AutomationIoC.Runtime</Title>
-    <PackageId>AutomationIoC.Runtime</PackageId>
+    <Title>AutomationIoC</Title>
+    <PackageId>AutomationIoC</PackageId>
     <Description>Runtime services for AutomationIoC framework</Description>
   </PropertyGroup>
 

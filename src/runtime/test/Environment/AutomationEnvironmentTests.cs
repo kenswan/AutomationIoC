@@ -27,7 +27,7 @@ public class AutomationEnvironmentTests
     public void ShouldGetEnvironmentVariable()
     {
         var id = Guid.NewGuid();
-        var key = id.ToString();
+        string key = id.ToString();
         var model = new TestModel(id);
 
         storageProviderMock.Setup(provider =>
@@ -41,7 +41,7 @@ public class AutomationEnvironmentTests
     [Fact]
     public void ShouldThrowIfVariableNotFound()
     {
-        var key = Guid.NewGuid().ToString();
+        string key = Guid.NewGuid().ToString();
 
         storageProviderMock.Setup(provider =>
             provider.GetEnvironmentVariable<TestModel>(key)).Returns(null as TestModel);
@@ -55,13 +55,13 @@ public class AutomationEnvironmentTests
     public void ShouldSendVariableIfExistReturnFalseIfNot(bool variableExists)
     {
         var id = Guid.NewGuid();
-        var key = id.ToString();
+        string key = id.ToString();
         TestModel model = variableExists ? new TestModel(id) : null;
 
         storageProviderMock.Setup(provider =>
             provider.GetEnvironmentVariable<TestModel>(key)).Returns(model);
 
-        var actualVariableExists =
+        bool actualVariableExists =
             automationEnvironment.TryGetVariable<TestModel>(key, out TestModel actualValue);
 
         actualValue.Should().BeEquivalentTo(model);

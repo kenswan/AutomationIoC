@@ -17,8 +17,8 @@ public class EnvironmentTests
     [Fact]
     public void Test()
     {
-        var key = "TestKey";
-        var value = "TestValue";
+        string key = "TestKey";
+        string value = "TestValue";
 
         var initial = InitialSessionState.CreateDefault();
         Runspace runspace = RunspaceFactory.CreateRunspace(initial);

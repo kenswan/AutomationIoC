@@ -24,7 +24,7 @@ public class EnvironmentStorageProviderTests
     [Fact]
     public void ShouldGetEnvironmentVariable()
     {
-        var key = Guid.NewGuid().ToString();
+        string key = Guid.NewGuid().ToString();
         var expectedValue = Guid.NewGuid();
 
         sessionStateMock.Setup(state => state.GetValue<Guid>(key)).Returns(expectedValue);
@@ -37,12 +37,12 @@ public class EnvironmentStorageProviderTests
     [Fact]
     public void ShouldReturnNullIfVariableDoesNotExist()
     {
-        var key = Guid.NewGuid().ToString();
+        string key = Guid.NewGuid().ToString();
         string expectedValue = null;
 
         sessionStateMock.Setup(state => state.GetValue<string>(key)).Returns(expectedValue);
 
-        var actualValue = environmentStorageProvider.GetEnvironmentVariable<string>(key);
+        string actualValue = environmentStorageProvider.GetEnvironmentVariable<string>(key);
 
         Assert.Null(actualValue);
     }
@@ -50,7 +50,7 @@ public class EnvironmentStorageProviderTests
     [Fact]
     public void ShouldStoreEnvironmentVariable()
     {
-        var key = Guid.NewGuid().ToString();
+        string key = Guid.NewGuid().ToString();
         var value = Guid.NewGuid();
 
         sessionStateMock.Setup(state => state.SetValue(key, value));

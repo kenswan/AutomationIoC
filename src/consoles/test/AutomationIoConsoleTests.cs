@@ -13,7 +13,7 @@ public class AutomationIoConsoleTests
     public void CreateDefaultBuilder_ShouldEstablishConsoleWithEmptyRoot()
     {
         // User passed-in args
-        var args = new string[] { "status", "test", "--optionOne", "testOption1" };
+        string[] args = new string[] { "status", "test", "--optionOne", "testOption1" };
 
         IAutomationIoConsoleBuilder builder =
             AutomationIoConsole.CreateDefaultBuilder(args)
@@ -22,7 +22,7 @@ public class AutomationIoConsoleTests
 
         IAutomationIoConsole console = builder.Build();
 
-        var resultCode = console.Run();
+        int resultCode = console.Run();
 
         Assert.True(resultCode >= 0);
     }
@@ -31,7 +31,7 @@ public class AutomationIoConsoleTests
     public void CreateDefaultBuilder_ShouldEstablishConsoleWithCommandRoot()
     {
         // User passed-in args
-        var args = new string[] { "testing", "--optionOne", "testOption1" };
+        string[] args = new string[] { "testing", "--optionOne", "testOption1" };
 
         IAutomationIoConsoleBuilder builder =
             AutomationIoConsole.CreateDefaultBuilder<TestCommand>(args)
@@ -40,7 +40,7 @@ public class AutomationIoConsoleTests
 
         IAutomationIoConsole console = builder.Build();
 
-        var resultCode = console.Run();
+        int resultCode = console.Run();
 
         Assert.True(resultCode >= 0);
     }

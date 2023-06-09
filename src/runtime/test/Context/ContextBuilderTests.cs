@@ -51,10 +51,10 @@ public class ContextBuilderTests
     [Fact]
     public void ShouldBuildStartupServicesWithHostBuilderContext()
     {
-        var environmentName = "Staging";
-        var connectionString = new Faker().Internet.Password();
-        var configurationKey = "IPAddress";
-        var configurationValue = new Faker().Internet.Ipv6();
+        string environmentName = "Staging";
+        string connectionString = new Faker().Internet.Password();
+        string configurationKey = "IPAddress";
+        string configurationValue = new Faker().Internet.Ipv6();
 
         var hostContextBuilderStartup = new TestHostBuildContextStartup(
             environmentName: environmentName,

@@ -30,7 +30,7 @@ public class AutomationSandboxTests
     [Fact]
     public void ShouldRunCommand()
     {
-        var expectedValue = Guid.NewGuid().ToString();
+        string expectedValue = Guid.NewGuid().ToString();
 
         using IAutomationCommand<TestCommand> command = AutomationSandbox.CreateCommand<TestCommand>();
 
