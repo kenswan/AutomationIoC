@@ -3,11 +3,11 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-namespace AutomationIoC.Sample.Models;
+namespace ConsolesSample.Models;
 
-public interface IDeck
+public enum ReportCategory
 {
-    Card Draw();
-
-    void Load();
+    Database,
+    Company,
+    Product
 }

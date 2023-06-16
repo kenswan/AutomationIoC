@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "ConsolesSample - Company": {
+      "commandName": "Project",
+      "commandLineArgs": "report --limit 5 --header \"Company Reporting\" --type \"Company\""
+    },
+    "ConsolesSample - Database": {
+      "commandName": "Project",
+      "commandLineArgs": "report --limit 6 --header \"Database Reporting\" --type \"Database\""
+    },
+    "ConsolesSample - Product": {
+      "commandName": "Project",
+      "commandLineArgs": "report --limit 7 --header \"Product Reporting\" --type \"Product\""
+    }
+  }
+}

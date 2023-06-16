@@ -2,8 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -24,7 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\pscmdlets\tools\src\AutomationIoC.PSCmdlets.Tools.csproj" />
-    <ProjectReference Include="..\src\AutomationIoC.Sample.csproj" />
+    <ProjectReference Include="..\PSCmdletsSample\PSCmdletsSample.csproj" />
   </ItemGroup>
 
 </Project>

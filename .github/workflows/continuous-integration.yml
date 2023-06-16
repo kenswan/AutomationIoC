@@ -176,6 +176,34 @@ jobs:
         working-directory: ${{ env.test-directory }}
         run: dotnet test -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore --verbosity normal
 
+  samples:
+    name: Sample Projects
+    runs-on: ubuntu-latest
+
+    env:
+      directory: ./sample
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 7.0.x
+          include-prerelease: true
+
+      - name: Install Dependencies
+        working-directory: ${{ env.directory }}
+        run: dotnet restore
+
+      - name: Build
+        working-directory: ${{ env.directory }}
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Test
+        working-directory: ${{ env.directory }}
+        run: dotnet test --no-restore --verbosity normal
+
   release:
     needs: [runtime, pscmdlets, pscmdlets_tools]
     if: github.event_name == 'release'
