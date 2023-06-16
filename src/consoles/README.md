@@ -1,4 +1,4 @@
-[![Nuget Version](https://img.shields.io/nuget/v/AutomationIoC?logo=nuget)](https://www.nuget.org/packages/AutomationIoC)
+[![Nuget Version](https://img.shields.io/nuget/vpre/AutomationIoC?logo=nuget)](https://www.nuget.org/packages/AutomationIoC)
 [![Nuget Downloads](https://img.shields.io/nuget/dt/AutomationIoC?logo=nuget)](https://www.nuget.org/packages/AutomationIoC)
 [![Continuous Integration](https://github.com/kenswan/AutomationIoC/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/kenswan/AutomationIoC/actions/workflows/continuous-integration.yml)
 
