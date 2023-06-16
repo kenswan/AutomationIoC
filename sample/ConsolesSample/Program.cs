@@ -3,11 +3,13 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-namespace AutomationIoC.Sample.Models;
+namespace ConsolesSample;
 
-public interface IDeck
+internal class Program
 {
-    Card Draw();
-
-    void Load();
+    private static void Main(string[] args)
+    {
+        Console.WriteLine("Hello, World!");
+        Console.WriteLine("Args: {0}", args.ToString());
+    }
 }

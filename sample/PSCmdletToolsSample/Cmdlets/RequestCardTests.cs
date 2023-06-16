@@ -4,14 +4,15 @@
 // -------------------------------------------------------
 
 using AutomationIoC.PSCmdlets.Tools;
-using AutomationIoC.Sample.Cmdlets;
-using AutomationIoC.Sample.Models;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
+using PSCmdletsSample;
+using PSCmdletsSample.Cmdlets;
+using PSCmdletsSample.Models;
 using Xunit;
 
-namespace AutomationIoC.Sample.Test.Cmdlets;
+namespace PSCmdletToolsSample.Cmdlets;
 
 public class RequestCardTests
 {

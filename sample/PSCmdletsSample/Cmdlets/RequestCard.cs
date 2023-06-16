@@ -4,11 +4,11 @@
 // -------------------------------------------------------
 
 using AutomationIoC.PSCmdlets;
-using AutomationIoC.Sample.Models;
 using Microsoft.Extensions.Logging;
+using PSCmdletsSample.Models;
 using System.Management.Automation;
 
-namespace AutomationIoC.Sample.Cmdlets;
+namespace PSCmdletsSample.Cmdlets;
 
 [Cmdlet(VerbsLifecycle.Request, "Card")]
 public class RequestCard : IoCShell<Startup>

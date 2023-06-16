@@ -4,12 +4,12 @@
 // -------------------------------------------------------
 
 using AutomationIoC.PSCmdlets;
-using AutomationIoC.Sample.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PSCmdletsSample.Models;
 
-namespace AutomationIoC.Sample;
+namespace PSCmdletsSample;
 
 public class Startup : IoCStartup
 {

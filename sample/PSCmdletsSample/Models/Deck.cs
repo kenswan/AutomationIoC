@@ -3,7 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-namespace AutomationIoC.Sample.Models;
+namespace PSCmdletsSample.Models;
 
 public class Deck : IDeck
 {
