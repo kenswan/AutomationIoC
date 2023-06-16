@@ -9,7 +9,7 @@
     <Authors>Kenneth Swan</Authors>
     <Copyright>Copyright (c) 2023 AutomationIoC</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageTags>dotnet;csharp;powershell;cmdlet</PackageTags>
+    <PackageTags>dotnet;csharp;powershell;pscmdlet;cmdlet;commandline;commandline-tool;console;console-app;console-application;</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/kenswan/AutomationIoC</PackageProjectUrl>
     <RepositoryUrl>https://github.com/kenswan/AutomationIoC.git</RepositoryUrl>

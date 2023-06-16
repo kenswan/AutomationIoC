@@ -9,7 +9,7 @@ using System.CommandLine;
 
 namespace AutomationIoC.Consoles;
 
-public interface ICommand
+public interface IConsoleCommand
 {
     void ConfigureCommand(IServiceBinderFactory serviceBinderFactory, Command command);
 

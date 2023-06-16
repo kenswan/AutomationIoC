@@ -18,7 +18,7 @@ public class AutomationIoConsole
     }
 
     public static IAutomationIoConsoleBuilder CreateDefaultBuilder<T>(string[] args, string appDescription = null)
-        where T : ICommand, new()
+        where T : IConsoleCommand, new()
     {
         RootCommand rootCommand = new T().Register(args);
 
