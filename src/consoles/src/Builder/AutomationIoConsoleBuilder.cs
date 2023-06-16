@@ -19,7 +19,7 @@ internal class AutomationIoConsoleBuilder : IAutomationIoConsoleBuilder
         this.arguments = arguments;
     }
 
-    public IAutomationIoConsoleBuilder AddCommand<T>(params string[] commandPath) where T : ICommand, new()
+    public IAutomationIoConsoleBuilder AddCommand<T>(params string[] commandPath) where T : IConsoleCommand, new()
     {
         string addedCommandName = commandPath.Last();
 
