@@ -51,9 +51,9 @@ internal class ReportCommand : StandardCommand
         new Dictionary<string, string>()
         {
             ["--limit"] = "ReportOptions:MaxResults",
-            ["--l"] = "ReportOptions:MaxResults",
+            ["-l"] = "ReportOptions:MaxResults",
             ["--type"] = "ReportOptions:ReportType",
-            ["--t"] = "ReportOptions:ReportType",
+            ["-t"] = "ReportOptions:ReportType",
         };
 
     public override Action<IServiceCollection> Services => (serviceCollection) =>
