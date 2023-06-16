@@ -8,11 +8,12 @@
     <Title>AutomationIoC.PSCmdlets.Tools</Title>
     <PackageId>AutomationIoC.PSCmdlets.Tools</PackageId>
     <Description>Development tools for running/testing Cmdlets built with AutomationIoC framework</Description>
+    <PackageTags>dotnet;csharp;powershell;pscmdlet;cmdlet;</PackageTags>
   </PropertyGroup>
 
   <ItemGroup Label="NuGet Artifacts">
     <None Include="..\..\..\..\AutomationIoC.png" Pack="true" PackagePath="\" Visible="false"  />
-    <None Include="..\..\..\..\README.md" Pack="true" PackagePath="\" Visible="false"/>
+    <None Include="..\README.md" Pack="true" PackagePath="\" Visible="false"/>
   </ItemGroup>
 
   <ItemGroup>
