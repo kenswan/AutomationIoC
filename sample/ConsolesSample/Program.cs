@@ -3,13 +3,21 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using AutomationIoC.Consoles;
+using ConsolesSample.Commands;
+
 namespace ConsolesSample;
 
 internal class Program
 {
-    private static void Main(string[] args)
+    private static int Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
-        Console.WriteLine("Args: {0}", args.ToString());
+        IAutomationIoConsoleBuilder builder =
+            AutomationIoConsole.CreateDefaultBuilder(args)
+                .AddCommand<ReportCommand>("report");
+
+        IAutomationIoConsole console = builder.Build();
+
+        return console.Run();
     }
 }
