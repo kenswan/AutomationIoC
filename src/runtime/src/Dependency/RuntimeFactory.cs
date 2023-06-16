@@ -31,6 +31,9 @@ internal static class RuntimeFactory
             .AddTransient<IDependencyBinder, DependencyBinder>()
             .AddLogging(builder => builder.AddConsole());
 
+    public static void AddRuntimeApplication(IServiceCollection serviceCollection) =>
+        serviceCollection.AddDbContext<IApplicationProvider, RuntimeApplicationDbContext>();
+
     private static IServiceCollection GenerateRuntimeDependencies(ISessionState sessionState) =>
         new ServiceCollection()
             .AddTransient<IAutomationEnvironment, AutomationEnvironment>()
