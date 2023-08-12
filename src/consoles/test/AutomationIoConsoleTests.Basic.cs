@@ -7,7 +7,7 @@ using System.CommandLine;
 
 namespace AutomationIoC.Consoles;
 
-public class AutomationIoConsoleTests
+public partial class AutomationIoConsoleTests
 {
     [Fact]
     public void CreateDefaultBuilder_ShouldEstablishConsoleWithEmptyRoot()
@@ -17,14 +17,14 @@ public class AutomationIoConsoleTests
 
         IAutomationIoConsoleBuilder builder =
             AutomationIoConsole.CreateDefaultBuilder(args)
-                .AddCommand<TestCommand>("status")
-                .AddCommand<TestCommand2>("status", "test");
+                .AddCommand<BasicTestCommand>("status")
+                .AddCommand<BasicTestCommand2>("status", "test");
 
         IAutomationIoConsole console = builder.Build();
 
         int resultCode = console.Run();
 
-        Assert.True(resultCode >= 0);
+        Assert.True(resultCode == 0);
     }
 
     [Fact]
@@ -34,22 +34,41 @@ public class AutomationIoConsoleTests
         string[] args = new string[] { "testing", "--optionOne", "testOption1" };
 
         IAutomationIoConsoleBuilder builder =
-            AutomationIoConsole.CreateDefaultBuilder<TestCommand>(args)
-                .AddCommand<TestCommand2>("testing")
-                .AddCommand<TestCommand3>("status", "test");
+            AutomationIoConsole.CreateDefaultBuilder<BasicTestCommand>(args)
+                .AddCommand<BasicTestCommand2>("testing")
+                .AddCommand<BasicTestCommand3>("status", "test");
 
         IAutomationIoConsole console = builder.Build();
 
         int resultCode = console.Run();
 
-        Assert.True(resultCode >= 0);
+        Assert.True(resultCode == 0);
     }
 
-    private class TestCommand : StandardCommand
+    [Fact]
+    public void CreateDefaultBuilder_ShouldFailIfCommandNotRegistered()
+    {
+        // User passed-in args
+        string[] args = new string[] { "not-registered", "--optionOne", "testOption1" };
+
+        IAutomationIoConsoleBuilder builder =
+            AutomationIoConsole.CreateDefaultBuilder<BasicTestCommand>(args)
+                .AddCommand<BasicTestCommand2>("testing")
+                .AddCommand<BasicTestCommand3>("status", "test");
+
+        IAutomationIoConsole console = builder.Build();
+
+        int resultCode = console.Run();
+
+        // Failure result codes will be greater than 0
+        Assert.True(resultCode > 0);
+    }
+
+    private class BasicTestCommand : StandardCommand
     {
         private readonly string internalTestData;
 
-        public TestCommand()
+        public BasicTestCommand()
         {
             internalTestData = "test";
         }
@@ -77,6 +96,6 @@ public class AutomationIoConsoleTests
         }
     }
 
-    private class TestCommand2 : TestCommand { }
-    private class TestCommand3 : TestCommand { }
+    private class BasicTestCommand2 : BasicTestCommand { }
+    private class BasicTestCommand3 : BasicTestCommand { }
 }

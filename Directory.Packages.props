@@ -9,6 +9,16 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
+  <PropertyGroup Label="Documentation Settings">
+    <!--
+      Make sure any documentation comments which are included in code get checked for syntax during the build, but do
+      not report warnings for missing comments.
+      CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
+    -->
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn)1591</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup Label="Microsoft NuGet Packages (Source)">
     <PackageVersion Include="PowerShellStandard.Library" Version="5.1.1" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
