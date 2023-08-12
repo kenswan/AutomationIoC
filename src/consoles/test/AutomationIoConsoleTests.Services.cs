@@ -52,7 +52,7 @@ public partial class AutomationIoConsoleTests
         int resultCode = console.Run();
 
         // Should not encounter failure with targeted command
-        // If other commands registered services too, it would fail like in previous tests
+        // If other commands registered services too, it would fail like in previous test
         Assert.True(resultCode == 0);
     }
 
@@ -90,7 +90,6 @@ public partial class AutomationIoConsoleTests
 
     private class TestServiceWithExceptionCommand : StandardCommand
     {
-
         public override void ConfigureCommand(IServiceBinderFactory serviceBinderFactory, Command command)
         {
             var passedInOption = new Option<string>(
