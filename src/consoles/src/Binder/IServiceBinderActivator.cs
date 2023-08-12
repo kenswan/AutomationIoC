@@ -3,11 +3,9 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using System.CommandLine.Binding;
+namespace AutomationIoC.Consoles.Binder;
 
-namespace AutomationIoC.Consoles;
-
-public interface IServiceBinderFactory
+internal interface IServiceBinderActivator
 {
-    public BinderBase<T> Bind<T>();
+    IServiceProvider GetServiceProvider();
 }

@@ -10,12 +10,17 @@ namespace AutomationIoC.Consoles.Binder;
 
 internal class ServiceBinder<T> : BinderBase<T>
 {
-    private readonly IServiceProvider serviceProvider;
+    private readonly IServiceBinderActivator serviceBinderActivator;
 
-    public ServiceBinder(IServiceProvider serviceProvider)
+    public ServiceBinder(IServiceBinderActivator serviceBinderActivator)
     {
-        this.serviceProvider = serviceProvider;
+        this.serviceBinderActivator = serviceBinderActivator;
     }
 
-    protected override T GetBoundValue(BindingContext bindingContext) => serviceProvider.GetRequiredService<T>();
+    protected override T GetBoundValue(BindingContext bindingContext)
+    {
+        IServiceProvider serviceProvider = serviceBinderActivator.GetServiceProvider();
+
+        return serviceProvider.GetRequiredService<T>();
+    }
 }

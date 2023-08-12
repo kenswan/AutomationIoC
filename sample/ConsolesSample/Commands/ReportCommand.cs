@@ -34,7 +34,7 @@ internal class ReportCommand : StandardCommand
 
         command.SetHandler(UpdateGreeting,
             headerOption,
-            serviceBinderFactory.Create<IReportService>());
+            serviceBinderFactory.Bind<IReportService>());
     }
 
     public override Action<IConfigurationBuilder> ConfigurationBuilder => (configurationBuilder) =>
