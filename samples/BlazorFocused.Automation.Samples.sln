@@ -1,0 +1,87 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34004.107
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationSamples.Shared", "Shared\AutomationSamples.Shared.csproj", "{949472D6-391D-4D86-A709-79FC56D89210}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandLineSample", "CommandLineSample\CommandLineSample.csproj", "{9D7EBFE3-2BB1-4692-828D-EFC5443FB676}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerShellSample", "PowerShellSample\PowerShellSample.csproj", "{B872290F-765C-4B68-A2E9-A2CD710EE3ED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerShellToolsSample", "PowerShellToolsSample\PowerShellToolsSample.csproj", "{6EA3F7DF-8CE6-4229-95FE-92B459A56184}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RuntimeSample", "RuntimeSample\RuntimeSample.csproj", "{6A091B7D-3FE4-44A4-AC42-57878EA5749C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Configuration", "_Configuration", "{29F3FEAB-CFED-467D-8953-8FBD56707CFF}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.targets = Directory.Build.targets
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4FF3865D-3154-49E9-8B12-1A5A92FC4742}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.CommandLine", "..\src\CommandLine\src\BlazorFocused.Automation.CommandLine.csproj", "{ACA4FDF8-E8B8-40E0-A046-CA56EDBC643F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.PowerShell", "..\src\PowerShell\PowerShell\src\BlazorFocused.Automation.PowerShell.csproj", "{0551355D-D506-438C-9015-77B41CD3D0CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.PowerShell.Tools", "..\src\PowerShell\Tools\src\BlazorFocused.Automation.PowerShell.Tools.csproj", "{A6DCABF7-58FE-4619-AF3F-567274471F06}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.Runtime", "..\src\Runtime\src\BlazorFocused.Automation.Runtime.csproj", "{4B2B49BD-445C-472E-93F6-FCFAC301EE44}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D7EBFE3-2BB1-4692-828D-EFC5443FB676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D7EBFE3-2BB1-4692-828D-EFC5443FB676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D7EBFE3-2BB1-4692-828D-EFC5443FB676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D7EBFE3-2BB1-4692-828D-EFC5443FB676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B872290F-765C-4B68-A2E9-A2CD710EE3ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B872290F-765C-4B68-A2E9-A2CD710EE3ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B872290F-765C-4B68-A2E9-A2CD710EE3ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B872290F-765C-4B68-A2E9-A2CD710EE3ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EA3F7DF-8CE6-4229-95FE-92B459A56184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EA3F7DF-8CE6-4229-95FE-92B459A56184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EA3F7DF-8CE6-4229-95FE-92B459A56184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EA3F7DF-8CE6-4229-95FE-92B459A56184}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A091B7D-3FE4-44A4-AC42-57878EA5749C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A091B7D-3FE4-44A4-AC42-57878EA5749C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A091B7D-3FE4-44A4-AC42-57878EA5749C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A091B7D-3FE4-44A4-AC42-57878EA5749C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACA4FDF8-E8B8-40E0-A046-CA56EDBC643F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA4FDF8-E8B8-40E0-A046-CA56EDBC643F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA4FDF8-E8B8-40E0-A046-CA56EDBC643F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA4FDF8-E8B8-40E0-A046-CA56EDBC643F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0551355D-D506-438C-9015-77B41CD3D0CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0551355D-D506-438C-9015-77B41CD3D0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0551355D-D506-438C-9015-77B41CD3D0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0551355D-D506-438C-9015-77B41CD3D0CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6DCABF7-58FE-4619-AF3F-567274471F06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6DCABF7-58FE-4619-AF3F-567274471F06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6DCABF7-58FE-4619-AF3F-567274471F06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6DCABF7-58FE-4619-AF3F-567274471F06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B2B49BD-445C-472E-93F6-FCFAC301EE44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B2B49BD-445C-472E-93F6-FCFAC301EE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B2B49BD-445C-472E-93F6-FCFAC301EE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B2B49BD-445C-472E-93F6-FCFAC301EE44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{949472D6-391D-4D86-A709-79FC56D89210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{949472D6-391D-4D86-A709-79FC56D89210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{949472D6-391D-4D86-A709-79FC56D89210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{949472D6-391D-4D86-A709-79FC56D89210}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ACA4FDF8-E8B8-40E0-A046-CA56EDBC643F} = {4FF3865D-3154-49E9-8B12-1A5A92FC4742}
+		{0551355D-D506-438C-9015-77B41CD3D0CD} = {4FF3865D-3154-49E9-8B12-1A5A92FC4742}
+		{A6DCABF7-58FE-4619-AF3F-567274471F06} = {4FF3865D-3154-49E9-8B12-1A5A92FC4742}
+		{4B2B49BD-445C-472E-93F6-FCFAC301EE44} = {4FF3865D-3154-49E9-8B12-1A5A92FC4742}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3A52089-33A6-40DA-89B1-FE2A7F454E12}
+	EndGlobalSection
+EndGlobal

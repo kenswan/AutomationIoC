@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "RuntimeSample - Company": {
+      "commandName": "Project",
+      "commandLineArgs": "--limit 5 --type Company"
+    },
+    "RuntimeSample - Database": {
+      "commandName": "Project",
+      "commandLineArgs": "--limit 6 --type Company"
+    },
+    "RuntimeSample - Product": {
+      "commandName": "Project",
+      "commandLineArgs": "--limit 7 --type Product"
+    }
+  }
+}
