@@ -1,0 +1,320 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: BlazorFocused.Automation.Runtime
+  name: BlazorFocused.Automation.Runtime
+  href: api/BlazorFocused.Automation.Runtime.html
+  commentId: N:BlazorFocused.Automation.Runtime
+  fullName: BlazorFocused.Automation.Runtime
+  nameWithType: BlazorFocused.Automation.Runtime
+- uid: BlazorFocused.Automation.Runtime.AutomationRuntime
+  name: AutomationRuntime
+  href: api/BlazorFocused.Automation.Runtime.AutomationRuntime.html
+  commentId: T:BlazorFocused.Automation.Runtime.AutomationRuntime
+  fullName: BlazorFocused.Automation.Runtime.AutomationRuntime
+  nameWithType: AutomationRuntime
+- uid: BlazorFocused.Automation.Runtime.AutomationRuntime.AddRuntimeServices*
+  name: AddRuntimeServices
+  href: api/BlazorFocused.Automation.Runtime.AutomationRuntime.html#BlazorFocused_Automation_Runtime_AutomationRuntime_AddRuntimeServices_
+  commentId: Overload:BlazorFocused.Automation.Runtime.AutomationRuntime.AddRuntimeServices
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.AutomationRuntime.AddRuntimeServices
+  nameWithType: AutomationRuntime.AddRuntimeServices
+- uid: BlazorFocused.Automation.Runtime.AutomationRuntime.AddRuntimeServices``1(BlazorFocused.Automation.Runtime.ISessionStorage,Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name: AddRuntimeServices<TStartup>(ISessionStorage, IServiceCollection)
+  href: api/BlazorFocused.Automation.Runtime.AutomationRuntime.html#BlazorFocused_Automation_Runtime_AutomationRuntime_AddRuntimeServices__1_BlazorFocused_Automation_Runtime_ISessionStorage_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  commentId: M:BlazorFocused.Automation.Runtime.AutomationRuntime.AddRuntimeServices``1(BlazorFocused.Automation.Runtime.ISessionStorage,Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name.vb: AddRuntimeServices(Of TStartup)(ISessionStorage, IServiceCollection)
+  fullName: BlazorFocused.Automation.Runtime.AutomationRuntime.AddRuntimeServices<TStartup>(BlazorFocused.Automation.Runtime.ISessionStorage, Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  fullName.vb: BlazorFocused.Automation.Runtime.AutomationRuntime.AddRuntimeServices(Of TStartup)(BlazorFocused.Automation.Runtime.ISessionStorage, Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  nameWithType: AutomationRuntime.AddRuntimeServices<TStartup>(ISessionStorage, IServiceCollection)
+  nameWithType.vb: AutomationRuntime.AddRuntimeServices(Of TStartup)(ISessionStorage, IServiceCollection)
+- uid: BlazorFocused.Automation.Runtime.AutomationRuntime.BindServicesByAttribute*
+  name: BindServicesByAttribute
+  href: api/BlazorFocused.Automation.Runtime.AutomationRuntime.html#BlazorFocused_Automation_Runtime_AutomationRuntime_BindServicesByAttribute_
+  commentId: Overload:BlazorFocused.Automation.Runtime.AutomationRuntime.BindServicesByAttribute
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.AutomationRuntime.BindServicesByAttribute
+  nameWithType: AutomationRuntime.BindServicesByAttribute
+- uid: BlazorFocused.Automation.Runtime.AutomationRuntime.BindServicesByAttribute``1(System.IServiceProvider,System.Object)
+  name: BindServicesByAttribute<TAttribute>(IServiceProvider, object)
+  href: api/BlazorFocused.Automation.Runtime.AutomationRuntime.html#BlazorFocused_Automation_Runtime_AutomationRuntime_BindServicesByAttribute__1_System_IServiceProvider_System_Object_
+  commentId: M:BlazorFocused.Automation.Runtime.AutomationRuntime.BindServicesByAttribute``1(System.IServiceProvider,System.Object)
+  name.vb: BindServicesByAttribute(Of TAttribute)(IServiceProvider, Object)
+  fullName: BlazorFocused.Automation.Runtime.AutomationRuntime.BindServicesByAttribute<TAttribute>(System.IServiceProvider, object)
+  fullName.vb: BlazorFocused.Automation.Runtime.AutomationRuntime.BindServicesByAttribute(Of TAttribute)(System.IServiceProvider, Object)
+  nameWithType: AutomationRuntime.BindServicesByAttribute<TAttribute>(IServiceProvider, object)
+  nameWithType.vb: AutomationRuntime.BindServicesByAttribute(Of TAttribute)(IServiceProvider, Object)
+- uid: BlazorFocused.Automation.Runtime.AutomationRuntime.BindServicesByAttribute``2(BlazorFocused.Automation.Runtime.ISessionStorage,System.Object)
+  name: BindServicesByAttribute<TAttribute, TStartup>(ISessionStorage, object)
+  href: api/BlazorFocused.Automation.Runtime.AutomationRuntime.html#BlazorFocused_Automation_Runtime_AutomationRuntime_BindServicesByAttribute__2_BlazorFocused_Automation_Runtime_ISessionStorage_System_Object_
+  commentId: M:BlazorFocused.Automation.Runtime.AutomationRuntime.BindServicesByAttribute``2(BlazorFocused.Automation.Runtime.ISessionStorage,System.Object)
+  name.vb: BindServicesByAttribute(Of TAttribute, TStartup)(ISessionStorage, Object)
+  fullName: BlazorFocused.Automation.Runtime.AutomationRuntime.BindServicesByAttribute<TAttribute, TStartup>(BlazorFocused.Automation.Runtime.ISessionStorage, object)
+  fullName.vb: BlazorFocused.Automation.Runtime.AutomationRuntime.BindServicesByAttribute(Of TAttribute, TStartup)(BlazorFocused.Automation.Runtime.ISessionStorage, Object)
+  nameWithType: AutomationRuntime.BindServicesByAttribute<TAttribute, TStartup>(ISessionStorage, object)
+  nameWithType.vb: AutomationRuntime.BindServicesByAttribute(Of TAttribute, TStartup)(ISessionStorage, Object)
+- uid: BlazorFocused.Automation.Runtime.AutomationRuntime.GenerateRuntimeHost(System.Action{Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.Configuration.IConfigurationBuilder},System.Action{Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.DependencyInjection.IServiceCollection},System.String[],System.Collections.Generic.IDictionary{System.String,System.String})
+  name: GenerateRuntimeHost(Action<HostBuilderContext, IConfigurationBuilder>, Action<HostBuilderContext, IServiceCollection>, string[], IDictionary<string, string>)
+  href: api/BlazorFocused.Automation.Runtime.AutomationRuntime.html#BlazorFocused_Automation_Runtime_AutomationRuntime_GenerateRuntimeHost_System_Action_Microsoft_Extensions_Hosting_HostBuilderContext_Microsoft_Extensions_Configuration_IConfigurationBuilder__System_Action_Microsoft_Extensions_Hosting_HostBuilderContext_Microsoft_Extensions_DependencyInjection_IServiceCollection__System_String___System_Collections_Generic_IDictionary_System_String_System_String__
+  commentId: M:BlazorFocused.Automation.Runtime.AutomationRuntime.GenerateRuntimeHost(System.Action{Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.Configuration.IConfigurationBuilder},System.Action{Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.DependencyInjection.IServiceCollection},System.String[],System.Collections.Generic.IDictionary{System.String,System.String})
+  name.vb: GenerateRuntimeHost(Action(Of HostBuilderContext, IConfigurationBuilder), Action(Of HostBuilderContext, IServiceCollection), String(), IDictionary(Of String, String))
+  fullName: BlazorFocused.Automation.Runtime.AutomationRuntime.GenerateRuntimeHost(System.Action<Microsoft.Extensions.Hosting.HostBuilderContext, Microsoft.Extensions.Configuration.IConfigurationBuilder>, System.Action<Microsoft.Extensions.Hosting.HostBuilderContext, Microsoft.Extensions.DependencyInjection.IServiceCollection>, string[], System.Collections.Generic.IDictionary<string, string>)
+  fullName.vb: BlazorFocused.Automation.Runtime.AutomationRuntime.GenerateRuntimeHost(System.Action(Of Microsoft.Extensions.Hosting.HostBuilderContext, Microsoft.Extensions.Configuration.IConfigurationBuilder), System.Action(Of Microsoft.Extensions.Hosting.HostBuilderContext, Microsoft.Extensions.DependencyInjection.IServiceCollection), String(), System.Collections.Generic.IDictionary(Of String, String))
+  nameWithType: AutomationRuntime.GenerateRuntimeHost(Action<HostBuilderContext, IConfigurationBuilder>, Action<HostBuilderContext, IServiceCollection>, string[], IDictionary<string, string>)
+  nameWithType.vb: AutomationRuntime.GenerateRuntimeHost(Action(Of HostBuilderContext, IConfigurationBuilder), Action(Of HostBuilderContext, IServiceCollection), String(), IDictionary(Of String, String))
+- uid: BlazorFocused.Automation.Runtime.AutomationRuntime.GenerateRuntimeHost*
+  name: GenerateRuntimeHost
+  href: api/BlazorFocused.Automation.Runtime.AutomationRuntime.html#BlazorFocused_Automation_Runtime_AutomationRuntime_GenerateRuntimeHost_
+  commentId: Overload:BlazorFocused.Automation.Runtime.AutomationRuntime.GenerateRuntimeHost
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.AutomationRuntime.GenerateRuntimeHost
+  nameWithType: AutomationRuntime.GenerateRuntimeHost
+- uid: BlazorFocused.Automation.Runtime.AutomationRuntime.GenerateRuntimeHost``1
+  name: GenerateRuntimeHost<TStartup>()
+  href: api/BlazorFocused.Automation.Runtime.AutomationRuntime.html#BlazorFocused_Automation_Runtime_AutomationRuntime_GenerateRuntimeHost__1
+  commentId: M:BlazorFocused.Automation.Runtime.AutomationRuntime.GenerateRuntimeHost``1
+  name.vb: GenerateRuntimeHost(Of TStartup)()
+  fullName: BlazorFocused.Automation.Runtime.AutomationRuntime.GenerateRuntimeHost<TStartup>()
+  fullName.vb: BlazorFocused.Automation.Runtime.AutomationRuntime.GenerateRuntimeHost(Of TStartup)()
+  nameWithType: AutomationRuntime.GenerateRuntimeHost<TStartup>()
+  nameWithType.vb: AutomationRuntime.GenerateRuntimeHost(Of TStartup)()
+- uid: BlazorFocused.Automation.Runtime.AutomationStartup
+  name: AutomationStartup
+  href: api/BlazorFocused.Automation.Runtime.AutomationStartup.html
+  commentId: T:BlazorFocused.Automation.Runtime.AutomationStartup
+  fullName: BlazorFocused.Automation.Runtime.AutomationStartup
+  nameWithType: AutomationStartup
+- uid: BlazorFocused.Automation.Runtime.AutomationStartup.Configure(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.Configuration.IConfigurationBuilder)
+  name: Configure(HostBuilderContext, IConfigurationBuilder)
+  href: api/BlazorFocused.Automation.Runtime.AutomationStartup.html#BlazorFocused_Automation_Runtime_AutomationStartup_Configure_Microsoft_Extensions_Hosting_HostBuilderContext_Microsoft_Extensions_Configuration_IConfigurationBuilder_
+  commentId: M:BlazorFocused.Automation.Runtime.AutomationStartup.Configure(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.Configuration.IConfigurationBuilder)
+  fullName: BlazorFocused.Automation.Runtime.AutomationStartup.Configure(Microsoft.Extensions.Hosting.HostBuilderContext, Microsoft.Extensions.Configuration.IConfigurationBuilder)
+  nameWithType: AutomationStartup.Configure(HostBuilderContext, IConfigurationBuilder)
+- uid: BlazorFocused.Automation.Runtime.AutomationStartup.Configure*
+  name: Configure
+  href: api/BlazorFocused.Automation.Runtime.AutomationStartup.html#BlazorFocused_Automation_Runtime_AutomationStartup_Configure_
+  commentId: Overload:BlazorFocused.Automation.Runtime.AutomationStartup.Configure
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.AutomationStartup.Configure
+  nameWithType: AutomationStartup.Configure
+- uid: BlazorFocused.Automation.Runtime.AutomationStartup.ConfigureServices(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name: ConfigureServices(HostBuilderContext, IServiceCollection)
+  href: api/BlazorFocused.Automation.Runtime.AutomationStartup.html#BlazorFocused_Automation_Runtime_AutomationStartup_ConfigureServices_Microsoft_Extensions_Hosting_HostBuilderContext_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  commentId: M:BlazorFocused.Automation.Runtime.AutomationStartup.ConfigureServices(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  fullName: BlazorFocused.Automation.Runtime.AutomationStartup.ConfigureServices(Microsoft.Extensions.Hosting.HostBuilderContext, Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  nameWithType: AutomationStartup.ConfigureServices(HostBuilderContext, IServiceCollection)
+- uid: BlazorFocused.Automation.Runtime.AutomationStartup.ConfigureServices*
+  name: ConfigureServices
+  href: api/BlazorFocused.Automation.Runtime.AutomationStartup.html#BlazorFocused_Automation_Runtime_AutomationStartup_ConfigureServices_
+  commentId: Overload:BlazorFocused.Automation.Runtime.AutomationStartup.ConfigureServices
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.AutomationStartup.ConfigureServices
+  nameWithType: AutomationStartup.ConfigureServices
+- uid: BlazorFocused.Automation.Runtime.AutomationStartup.GenerateParameterConfigurationMapping
+  name: GenerateParameterConfigurationMapping()
+  href: api/BlazorFocused.Automation.Runtime.AutomationStartup.html#BlazorFocused_Automation_Runtime_AutomationStartup_GenerateParameterConfigurationMapping
+  commentId: M:BlazorFocused.Automation.Runtime.AutomationStartup.GenerateParameterConfigurationMapping
+  fullName: BlazorFocused.Automation.Runtime.AutomationStartup.GenerateParameterConfigurationMapping()
+  nameWithType: AutomationStartup.GenerateParameterConfigurationMapping()
+- uid: BlazorFocused.Automation.Runtime.AutomationStartup.GenerateParameterConfigurationMapping*
+  name: GenerateParameterConfigurationMapping
+  href: api/BlazorFocused.Automation.Runtime.AutomationStartup.html#BlazorFocused_Automation_Runtime_AutomationStartup_GenerateParameterConfigurationMapping_
+  commentId: Overload:BlazorFocused.Automation.Runtime.AutomationStartup.GenerateParameterConfigurationMapping
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.AutomationStartup.GenerateParameterConfigurationMapping
+  nameWithType: AutomationStartup.GenerateParameterConfigurationMapping
+- uid: BlazorFocused.Automation.Runtime.AutomationStartup.GenerateParameters
+  name: GenerateParameters()
+  href: api/BlazorFocused.Automation.Runtime.AutomationStartup.html#BlazorFocused_Automation_Runtime_AutomationStartup_GenerateParameters
+  commentId: M:BlazorFocused.Automation.Runtime.AutomationStartup.GenerateParameters
+  fullName: BlazorFocused.Automation.Runtime.AutomationStartup.GenerateParameters()
+  nameWithType: AutomationStartup.GenerateParameters()
+- uid: BlazorFocused.Automation.Runtime.AutomationStartup.GenerateParameters*
+  name: GenerateParameters
+  href: api/BlazorFocused.Automation.Runtime.AutomationStartup.html#BlazorFocused_Automation_Runtime_AutomationStartup_GenerateParameters_
+  commentId: Overload:BlazorFocused.Automation.Runtime.AutomationStartup.GenerateParameters
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.AutomationStartup.GenerateParameters
+  nameWithType: AutomationStartup.GenerateParameters
+- uid: BlazorFocused.Automation.Runtime.IAutomationBinder
+  name: IAutomationBinder
+  href: api/BlazorFocused.Automation.Runtime.IAutomationBinder.html
+  commentId: T:BlazorFocused.Automation.Runtime.IAutomationBinder
+  fullName: BlazorFocused.Automation.Runtime.IAutomationBinder
+  nameWithType: IAutomationBinder
+- uid: BlazorFocused.Automation.Runtime.IAutomationBinder.BindContext*
+  name: BindContext
+  href: api/BlazorFocused.Automation.Runtime.IAutomationBinder.html#BlazorFocused_Automation_Runtime_IAutomationBinder_BindContext_
+  commentId: Overload:BlazorFocused.Automation.Runtime.IAutomationBinder.BindContext
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.IAutomationBinder.BindContext
+  nameWithType: IAutomationBinder.BindContext
+- uid: BlazorFocused.Automation.Runtime.IAutomationBinder.BindContext``1(System.Object)
+  name: BindContext<TAttribute>(object)
+  href: api/BlazorFocused.Automation.Runtime.IAutomationBinder.html#BlazorFocused_Automation_Runtime_IAutomationBinder_BindContext__1_System_Object_
+  commentId: M:BlazorFocused.Automation.Runtime.IAutomationBinder.BindContext``1(System.Object)
+  name.vb: BindContext(Of TAttribute)(Object)
+  fullName: BlazorFocused.Automation.Runtime.IAutomationBinder.BindContext<TAttribute>(object)
+  fullName.vb: BlazorFocused.Automation.Runtime.IAutomationBinder.BindContext(Of TAttribute)(Object)
+  nameWithType: IAutomationBinder.BindContext<TAttribute>(object)
+  nameWithType.vb: IAutomationBinder.BindContext(Of TAttribute)(Object)
+- uid: BlazorFocused.Automation.Runtime.IAutomationStartup
+  name: IAutomationStartup
+  href: api/BlazorFocused.Automation.Runtime.IAutomationStartup.html
+  commentId: T:BlazorFocused.Automation.Runtime.IAutomationStartup
+  fullName: BlazorFocused.Automation.Runtime.IAutomationStartup
+  nameWithType: IAutomationStartup
+- uid: BlazorFocused.Automation.Runtime.IAutomationStartup.Configure(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.Configuration.IConfigurationBuilder)
+  name: Configure(HostBuilderContext, IConfigurationBuilder)
+  href: api/BlazorFocused.Automation.Runtime.IAutomationStartup.html#BlazorFocused_Automation_Runtime_IAutomationStartup_Configure_Microsoft_Extensions_Hosting_HostBuilderContext_Microsoft_Extensions_Configuration_IConfigurationBuilder_
+  commentId: M:BlazorFocused.Automation.Runtime.IAutomationStartup.Configure(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.Configuration.IConfigurationBuilder)
+  fullName: BlazorFocused.Automation.Runtime.IAutomationStartup.Configure(Microsoft.Extensions.Hosting.HostBuilderContext, Microsoft.Extensions.Configuration.IConfigurationBuilder)
+  nameWithType: IAutomationStartup.Configure(HostBuilderContext, IConfigurationBuilder)
+- uid: BlazorFocused.Automation.Runtime.IAutomationStartup.Configure*
+  name: Configure
+  href: api/BlazorFocused.Automation.Runtime.IAutomationStartup.html#BlazorFocused_Automation_Runtime_IAutomationStartup_Configure_
+  commentId: Overload:BlazorFocused.Automation.Runtime.IAutomationStartup.Configure
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.IAutomationStartup.Configure
+  nameWithType: IAutomationStartup.Configure
+- uid: BlazorFocused.Automation.Runtime.IAutomationStartup.ConfigureServices(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name: ConfigureServices(HostBuilderContext, IServiceCollection)
+  href: api/BlazorFocused.Automation.Runtime.IAutomationStartup.html#BlazorFocused_Automation_Runtime_IAutomationStartup_ConfigureServices_Microsoft_Extensions_Hosting_HostBuilderContext_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  commentId: M:BlazorFocused.Automation.Runtime.IAutomationStartup.ConfigureServices(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  fullName: BlazorFocused.Automation.Runtime.IAutomationStartup.ConfigureServices(Microsoft.Extensions.Hosting.HostBuilderContext, Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  nameWithType: IAutomationStartup.ConfigureServices(HostBuilderContext, IServiceCollection)
+- uid: BlazorFocused.Automation.Runtime.IAutomationStartup.ConfigureServices*
+  name: ConfigureServices
+  href: api/BlazorFocused.Automation.Runtime.IAutomationStartup.html#BlazorFocused_Automation_Runtime_IAutomationStartup_ConfigureServices_
+  commentId: Overload:BlazorFocused.Automation.Runtime.IAutomationStartup.ConfigureServices
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.IAutomationStartup.ConfigureServices
+  nameWithType: IAutomationStartup.ConfigureServices
+- uid: BlazorFocused.Automation.Runtime.IAutomationStartup.GenerateParameterConfigurationMapping
+  name: GenerateParameterConfigurationMapping()
+  href: api/BlazorFocused.Automation.Runtime.IAutomationStartup.html#BlazorFocused_Automation_Runtime_IAutomationStartup_GenerateParameterConfigurationMapping
+  commentId: M:BlazorFocused.Automation.Runtime.IAutomationStartup.GenerateParameterConfigurationMapping
+  fullName: BlazorFocused.Automation.Runtime.IAutomationStartup.GenerateParameterConfigurationMapping()
+  nameWithType: IAutomationStartup.GenerateParameterConfigurationMapping()
+- uid: BlazorFocused.Automation.Runtime.IAutomationStartup.GenerateParameterConfigurationMapping*
+  name: GenerateParameterConfigurationMapping
+  href: api/BlazorFocused.Automation.Runtime.IAutomationStartup.html#BlazorFocused_Automation_Runtime_IAutomationStartup_GenerateParameterConfigurationMapping_
+  commentId: Overload:BlazorFocused.Automation.Runtime.IAutomationStartup.GenerateParameterConfigurationMapping
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.IAutomationStartup.GenerateParameterConfigurationMapping
+  nameWithType: IAutomationStartup.GenerateParameterConfigurationMapping
+- uid: BlazorFocused.Automation.Runtime.IAutomationStartup.GenerateParameters
+  name: GenerateParameters()
+  href: api/BlazorFocused.Automation.Runtime.IAutomationStartup.html#BlazorFocused_Automation_Runtime_IAutomationStartup_GenerateParameters
+  commentId: M:BlazorFocused.Automation.Runtime.IAutomationStartup.GenerateParameters
+  fullName: BlazorFocused.Automation.Runtime.IAutomationStartup.GenerateParameters()
+  nameWithType: IAutomationStartup.GenerateParameters()
+- uid: BlazorFocused.Automation.Runtime.IAutomationStartup.GenerateParameters*
+  name: GenerateParameters
+  href: api/BlazorFocused.Automation.Runtime.IAutomationStartup.html#BlazorFocused_Automation_Runtime_IAutomationStartup_GenerateParameters_
+  commentId: Overload:BlazorFocused.Automation.Runtime.IAutomationStartup.GenerateParameters
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.IAutomationStartup.GenerateParameters
+  nameWithType: IAutomationStartup.GenerateParameters
+- uid: BlazorFocused.Automation.Runtime.IContextBuilder
+  name: IContextBuilder
+  href: api/BlazorFocused.Automation.Runtime.IContextBuilder.html
+  commentId: T:BlazorFocused.Automation.Runtime.IContextBuilder
+  fullName: BlazorFocused.Automation.Runtime.IContextBuilder
+  nameWithType: IContextBuilder
+- uid: BlazorFocused.Automation.Runtime.IContextBuilder.BuildServices
+  name: BuildServices()
+  href: api/BlazorFocused.Automation.Runtime.IContextBuilder.html#BlazorFocused_Automation_Runtime_IContextBuilder_BuildServices
+  commentId: M:BlazorFocused.Automation.Runtime.IContextBuilder.BuildServices
+  fullName: BlazorFocused.Automation.Runtime.IContextBuilder.BuildServices()
+  nameWithType: IContextBuilder.BuildServices()
+- uid: BlazorFocused.Automation.Runtime.IContextBuilder.BuildServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name: BuildServices(IServiceCollection)
+  href: api/BlazorFocused.Automation.Runtime.IContextBuilder.html#BlazorFocused_Automation_Runtime_IContextBuilder_BuildServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  commentId: M:BlazorFocused.Automation.Runtime.IContextBuilder.BuildServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  fullName: BlazorFocused.Automation.Runtime.IContextBuilder.BuildServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  nameWithType: IContextBuilder.BuildServices(IServiceCollection)
+- uid: BlazorFocused.Automation.Runtime.IContextBuilder.BuildServices*
+  name: BuildServices
+  href: api/BlazorFocused.Automation.Runtime.IContextBuilder.html#BlazorFocused_Automation_Runtime_IContextBuilder_BuildServices_
+  commentId: Overload:BlazorFocused.Automation.Runtime.IContextBuilder.BuildServices
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.IContextBuilder.BuildServices
+  nameWithType: IContextBuilder.BuildServices
+- uid: BlazorFocused.Automation.Runtime.IContextBuilder.GetContextServiceProvider
+  name: GetContextServiceProvider()
+  href: api/BlazorFocused.Automation.Runtime.IContextBuilder.html#BlazorFocused_Automation_Runtime_IContextBuilder_GetContextServiceProvider
+  commentId: M:BlazorFocused.Automation.Runtime.IContextBuilder.GetContextServiceProvider
+  fullName: BlazorFocused.Automation.Runtime.IContextBuilder.GetContextServiceProvider()
+  nameWithType: IContextBuilder.GetContextServiceProvider()
+- uid: BlazorFocused.Automation.Runtime.IContextBuilder.GetContextServiceProvider*
+  name: GetContextServiceProvider
+  href: api/BlazorFocused.Automation.Runtime.IContextBuilder.html#BlazorFocused_Automation_Runtime_IContextBuilder_GetContextServiceProvider_
+  commentId: Overload:BlazorFocused.Automation.Runtime.IContextBuilder.GetContextServiceProvider
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.IContextBuilder.GetContextServiceProvider
+  nameWithType: IContextBuilder.GetContextServiceProvider
+- uid: BlazorFocused.Automation.Runtime.IContextBuilder.IsInitialized
+  name: IsInitialized
+  href: api/BlazorFocused.Automation.Runtime.IContextBuilder.html#BlazorFocused_Automation_Runtime_IContextBuilder_IsInitialized
+  commentId: P:BlazorFocused.Automation.Runtime.IContextBuilder.IsInitialized
+  fullName: BlazorFocused.Automation.Runtime.IContextBuilder.IsInitialized
+  nameWithType: IContextBuilder.IsInitialized
+- uid: BlazorFocused.Automation.Runtime.IContextBuilder.IsInitialized*
+  name: IsInitialized
+  href: api/BlazorFocused.Automation.Runtime.IContextBuilder.html#BlazorFocused_Automation_Runtime_IContextBuilder_IsInitialized_
+  commentId: Overload:BlazorFocused.Automation.Runtime.IContextBuilder.IsInitialized
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.IContextBuilder.IsInitialized
+  nameWithType: IContextBuilder.IsInitialized
+- uid: BlazorFocused.Automation.Runtime.ISessionStorage
+  name: ISessionStorage
+  href: api/BlazorFocused.Automation.Runtime.ISessionStorage.html
+  commentId: T:BlazorFocused.Automation.Runtime.ISessionStorage
+  fullName: BlazorFocused.Automation.Runtime.ISessionStorage
+  nameWithType: ISessionStorage
+- uid: BlazorFocused.Automation.Runtime.ISessionStorage.GetValue*
+  name: GetValue
+  href: api/BlazorFocused.Automation.Runtime.ISessionStorage.html#BlazorFocused_Automation_Runtime_ISessionStorage_GetValue_
+  commentId: Overload:BlazorFocused.Automation.Runtime.ISessionStorage.GetValue
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.ISessionStorage.GetValue
+  nameWithType: ISessionStorage.GetValue
+- uid: BlazorFocused.Automation.Runtime.ISessionStorage.GetValue``1(System.String)
+  name: GetValue<T>(string)
+  href: api/BlazorFocused.Automation.Runtime.ISessionStorage.html#BlazorFocused_Automation_Runtime_ISessionStorage_GetValue__1_System_String_
+  commentId: M:BlazorFocused.Automation.Runtime.ISessionStorage.GetValue``1(System.String)
+  name.vb: GetValue(Of T)(String)
+  fullName: BlazorFocused.Automation.Runtime.ISessionStorage.GetValue<T>(string)
+  fullName.vb: BlazorFocused.Automation.Runtime.ISessionStorage.GetValue(Of T)(String)
+  nameWithType: ISessionStorage.GetValue<T>(string)
+  nameWithType.vb: ISessionStorage.GetValue(Of T)(String)
+- uid: BlazorFocused.Automation.Runtime.ISessionStorage.SetValue*
+  name: SetValue
+  href: api/BlazorFocused.Automation.Runtime.ISessionStorage.html#BlazorFocused_Automation_Runtime_ISessionStorage_SetValue_
+  commentId: Overload:BlazorFocused.Automation.Runtime.ISessionStorage.SetValue
+  isSpec: "True"
+  fullName: BlazorFocused.Automation.Runtime.ISessionStorage.SetValue
+  nameWithType: ISessionStorage.SetValue
+- uid: BlazorFocused.Automation.Runtime.ISessionStorage.SetValue``1(System.String,``0)
+  name: SetValue<T>(string, T)
+  href: api/BlazorFocused.Automation.Runtime.ISessionStorage.html#BlazorFocused_Automation_Runtime_ISessionStorage_SetValue__1_System_String___0_
+  commentId: M:BlazorFocused.Automation.Runtime.ISessionStorage.SetValue``1(System.String,``0)
+  name.vb: SetValue(Of T)(String, T)
+  fullName: BlazorFocused.Automation.Runtime.ISessionStorage.SetValue<T>(string, T)
+  fullName.vb: BlazorFocused.Automation.Runtime.ISessionStorage.SetValue(Of T)(String, T)
+  nameWithType: ISessionStorage.SetValue<T>(string, T)
+  nameWithType.vb: ISessionStorage.SetValue(Of T)(String, T)
+- uid: api/index
+  name: API
+  href: api/index.html
+- uid: guides/Runtime/index
+  name: Runtime
+  href: guides/runtime/index.html
+- uid: guides/index
+  name: Guides
+  href: guides/index.html
+- uid: home
+  name: Home
+  href: index.html

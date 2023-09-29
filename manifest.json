@@ -1,0 +1,163 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/a/Automation/Automation/Documentation/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlazorFocused.Automation.Runtime.AutomationRuntime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlazorFocused.Automation.Runtime.AutomationRuntime.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlazorFocused.Automation.Runtime.AutomationStartup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlazorFocused.Automation.Runtime.AutomationStartup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlazorFocused.Automation.Runtime.IAutomationBinder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlazorFocused.Automation.Runtime.IAutomationBinder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlazorFocused.Automation.Runtime.IAutomationStartup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlazorFocused.Automation.Runtime.IAutomationStartup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlazorFocused.Automation.Runtime.IContextBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlazorFocused.Automation.Runtime.IContextBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlazorFocused.Automation.Runtime.ISessionStorage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlazorFocused.Automation.Runtime.ISessionStorage.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlazorFocused.Automation.Runtime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlazorFocused.Automation.Runtime.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guides/runtime/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/runtime/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "guides/toc.md",
+      "output": {
+        ".html": {
+          "relative_path": "guides/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/BlazorFocused.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/BlazorFocused.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.md",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
