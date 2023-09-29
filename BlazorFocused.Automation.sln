@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34004.107
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.Runtime", "src\Runtime\src\BlazorFocused.Automation.Runtime.csproj", "{C9F18838-0BF5-4D1E-95AB-E01C71108469}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.Runtime.Test", "src\Runtime\test\BlazorFocused.Automation.Runtime.Test.csproj", "{EB857D61-D7B6-46C7-8A9E-0AAED651BCE3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.PowerShell", "src\PowerShell\PowerShell\src\BlazorFocused.Automation.PowerShell.csproj", "{B0CD082E-B0EA-4015-83B0-1856B911D0F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Configuration", "_Configuration", "{9DD440B2-4859-49D3-8E43-813518377793}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		Directory.Packages.props = Directory.Packages.props
+		NuGet.config = NuGet.config
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.PowerShell.Test", "src\PowerShell\PowerShell\test\BlazorFocused.Automation.PowerShell.Test.csproj", "{54FCE863-D312-4447-8FD9-485DDE0A8B2E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.PowerShell.Tools", "src\PowerShell\Tools\src\BlazorFocused.Automation.PowerShell.Tools.csproj", "{5D66F7AF-580C-4004-AA21-9207B5089A8A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.PowerShell.Tools.Test", "src\PowerShell\Tools\test\BlazorFocused.Automation.PowerShell.Tools.Test.csproj", "{E6015DE0-5D71-47F1-9994-BF73E4B1962C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.CommandLine", "src\CommandLine\src\BlazorFocused.Automation.CommandLine.csproj", "{DC97266D-C08B-4E1B-A6F0-FC543062E1F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.CommandLine.Test", "src\CommandLine\test\BlazorFocused.Automation.CommandLine.Test.csproj", "{E292F326-2CD0-485F-892B-2576A11EFBF6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9F18838-0BF5-4D1E-95AB-E01C71108469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9F18838-0BF5-4D1E-95AB-E01C71108469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9F18838-0BF5-4D1E-95AB-E01C71108469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9F18838-0BF5-4D1E-95AB-E01C71108469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB857D61-D7B6-46C7-8A9E-0AAED651BCE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB857D61-D7B6-46C7-8A9E-0AAED651BCE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB857D61-D7B6-46C7-8A9E-0AAED651BCE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB857D61-D7B6-46C7-8A9E-0AAED651BCE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0CD082E-B0EA-4015-83B0-1856B911D0F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0CD082E-B0EA-4015-83B0-1856B911D0F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0CD082E-B0EA-4015-83B0-1856B911D0F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0CD082E-B0EA-4015-83B0-1856B911D0F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54FCE863-D312-4447-8FD9-485DDE0A8B2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54FCE863-D312-4447-8FD9-485DDE0A8B2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54FCE863-D312-4447-8FD9-485DDE0A8B2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54FCE863-D312-4447-8FD9-485DDE0A8B2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D66F7AF-580C-4004-AA21-9207B5089A8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D66F7AF-580C-4004-AA21-9207B5089A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D66F7AF-580C-4004-AA21-9207B5089A8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D66F7AF-580C-4004-AA21-9207B5089A8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6015DE0-5D71-47F1-9994-BF73E4B1962C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6015DE0-5D71-47F1-9994-BF73E4B1962C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6015DE0-5D71-47F1-9994-BF73E4B1962C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6015DE0-5D71-47F1-9994-BF73E4B1962C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC97266D-C08B-4E1B-A6F0-FC543062E1F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC97266D-C08B-4E1B-A6F0-FC543062E1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC97266D-C08B-4E1B-A6F0-FC543062E1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC97266D-C08B-4E1B-A6F0-FC543062E1F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E292F326-2CD0-485F-892B-2576A11EFBF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E292F326-2CD0-485F-892B-2576A11EFBF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E292F326-2CD0-485F-892B-2576A11EFBF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E292F326-2CD0-485F-892B-2576A11EFBF6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3DFE9DC7-D59F-4762-A1B8-C017016CE60B}
+	EndGlobalSection
+EndGlobal

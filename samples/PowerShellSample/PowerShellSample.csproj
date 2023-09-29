@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\PowerShell\PowerShell\src\BlazorFocused.Automation.PowerShell.csproj" />
+    <ProjectReference Include="..\Shared\AutomationSamples.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

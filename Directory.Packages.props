@@ -1,0 +1,40 @@
+<Project>
+
+  <PropertyGroup Label="Package Management">
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup Label="Microsoft NuGet Packages (Source - All Frameworks)">
+    <PackageVersion Include="PowerShellStandard.Library" Version="5.1.1" />
+    <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+  </ItemGroup>
+  
+  <ItemGroup Label="Microsoft NuGet Packages (Source)" Condition="'$(TargetFramework)' == 'net6.0'">
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    <PackageVersion Include="Microsoft.PowerShell.SDK" Version="7.2.7" />
+  </ItemGroup>
+
+  <ItemGroup Label="Microsoft NuGet Packages (Source)" Condition="'$(TargetFramework)' == 'net7.0'">
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageVersion Include="Microsoft.PowerShell.SDK" Version="7.3.7" />
+  </ItemGroup>
+
+  <ItemGroup Label="Microsoft NuGet Packages (Source)" Condition="'$(TargetFramework)' == 'net8.0'">
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0-rc.1.23419.4" />
+    <PackageVersion Include="Microsoft.PowerShell.SDK" Version="7.4.0-preview.5" />
+  </ItemGroup>
+
+  <ItemGroup Label="Microsoft NuGet Packages (Test)">
+    <PackageVersion Include="coverlet.collector" Version="6.0.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
+    <PackageVersion Include="xunit" Version="2.5.0" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.0" />
+  </ItemGroup>
+
+  <ItemGroup Label="External Testing Packages">
+    <PackageVersion Include="Bogus" Version="34.0.2" />
+    <PackageVersion Include="FluentAssertions" Version="6.12.0" />
+    <PackageVersion Include="Moq" Version="4.18.3" />
+  </ItemGroup>
+
+</Project>

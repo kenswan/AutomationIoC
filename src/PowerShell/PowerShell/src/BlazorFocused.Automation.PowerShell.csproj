@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup Label="NuGet Metadata">
+    <Title>BlazorFocused.Automation.PowerShell</Title>
+    <PackageId>BlazorFocused.Automation.PowerShell</PackageId>
+    <Description>PowerShell PSCmdlet SDK utilities for Automation framework development</Description>
+    <PackageTags>dotnet;csharp;powershell;pscmdlet;cmdlet;</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Publishing Properties Override (Path)">
+    <AssemblyOriginatorKeyFile>../../../BlazorFocused.Automation.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PowerShellStandard.Library" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Runtime\src\BlazorFocused.Automation.Runtime.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Label="NuGet Artifacts">
+    <None Include="..\..\..\..\BlazorFocused.png" Pack="true" PackagePath="\" Visible="false"  />
+    <None Include="..\README.md" Pack="true" PackagePath="\" Visible="false"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>
+        $(AssemblyName).Test, PublicKey=0024000004800000940000000602000000240000525341310004000001000100d9fce9b40d8a122303f499d3c2c79b45385ec425e0795615d96071cae06bcc3230245c080a3b3dd202a88069c20867d95b7792d62ac81a38b01cff88c5aacdd09760555a17b810e23589cf7f1b2f91e347bade7105ed21e05cb48a7f4ed53a5017f10fdd200171b5147ac30ef7357e3bcffcafc4a29a0239801878c32d8a00dc
+      </_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>
+        $(AssemblyName).Tools, PublicKey=0024000004800000940000000602000000240000525341310004000001000100d9fce9b40d8a122303f499d3c2c79b45385ec425e0795615d96071cae06bcc3230245c080a3b3dd202a88069c20867d95b7792d62ac81a38b01cff88c5aacdd09760555a17b810e23589cf7f1b2f91e347bade7105ed21e05cb48a7f4ed53a5017f10fdd200171b5147ac30ef7357e3bcffcafc4a29a0239801878c32d8a00dc
+      </_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>
+        $(AssemblyName).Tools.Test, PublicKey=0024000004800000940000000602000000240000525341310004000001000100d9fce9b40d8a122303f499d3c2c79b45385ec425e0795615d96071cae06bcc3230245c080a3b3dd202a88069c20867d95b7792d62ac81a38b01cff88c5aacdd09760555a17b810e23589cf7f1b2f91e347bade7105ed21e05cb48a7f4ed53a5017f10fdd200171b5147ac30ef7357e3bcffcafc4a29a0239801878c32d8a00dc
+      </_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+</Project>

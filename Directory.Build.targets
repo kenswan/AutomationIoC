@@ -1,0 +1,17 @@
+<Project>
+
+  <PropertyGroup Label="NuGet Metadata">
+    <Authors>Ken Swan</Authors>
+    <Copyright>Copyright (c) 2023 BlazorFocused</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://BlazorFocused.github.io/Automation/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BlazorFocused/Automation.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>See https://github.com/BlazorFocused/Automation/releases</PackageReleaseNotes>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+    <PackageIcon>BlazorFocused.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+</Project>
