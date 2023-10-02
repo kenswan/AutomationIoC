@@ -10,15 +10,15 @@ using BlazorFocused.Automation.Runtime;
 namespace BlazorFocused.Automation.PowerShell;
 
 /// <summary>
-///
+/// Standard automation class used to run synchronous PowerShell automation commands
 /// </summary>
-/// <typeparam name="TStartup"></typeparam>
+/// <typeparam name="TStartup">Type of automation startup services class</typeparam>
 public abstract class AutomationShell<TStartup> : PSCmdlet where TStartup : IAutomationStartup, new()
 {
     internal string CommandName => MyInvocation.InvocationName;
 
     /// <summary>
-    ///
+    /// Pre-process preparation for command execution
     /// </summary>
     protected override void BeginProcessing()
     {
@@ -33,7 +33,7 @@ public abstract class AutomationShell<TStartup> : PSCmdlet where TStartup : IAut
     }
 
     /// <summary>
-    ///
+    /// Main command execution process
     /// </summary>
     protected override void ProcessRecord()
     {
@@ -43,7 +43,7 @@ public abstract class AutomationShell<TStartup> : PSCmdlet where TStartup : IAut
     }
 
     /// <summary>
-    ///
+    /// Post-process cleanup after command execution
     /// </summary>
     protected override void EndProcessing()
     {
