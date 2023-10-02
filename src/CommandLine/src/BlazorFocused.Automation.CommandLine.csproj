@@ -15,11 +15,6 @@
     <PackageReference Include="System.CommandLine" />
   </ItemGroup>
 
-  <ItemGroup Label="NuGet Artifacts">
-    <None Include="..\..\..\BlazorFocused.png" Pack="true" PackagePath="\" Visible="false" />
-    <None Include="..\README.md" Pack="true" PackagePath="\" Visible="false" />
-  </ItemGroup>
-
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
       <_Parameter1>
