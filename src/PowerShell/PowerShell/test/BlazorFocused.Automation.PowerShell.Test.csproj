@@ -38,8 +38,4 @@
     <ProjectReference Include="..\src\BlazorFocused.Automation.PowerShell.csproj" />
   </ItemGroup>
 
-  <PropertyGroup Label="Publishing Properties Override (Path)">
-    <AssemblyOriginatorKeyFile>../../../BlazorFocused.Automation.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-
 </Project>

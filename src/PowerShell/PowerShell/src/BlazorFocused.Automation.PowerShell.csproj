@@ -11,21 +11,12 @@
     <PackageTags>dotnet;csharp;powershell;pscmdlet;cmdlet;</PackageTags>
   </PropertyGroup>
 
-  <PropertyGroup Label="Publishing Properties Override (Path)">
-    <AssemblyOriginatorKeyFile>../../../BlazorFocused.Automation.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="PowerShellStandard.Library" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Runtime\src\BlazorFocused.Automation.Runtime.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Label="NuGet Artifacts">
-    <None Include="..\..\..\..\BlazorFocused.png" Pack="true" PackagePath="\" Visible="false"  />
-    <None Include="..\README.md" Pack="true" PackagePath="\" Visible="false"/>
   </ItemGroup>
 
   <ItemGroup>
