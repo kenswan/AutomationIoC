@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build PowerShell Sample",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "build",
+        "PowerShellSample.csproj",
+        "-c",
+        "Debug"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": "$msCompile",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    }
+  ]
+}

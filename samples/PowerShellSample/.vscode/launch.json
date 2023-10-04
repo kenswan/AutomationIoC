@@ -1,0 +1,16 @@
+{
+  "configurations": [
+    {
+      "name": "Start PowerShell Sample",
+      "request": "launch",
+      "type": "PowerShell",
+      "script": "${workspaceRoot}/Run.ps1",
+      "preLaunchTask": "Build PowerShell Sample",
+      "args": [
+        "-header",
+        "'Running From Launch.json'",
+      ],
+      "cwd": "${workspaceRoot}",
+    }
+  ]
+}
