@@ -4,14 +4,14 @@
 // -------------------------------------------------------
 
 using AutomationSamples.Shared.Services;
+using BlazorFocused.Automation.PowerShell;
 using Microsoft.Extensions.Logging;
 using System.Management.Automation;
-using BlazorFocused.Automation.PowerShell;
 
 namespace PowerShellSample;
 
 [Cmdlet(VerbsCommunications.Write, "Report")]
-public class ReportCmdlet : AutomationShell<Startup>
+public class WriteReportCmdlet : AutomationShell<Startup>
 {
     [Alias("h")]
     [Parameter(Mandatory = false, HelpMessage = "Header showing on report")]
@@ -21,7 +21,7 @@ public class ReportCmdlet : AutomationShell<Startup>
     protected IReportService ReportService { get; set; }
 
     [AutomationDependency]
-    private readonly ILogger<ReportCmdlet> logger = default;
+    private readonly ILogger<WriteReportCmdlet> logger = default;
 
     protected override void ProcessRecord()
     {

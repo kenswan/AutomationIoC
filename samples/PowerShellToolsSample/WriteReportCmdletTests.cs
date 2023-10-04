@@ -3,19 +3,19 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using BlazorFocused.Automation.PowerShell.Tools;
 using PowerShellSample;
 using System.Management.Automation;
-using BlazorFocused.Automation.PowerShell.Tools;
 
 namespace PowerShellToolsSample;
 
-public class ReportCmdletTests
+public class WriteReportCmdletTests
 {
     [Fact]
     public void RunCommand_ShouldGenerateReportDetails()
     {
-        using IAutomationCommand<ReportCmdlet> context =
-            AutomationSandbox.CreateContext<ReportCmdlet, Startup>((services) =>
+        using IAutomationCommand<WriteReportCmdlet> context =
+            AutomationSandbox.CreateContext<WriteReportCmdlet, Startup>((services) =>
             { });
 
         ICollection<PSObject> results = context.RunCommand();
