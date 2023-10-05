@@ -3,9 +3,9 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using System.Management.Automation;
 using BlazorFocused.Automation.PowerShell.Session;
 using BlazorFocused.Automation.Runtime;
+using System.Management.Automation;
 
 namespace BlazorFocused.Automation.PowerShell;
 
