@@ -3,6 +3,7 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using System.Management.Automation;
 using Management = System.Management.Automation;
 using ManagementRunspace = System.Management.Automation.Runspaces;
 
@@ -45,6 +46,10 @@ internal class PowerShellAutomationContext : IPowerShellAutomation, IDisposable
 
         return powerShellSession.Invoke<T>();
     }
+
+    public ICollection<PSObject> RunCommand<TPSCmdlet>(Action<PSCommand> buildCommand = null) where TPSCmdlet : PSCmdlet => throw new NotImplementedException();
+
+    public ICollection<TOutput> RunCommand<TPSCmdlet, TOutput>(Action<PSCommand> buildCommand = null) where TPSCmdlet : PSCmdlet => throw new NotImplementedException();
 
     public void SetVariable(string name, object value) =>
         RunCommand("Set-Variable", command => command.AddParameter("Name", name).AddParameter("Value", value));

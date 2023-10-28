@@ -36,6 +36,25 @@ public interface IPowerShellAutomation : IDisposable
     ICollection<T> RunCommand<T>(string name, Action<PSCommand> buildCommand = null);
 
     /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TPSCmdlet"></typeparam>
+    /// <param name="buildCommand"></param>
+    /// <returns></returns>
+    ICollection<PSObject> RunCommand<TPSCmdlet>(Action<PSCommand> buildCommand = null)
+        where TPSCmdlet : PSCmdlet;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TPSCmdlet"></typeparam>
+    /// <typeparam name="TOutput"></typeparam>
+    /// <param name="buildCommand"></param>
+    /// <returns></returns>
+    ICollection<TOutput> RunCommand<TPSCmdlet, TOutput>(Action<PSCommand> buildCommand = null)
+        where TPSCmdlet : PSCmdlet;
+
+    /// <summary>
     /// Sets global variable to be used in PowerShell session.
     /// </summary>
     /// <param name="name">Name/Key of PowerShell variable</param>
