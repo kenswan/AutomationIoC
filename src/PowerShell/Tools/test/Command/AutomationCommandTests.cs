@@ -3,9 +3,8 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using BlazorFocused.Automation.PowerShell.Tools.Context;
 using System.Management.Automation;
-using BlazorFocused.Automation.PowerShell.Tools.Command;
-using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Commands;
 
 namespace BlazorFocused.Automation.PowerShell.Tools.Test.Command;
 
@@ -17,14 +16,14 @@ public class AutomationCommandTests
         string environmentKey = Guid.NewGuid().ToString();
         string expectedValue = Guid.NewGuid().ToString();
 
-        using var automationCommand = new AutomationCommand<TestCommand>();
+        using var automationCommand = new PowerShellAutomationContext();
 
-        automationCommand.RunExternalCommand("Set-Variable", command =>
+        automationCommand.RunCommand("Set-Variable", command =>
             command
                 .AddParameter("Name", environmentKey)
                 .AddParameter("Value", expectedValue));
 
-        ICollection<PSVariable> results = automationCommand.RunExternalCommand<PSVariable>("Get-Variable", command =>
+        ICollection<PSVariable> results = automationCommand.RunCommand<PSVariable>("Get-Variable", command =>
             command.AddParameter("Name", environmentKey));
 
         Assert.Single(results);

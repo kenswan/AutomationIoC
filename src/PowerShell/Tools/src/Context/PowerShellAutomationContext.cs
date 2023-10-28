@@ -6,22 +6,17 @@
 using Management = System.Management.Automation;
 using ManagementRunspace = System.Management.Automation.Runspaces;
 
-namespace BlazorFocused.Automation.PowerShell.Tools.Command;
+namespace BlazorFocused.Automation.PowerShell.Tools.Context;
 
-internal class NativeCommand : IDisposable
+internal class PowerShellAutomationContext : IPowerShellAutomation, IDisposable
 {
     protected readonly Management.PowerShell powerShellSession;
     protected readonly ManagementRunspace.Runspace runspace;
     private bool disposedResources;
 
-    public NativeCommand(string modulePath)
+    public PowerShellAutomationContext()
     {
         var initial = ManagementRunspace.InitialSessionState.CreateDefault();
-
-        if (modulePath is not null)
-        {
-            initial.ImportPSModule(new string[] { modulePath });
-        }
 
         runspace = ManagementRunspace.RunspaceFactory.CreateRunspace(initial);
         runspace.Open();
@@ -30,9 +25,14 @@ internal class NativeCommand : IDisposable
         powerShellSession.Runspace = runspace;
     }
 
-    public void ImportModule(string modulePath) => InvokeCommand<Management.PSObject>("Import-Module", command => command.AddParameter("Name", modulePath));
+    public void ImportModule(string modulePath) =>
+        RunCommand<Management.PSObject>("Import-Module", command =>
+            command.AddParameter("Name", modulePath));
 
-    public ICollection<T> InvokeCommand<T>(string commandName, Action<Management.PSCommand> buildCommand)
+    public ICollection<Management.PSObject> RunCommand(string commandName, Action<Management.PSCommand> buildCommand) =>
+        RunCommand<Management.PSObject>(commandName, buildCommand);
+
+    public ICollection<T> RunCommand<T>(string commandName, Action<Management.PSCommand> buildCommand)
     {
         powerShellSession.Commands.Clear();
 
@@ -46,7 +46,10 @@ internal class NativeCommand : IDisposable
         return powerShellSession.Invoke<T>();
     }
 
-    ~NativeCommand()
+    public void SetVariable(string name, object value) =>
+        RunCommand("Set-Variable", command => command.AddParameter("Name", name).AddParameter("Value", value));
+
+    ~PowerShellAutomationContext()
     {
         Dispose(disposing: false);
     }

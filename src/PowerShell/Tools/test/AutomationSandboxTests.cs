@@ -3,11 +3,10 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using Microsoft.Extensions.DependencyInjection;
-using System.Management.Automation;
-using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Commands;
 using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Services;
 using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Startup;
+using Microsoft.Extensions.DependencyInjection;
+using System.Management.Automation;
 
 namespace BlazorFocused.Automation.PowerShell.Tools.Test;
 
@@ -16,13 +15,13 @@ public class AutomationSandboxTests
     [Fact]
     public void ShouldRunCommandContext()
     {
-        using IAutomationCommand<TestContextCommand> context =
-            AutomationSandbox.CreateContext<TestContextCommand, TestStartup>(services =>
-        {
-            services.AddTransient<ITestService, TestService>();
-        });
+        using IPowerShellAutomation<TestStartup> context =
+            AutomationSandbox.CreateSession<TestStartup>(services =>
+            {
+                services.AddTransient<ITestService, TestService>();
+            });
 
-        ICollection<PSObject> results = context.RunCommand();
+        ICollection<PSObject> results = context.RunCommand("Test-Context");
 
         Assert.Single(results);
     }
@@ -32,9 +31,10 @@ public class AutomationSandboxTests
     {
         string expectedValue = Guid.NewGuid().ToString();
 
-        using IAutomationCommand<TestCommand> command = AutomationSandbox.CreateCommand<TestCommand>();
+        using IPowerShellAutomation<TestStartup> command = AutomationSandbox.CreateSession<TestStartup>();
 
-        ICollection<PSObject> results = command.RunCommand(command => command.AddParameter("Test", expectedValue));
+        ICollection<PSObject> results =
+            command.RunCommand("Test-Context", command => command.AddParameter("Test", expectedValue));
 
         Assert.Single(results);
         Assert.Equal(expectedValue, results.First());
