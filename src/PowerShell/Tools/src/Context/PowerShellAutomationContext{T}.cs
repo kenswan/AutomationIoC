@@ -20,9 +20,7 @@ internal class PowerShellAutomationContext<TStartup> : PowerShellAutomationConte
     /// </summary>
     public PowerShellAutomationContext() : base()
     {
-        string modulePath = typeof(TStartup).Assembly.Location;
-
-        ImportModule(modulePath);
+        ImportPSCmdletModule<TStartup>();
     }
 
     /// <summary>
@@ -31,12 +29,10 @@ internal class PowerShellAutomationContext<TStartup> : PowerShellAutomationConte
     /// <param name="buildServices">Custom service registration</param>
     public PowerShellAutomationContext(Action<IServiceCollection> buildServices) : base()
     {
-        IServiceCollection services = new ServiceCollection();
-
-        buildServices(services);
+        ImportPSCmdletModule<TStartup>();
 
         AutomationRuntime.AddRuntimeServices<TStartup>(
-            new AutomationSessionStateProxy(powerShellSession.Runspace.SessionStateProxy), services);
+            new AutomationSessionStateProxy(powerShellSession.Runspace.SessionStateProxy), buildServices);
     }
 
     public ICollection<PSObject> RunAutomationCommand<TCommand>(Action<PSCommand> buildCommand = null)
@@ -50,10 +46,4 @@ internal class PowerShellAutomationContext<TStartup> : PowerShellAutomationConte
 
         return RunCommand<TOutput>(commandName, buildCommand);
     }
-
-    private static string GetCommandName<TCommand>()
-        where TCommand : AutomationShell<TStartup> =>
-            Attribute.GetCustomAttribute(typeof(TCommand), typeof(CmdletAttribute)) is not CmdletAttribute cmdletAttribute
-                ? throw new ArgumentException("CmdletAttribute not found on class", nameof(cmdletAttribute))
-                : $"{cmdletAttribute.VerbName}-{cmdletAttribute.NounName}";
 }

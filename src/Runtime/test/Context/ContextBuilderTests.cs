@@ -3,14 +3,14 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using BlazorFocused.Automation.Runtime.Context;
+using BlazorFocused.Automation.Runtime.Test.TestBed.Services;
+using BlazorFocused.Automation.Runtime.Test.TestBed.Startup;
 using Bogus;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Moq;
-using BlazorFocused.Automation.Runtime.Context;
-using BlazorFocused.Automation.Runtime.Test.TestBed.Services;
-using BlazorFocused.Automation.Runtime.Test.TestBed.Startup;
 
 namespace BlazorFocused.Automation.Runtime.Test.Context;
 
@@ -18,6 +18,8 @@ public class ContextBuilderTests
 {
     private readonly TestHostBuildContextStartup startup;
     private readonly Mock<ISessionStorage> sessionStorageMock;
+
+    private readonly string hostKey = typeof(TestHostBuildContextStartup).FullName;
 
     private readonly IContextBuilder contextBuilder;
 
@@ -39,7 +41,7 @@ public class ContextBuilderTests
 
         // Assert
         sessionStorageMock.Verify(provider =>
-            provider.SetValue(nameof(TestHostBuildContextStartup),
+            provider.SetValue(hostKey,
                 It.Is<IHost>(host =>
                     // Verify Stored Host
                     VerifyServiceProviderIsConfiguredFromHostContextStartup(host.Services))),
@@ -61,7 +63,7 @@ public class ContextBuilderTests
 
         // Assert
         sessionStorageMock.Verify(storage =>
-            storage.SetValue(nameof(TestHostBuildContextStartup),
+            storage.SetValue(hostKey,
                 It.Is<IHost>(host =>
                     // Verify Stored Host
                     VerifyServiceProviderIsConfiguredFromCollection(host.Services))),
@@ -81,7 +83,7 @@ public class ContextBuilderTests
             new HostBuilder().Build() : null;
 
         sessionStorageMock.Setup(storage =>
-            storage.GetValue<IHost>(nameof(TestHostBuildContextStartup)))
+            storage.GetValue<IHost>(hostKey))
                 .Returns(host);
 
         // Act
@@ -91,7 +93,7 @@ public class ContextBuilderTests
         Assert.Equal(expectedIsHostInitialized, actualIsHostInitialized);
 
         sessionStorageMock.Verify(provider =>
-            provider.GetValue<IHost>(nameof(TestHostBuildContextStartup)),
+            provider.GetValue<IHost>(hostKey),
                 Times.Once());
     }
 
@@ -105,7 +107,7 @@ public class ContextBuilderTests
         using IHost host = new HostBuilder().Build();
 
         sessionStorageMock.Setup(storage =>
-            storage.GetValue<IHost>(nameof(TestHostBuildContextStartup)))
+            storage.GetValue<IHost>(hostKey))
                 .Returns(null as IHost);
 
         // "GetValue" method gets called in "GetCurrentServiceProvider" method
@@ -132,7 +134,7 @@ public class ContextBuilderTests
         Assert.True(actualIsHostInitialized);
 
         sessionStorageMock.Verify(provider =>
-            provider.GetValue<IHost>(nameof(TestHostBuildContextStartup)),
+            provider.GetValue<IHost>(hostKey),
                 expectedTimesGetValueMethodCalled);
     }
 
@@ -141,7 +143,7 @@ public class ContextBuilderTests
     {
         // Arrange
         sessionStorageMock.Setup(storage =>
-            storage.GetValue<IHost>(nameof(TestHostBuildContextStartup)))
+            storage.GetValue<IHost>(hostKey))
                 .Returns(null as IHost);
 
         // Act
@@ -149,14 +151,14 @@ public class ContextBuilderTests
 
         // Assert
         sessionStorageMock.Verify(provider =>
-            provider.SetValue(nameof(TestHostBuildContextStartup),
+            provider.SetValue(hostKey,
                 It.Is<IHost>(host =>
                     // Verify Stored Host
                     VerifyServiceProviderIsConfiguredFromHostContextStartup(host.Services))),
                         Times.Once());
 
         sessionStorageMock.Verify(storage =>
-            storage.GetValue<IHost>(nameof(TestHostBuildContextStartup)),
+            storage.GetValue<IHost>(hostKey),
                 Times.Once);
 
         // Verify Actual provider returned
@@ -170,7 +172,7 @@ public class ContextBuilderTests
         using IHost host = new HostBuilder().Build();
 
         sessionStorageMock.Setup(storage =>
-            storage.GetValue<IHost>(nameof(TestHostBuildContextStartup)))
+            storage.GetValue<IHost>(hostKey))
                 .Returns(host);
 
         // Act
@@ -178,7 +180,7 @@ public class ContextBuilderTests
 
         // Assert
         sessionStorageMock.Verify(storage =>
-            storage.GetValue<IHost>(nameof(TestHostBuildContextStartup)),
+            storage.GetValue<IHost>(hostKey),
                 Times.Once);
 
         sessionStorageMock.VerifyNoOtherCalls();

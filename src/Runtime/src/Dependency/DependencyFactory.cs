@@ -3,23 +3,46 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using BlazorFocused.Automation.Runtime.Binder;
+using BlazorFocused.Automation.Runtime.Context;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using BlazorFocused.Automation.Runtime.Binder;
-using BlazorFocused.Automation.Runtime.Context;
 
 namespace BlazorFocused.Automation.Runtime.Dependency;
 
 internal static class DependencyFactory
 {
-    public static IServiceProvider GenerateServiceProvider(ISessionStorage sessionState, IAutomationStartup startup) =>
-        GenerateRuntimeDependencies(sessionState)
+    public static IServiceProvider GenerateServiceProvider(ISessionStorage sessionState, IAutomationStartup startup)
+    {
+        if (HasRegisteredServiceProvider(sessionState, startup, out IServiceProvider storedServiceProvider))
+        {
+            return storedServiceProvider;
+        }
+
+        IServiceCollection serviceCollection =
+            GenerateRuntimeDependencies(sessionState)
             .AddScoped<IAutomationBinder, AutomationBinder>()
-            .AddScoped<IContextBuilder, ContextBuilder>()
-            .AddScoped(_ => startup)
-            .BuildServiceProvider();
+            .AddSingleton(_ => startup)
+            .AddSingleton<IContextBuilder, ContextBuilder>(_ => new ContextBuilder(startup, sessionState));
+
+        IServiceProvider initialServiceProvider = serviceCollection.BuildServiceProvider();
+
+        using IServiceScope serviceScope = initialServiceProvider.CreateScope();
+        IContextBuilder contextBuilder = serviceScope.ServiceProvider.GetRequiredService<IContextBuilder>();
+
+        // Append runtime services to existing service collection
+        IServiceProvider serviceProvider = contextBuilder.BuildServices((services) =>
+        {
+            foreach (ServiceDescriptor service in serviceCollection)
+            {
+                services.Add(service);
+            }
+        });
+
+        return serviceProvider;
+    }
 
     public static IServiceProvider GenerateServiceProvider(ISessionStorage sessionStorage) =>
         GenerateRuntimeDependencies(sessionStorage)
@@ -81,4 +104,14 @@ internal static class DependencyFactory
     private static IServiceCollection GenerateRuntimeDependencies(ISessionStorage sessionStorage) =>
         new ServiceCollection()
             .AddSingleton(_ => sessionStorage);
+
+    private static bool HasRegisteredServiceProvider(
+        ISessionStorage sessionStorage,
+        IAutomationStartup startup,
+        out IServiceProvider serviceProvider)
+    {
+        serviceProvider = sessionStorage.GetValue<IHost>(startup.GetType().FullName)?.Services ?? null;
+
+        return serviceProvider is not null;
+    }
 }
