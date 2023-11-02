@@ -35,7 +35,7 @@ public partial class PowerShellAutomationContextTests
     public void RunAutomationCommand_ShouldOverrideWithCustomInjectedServices()
     {
         var testServiceMock = new Mock<ITestService>();
-        int expectedCallCount = new Faker().Random.Int(5, 10);
+        int originalCallCount = new Faker().Random.Int(5, 10);
         int mockedCallCount = new Faker().Random.Int(50, 100);
 
         testServiceMock.Setup(service => service.CallTestMethod()).Verifiable();
@@ -59,7 +59,7 @@ public partial class PowerShellAutomationContextTests
 
         ICollection<PSObject> results =
             powerShellAutomationContext.RunAutomationCommand<TestDependencyCommand>(command =>
-                command.AddParameter("Times", expectedCallCount));
+                command.AddParameter("Times", originalCallCount));
 
         Assert.Single(results);
         Assert.Equal(mockedCallCount, Convert.ToInt64(results.First().BaseObject));

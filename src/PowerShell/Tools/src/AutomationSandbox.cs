@@ -15,6 +15,12 @@ namespace BlazorFocused.Automation.PowerShell.Tools;
 public static class AutomationSandbox
 {
     /// <summary>
+    /// Standard automation command
+    /// </summary>
+    /// <returns>Command instance to run</returns>
+    public static IPowerShellAutomation CreateSession() => new PowerShellAutomationContext();
+
+    /// <summary>
     /// Create sandboxed automation context to run automation commands in isolation
     /// </summary>
     /// <typeparam name="TStartup">Type of service/configuration registration</typeparam>
@@ -32,10 +38,4 @@ public static class AutomationSandbox
     public static IPowerShellAutomation<TStartup> CreateSession<TStartup>(Action<IServiceCollection> buildServices)
         where TStartup : IAutomationStartup, new() =>
             new PowerShellAutomationContext<TStartup>(buildServices);
-
-    /// <summary>
-    /// Standard automation command
-    /// </summary>
-    /// <returns>Command instance to run</returns>
-    public static IPowerShellAutomation CreateSession() => new PowerShellAutomationContext();
 }
