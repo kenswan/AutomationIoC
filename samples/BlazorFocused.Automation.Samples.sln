@@ -15,8 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RuntimeSample", "RuntimeSam
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Configuration", "_Configuration", "{29F3FEAB-CFED-467D-8953-8FBD56707CFF}"
 	ProjectSection(SolutionItems) = preProject
-		Directory.Build.targets = Directory.Build.targets
 		Directory.Packages.props = Directory.Packages.props
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4FF3865D-3154-49E9-8B12-1A5A92FC4742}"
@@ -35,6 +35,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{949472D6-391D-4D86-A709-79FC56D89210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{949472D6-391D-4D86-A709-79FC56D89210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{949472D6-391D-4D86-A709-79FC56D89210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{949472D6-391D-4D86-A709-79FC56D89210}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D7EBFE3-2BB1-4692-828D-EFC5443FB676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D7EBFE3-2BB1-4692-828D-EFC5443FB676}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D7EBFE3-2BB1-4692-828D-EFC5443FB676}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -67,10 +71,6 @@ Global
 		{4B2B49BD-445C-472E-93F6-FCFAC301EE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B2B49BD-445C-472E-93F6-FCFAC301EE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B2B49BD-445C-472E-93F6-FCFAC301EE44}.Release|Any CPU.Build.0 = Release|Any CPU
-		{949472D6-391D-4D86-A709-79FC56D89210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{949472D6-391D-4D86-A709-79FC56D89210}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{949472D6-391D-4D86-A709-79FC56D89210}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{949472D6-391D-4D86-A709-79FC56D89210}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

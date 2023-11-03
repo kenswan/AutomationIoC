@@ -3,8 +3,8 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using System.CommandLine;
 using BlazorFocused.Automation.Runtime;
+using System.CommandLine;
 
 namespace BlazorFocused.Automation.CommandLine;
 

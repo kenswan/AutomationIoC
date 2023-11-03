@@ -3,8 +3,8 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using CommandLineSample;
 using BlazorFocused.Automation.CommandLine;
+using CommandLineSample;
 
 IAutomationConsoleBuilder builder =
             AutomationConsole.CreateDefaultBuilder("Sample CommandLine Example")
