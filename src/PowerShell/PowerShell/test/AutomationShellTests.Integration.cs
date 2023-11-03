@@ -18,7 +18,7 @@ public partial class AutomationShellTests
 
         using IPowerShellAutomation<TestStartup> context = AutomationSandbox.CreateSession<TestStartup>();
 
-        int actualValue = context.RunAutomationCommand<TestPSCmdletCommand, int>().FirstOrDefault();
+        int actualValue = context.RunAutomationCommand<TestAutomationShellCommand, int>().FirstOrDefault();
 
         Assert.Equal(expectedValue, actualValue);
     }
