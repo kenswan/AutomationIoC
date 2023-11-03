@@ -33,7 +33,7 @@ public static class AutomationSandbox
     /// Create sandboxed automation context to run automation commands in isolation
     /// </summary>
     /// <typeparam name="TStartup">Type of service/configuration registration</typeparam>
-    /// <param name="buildServices">Service to register for sandboxed instance</param>
+    /// <param name="buildServices">Service to register for sandboxed instance (also allows overrides)</param>
     /// <returns>Automation instance to run</returns>
     public static IPowerShellAutomation<TStartup> CreateSession<TStartup>(Action<IServiceCollection> buildServices)
         where TStartup : IAutomationStartup, new() =>

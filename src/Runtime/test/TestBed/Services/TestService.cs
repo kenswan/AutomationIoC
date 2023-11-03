@@ -13,6 +13,8 @@ public interface ITestService
 
 public class TestService : ITestService
 {
+    public Guid Id { get; set; } = Guid.NewGuid();
+
     public int CallCount { get; private set; }
 
     public string CallTestMethod()

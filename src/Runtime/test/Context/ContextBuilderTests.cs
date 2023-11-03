@@ -54,12 +54,9 @@ public class ContextBuilderTests
     [Fact]
     public void BuildServices_ShouldBuildInjectedServicesWithCollection()
     {
-        // Arrange
-        IServiceCollection serviceCollection = new ServiceCollection()
-            .AddTransient<IOutsideServiceDependency, OutsideServiceDependency>();
-
         // Act
-        IServiceProvider serviceProvider = contextBuilder.BuildServices(serviceCollection);
+        IServiceProvider serviceProvider = contextBuilder.BuildServices((services) =>
+            services.AddTransient<IOutsideServiceDependency, OutsideServiceDependency>());
 
         // Assert
         sessionStorageMock.Verify(storage =>
@@ -123,7 +120,7 @@ public class ContextBuilderTests
         IServiceProvider _ = method switch
         {
             BuildServiceTypes.BuildServicesEmpty => contextBuilder.BuildServices(),
-            BuildServiceTypes.BuildServicesPopulated => contextBuilder.BuildServices(new ServiceCollection()),
+            BuildServiceTypes.BuildServicesPopulated => contextBuilder.BuildServices((_) => { }),
             BuildServiceTypes.GetCurrentServiceProvider => contextBuilder.GetContextServiceProvider(),
             _ => throw new InvalidOperationException()
         };

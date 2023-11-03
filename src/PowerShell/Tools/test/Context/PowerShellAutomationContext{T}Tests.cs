@@ -7,8 +7,8 @@ using BlazorFocused.Automation.PowerShell.Tools.Context;
 using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Commands;
 using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Services;
 using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Startup;
+using BlazorFocused.Automation.Runtime;
 using Bogus;
-using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using System.Management.Automation;
 
@@ -44,17 +44,7 @@ public partial class PowerShellAutomationContextTests
         using var powerShellAutomationContext =
             new PowerShellAutomationContext<TestStartup>(services =>
             {
-                // Remove previous service registration
-                ServiceDescriptor serviceDescriptor =
-                    services.FirstOrDefault(descriptor => descriptor.ServiceType == typeof(ITestService));
-
-                if (serviceDescriptor is not null)
-                {
-                    services.Remove(serviceDescriptor);
-                }
-
-                // Add new mock in original service's place
-                services.AddTransient(_ => testServiceMock.Object);
+                services.ReplaceRegisteredService<ITestService>((_) => testServiceMock.Object);
             });
 
         ICollection<PSObject> results =
