@@ -26,8 +26,16 @@ public abstract class AutomationShell<TStartup> : PSCmdlet where TStartup : IAut
 
         base.BeginProcessing();
 
-        AutomationRuntime.BindServicesByAttribute<AutomationDependencyAttribute, TStartup>(
-            new AutomationSessionStateProxy(SessionState), this);
+        ISessionStorage sessionStorage = new AutomationSessionStateProxy(SessionState);
+
+        if (AutomationRuntime.HasRegisteredServiceProvider<TStartup>(sessionStorage, out IServiceProvider serviceProvider))
+        {
+            AutomationRuntime.BindServicesByAttribute<AutomationDependencyAttribute>(serviceProvider, this);
+        }
+        else
+        {
+            AutomationRuntime.BindServicesByAttribute<AutomationDependencyAttribute, TStartup>(sessionStorage, this);
+        }
 
         WriteVerbose($"{CommandName} Context Initialized");
     }

@@ -3,10 +3,10 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using BlazorFocused.Automation.Runtime;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BlazorFocused.Automation.Runtime;
 
 namespace BlazorFocused.Automation.CommandLine.Binder;
 

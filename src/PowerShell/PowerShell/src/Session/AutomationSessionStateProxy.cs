@@ -3,8 +3,8 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using System.Management.Automation;
 using BlazorFocused.Automation.Runtime;
+using System.Management.Automation;
 using Runspace = System.Management.Automation.Runspaces;
 
 namespace BlazorFocused.Automation.PowerShell.Session;

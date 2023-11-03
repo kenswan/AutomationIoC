@@ -27,9 +27,9 @@ public interface IContextBuilder
     /// <summary>
     /// Builds a service provider for use in downstream automation
     /// </summary>
-    /// <param name="serviceCollection">Preset services to append runtime services and store service provider</param>
+    /// <param name="servicesOverride">Override preset services to append runtime services and store service provider</param>
     /// <returns>Service Provider built in context of provided <see cref="IAutomationStartup"/></returns>
-    IServiceProvider BuildServices(IServiceCollection serviceCollection);
+    IServiceProvider BuildServices(Action<IServiceCollection> servicesOverride);
 
     /// <summary>
     /// Retrieves previously built/stored context service provider

@@ -7,7 +7,19 @@ namespace BlazorFocused.Automation.Runtime.Test.TestBed.Models;
 
 internal class TestSessionStorage : ISessionStorage
 {
-    public T GetValue<T>(string key) => throw new NotImplementedException();
+    private readonly Dictionary<string, object> storage;
 
-    public void SetValue<T>(string key, T item) => throw new NotImplementedException();
+    public TestSessionStorage()
+    {
+        storage = new Dictionary<string, object>();
+    }
+
+    public T GetValue<T>(string key)
+    {
+        bool hasValue = storage.TryGetValue(key, out object value);
+
+        return hasValue ? (T)value : default;
+    }
+
+    public void SetValue<T>(string key, T item) => storage.TryAdd(key, item);
 }

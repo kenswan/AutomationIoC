@@ -4,25 +4,21 @@
 // -------------------------------------------------------
 
 using System.Management.Automation;
-using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Services;
-using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Startup;
 
 namespace BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Commands;
 
-[Cmdlet(VerbsCommon.Get, "TestSDKCommand")]
-public class TestPSCmdletCommand : AutomationShell<TestStartup>
+[Cmdlet(VerbsDiagnostic.Test, "PSCmdlet")]
+public class TestPSCmdletCommand : PSCmdlet
 {
-    [AutomationDependency]
-    protected readonly ITestService testService;
+    [Parameter(Mandatory = true)]
+    public string Test;
 
     protected override void ProcessRecord()
     {
         base.ProcessRecord();
 
-        testService.CallTestMethod();
-        testService.CallTestMethod();
-        testService.CallTestMethod();
-
-        WriteObject(testService.CallCount);
+        WriteObject(TransformOutput(Test));
     }
+
+    public static string TransformOutput(string output) => $"This is processed: {output}";
 }

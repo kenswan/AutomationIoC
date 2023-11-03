@@ -3,9 +3,9 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using BlazorFocused.Automation.Runtime.Dependency;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BlazorFocused.Automation.Runtime.Dependency;
 
 namespace BlazorFocused.Automation.Runtime.Context;
 
@@ -24,7 +24,7 @@ internal class ContextBuilder : IContextBuilder
         this.startup = startup;
         this.sessionStorage = sessionState;
 
-        contextKey = startup.GetType().Name;
+        contextKey = startup.GetType().FullName;
         isInitializedInScope = false;
     }
 
@@ -43,18 +43,14 @@ internal class ContextBuilder : IContextBuilder
         return host.Services;
     }
 
-    public IServiceProvider BuildServices(IServiceCollection serviceCollection)
+    public IServiceProvider BuildServices(Action<IServiceCollection> servicesOverride)
     {
         IHost host = DependencyFactory.GenerateHost(
             startup.Configure,
             (hostBuilderContext, services) =>
             {
-                foreach (ServiceDescriptor service in serviceCollection)
-                {
-                    services.Add(service);
-                }
-
                 startup.ConfigureServices(hostBuilderContext, services);
+                servicesOverride(services);
             },
             startup.GenerateParameters(),
             startup.GenerateParameterConfigurationMapping());

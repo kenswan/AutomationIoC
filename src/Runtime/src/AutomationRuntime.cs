@@ -3,10 +3,12 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using BlazorFocused.Automation.Runtime.Binder;
+using BlazorFocused.Automation.Runtime.Context;
+using BlazorFocused.Automation.Runtime.Dependency;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BlazorFocused.Automation.Runtime.Dependency;
 
 namespace BlazorFocused.Automation.Runtime;
 
@@ -50,16 +52,36 @@ public static class AutomationRuntime
     /// </summary>
     /// <typeparam name="TStartup">Automation Startup class responsible for establishing dependency injected services</typeparam>
     /// <param name="sessionState">Environmental storage used for caching generated services for subsequent calls</param>
-    /// <param name="serviceCollection">Collection of services to append automation runtime</param>
-    public static void AddRuntimeServices<TStartup>(ISessionStorage sessionState, IServiceCollection serviceCollection)
+    /// <param name="servicesOverride">Overrides registered services in automation runtime</param>
+    public static void AddRuntimeServices<TStartup>(ISessionStorage sessionState, Action<IServiceCollection> servicesOverride)
         where TStartup : IAutomationStartup, new()
     {
-        IServiceProvider serviceProvider = DependencyFactory.GenerateServiceProvider(sessionState, new TStartup());
-        using IServiceScope scope = serviceProvider.CreateScope();
+        var startup = new TStartup();
 
-        IContextBuilder contextBuilder = scope.ServiceProvider.GetRequiredService<IContextBuilder>();
+        var contextBuilder = new ContextBuilder(startup, sessionState);
 
-        contextBuilder.BuildServices(serviceCollection);
+        IServiceCollection serviceCollection = new ServiceCollection()
+            .AddScoped<IAutomationBinder, AutomationBinder>()
+            .AddSingleton(_ => sessionState)
+            .AddSingleton<IAutomationStartup>(_ => startup)
+            .AddSingleton<IContextBuilder, ContextBuilder>(_ => contextBuilder);
+
+        contextBuilder.BuildServices(servicesOverride);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TStartup"></typeparam>
+    /// <param name="sessionState"></param>
+    /// <param name="serviceProvider"></param>
+    /// <returns></returns>
+    public static bool HasRegisteredServiceProvider<TStartup>(ISessionStorage sessionState, out IServiceProvider serviceProvider)
+        where TStartup : IAutomationStartup, new()
+    {
+        serviceProvider = sessionState.GetValue<IHost>(typeof(TStartup).FullName)?.Services;
+
+        return serviceProvider is not null;
     }
 
     /// <summary>

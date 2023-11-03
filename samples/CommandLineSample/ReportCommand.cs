@@ -5,11 +5,11 @@
 
 using AutomationSamples.Shared.Models;
 using AutomationSamples.Shared.Services;
+using BlazorFocused.Automation.CommandLine;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.CommandLine;
-using BlazorFocused.Automation.CommandLine;
 
 namespace CommandLineSample;
 

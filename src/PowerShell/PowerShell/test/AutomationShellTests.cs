@@ -3,12 +3,12 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using Microsoft.Extensions.DependencyInjection;
-using Moq;
-using System.Management.Automation;
 using BlazorFocused.Automation.PowerShell.Test.TestBed.Services;
 using BlazorFocused.Automation.PowerShell.Test.TestBed.Startup;
 using BlazorFocused.Automation.PowerShell.Tools;
+using Microsoft.Extensions.DependencyInjection;
+using Moq;
+using System.Management.Automation;
 
 namespace BlazorFocused.Automation.PowerShell.Test;
 
@@ -19,14 +19,14 @@ public partial class AutomationShellTests
     {
         var testRuntimeServiceMock = new Mock<ITestRuntimeService>();
 
-        using IAutomationCommand<TestIoCShell> context =
-            AutomationSandbox.CreateContext<TestIoCShell, TestStartup>(
+        using IPowerShellAutomation<TestStartup> context =
+            AutomationSandbox.CreateSession<TestStartup>(
                 serviceCollection =>
                 {
                     serviceCollection.AddTransient(_ => testRuntimeServiceMock.Object);
                 });
 
-        context.RunCommand();
+        context.RunAutomationCommand<TestIoCShell>();
 
         testRuntimeServiceMock.Verify(service => service.RunMethod(), Times.Exactly(3));
     }

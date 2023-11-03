@@ -4,6 +4,7 @@
 // -------------------------------------------------------
 
 using BlazorFocused.Automation.PowerShell.Test.TestBed.Commands;
+using BlazorFocused.Automation.PowerShell.Test.TestBed.Startup;
 using BlazorFocused.Automation.PowerShell.Tools;
 
 namespace BlazorFocused.Automation.PowerShell.Test;
@@ -15,10 +16,9 @@ public partial class AutomationShellTests
     {
         int expectedValue = 3;
 
-        using IAutomationCommand<TestPSCmdletCommand> context =
-            AutomationSandbox.CreateCommand<TestPSCmdletCommand>();
+        using IPowerShellAutomation<TestStartup> context = AutomationSandbox.CreateSession<TestStartup>();
 
-        int actualValue = context.RunCommand<int>().FirstOrDefault();
+        int actualValue = context.RunAutomationCommand<TestAutomationShellCommand, int>().FirstOrDefault();
 
         Assert.Equal(expectedValue, actualValue);
     }

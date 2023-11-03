@@ -3,10 +3,9 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using Microsoft.Extensions.DependencyInjection;
-using System.Management.Automation;
-using BlazorFocused.Automation.PowerShell.Tools.Command;
+using BlazorFocused.Automation.PowerShell.Tools.Context;
 using BlazorFocused.Automation.Runtime;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorFocused.Automation.PowerShell.Tools;
 
@@ -16,23 +15,27 @@ namespace BlazorFocused.Automation.PowerShell.Tools;
 public static class AutomationSandbox
 {
     /// <summary>
-    /// Create sandboxed automation context to run automation commands in isolation
-    /// </summary>
-    /// <typeparam name="TCommand">Type of command used to establish context</typeparam>
-    /// <typeparam name="TStartup">Type of service/configuration registration</typeparam>
-    /// <param name="buildServices">Service to register for sandboxed instance</param>
-    /// <returns>Command instance to run</returns>
-    public static IAutomationCommand<TCommand> CreateContext<TCommand, TStartup>(Action<IServiceCollection> buildServices)
-        where TCommand : PSCmdlet
-        where TStartup : IAutomationStartup, new() =>
-            new AutomationContextCommand<TCommand, TStartup>(buildServices);
-
-    /// <summary>
     /// Standard automation command
     /// </summary>
-    /// <typeparam name="TCommand">Type of automation command to create instance from</typeparam>
     /// <returns>Command instance to run</returns>
-    public static IAutomationCommand<TCommand> CreateCommand<TCommand>()
-        where TCommand : PSCmdlet, new() =>
-            new AutomationCommand<TCommand>();
+    public static IPowerShellAutomation CreateSession() => new PowerShellAutomationContext();
+
+    /// <summary>
+    /// Create sandboxed automation context to run automation commands in isolation
+    /// </summary>
+    /// <typeparam name="TStartup">Type of service/configuration registration</typeparam>
+    /// <returns>Command instance to run</returns>
+    public static IPowerShellAutomation<TStartup> CreateSession<TStartup>()
+        where TStartup : IAutomationStartup, new() =>
+            new PowerShellAutomationContext<TStartup>();
+
+    /// <summary>
+    /// Create sandboxed automation context to run automation commands in isolation
+    /// </summary>
+    /// <typeparam name="TStartup">Type of service/configuration registration</typeparam>
+    /// <param name="buildServices">Service to register for sandboxed instance (also allows overrides)</param>
+    /// <returns>Automation instance to run</returns>
+    public static IPowerShellAutomation<TStartup> CreateSession<TStartup>(Action<IServiceCollection> buildServices)
+        where TStartup : IAutomationStartup, new() =>
+            new PowerShellAutomationContext<TStartup>(buildServices);
 }
