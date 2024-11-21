@@ -57,9 +57,10 @@ jobs:
           dotnet restore ${{ env.test-directory }}/${{ env.test-project }} -p:TargetFramework=${{ matrix.dotnet-target-framework }}
 
       - name: Build
-        working-directory: ${{ env.source-directory }}
-        run: dotnet build --configuration Release -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore
+        run: |
+          dotnet build ${{ env.source-directory }}/${{ env.source-project }} --configuration Release -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore
+          dotnet build ${{ env.test-directory }}/${{ env.test-project }} --configuration Release -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore --no-dependencies
 
       - name: Test
         working-directory: ${{ env.test-directory }}
-        run: dotnet test -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore --verbosity normal
+        run: dotnet test -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-build --verbosity normal
