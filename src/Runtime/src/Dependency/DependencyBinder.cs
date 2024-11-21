@@ -11,7 +11,10 @@ internal static class DependencyBinder
 {
     public static void BindServicesByAttribute<TAttribute>(IServiceProvider serviceProvider, object instance) where TAttribute : Attribute
     {
-        ArgumentNullException.ThrowIfNull(serviceProvider);
+        if (serviceProvider is null)
+        {
+            throw new ArgumentNullException(nameof(serviceProvider));
+        }
 
         LoadFieldsByAttribute<TAttribute>(serviceProvider, instance);
 

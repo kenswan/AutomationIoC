@@ -2,7 +2,7 @@ param(
     [string]$header = "Default Header"
 )
 
-Import-Module "${PSScriptRoot}/bin/Debug/net7.0/PowerShellSample.dll" -Verbose
+Import-Module "${PSScriptRoot}/bin/Debug/net9.0/PowerShellSample.dll" -Verbose
 
 try {
     Write-Report -h $header

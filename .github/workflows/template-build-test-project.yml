@@ -30,19 +30,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-target-framework: ["net6.0", "net7.0", "net8.0"]
+        dotnet-target-framework: ["net8.0", "net9.0"]
         include:
-          - dotnet-install-framework: 6.0.x
-            dotnet-target-framework: net6.0
-          - dotnet-install-framework: 7.0.x
-            dotnet-target-framework: net7.0
           - dotnet-install-framework: 8.0.x
             dotnet-target-framework: net8.0
+          - dotnet-install-framework: 9.0.x
+            dotnet-target-framework: net9.0
     env:
       source-directory: ${{ inputs.source-directory }}
       source-project: ${{ inputs.source-project }}
       test-directory: ${{ inputs.test-directory }}
       test-project: ${{ inputs.test-project }}
+      dotnet-standard-version: 2.1
 
     steps:
       - uses: actions/checkout@v2
@@ -50,18 +49,18 @@ jobs:
       - name: Install .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: ${{ matrix.dotnet-install-framework }}
+          dotnet-version: |
+            8.0.x
+            9.0.x
           include-prerelease: true
 
       - name: Install Dependencies
-        run: |
-          dotnet restore ${{ env.source-directory }}/${{ env.source-project }} -p:TargetFramework=${{ matrix.dotnet-target-framework }}
-          dotnet restore ${{ env.test-directory }}/${{ env.test-project }} -p:TargetFramework=${{ matrix.dotnet-target-framework }}
+        run: dotnet restore
 
       - name: Build
         working-directory: ${{ env.source-directory }}
-        run: dotnet build --configuration Release -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore
+        run: dotnet build --configuration Release --no-restore
 
       - name: Test
         working-directory: ${{ env.test-directory }}
-        run: dotnet test -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore --verbosity normal
+        run: dotnet test --configuration Release -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore --verbosity normal

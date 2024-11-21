@@ -13,8 +13,6 @@ namespace BlazorFocused.Automation.PowerShell.Tools.Context;
 internal class PowerShellAutomationContext<TStartup> : PowerShellAutomationContext, IPowerShellAutomation<TStartup>
     where TStartup : IAutomationStartup, new()
 {
-    protected readonly string commandName;
-
     /// <summary>
     /// Create automation session with default service registration from <see cref="IAutomationStartup"/>
     /// </summary>
