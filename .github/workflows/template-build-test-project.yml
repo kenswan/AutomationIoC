@@ -58,7 +58,7 @@ jobs:
 
       - name: Build
         run: |
-          dotnet build ${{ env.source-directory }}/${{ env.source-project }} --configuration Release -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore
+          dotnet build ${{ env.source-directory }}/${{ env.source-project }} --configuration Release --no-restore
           dotnet build ${{ env.test-directory }}/${{ env.test-project }} --configuration Release -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore --no-dependencies
 
       - name: Test
