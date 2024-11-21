@@ -49,7 +49,9 @@ jobs:
       - name: Install .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: ${{ matrix.dotnet-install-framework }}
+          dotnet-version: |
+            8.0.x
+            9.0.x
           include-prerelease: true
 
       - name: Install Dependencies
