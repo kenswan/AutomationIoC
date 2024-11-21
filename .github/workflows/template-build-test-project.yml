@@ -66,4 +66,4 @@ jobs:
         working-directory: ${{ env.test-directory }}
         run: |
           dotnet build --configuration Release -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-restore --no-dependencies
-          dotnet test -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-build --verbosity normal
+          dotnet test --configuration Release -p:TargetFramework=${{ matrix.dotnet-target-framework }} --no-build --verbosity normal
