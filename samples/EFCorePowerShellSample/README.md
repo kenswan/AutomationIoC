@@ -15,12 +15,12 @@ dotnet tool install --global dotnet-ef
 
 ## Migrations
 
-Add New Migration
+Add New Migration (optional)
 ```powershell
 dotnet ef migrations add <name of migration>
 ```
 
-Update Database
+Update Database (Required)
 ```powershell
 dotnet ef database update
 ```
@@ -28,4 +28,16 @@ dotnet ef database update
 ## Run Test
 ```powershell
 ./Run-Test.ps1 -clean -removeOnExit
+```
+
+## Start Sample Session
+
+```powershell
+./Start-Sample.ps1
+```
+
+## Close Sample Session
+
+```powershell
+./Start-Sample.ps1
 ```

@@ -24,29 +24,9 @@ dotnet publish --configuration $buildConfiguration --runtime $runtime --self-con
 
 try {
     Import-Module -Name $moduleManifestPath -Verbose -Force
-
-    Test-DbContext -Verbose
 }
 catch {
     Write-Error "Error. Exception: $_"
 }
-finally {
 
-    if ($removeOnExit) {
-        Write-Host "Removing Module" -ForegroundColor Cyan
-
-        Remove-Module -Name $moduleManifestPath -ErrorAction SilentlyContinue
-
-        Write-Host "Releasing DLL" -ForegroundColor Cyan
-
-        if (Test-Path $dllPath) {
-            Remove-Item -Path $dllPath -Force
-            Write-Host "DLL Released" -ForegroundColor Green
-        }
-        else {
-            Write-Host "DLL not found for removal" -ForegroundColor Yellow
-        }
-    }
-}
-
-Write-host "Script Complete"
+Write-host "Session Started" -ForegroundColor Green

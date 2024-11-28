@@ -10,8 +10,8 @@ using System.Management.Automation;
 
 namespace EFCorePowerShellSample.Cmdlets;
 
-[Cmdlet(VerbsDiagnostic.Test, "Context")]
-public class TestContext : PSCmdlet
+[Cmdlet(VerbsDiagnostic.Test, "DbContext")]
+public class TestContextCmdlet : PSCmdlet
 {
     protected override void ProcessRecord()
     {
