@@ -23,10 +23,11 @@ public class TestService : ITestService
 
         if (configurationValue != CONFIG_VALUE)
         {
-            throw new Exception("Test Service is not configured properly");
+            throw new TestServiceConfigurationException("Test Service is not configured properly");
         }
     }
 
     public void Execute(string data) => Console.WriteLine("Executed Data:{0}", data);
 }
 
+public class TestServiceConfigurationException(string message) : Exception(message);

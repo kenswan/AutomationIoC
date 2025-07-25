@@ -13,13 +13,13 @@ namespace EFCorePowerShellSample.Cmdlets;
 public class GetAllToDosCmdlet : AutomationShell<Program>
 {
     [AutomationDependency]
-    protected IToDoStorageAdapter toDoStorageAdapter { get; set; }
+    protected IToDoStorageAdapter ToDoStorageAdapter { get; set; }
 
     protected override void ProcessRecord()
     {
         base.ProcessRecord();
 
-        var toDoItems = this.toDoStorageAdapter.SelectAllToDos().ToList();
+        var toDoItems = this.ToDoStorageAdapter.SelectAllToDos().ToList();
 
         toDoItems.ForEach(WriteObject);
 

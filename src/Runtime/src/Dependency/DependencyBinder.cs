@@ -9,19 +9,31 @@ namespace AutomationIoC.Runtime.Dependency;
 
 internal static class DependencyBinder
 {
-    public static void BindServicesByAttribute<TAttribute>(IServiceProvider serviceProvider, object instance) where TAttribute : Attribute
+    public static void BindServicesByAttribute<TAttribute>(IServiceProvider serviceProvider, object instance)
+        where TAttribute : Attribute
     {
+#if NET8_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(serviceProvider);
+        ArgumentNullException.ThrowIfNull(instance);
+#else
         if (serviceProvider is null)
         {
-            throw new ArgumentNullException(nameof(serviceProvider));
+            throw new AutomationRuntimeException("Error binding service to object instance: Service Provider cannot be null");
         }
+
+        if (instance is null)
+        {
+            throw new AutomationRuntimeException("Error binding service to object instance:Object Instance cannot be null");
+        }
+#endif
 
         LoadFieldsByAttribute<TAttribute>(serviceProvider, instance);
 
         LoadPropertiesByAttribute<TAttribute>(serviceProvider, instance);
     }
 
-    private static void LoadFieldsByAttribute<TAttribute>(IServiceProvider serviceProvider, object instance) where TAttribute : Attribute
+    private static void LoadFieldsByAttribute<TAttribute>(IServiceProvider serviceProvider, object instance)
+        where TAttribute : Attribute
     {
         FieldInfo[] fields = instance.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
 
@@ -39,13 +51,15 @@ internal static class DependencyBinder
                 }
                 else
                 {
-                    throw new ArgumentNullException(field.Name, $"Injected Member {field.Name} does not have a registered type");
+                    throw new ArgumentNullException(field.Name,
+                        $"Injected Member {field.Name} does not have a registered type");
                 }
             }
         }
     }
 
-    private static void LoadPropertiesByAttribute<TAttribute>(IServiceProvider serviceProvider, object instance) where TAttribute : Attribute
+    private static void LoadPropertiesByAttribute<TAttribute>(IServiceProvider serviceProvider, object instance)
+        where TAttribute : Attribute
     {
         PropertyInfo[] properties = instance.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Instance);
 
@@ -63,7 +77,8 @@ internal static class DependencyBinder
                 }
                 else
                 {
-                    throw new ArgumentNullException(property.Name, $"Injected Member {property.Name} does not have a registered type");
+                    throw new ArgumentNullException(property.Name,
+                        $"Injected Member {property.Name} does not have a registered type");
                 }
             }
         }

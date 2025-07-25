@@ -24,14 +24,14 @@ public class ToDoDbContext(DbContextOptions<ToDoDbContext> options) : DbContext(
     public IQueryable<ToDoEntity> SelectAllToDos() => this.ToDos;
 
     public async Task<ToDoEntity> SelectToDoByIdAsync(Guid id) =>
-        await this.ToDos.FirstOrDefaultAsync(toDo => toDo.Id == id);
+        await this.ToDos.FirstOrDefaultAsync(toDo => toDo.Id == id).ConfigureAwait(false);
 
     public async Task<ToDoEntity> InsertToDoAsync(ToDoEntity toDoEntity)
     {
         EntityEntry<ToDoEntity> newToDoEntity =
-            await this.ToDos.AddAsync(toDoEntity);
+            await this.ToDos.AddAsync(toDoEntity).ConfigureAwait(false);
 
-        await SaveChangesAsync();
+        await SaveChangesAsync().ConfigureAwait(false);
 
         return newToDoEntity.Entity;
     }
@@ -41,14 +41,14 @@ public class ToDoDbContext(DbContextOptions<ToDoDbContext> options) : DbContext(
         EntityEntry<ToDoEntity> updatedToDoEntity =
             this.ToDos.Update(toDoEntity);
 
-        await SaveChangesAsync();
+        await SaveChangesAsync().ConfigureAwait(false);
 
         return updatedToDoEntity.Entity;
     }
 
     public async Task<bool> DeleteToDoAsync(Guid id)
     {
-        ToDoEntity toDoEntity = await this.ToDos.FindAsync(id);
+        ToDoEntity toDoEntity = await this.ToDos.FindAsync(id).ConfigureAwait(false);
 
         if (toDoEntity is null)
         {
@@ -56,7 +56,7 @@ public class ToDoDbContext(DbContextOptions<ToDoDbContext> options) : DbContext(
         }
 
         this.ToDos.Remove(toDoEntity);
-        await SaveChangesAsync();
+        await SaveChangesAsync().ConfigureAwait(false);
 
         return true;
     }

@@ -26,18 +26,18 @@ public class UpdateToDoCmdlet : AutomationShellAsync<Program>
     public bool? IsCompleted { get; set; }
 
     [AutomationDependency]
-    protected IToDoStorageAdapter toDoStorageAdapter { get; set; }
+    protected IToDoStorageAdapter ToDoStorageAdapter { get; set; }
 
     protected override async Task ProcessRecordAsync()
     {
-        ToDoEntity existingToDoItem = await this.toDoStorageAdapter.SelectToDoByIdAsync(this.Id);
+        ToDoEntity existingToDoItem = await this.ToDoStorageAdapter.SelectToDoByIdAsync(this.Id).ConfigureAwait(false);
 
         existingToDoItem.Title = this.Title ?? existingToDoItem.Title;
         existingToDoItem.Title = this.Description ?? existingToDoItem.Title;
         existingToDoItem.IsCompleted = this.IsCompleted ?? existingToDoItem.IsCompleted;
 
         ToDoEntity updatedToDoItem =
-            await this.toDoStorageAdapter.UpdateToDoAsync(existingToDoItem);
+            await this.ToDoStorageAdapter.UpdateToDoAsync(existingToDoItem).ConfigureAwait(false);
 
         WriteObject(updatedToDoItem);
     }
