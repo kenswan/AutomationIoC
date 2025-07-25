@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Collections.Immutable;
 
-namespace BlazorFocused.Automation.Runtime;
+namespace AutomationIoC.Runtime;
 
 /// <inheritdoc />
 public abstract class AutomationStartup : IAutomationStartup

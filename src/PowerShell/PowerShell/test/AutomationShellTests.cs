@@ -1,16 +1,16 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.PowerShell.Test.TestBed.Services;
-using BlazorFocused.Automation.PowerShell.Test.TestBed.Startup;
-using BlazorFocused.Automation.PowerShell.Tools;
+using AutomationIoC.PowerShell.Test.TestBed.Services;
+using AutomationIoC.PowerShell.Test.TestBed.Startup;
+using AutomationIoC.PowerShell.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using System.Management.Automation;
 
-namespace BlazorFocused.Automation.PowerShell.Test;
+namespace AutomationIoC.PowerShell.Test;
 
 public partial class AutomationShellTests
 {

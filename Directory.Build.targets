@@ -2,20 +2,20 @@
 
   <PropertyGroup Label="NuGet Metadata">
     <Authors>Ken Swan</Authors>
-    <Copyright>Copyright (c) 2023 BlazorFocused</Copyright>
+    <Copyright>Copyright (c) 2023 AutomationIoC</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://BlazorFocused.github.io/Automation/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/BlazorFocused/Automation.git</RepositoryUrl>
+    <PackageProjectUrl>https://AutomationIoC.github.io/Automation/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AutomationIoC/Automation.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>See https://github.com/BlazorFocused/Automation/releases</PackageReleaseNotes>
+    <PackageReleaseNotes>See https://github.com/AutomationIoC/Automation/releases</PackageReleaseNotes>
     <SynchReleaseVersion>false</SynchReleaseVersion>
-    <PackageIcon>BlazorFocused.png</PackageIcon>
+    <PackageIcon>AutomationIoC.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup Label="NuGet Artifacts">
-    <None Include="$(MSBuildThisFileDirectory)BlazorFocused.png" Pack="true" PackagePath="\" Visible="false"  />
+    <None Include="$(MSBuildThisFileDirectory)AutomationIoC.png" Pack="true" PackagePath="\" Visible="false"  />
     <None Include="../README.md" Pack="true" PackagePath="\" Visible="false"/>
   </ItemGroup>
 

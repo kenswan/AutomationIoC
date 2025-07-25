@@ -1,11 +1,11 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.CommandLine.Test.TestBed.Commands;
+using AutomationIoC.CommandLine.Test.TestBed.Commands;
 
-namespace BlazorFocused.Automation.CommandLine.Test;
+namespace AutomationIoC.CommandLine.Test;
 
 public partial class AutomationIoConsoleTests
 {

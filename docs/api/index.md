@@ -4,10 +4,10 @@ title: API
 _disableBreadcrumb: true
 ---
 
-# BlazorFocused.Automation API Documentation
+# AutomationIoC API Documentation
 
 ## Namespaces
 
-### [BlazorFocused.Automation.Runtime](BlazorFocused.Automation.Runtime.yml)
+### [AutomationIoC.Runtime](AutomationIoC.Runtime.yml)
 
-Runtime services for BlazorFocused.Automation framework
+Runtime services for AutomationIoC framework

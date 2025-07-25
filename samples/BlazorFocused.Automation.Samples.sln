@@ -21,13 +21,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Configuration", "_Configur
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4FF3865D-3154-49E9-8B12-1A5A92FC4742}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.CommandLine", "..\src\CommandLine\src\BlazorFocused.Automation.CommandLine.csproj", "{ACA4FDF8-E8B8-40E0-A046-CA56EDBC643F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.CommandLine", "..\src\CommandLine\src\AutomationIoC.CommandLine.csproj", "{ACA4FDF8-E8B8-40E0-A046-CA56EDBC643F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.PowerShell", "..\src\PowerShell\PowerShell\src\BlazorFocused.Automation.PowerShell.csproj", "{0551355D-D506-438C-9015-77B41CD3D0CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.PowerShell", "..\src\PowerShell\PowerShell\src\AutomationIoC.PowerShell.csproj", "{0551355D-D506-438C-9015-77B41CD3D0CD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.PowerShell.Tools", "..\src\PowerShell\Tools\src\BlazorFocused.Automation.PowerShell.Tools.csproj", "{A6DCABF7-58FE-4619-AF3F-567274471F06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.PowerShell.Tools", "..\src\PowerShell\Tools\src\AutomationIoC.PowerShell.Tools.csproj", "{A6DCABF7-58FE-4619-AF3F-567274471F06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorFocused.Automation.Runtime", "..\src\Runtime\src\BlazorFocused.Automation.Runtime.csproj", "{4B2B49BD-445C-472E-93F6-FCFAC301EE44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationIoC.Runtime", "..\src\Runtime\src\AutomationIoC.Runtime.csproj", "{4B2B49BD-445C-472E-93F6-FCFAC301EE44}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCorePowerShellSample", "EFCorePowerShellSample\EFCorePowerShellSample.csproj", "{C894DD20-2F6F-46D5-9A9A-88A1D4D5201A}"
 EndProject

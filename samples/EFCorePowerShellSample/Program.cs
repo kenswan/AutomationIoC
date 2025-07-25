@@ -1,9 +1,9 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.Runtime;
+using AutomationIoC.Runtime;
 using EFCorePowerShellSample.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace EFCorePowerShellSample;
 
-public class Program: AutomationStartup
+public class Program : AutomationStartup
 {
     public override void Configure(HostBuilderContext hostBuilderContext, IConfigurationBuilder configurationBuilder)
     {

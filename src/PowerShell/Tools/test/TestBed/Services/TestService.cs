@@ -1,9 +1,9 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-namespace BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Services;
+namespace AutomationIoC.PowerShell.Tools.Test.TestBed.Services;
 
 public interface ITestService
 {

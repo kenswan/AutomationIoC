@@ -1,13 +1,13 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.Runtime.Dependency;
+using AutomationIoC.Runtime.Dependency;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace BlazorFocused.Automation.Runtime.Context;
+namespace AutomationIoC.Runtime.Context;
 
 internal class ContextBuilder : IContextBuilder
 {

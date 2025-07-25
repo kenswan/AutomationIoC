@@ -1,12 +1,12 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
 using System.Management.Automation.Runspaces;
 using Management = System.Management.Automation;
 
-namespace BlazorFocused.Automation.PowerShell.Tools.Test;
+namespace AutomationIoC.PowerShell.Tools.Test;
 
 public class EnvironmentTests
 {

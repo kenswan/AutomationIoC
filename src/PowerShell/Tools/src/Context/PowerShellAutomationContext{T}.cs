@@ -1,14 +1,14 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.PowerShell.Session;
-using BlazorFocused.Automation.Runtime;
+using AutomationIoC.PowerShell.Session;
+using AutomationIoC.Runtime;
 using Microsoft.Extensions.DependencyInjection;
 using System.Management.Automation;
 
-namespace BlazorFocused.Automation.PowerShell.Tools.Context;
+namespace AutomationIoC.PowerShell.Tools.Context;
 
 internal class PowerShellAutomationContext<TStartup> : PowerShellAutomationContext, IPowerShellAutomation<TStartup>
     where TStartup : IAutomationStartup, new()

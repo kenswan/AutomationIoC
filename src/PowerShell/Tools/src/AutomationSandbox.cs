@@ -1,13 +1,13 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.PowerShell.Tools.Context;
-using BlazorFocused.Automation.Runtime;
+using AutomationIoC.PowerShell.Tools.Context;
+using AutomationIoC.Runtime;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BlazorFocused.Automation.PowerShell.Tools;
+namespace AutomationIoC.PowerShell.Tools;
 
 /// <summary>
 /// Sandbox for running automation commands in isolation

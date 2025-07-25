@@ -4,6 +4,6 @@
 
 # @api/index
 
-# [GitHub](https://github.com/BlazorFocused/Automation)
+# [GitHub](https://github.com/AutomationIoC/Automation)
 
-# [Nuget](https://www.nuget.org/packages/BlazorFocused.Automation.Runtime)
+# [Nuget](https://www.nuget.org/packages/AutomationIoC.Runtime)

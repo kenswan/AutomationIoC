@@ -1,12 +1,12 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.Runtime.Test.TestBed.Services;
+using AutomationIoC.Runtime.Test.TestBed.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BlazorFocused.Automation.Runtime.Test;
+namespace AutomationIoC.Runtime.Test;
 
 public class ServiceCollectionExtensionTests
 {

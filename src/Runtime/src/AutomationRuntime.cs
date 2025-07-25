@@ -1,16 +1,16 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.Runtime.Binder;
-using BlazorFocused.Automation.Runtime.Context;
-using BlazorFocused.Automation.Runtime.Dependency;
+using AutomationIoC.Runtime.Binder;
+using AutomationIoC.Runtime.Context;
+using AutomationIoC.Runtime.Dependency;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace BlazorFocused.Automation.Runtime;
+namespace AutomationIoC.Runtime;
 
 /// <summary>
 /// Provides Automation Services needed downstream
@@ -70,7 +70,7 @@ public static class AutomationRuntime
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="TStartup"></typeparam>
     /// <param name="sessionState"></param>

@@ -1,12 +1,12 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.Runtime;
+using AutomationIoC.Runtime;
 using System.Management.Automation;
 
-namespace BlazorFocused.Automation.PowerShell.Tools;
+namespace AutomationIoC.PowerShell.Tools;
 
 /// <summary>
 /// PowerShell automation command interface based on <see cref="IAutomationStartup"/> dependency injection

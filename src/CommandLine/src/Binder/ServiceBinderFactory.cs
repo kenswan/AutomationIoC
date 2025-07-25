@@ -1,11 +1,12 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
 using System.CommandLine.Binding;
 
-namespace BlazorFocused.Automation.CommandLine.Binder;
+namespace AutomationIoC.CommandLine.Binder;
+
 internal class ServiceBinderFactory : IServiceBinderFactory
 {
     private readonly ServiceBinderActivator serviceBinderActivator;

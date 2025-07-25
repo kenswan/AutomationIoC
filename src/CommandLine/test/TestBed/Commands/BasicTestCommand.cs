@@ -1,11 +1,11 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
 using System.CommandLine;
 
-namespace BlazorFocused.Automation.CommandLine.Test.TestBed.Commands;
+namespace AutomationIoC.CommandLine.Test.TestBed.Commands;
 
 internal class BasicTestCommand : StandardCommand
 {

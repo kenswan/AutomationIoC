@@ -1,16 +1,16 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.Runtime.Binder;
-using BlazorFocused.Automation.Runtime.Context;
+using AutomationIoC.Runtime.Binder;
+using AutomationIoC.Runtime.Context;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace BlazorFocused.Automation.Runtime.Dependency;
+namespace AutomationIoC.Runtime.Dependency;
 
 internal static class DependencyFactory
 {

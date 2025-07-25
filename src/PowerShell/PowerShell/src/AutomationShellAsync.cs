@@ -1,11 +1,11 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.Runtime;
+using AutomationIoC.Runtime;
 
-namespace BlazorFocused.Automation.PowerShell;
+namespace AutomationIoC.PowerShell;
 
 /// <summary>
 /// Standard automation class used to run asynchronous PowerShell automation commands

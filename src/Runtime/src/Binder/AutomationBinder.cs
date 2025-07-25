@@ -1,11 +1,11 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.Runtime.Dependency;
+using AutomationIoC.Runtime.Dependency;
 
-namespace BlazorFocused.Automation.Runtime.Binder;
+namespace AutomationIoC.Runtime.Binder;
 
 internal class AutomationBinder : IAutomationBinder
 {

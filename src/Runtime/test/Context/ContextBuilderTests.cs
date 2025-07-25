@@ -1,18 +1,18 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.Runtime.Context;
-using BlazorFocused.Automation.Runtime.Test.TestBed.Services;
-using BlazorFocused.Automation.Runtime.Test.TestBed.Startup;
+using AutomationIoC.Runtime.Context;
+using AutomationIoC.Runtime.Test.TestBed.Services;
+using AutomationIoC.Runtime.Test.TestBed.Startup;
 using Bogus;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Moq;
 
-namespace BlazorFocused.Automation.Runtime.Test.Context;
+namespace AutomationIoC.Runtime.Test.Context;
 
 public class ContextBuilderTests
 {

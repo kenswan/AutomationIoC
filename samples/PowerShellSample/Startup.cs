@@ -1,11 +1,11 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
 using AutomationSamples.Shared.Models;
 using AutomationSamples.Shared.Services;
-using BlazorFocused.Automation.Runtime;
+using AutomationIoC.Runtime;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

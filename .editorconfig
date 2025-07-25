@@ -65,7 +65,7 @@ csharp_new_line_before_members_in_anonymous_types = true
 
 # IDE0073: File header
 dotnet_diagnostic.IDE0073.severity = warning
-file_header_template = -------------------------------------------------------\nCopyright (c) BlazorFocused All rights reserved.\nLicensed under the MIT License\n-------------------------------------------------------
+file_header_template = -------------------------------------------------------\nCopyright (c) Ken Swan. All rights reserved.\nLicensed under the MIT License\n-------------------------------------------------------
 
 # CA1047: Do not declare protected member in sealed type
 dotnet_diagnostic.CA1047.severity = warning

@@ -9,17 +9,17 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       </PackageReference>
-      
+
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       </PackageReference>
-      
+
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
     </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\PowerShell\PowerShell\src\BlazorFocused.Automation.PowerShell.csproj" />
+    <ProjectReference Include="..\..\src\PowerShell\PowerShell\src\AutomationIoC.PowerShell.csproj" />
   </ItemGroup>
 
   <ItemGroup>

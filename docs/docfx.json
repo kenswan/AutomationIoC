@@ -3,7 +3,9 @@
     {
       "src": [
         {
-          "files": ["BlazorFocused.Automation.Runtime.csproj"],
+          "files": [
+            "AutomationIoC.Runtime.csproj"
+          ],
           "src": "../src/Runtime/src"
         }
       ],
@@ -18,31 +20,49 @@
   "build": {
     "content": [
       {
-        "files": ["api/**.yml", "api/index.md"]
+        "files": [
+          "api/**.yml",
+          "api/index.md"
+        ]
       },
       {
-        "files": ["guides/**.md", "guides/**/toc.yml", "toc.yml", "*.md"],
-        "exclude": ["README.md"]
+        "files": [
+          "guides/**.md",
+          "guides/**/toc.yml",
+          "toc.yml",
+          "*.md"
+        ],
+        "exclude": [
+          "README.md"
+        ]
       }
     ],
     "resource": [
       {
-        "files": ["images/**", "CNAME"]
+        "files": [
+          "images/**",
+          "CNAME"
+        ]
       }
     ],
     "overwrite": [
       {
-        "exclude": ["obj/**", "build/**"]
+        "exclude": [
+          "obj/**",
+          "build/**"
+        ]
       }
     ],
     "globalMetadata": {
       "_appTitle": "Documentation",
-      "_appLogoPath": "images/BlazorFocused.png"
+      "_appLogoPath": "images/AutomationIoC.png"
     },
     "dest": "build",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
-    "template": ["default"],
+    "template": [
+      "default"
+    ],
     "postProcessors": [],
     "markdownEngineName": "markdig",
     "noLangKeyword": false,

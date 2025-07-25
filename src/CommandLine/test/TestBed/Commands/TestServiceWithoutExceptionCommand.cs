@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
@@ -7,9 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.CommandLine;
-using BlazorFocused.Automation.CommandLine.Test.TestBed.Services;
+using AutomationIoC.CommandLine.Test.TestBed.Services;
 
-namespace BlazorFocused.Automation.CommandLine.Test.TestBed.Commands;
+namespace AutomationIoC.CommandLine.Test.TestBed.Commands;
 
 internal class TestServiceWithoutExceptionCommand : StandardCommand
 {

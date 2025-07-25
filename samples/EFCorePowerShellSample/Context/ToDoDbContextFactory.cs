@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
@@ -14,7 +14,7 @@ public class ToDoDbContextFactory : IDesignTimeDbContextFactory<ToDoDbContext>
 
     private static string GetDatabasePath()
     {
-        const string directoryName = "BlazorFocusedAutomation";
+        const string directoryName = "AutomationIoCAutomation";
         const string databaseName = "EFCorePowerShellSample.db";
 
         string basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);

@@ -1,17 +1,17 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Commands;
-using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Services;
-using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Startup;
+using AutomationIoC.PowerShell.Tools.Test.TestBed.Commands;
+using AutomationIoC.PowerShell.Tools.Test.TestBed.Services;
+using AutomationIoC.PowerShell.Tools.Test.TestBed.Startup;
 using Bogus;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using System.Management.Automation;
 
-namespace BlazorFocused.Automation.PowerShell.Tools.Test;
+namespace AutomationIoC.PowerShell.Tools.Test;
 
 public class AutomationSandboxTests
 {

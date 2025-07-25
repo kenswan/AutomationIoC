@@ -1,11 +1,11 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
 using System.CommandLine.Binding;
 
-namespace BlazorFocused.Automation.CommandLine;
+namespace AutomationIoC.CommandLine;
 
 /// <summary>
 /// Factory of services used to bind to command line services

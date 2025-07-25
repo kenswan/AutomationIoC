@@ -21,43 +21,43 @@ jobs:
   build-runtime:
     uses: ./.github/workflows/template-build-test-project.yml
     with:
-      name: "BlazorFocused.Automation.Runtime Build"
+      name: "AutomationIoC.Runtime Build"
       source-directory: ./src/Runtime/src
-      source-project: BlazorFocused.Automation.Runtime.csproj
+      source-project: AutomationIoC.Runtime.csproj
       test-directory: ./src/Runtime/test
-      test-project: BlazorFocused.Automation.Runtime.Test.csproj
+      test-project: AutomationIoC.Runtime.Test.csproj
 
   build-commandline:
     uses: ./.github/workflows/template-build-test-project.yml
     with:
-      name: "BlazorFocused.Automation.CommandLine Build"
+      name: "AutomationIoC.CommandLine Build"
       source-directory: ./src/CommandLine/src
-      source-project: BlazorFocused.Automation.CommandLine.csproj
+      source-project: AutomationIoC.CommandLine.csproj
       test-directory: ./src/CommandLine/test
-      test-project: BlazorFocused.Automation.CommandLine.Test.csproj
+      test-project: AutomationIoC.CommandLine.Test.csproj
 
   build-powershell:
     uses: ./.github/workflows/template-build-test-project.yml
     with:
-      name: "BlazorFocused.Automation.PowerShell Build"
+      name: "AutomationIoC.PowerShell Build"
       source-directory: ./src/PowerShell/PowerShell/src
-      source-project: BlazorFocused.Automation.PowerShell.csproj
+      source-project: AutomationIoC.PowerShell.csproj
       test-directory: ./src/PowerShell/PowerShell/test
-      test-project: BlazorFocused.Automation.PowerShell.Test.csproj
+      test-project: AutomationIoC.PowerShell.Test.csproj
 
   build-powershell-tools:
     uses: ./.github/workflows/template-build-test-project.yml
     with:
-      name: "BlazorFocused.Automation.PowerShell.Tools Build"
+      name: "AutomationIoC.PowerShell.Tools Build"
       source-directory: ./src/PowerShell/Tools/src
-      source-project: BlazorFocused.Automation.PowerShell.Tools.csproj
+      source-project: AutomationIoC.PowerShell.Tools.csproj
       test-directory: ./src/PowerShell/Tools/test
-      test-project: BlazorFocused.Automation.PowerShell.Tools.Test.csproj
+      test-project: AutomationIoC.PowerShell.Tools.Test.csproj
 
   build-samples:
     uses: ./.github/workflows/template-build-test-solution.yml
     with:
-      name: "BlazorFocused.Automation.Samples Build"
+      name: "AutomationIoC.Samples Build"
       working-directory: ./samples
 
   release-runtime:
@@ -65,8 +65,8 @@ jobs:
     if: github.event_name == 'release'
     uses: ./.github/workflows/template-release-nuget-package.yml
     with:
-      name: "BlazorFocused.Automation.Runtime Release"
-      source-project-path: ./Runtime/src/BlazorFocused.Automation.Runtime.csproj
+      name: "AutomationIoC.Runtime Release"
+      source-project-path: ./Runtime/src/AutomationIoC.Runtime.csproj
       source-release-path: ./Runtime/src/bin/Release
       working-directory: ./src
       version: ${{ github.event.release.tag_name }}
@@ -77,8 +77,8 @@ jobs:
     if: github.event_name == 'release'
     uses: ./.github/workflows/template-release-nuget-package.yml
     with:
-      name: "BlazorFocused.Automation.CommandLine Release"
-      source-project-path: ./CommandLine/src/BlazorFocused.Automation.CommandLine.csproj
+      name: "AutomationIoC.CommandLine Release"
+      source-project-path: ./CommandLine/src/AutomationIoC.CommandLine.csproj
       source-release-path: ./CommandLine/src/bin/Release
       working-directory: ./src
       version: ${{ github.event.release.tag_name }}
@@ -89,8 +89,8 @@ jobs:
     if: github.event_name == 'release'
     uses: ./.github/workflows/template-release-nuget-package.yml
     with:
-      name: "BlazorFocused.Automation.PowerShell Release"
-      source-project-path: ./PowerShell/PowerShell/src/BlazorFocused.Automation.PowerShell.csproj
+      name: "AutomationIoC.PowerShell Release"
+      source-project-path: ./PowerShell/PowerShell/src/AutomationIoC.PowerShell.csproj
       source-release-path: ./PowerShell/PowerShell/src/bin/Release
       working-directory: ./src
       version: ${{ github.event.release.tag_name }}
@@ -101,8 +101,8 @@ jobs:
     if: github.event_name == 'release'
     uses: ./.github/workflows/template-release-nuget-package.yml
     with:
-      name: "BlazorFocused.Automation.PowerShell.Tools Release"
-      source-project-path: ./PowerShell/Tools/src/BlazorFocused.Automation.PowerShell.Tools.csproj
+      name: "AutomationIoC.PowerShell.Tools Release"
+      source-project-path: ./PowerShell/Tools/src/AutomationIoC.PowerShell.Tools.csproj
       source-release-path: ./PowerShell/Tools/src/bin/Release
       working-directory: ./src
       version: ${{ github.event.release.tag_name }}
