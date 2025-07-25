@@ -7,18 +7,11 @@ using System.CommandLine;
 
 namespace AutomationIoC.CommandLine.Application;
 
-internal class AutomationConsoleApplication : IAutomationConsole
+internal class AutomationConsoleApplication(RootCommand rootCommand, string[]? arguments = null) : IAutomationConsole
 {
-    private readonly RootCommand rootCommand;
-    private readonly string[] arguments;
+    private readonly string[] arguments = arguments ?? Environment.GetCommandLineArgs();
 
-    public AutomationConsoleApplication(RootCommand rootCommand, string[] arguments = null)
-    {
-        this.arguments = arguments ?? Environment.GetCommandLineArgs();
-        this.rootCommand = rootCommand;
-    }
+    public int Run() => new CommandLineConfiguration(rootCommand).Invoke(arguments);
 
-    public int Run() => rootCommand.Invoke(arguments);
-
-    public Task<int> RunAsync() => rootCommand.InvokeAsync(arguments);
+    public Task<int> RunAsync() => new CommandLineConfiguration(rootCommand).InvokeAsync(arguments);
 }

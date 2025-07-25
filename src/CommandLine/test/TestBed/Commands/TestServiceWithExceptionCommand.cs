@@ -3,11 +3,11 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using AutomationIoC.CommandLine.Test.TestBed.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.CommandLine;
-using AutomationIoC.CommandLine.Test.TestBed.Services;
 
 namespace AutomationIoC.CommandLine.Test.TestBed.Commands;
 
@@ -15,22 +15,23 @@ internal class TestServiceWithExceptionCommand : StandardCommand
 {
     public override void ConfigureCommand(IServiceBinderFactory serviceBinderFactory, Command command)
     {
-        var passedInOption = new Option<string>(
-            name: "--test",
-            description: "Description of test.");
+        Option<string> passedInOption = new(name: "--test")
+        {
+            Description = "Description of test option field."
+        };
 
-        command.AddOption(passedInOption);
-
-        command.SetHandler(TestExecution,
-            serviceBinderFactory.Bind<ITestService>(),
-            passedInOption);
+        command.SetAction(parseResult =>
+        {
+            string passedInOptionString = parseResult.GetValue(passedInOption);
+            TestExecution(serviceBinderFactory.Bind<ITestService>(), passedInOptionString);
+        });
     }
 
     public override void Configure(HostBuilderContext hostBuilderContext, IConfigurationBuilder configurationBuilder)
     {
-        var appSettings = new Dictionary<string, string>()
+        var appSettings = new Dictionary<string, string>
         {
-            [TestService.CONFIG_KEY] = TestService.CONFIG_VALUE,
+            [TestService.CONFIG_KEY] = TestService.CONFIG_VALUE
         };
 
         configurationBuilder.AddInMemoryCollection(appSettings);

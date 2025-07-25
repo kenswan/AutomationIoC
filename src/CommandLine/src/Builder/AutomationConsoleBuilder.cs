@@ -8,22 +8,13 @@ using System.CommandLine;
 
 namespace AutomationIoC.CommandLine.Builder;
 
-internal class AutomationConsoleBuilder : IAutomationConsoleBuilder
+internal class AutomationConsoleBuilder(RootCommand rootCommand, string[]? args = null) : IAutomationConsoleBuilder
 {
-    private readonly RootCommand rootCommand;
-    private readonly string[] args;
-
-    public AutomationConsoleBuilder(RootCommand rootCommand, string[] args = null)
-    {
-        this.rootCommand = rootCommand;
-        this.args = args;
-    }
-
     public IAutomationConsoleBuilder AddCommand<T>(params string[] commandPath) where T : IConsoleCommand, new()
     {
         string addedCommandName = commandPath.Last();
 
-        Command currentCommand = this.rootCommand;
+        Command currentCommand = rootCommand;
 
         // Traverse to proper parent command
         for (int i = 0; i < commandPath.Length - 1; i++)
@@ -34,7 +25,7 @@ internal class AutomationConsoleBuilder : IAutomationConsoleBuilder
 
             if (subCommand is null)
             {
-                currentCommand.AddCommand(new Command(currentName));
+                currentCommand.Subcommands.Add(new Command(currentName));
 
                 subCommand = currentCommand.Subcommands.First(command => command.Name == currentName);
             }
@@ -45,7 +36,8 @@ internal class AutomationConsoleBuilder : IAutomationConsoleBuilder
         // Check if command already exists in this path
         // This could happen if the caller registers the command out of order
         // (once in a path, and the other for adding command implementation)
-        Command existingCommand = currentCommand.Subcommands.FirstOrDefault(command => command.Name == addedCommandName);
+        Command existingCommand =
+            currentCommand.Subcommands.FirstOrDefault(command => command.Name == addedCommandName);
 
         var internalCommand = new T();
 
@@ -54,7 +46,7 @@ internal class AutomationConsoleBuilder : IAutomationConsoleBuilder
         {
             Command newCommand = internalCommand.Register(addedCommandName, args);
 
-            currentCommand.AddCommand(newCommand);
+            currentCommand.Subcommands.Add(newCommand);
         }
         // Update existing command if found
         else

@@ -4,20 +4,12 @@
 // -------------------------------------------------------
 
 using Microsoft.Extensions.DependencyInjection;
-using System.CommandLine.Binding;
 
 namespace AutomationIoC.CommandLine.Binder;
 
-internal class ServiceBinder<T> : BinderBase<T>
+internal static class ServiceBinder<T>
 {
-    private readonly IServiceBinderActivator serviceBinderActivator;
-
-    public ServiceBinder(IServiceBinderActivator serviceBinderActivator)
-    {
-        this.serviceBinderActivator = serviceBinderActivator;
-    }
-
-    protected override T GetBoundValue(BindingContext bindingContext)
+    public static T GetBoundValue(IServiceBinderActivator serviceBinderActivator)
     {
         IServiceProvider serviceProvider = serviceBinderActivator.GetServiceProvider();
 
