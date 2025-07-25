@@ -48,16 +48,18 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
           include-prerelease: true
 
       - name: Install DocFx
         run: |
-          dotnet tool update -g docfx --version 2.70.0
+          dotnet tool update -g docfx
 
       - name: Build Documentation
         working-directory: ./${{ env.documentation-directory }}/${{ inputs.documentation-folder-path }}
-        run: docfx docfx.json
+        run: |
+          docfx metadata
+          docfx
 
       - name: Copy New GitHub Pages
         shell: bash
