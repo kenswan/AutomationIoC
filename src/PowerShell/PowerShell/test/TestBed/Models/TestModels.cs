@@ -1,9 +1,9 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-namespace BlazorFocused.Automation.PowerShell.Test.TestBed.Models;
+namespace AutomationIoC.PowerShell.Test.TestBed.Models;
 
 public record TestInstance(int Id);
 

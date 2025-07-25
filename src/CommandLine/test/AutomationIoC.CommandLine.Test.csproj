@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\BlazorFocused.Automation.Runtime.csproj" />
+    <ProjectReference Include="..\src\AutomationIoC.CommandLine.csproj" />
   </ItemGroup>
 
 </Project>

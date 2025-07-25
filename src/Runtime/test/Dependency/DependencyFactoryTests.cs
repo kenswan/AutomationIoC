@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
@@ -7,12 +7,12 @@ using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BlazorFocused.Automation.Runtime.Dependency;
-using BlazorFocused.Automation.Runtime.Test.TestBed.Models;
-using BlazorFocused.Automation.Runtime.Test.TestBed.Services;
-using BlazorFocused.Automation.Runtime.Test.TestBed.Startup;
+using AutomationIoC.Runtime.Dependency;
+using AutomationIoC.Runtime.Test.TestBed.Models;
+using AutomationIoC.Runtime.Test.TestBed.Services;
+using AutomationIoC.Runtime.Test.TestBed.Startup;
 
-namespace BlazorFocused.Automation.Runtime.Test.Dependency;
+namespace AutomationIoC.Runtime.Test.Dependency;
 
 public class DependencyFactoryTests
 {

@@ -1,11 +1,11 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
 using System.Management.Automation;
 
-namespace BlazorFocused.Automation.PowerShell.Tools;
+namespace AutomationIoC.PowerShell.Tools;
 
 /// <summary>
 /// PowerShell automation interface.
@@ -36,7 +36,7 @@ public interface IPowerShellAutomation : IDisposable
     ICollection<T> RunCommand<T>(string name, Action<PSCommand> buildCommand = null);
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="TPSCmdlet"></typeparam>
     /// <param name="buildCommand"></param>
@@ -45,7 +45,7 @@ public interface IPowerShellAutomation : IDisposable
         where TPSCmdlet : PSCmdlet;
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="TPSCmdlet"></typeparam>
     /// <typeparam name="TOutput"></typeparam>

@@ -1,11 +1,11 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
 using AutomationSamples.Shared.Services;
-using BlazorFocused.Automation.PowerShell.Tools;
-using BlazorFocused.Automation.Runtime;
+using AutomationIoC.PowerShell.Tools;
+using AutomationIoC.Runtime;
 using Bogus;
 using Moq;
 using PowerShellSample;

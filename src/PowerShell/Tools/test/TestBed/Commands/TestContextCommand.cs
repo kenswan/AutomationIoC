@@ -1,15 +1,15 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
 using System.Management.Automation;
-using BlazorFocused.Automation.PowerShell.Session;
-using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Services;
-using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Startup;
-using BlazorFocused.Automation.Runtime;
+using AutomationIoC.PowerShell.Session;
+using AutomationIoC.PowerShell.Tools.Test.TestBed.Services;
+using AutomationIoC.PowerShell.Tools.Test.TestBed.Startup;
+using AutomationIoC.Runtime;
 
-namespace BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Commands;
+namespace AutomationIoC.PowerShell.Tools.Test.TestBed.Commands;
 
 [Cmdlet(VerbsDiagnostic.Test, "Context")]
 public class TestContextCommand : PSCmdlet

@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <PropertyGroup Label="NuGet Metadata">
-    <Title>BlazorFocused.Automation.PowerShell</Title>
-    <PackageId>BlazorFocused.Automation.PowerShell</PackageId>
+    <Title>AutomationIoC.PowerShell</Title>
+    <PackageId>AutomationIoC.PowerShell</PackageId>
     <Description>PowerShell PSCmdlet SDK utilities for Automation framework development</Description>
     <PackageTags>dotnet;csharp;powershell;pscmdlet;cmdlet;</PackageTags>
   </PropertyGroup>
@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Runtime\src\BlazorFocused.Automation.Runtime.csproj" />
+    <ProjectReference Include="..\..\..\Runtime\src\AutomationIoC.Runtime.csproj" />
   </ItemGroup>
 
   <ItemGroup>

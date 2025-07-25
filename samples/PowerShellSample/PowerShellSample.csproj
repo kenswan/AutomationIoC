@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\PowerShell\PowerShell\src\BlazorFocused.Automation.PowerShell.csproj" />
+    <ProjectReference Include="..\..\src\PowerShell\PowerShell\src\AutomationIoC.PowerShell.csproj" />
     <ProjectReference Include="..\Shared\AutomationSamples.Shared.csproj" />
   </ItemGroup>
 

@@ -18,8 +18,8 @@ jobs:
       contents: write
     uses: ./.github/workflows/template-release-docs.yml
     with:
-      name: "BlazorFocused.Automation Documentation"
+      name: "AutomationIoC Documentation"
       documentation-folder-path: docs
       github-pages-branch: gh-pages
-      github-user-email: blazorFocused-automation@users.noreply.github.com
+      github-user-email: AutomationIoC-automation@users.noreply.github.com
       github-user-name: Pages-Automation

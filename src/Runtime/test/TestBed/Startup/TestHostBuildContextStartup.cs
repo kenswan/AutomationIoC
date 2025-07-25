@@ -1,14 +1,14 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BlazorFocused.Automation.Runtime.Test.TestBed.Services;
+using AutomationIoC.Runtime.Test.TestBed.Services;
 
-namespace BlazorFocused.Automation.Runtime.Test.TestBed.Startup;
+namespace AutomationIoC.Runtime.Test.TestBed.Startup;
 
 public class TestHostBuildContextStartup : AutomationStartup
 {

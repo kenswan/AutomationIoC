@@ -5,12 +5,12 @@ _disableBreadcrumb: true
 _disableToc: false
 ---
 
-# BlazorFocused.Automation.Runtime Guides
+# AutomationIoC.Runtime Guides
 
-Runtime services for BlazorFocused.Automation framework
+Runtime services for AutomationIoC framework
 
 ## Installation
 
 ```dotnetcli
-dotnet add package BlazorFocused.Automation.Runtime
+dotnet add package AutomationIoC.Runtime
 ```

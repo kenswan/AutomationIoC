@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
@@ -7,7 +7,7 @@ using System.Management.Automation;
 using System.Reflection;
 using ManagementRunspace = System.Management.Automation.Runspaces;
 
-namespace BlazorFocused.Automation.PowerShell.Tools.Context;
+namespace AutomationIoC.PowerShell.Tools.Context;
 
 internal class PowerShellAutomationContext : IPowerShellAutomation, IDisposable
 {

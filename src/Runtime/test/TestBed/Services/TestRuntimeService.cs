@@ -1,11 +1,11 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.Runtime.Test.TestBed.Attributes;
+using AutomationIoC.Runtime.Test.TestBed.Attributes;
 
-namespace BlazorFocused.Automation.Runtime.Test.TestBed.Services;
+namespace AutomationIoC.Runtime.Test.TestBed.Services;
 
 public class TestRuntimeFieldService : TestRuntimeService
 {

@@ -1,14 +1,14 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.PowerShell.Tools.Context;
-using BlazorFocused.Automation.PowerShell.Tools.Test.TestBed.Commands;
+using AutomationIoC.PowerShell.Tools.Context;
+using AutomationIoC.PowerShell.Tools.Test.TestBed.Commands;
 using Bogus;
 using System.Management.Automation;
 
-namespace BlazorFocused.Automation.PowerShell.Tools.Test.Context;
+namespace AutomationIoC.PowerShell.Tools.Test.Context;
 
 public partial class PowerShellAutomationContextTests
 {

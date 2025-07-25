@@ -1,24 +1,24 @@
-[![Nuget Version](https://img.shields.io/nuget/v/BlazorFocused.Automation.PowerShell?logo=nuget)](https://www.nuget.org/packages/BlazorFocused.Automation.PowerShell)
-[![Nuget Downloads](https://img.shields.io/nuget/dt/BlazorFocused.Automation.PowerShell?logo=nuget)](https://www.nuget.org/packages/BlazorFocused.Automation.PowerShell)
-[![Continuous Integration](https://github.com/BlazorFocused/Automation/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/BlazorFocused/Automation/actions/workflows/continuous-integration.yml)
+[![Nuget Version](https://img.shields.io/nuget/v/AutomationIoC.PowerShell?logo=nuget)](https://www.nuget.org/packages/AutomationIoC.PowerShell)
+[![Nuget Downloads](https://img.shields.io/nuget/dt/AutomationIoC.PowerShell?logo=nuget)](https://www.nuget.org/packages/AutomationIoC.PowerShell)
+[![Continuous Integration](https://github.com/AutomationIoC/Automation/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/AutomationIoC/Automation/actions/workflows/continuous-integration.yml)
 
-# BlazorFocused.Automation.PowerShell
+# AutomationIoC.PowerShell
 
 PowerShell PSCmdlet SDK utilities for Automation framework development
 
 ## NuGet Packages
 
-| Package                                                                                                    | Description                                                            |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [BlazorFocused.Automation.PowerShell](https://www.nuget.org/packages/BlazorFocused.Automation.PowerShell/) | PowerShell PSCmdlet SDK utilities for Automation framework development |
+| Package                                                                              | Description                                                            |
+| ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| [AutomationIoC.PowerShell](https://www.nuget.org/packages/AutomationIoC.PowerShell/) | PowerShell PSCmdlet SDK utilities for Automation framework development |
 
 ## Documentation
 
-Please visit the [BlazorFocused.Automation Documentation Site](https://BlazorFocused.github.io/Automation/) for installation, getting started, and API documentation.
+Please visit the [AutomationIoC Documentation Site](https://AutomationIoC.github.io/Automation/) for installation, getting started, and API documentation.
 
 ## Samples
 
-Please visit and/or download our [BlazorFocused.Automation.PowerShell Sample Solution](https://github.com/BlazorFocused/Automation/tree/main/samples/PowerShellSample) to get a more in-depth view of usage.
+Please visit and/or download our [AutomationIoC.PowerShell Sample Solution](https://github.com/AutomationIoC/Automation/tree/main/samples/PowerShellSample) to get a more in-depth view of usage.
 
 ## Requirements
 
@@ -30,7 +30,7 @@ Please visit and/or download our [BlazorFocused.Automation.PowerShell Sample Sol
 
 ```dotnetcli
 
-dotnet add package BlazorFocused.Automation.PowerShell
+dotnet add package AutomationIoC.PowerShell
 
 ```
 
@@ -173,8 +173,8 @@ on launching your module through VS Code_
 
 - ## Related Packages
 
-| Package                                                                                                                | Description                                                                     |
-| ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| [BlazorFocused.Automation.Runtime](https://www.nuget.org/packages/BlazorFocused.Automation.Runtime/)                   | Runtime services for BlazorFocused.Automation framework                         |
-| [BlazorFocused.Automation.CommandLine](https://www.nuget.org/packages/BlazorFocused.Automation.CommandLine/)           | Dependency Injection Framework for C# Console Applications                      |
-| [BlazorFocused.Automation.PowerShell.Tools](https://www.nuget.org/packages/BlazorFocused.Automation.PowerShell.Tools/) | Development tools for running/testing PSCmdlets built with Automation framework |
+| Package                                                                                          | Description                                                                     |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| [AutomationIoC.Runtime](https://www.nuget.org/packages/AutomationIoC.Runtime/)                   | Runtime services for AutomationIoC framework                                    |
+| [AutomationIoC.CommandLine](https://www.nuget.org/packages/AutomationIoC.CommandLine/)           | Dependency Injection Framework for C# Console Applications                      |
+| [AutomationIoC.PowerShell.Tools](https://www.nuget.org/packages/AutomationIoC.PowerShell.Tools/) | Development tools for running/testing PSCmdlets built with Automation framework |

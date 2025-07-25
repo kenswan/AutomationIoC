@@ -19,6 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bogus" />
     <PackageReference Include="FluentAssertions" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="Moq" />
@@ -34,8 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Tools\src\BlazorFocused.Automation.PowerShell.Tools.csproj" />
-    <ProjectReference Include="..\src\BlazorFocused.Automation.PowerShell.csproj" />
+    <ProjectReference Include="..\src\AutomationIoC.Runtime.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,9 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-namespace BlazorFocused.Automation.CommandLine;
+namespace AutomationIoC.CommandLine;
 
 /// <summary>
 /// Console automation class used to register commands and run them based on command line arguments

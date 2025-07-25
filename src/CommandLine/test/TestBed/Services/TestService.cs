@@ -1,11 +1,11 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
 using Microsoft.Extensions.Configuration;
 
-namespace BlazorFocused.Automation.CommandLine.Test.TestBed.Services;
+namespace AutomationIoC.CommandLine.Test.TestBed.Services;
 
 public interface ITestService
 {

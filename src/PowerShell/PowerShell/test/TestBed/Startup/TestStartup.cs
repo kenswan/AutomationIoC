@@ -1,15 +1,15 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BlazorFocused.Automation.PowerShell.Test.Services;
-using BlazorFocused.Automation.Runtime;
+using AutomationIoC.PowerShell.Test.Services;
+using AutomationIoC.Runtime;
 
-namespace BlazorFocused.Automation.PowerShell.Test.TestBed.Startup;
+namespace AutomationIoC.PowerShell.Test.TestBed.Startup;
 
 public class TestStartup : AutomationStartup
 {

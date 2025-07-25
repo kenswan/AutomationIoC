@@ -5,8 +5,8 @@ _disableBreadcrumb: true
 _disableToc: false
 ---
 
-# BlazorFocused.Automation Guides
+# AutomationIoC Guides
 
-## [BlazorFocused.Automation.Runtime](runtime/index.md)
+## [AutomationIoC.Runtime](runtime/index.md)
 
-Runtime services for BlazorFocused.Automation framework
+Runtime services for AutomationIoC framework

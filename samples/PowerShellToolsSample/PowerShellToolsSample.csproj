@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\PowerShell\Tools\src\BlazorFocused.Automation.PowerShell.Tools.csproj" />
+    <ProjectReference Include="..\..\src\PowerShell\Tools\src\AutomationIoC.PowerShell.Tools.csproj" />
     <ProjectReference Include="..\PowerShellSample\PowerShellSample.csproj" />
   </ItemGroup>
 

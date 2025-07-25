@@ -1,15 +1,15 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
-using BlazorFocused.Automation.Runtime.Binder;
-using BlazorFocused.Automation.Runtime.Test.TestBed.Attributes;
-using BlazorFocused.Automation.Runtime.Test.TestBed.Services;
+using AutomationIoC.Runtime.Binder;
+using AutomationIoC.Runtime.Test.TestBed.Attributes;
+using AutomationIoC.Runtime.Test.TestBed.Services;
 
-namespace BlazorFocused.Automation.Runtime.Test.Binder;
+namespace AutomationIoC.Runtime.Test.Binder;
 
 public class AutomationBinderTests
 {

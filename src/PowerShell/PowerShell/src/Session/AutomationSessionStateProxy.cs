@@ -1,13 +1,13 @@
 ﻿// -------------------------------------------------------
-// Copyright (c) BlazorFocused All rights reserved.
+// Copyright (c) Ken Swan. All rights reserved.
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using BlazorFocused.Automation.Runtime;
+using AutomationIoC.Runtime;
 using System.Management.Automation;
 using Runspace = System.Management.Automation.Runspaces;
 
-namespace BlazorFocused.Automation.PowerShell.Session;
+namespace AutomationIoC.PowerShell.Session;
 
 internal class AutomationSessionStateProxy : IPowerShellSessionState, ISessionStorage
 {

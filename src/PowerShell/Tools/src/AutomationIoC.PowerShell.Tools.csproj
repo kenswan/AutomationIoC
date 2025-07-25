@@ -5,18 +5,18 @@
   </PropertyGroup>
 
   <PropertyGroup Label="NuGet Metadata">
-    <Title>BlazorFocused.Automation.Runtime</Title>
-    <PackageId>BlazorFocused.Automation.Runtime</PackageId>
-    <PackageTags>dotnet;c-sharp;dependency-injection;hosting;</PackageTags>
-    <Description>Runtime services for BlazorFocused.Automation framework</Description>
+    <Title>AutomationIoC.PowerShell.Tools</Title>
+    <PackageId>AutomationIoC.PowerShell.Tools</PackageId>
+    <Description>Development tools for running/testing PSCmdlets built with Automation framework</Description>
+    <PackageTags>dotnet;csharp;powershell;pscmdlet;cmdlet;</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.PowerShell.SDK" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-    <PackageReference Include="System.Collections.Immutable" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\PowerShell\src\AutomationIoC.PowerShell.csproj" />
   </ItemGroup>
 
   <ItemGroup>
