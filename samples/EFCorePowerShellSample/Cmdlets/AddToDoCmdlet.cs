@@ -20,7 +20,7 @@ public class AddToDoCmdlet : AutomationShellAsync<Program>
     public string Description { get; set; }
 
     [AutomationDependency]
-    protected IToDoStorageAdapter toDoStorageAdapter { get; set; }
+    protected IToDoStorageAdapter ToDoStorageAdapter { get; set; }
 
     protected override async Task ProcessRecordAsync()
     {
@@ -32,7 +32,7 @@ public class AddToDoCmdlet : AutomationShellAsync<Program>
         };
 
         ToDoEntity toDoItem =
-            await this.toDoStorageAdapter.InsertToDoAsync(newToDoItem);
+            await this.ToDoStorageAdapter.InsertToDoAsync(newToDoItem).ConfigureAwait(false);
 
         WriteObject(toDoItem);
     }

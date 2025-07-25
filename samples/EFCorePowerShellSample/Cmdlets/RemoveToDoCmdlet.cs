@@ -16,13 +16,13 @@ public class RemoveToDoCmdlet : AutomationShellAsync<Program>
     public Guid Id { get; set; }
 
     [AutomationDependency]
-    protected IToDoStorageAdapter toDoStorageAdapter { get; set; }
+    protected IToDoStorageAdapter ToDoStorageAdapter { get; set; }
 
     protected override async Task ProcessRecordAsync()
     {
 
         bool isDeleted =
-            await this.toDoStorageAdapter.DeleteToDoAsync(this.Id);
+            await this.ToDoStorageAdapter.DeleteToDoAsync(this.Id).ConfigureAwait(false);
 
         if (isDeleted)
         {
