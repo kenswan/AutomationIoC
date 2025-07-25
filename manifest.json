@@ -1,77 +1,118 @@
 {
-  "homepages": [],
-  "source_base_path": "D:/a/Automation/Automation/Documentation/docs",
+  "source_base_path": "D:/a/AutomationIoC/AutomationIoC/Documentation/docs",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BlazorFocused.Automation.Runtime.AutomationRuntime.yml",
+      "source_relative_path": "api/AutomationIoC.Runtime.AutomationRuntime.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BlazorFocused.Automation.Runtime.AutomationRuntime.html"
+          "relative_path": "api/AutomationIoC.Runtime.AutomationRuntime.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "AutomationIoC.Runtime.AutomationRuntime",
+      "Summary": "<p sourcefile=\"api/AutomationIoC.Runtime.AutomationRuntime.yml\" sourcestartlinenumber=\"1\">Provides Automation Services needed downstream</p>\n"
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BlazorFocused.Automation.Runtime.AutomationStartup.yml",
+      "source_relative_path": "api/AutomationIoC.Runtime.AutomationStartup.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BlazorFocused.Automation.Runtime.AutomationStartup.html"
+          "relative_path": "api/AutomationIoC.Runtime.AutomationStartup.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "AutomationIoC.Runtime.AutomationStartup",
+      "Summary": "<p sourcefile=\"api/AutomationIoC.Runtime.AutomationStartup.yml\" sourcestartlinenumber=\"1\">Supports all classes in the .NET class hierarchy and provides low-level services to derived classes. This is the ultimate base class of all .NET classes; it is the root of the type hierarchy.</p>\n"
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BlazorFocused.Automation.Runtime.IAutomationBinder.yml",
+      "source_relative_path": "api/AutomationIoC.Runtime.IAutomationBinder.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BlazorFocused.Automation.Runtime.IAutomationBinder.html"
+          "relative_path": "api/AutomationIoC.Runtime.IAutomationBinder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "AutomationIoC.Runtime.IAutomationBinder",
+      "Summary": "<p sourcefile=\"api/AutomationIoC.Runtime.IAutomationBinder.yml\" sourcestartlinenumber=\"1\">Binds registered services to context object leveraging dependency injection</p>\n"
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BlazorFocused.Automation.Runtime.IAutomationStartup.yml",
+      "source_relative_path": "api/AutomationIoC.Runtime.IAutomationStartup.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BlazorFocused.Automation.Runtime.IAutomationStartup.html"
+          "relative_path": "api/AutomationIoC.Runtime.IAutomationStartup.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "AutomationIoC.Runtime.IAutomationStartup",
+      "Summary": "<p sourcefile=\"api/AutomationIoC.Runtime.IAutomationStartup.yml\" sourcestartlinenumber=\"1\">Startup class for automation runtime</p>\n"
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BlazorFocused.Automation.Runtime.IContextBuilder.yml",
+      "source_relative_path": "api/AutomationIoC.Runtime.IContextBuilder.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BlazorFocused.Automation.Runtime.IContextBuilder.html"
+          "relative_path": "api/AutomationIoC.Runtime.IContextBuilder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "AutomationIoC.Runtime.IContextBuilder",
+      "Summary": "<p sourcefile=\"api/AutomationIoC.Runtime.IContextBuilder.yml\" sourcestartlinenumber=\"1\">Binds registered services to context object leveraging dependency injection</p>\n"
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BlazorFocused.Automation.Runtime.ISessionStorage.yml",
+      "source_relative_path": "api/AutomationIoC.Runtime.ISessionStorage.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BlazorFocused.Automation.Runtime.ISessionStorage.html"
+          "relative_path": "api/AutomationIoC.Runtime.ISessionStorage.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "AutomationIoC.Runtime.ISessionStorage",
+      "Summary": "<p sourcefile=\"api/AutomationIoC.Runtime.ISessionStorage.yml\" sourcestartlinenumber=\"1\">Environment storage used to store services for use in downstream automation</p>\n"
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BlazorFocused.Automation.Runtime.yml",
+      "source_relative_path": "api/AutomationIoC.Runtime.ServiceCollectionExtensions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BlazorFocused.Automation.Runtime.html"
+          "relative_path": "api/AutomationIoC.Runtime.ServiceCollectionExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "AutomationIoC.Runtime.ServiceCollectionExtensions",
+      "Summary": "<p sourcefile=\"api/AutomationIoC.Runtime.ServiceCollectionExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for service collection</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AutomationIoC.Runtime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AutomationIoC.Runtime.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "AutomationIoC.Runtime",
+      "Summary": null
     },
     {
       "type": "Conceptual",
@@ -89,6 +130,9 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
         }
       },
       "version": ""
@@ -119,16 +163,19 @@
       "output": {
         ".html": {
           "relative_path": "guides/toc.html"
+        },
+        ".json": {
+          "relative_path": "guides/toc.json"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/BlazorFocused.png",
+      "source_relative_path": "images/AutomationIoC.png",
       "output": {
         "resource": {
-          "relative_path": "images/BlazorFocused.png"
+          "relative_path": "images/AutomationIoC.png"
         }
       },
       "version": ""
@@ -149,12 +196,14 @@
       "output": {
         ".html": {
           "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
       "version": ""
     }
   ],
-  "version_info": {},
   "groups": [
     {
       "xrefmap": "xrefmap.yml"
