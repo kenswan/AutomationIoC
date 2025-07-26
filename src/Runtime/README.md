@@ -14,11 +14,11 @@ Runtime services for AutomationIoC framework
 
 ## Documentation
 
-Please visit the [AutomationIoC Documentation Site](https://AutomationIoC.github.io/Automation/) for installation, getting started, and API documentation.
+Please visit the [AutomationIoC Documentation Site](https://kenswan.github.io/AutomationIoC/) for installation, getting started, and API documentation.
 
 ## Samples
 
-Please visit and/or download our [AutomationIoC.Runtime Sample Solution](https://github.com/AutomationIoC/Automation/tree/main/samples/projectsample) to get a more in-depth view of usage.
+Please visit and/or download our [AutomationIoC.Runtime Sample Solution](https://github.com/kenswan/AutomationIoC/tree/main/samples/projectsample) to get a more in-depth view of usage.
 
 ## Installation
 

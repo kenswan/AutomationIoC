@@ -19,4 +19,4 @@ Please visit the [AutomationIoC Documentation Site](https://kenswan.github.io/Au
 
 ## Samples
 
-Please visit and/or download our [AutomationIoC Sample Solution](https://github.com/AutomationIoC/tree/main/samples) to get a more in-depth view of usage.
+Please visit and/or download our [AutomationIoC Sample Solution](https://github.com/kenswan/AutomationIoC/tree/main/samples) to get a more in-depth view of usage.

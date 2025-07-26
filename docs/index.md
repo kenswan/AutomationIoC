@@ -10,11 +10,11 @@ Automation Tools and Dependency Injection for C# PowerShell Cmdlets and Console 
 
 ## Source Code
 
-[AutomationIoC on GitHub](https://github.com/AutomationIoC)
+[AutomationIoC on GitHub](https://github.com/kenswan/AutomationIoC)
 
 ## Samples
 
-Please visit and/or download our [AutomationIoC Sample Solution](https://github.com/AutomationIoC/tree/main/samples) to get a more in-depth view of usage.
+Please visit and/or download our [AutomationIoC Sample Solution](https://github.com/kenswan/AutomationIoC/tree/main/samples) to get a more in-depth view of usage.
 
 ## Guides
 

@@ -4,6 +4,6 @@
 
 # @api/index
 
-# [GitHub](https://github.com/AutomationIoC)
+# [GitHub](https://github.com/kenswan/AutomationIoC)
 
 # [Nuget](https://www.nuget.org/packages/AutomationIoC.Runtime)
