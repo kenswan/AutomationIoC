@@ -4,12 +4,20 @@
 // -------------------------------------------------------
 
 using AutomationIoC.CommandLine;
-using CommandLineSample;
 
-IAutomationConsoleBuilder builder =
-            AutomationConsole.CreateDefaultBuilder("Sample CommandLine Example")
+namespace CommandLineSample;
+
+internal class Program
+{
+    public static void Main(string[] args)
+    {
+        IAutomationConsoleBuilder builder =
+            AutomationConsole.CreateDefaultBuilder("Sample CommandLine Example", args)
                 .AddCommand<ReportCommand>("report");
 
-IAutomationConsole console = builder.Build();
+        IAutomationConsole console = builder.Build();
 
-console.Run();
+        console.Run();
+    }
+}
+

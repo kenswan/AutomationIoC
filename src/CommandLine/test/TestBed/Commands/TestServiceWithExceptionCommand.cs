@@ -20,6 +20,8 @@ internal class TestServiceWithExceptionCommand : StandardCommand
             Description = "Description of test option field."
         };
 
+        command.Options.Add(passedInOption);
+
         command.SetAction(parseResult =>
         {
             string passedInOptionString = parseResult.GetValue(passedInOption);

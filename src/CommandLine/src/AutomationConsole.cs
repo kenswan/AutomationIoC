@@ -35,7 +35,8 @@ public class AutomationConsole
     /// <param name="args">Command line arguments of current process</param>
     /// <returns>Automation Command builder used to add commands</returns>
     /// <remarks>If command line arguments are not sent, <see cref="Environment.GetCommandLineArgs" /> will be used instead</remarks>
-    public static IAutomationConsoleBuilder CreateDefaultBuilder<T>(string? appDescription = null,
+    public static IAutomationConsoleBuilder CreateDefaultBuilder<T>(
+        string? appDescription = null,
         string[]? args = null)
         where T : IConsoleCommand, new()
     {

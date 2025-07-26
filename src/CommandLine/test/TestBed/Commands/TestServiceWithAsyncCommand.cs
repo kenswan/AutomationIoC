@@ -20,6 +20,8 @@ internal class TestServiceWithAsyncCommand : StandardCommand
             Description = "Description of test option field."
         };
 
+        command.Options.Add(passedInOption);
+
         command.SetAction(async (parseResult, cancellationToken) =>
         {
             string passedInOptionString = parseResult.GetValue(passedInOption);

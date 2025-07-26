@@ -13,7 +13,7 @@ public partial class AutomationIoConsoleTests
     public void Run_ShouldOnlyRegisterConfigurationAndServicesAtStartup()
     {
         // User passed-in args
-        string[] args = new string[] { "testing", "--test", "this iss a test param" };
+        string[] args = ["testing", "--test", "this is a test param"];
 
         // Should not begin services here, would fail here otherwise
         IAutomationConsoleBuilder builder =
@@ -33,7 +33,7 @@ public partial class AutomationIoConsoleTests
     public void Run_ShouldOnlyRegisterConfigurationAndServicesOnceWithMultipleCommands()
     {
         // User passed-in args
-        string[] args = new string[] { "target", "--test", "testing" };
+        string[] args = ["target", "--test", "testing"];
 
         IAutomationConsoleBuilder builder =
             AutomationConsole.CreateDefaultBuilder("This is a test", args)
@@ -48,6 +48,6 @@ public partial class AutomationIoConsoleTests
 
         // Should not encounter failure with targeted command
         // If other commands registered services too, it would fail like in previous test
-        Assert.True(resultCode == 0);
+        Assert.Equal(0, resultCode);
     }
 }

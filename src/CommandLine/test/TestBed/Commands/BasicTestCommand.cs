@@ -24,6 +24,9 @@ internal class BasicTestCommand : StandardCommand
             DefaultValueFactory = _ => InternalTestData
         };
 
+        command.Options.Add(passedInOption);
+        command.Options.Add(internalOption);
+
         command.SetAction(parseResult =>
         {
             string passedInOptionString = parseResult.GetValue(passedInOption);

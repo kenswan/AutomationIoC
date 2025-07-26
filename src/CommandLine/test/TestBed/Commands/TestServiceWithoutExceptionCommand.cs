@@ -20,6 +20,8 @@ internal class TestServiceWithoutExceptionCommand : StandardCommand
             Description = "Description of test."
         };
 
+        command.Options.Add(passedInOption);
+
         command.SetAction(parseResult =>
         {
             string passedInOptionString = parseResult.GetValue(passedInOption);
