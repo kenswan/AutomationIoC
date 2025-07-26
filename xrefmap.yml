@@ -95,6 +95,31 @@ references:
   fullName.vb: AutomationIoC.Runtime.AutomationRuntime.HasRegisteredServiceProvider(Of TStartup)(AutomationIoC.Runtime.ISessionStorage, System.IServiceProvider)
   nameWithType: AutomationRuntime.HasRegisteredServiceProvider<TStartup>(ISessionStorage, out IServiceProvider)
   nameWithType.vb: AutomationRuntime.HasRegisteredServiceProvider(Of TStartup)(ISessionStorage, IServiceProvider)
+- uid: AutomationIoC.Runtime.AutomationRuntimeException
+  name: AutomationRuntimeException
+  href: api/AutomationIoC.Runtime.AutomationRuntimeException.html
+  commentId: T:AutomationIoC.Runtime.AutomationRuntimeException
+  fullName: AutomationIoC.Runtime.AutomationRuntimeException
+  nameWithType: AutomationRuntimeException
+- uid: AutomationIoC.Runtime.AutomationRuntimeException.#ctor(System.String)
+  name: AutomationRuntimeException(string)
+  href: api/AutomationIoC.Runtime.AutomationRuntimeException.html#AutomationIoC_Runtime_AutomationRuntimeException__ctor_System_String_
+  commentId: M:AutomationIoC.Runtime.AutomationRuntimeException.#ctor(System.String)
+  name.vb: New(String)
+  fullName: AutomationIoC.Runtime.AutomationRuntimeException.AutomationRuntimeException(string)
+  fullName.vb: AutomationIoC.Runtime.AutomationRuntimeException.New(String)
+  nameWithType: AutomationRuntimeException.AutomationRuntimeException(string)
+  nameWithType.vb: AutomationRuntimeException.New(String)
+- uid: AutomationIoC.Runtime.AutomationRuntimeException.#ctor*
+  name: AutomationRuntimeException
+  href: api/AutomationIoC.Runtime.AutomationRuntimeException.html#AutomationIoC_Runtime_AutomationRuntimeException__ctor_
+  commentId: Overload:AutomationIoC.Runtime.AutomationRuntimeException.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: AutomationIoC.Runtime.AutomationRuntimeException.AutomationRuntimeException
+  fullName.vb: AutomationIoC.Runtime.AutomationRuntimeException.New
+  nameWithType: AutomationRuntimeException.AutomationRuntimeException
+  nameWithType.vb: AutomationRuntimeException.New
 - uid: AutomationIoC.Runtime.AutomationStartup
   name: AutomationStartup
   href: api/AutomationIoC.Runtime.AutomationStartup.html
