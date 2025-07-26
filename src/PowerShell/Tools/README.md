@@ -14,11 +14,11 @@ Development tools for running/testing PSCmdlets built with Automation framework
 
 ## Documentation
 
-Please visit the [AutomationIoC Documentation Site](https://AutomationIoC.github.io/Automation/) for installation, getting started, and API documentation.
+Please visit the [AutomationIoC Documentation Site](https://kenswan.github.io/AutomationIoC/) for installation, getting started, and API documentation.
 
 ## Samples
 
-Please visit and/or download our [AutomationIoC.PowerShell.Tools Sample Solution](https://github.com/AutomationIoC/Automation/tree/main/samples/PowerShellToolsSample) to get a more in-depth view of usage.
+Please visit and/or download our [AutomationIoC.PowerShell.Tools Sample Solution](https://github.com/kenswan/AutomationIoC/tree/main/samples/PowerShellToolsSample) to get a more in-depth view of usage.
 
 ## Requirements
 

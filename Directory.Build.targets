@@ -5,10 +5,10 @@
     <Copyright>Copyright (c) 2023 AutomationIoC</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://AutomationIoC.github.io/Automation/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/AutomationIoC/Automation.git</RepositoryUrl>
+    <PackageProjectUrl>https://kenswan.github.io/AutomationIoC/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/kenswan/AutomationIoC.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>See https://github.com/AutomationIoC/Automation/releases</PackageReleaseNotes>
+    <PackageReleaseNotes>See https://github.com/kenswan/AutomationIoC/releases</PackageReleaseNotes>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <PackageIcon>AutomationIoC.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
