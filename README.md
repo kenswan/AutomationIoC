@@ -1,4 +1,4 @@
-[![Continuous Integration](https://github.com/AutomationIoC/Automation/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/AutomationIoC/Automation/actions/workflows/continuous-integration.yml)
+[![Continuous Integration](https://github.com/kenswan/AutomationIoC/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/kenswan/AutomationIoC/actions/workflows/continuous-integration.yml)
 
 # AutomationIoC
 
@@ -15,8 +15,8 @@ Automation Tools and Dependency Injection for C# PowerShell Cmdlets and Console 
 
 ## Documentation
 
-Please visit the [AutomationIoC Documentation Site](https://AutomationIoC.github.io/Automation/) for installation, getting started, and API documentation.
+Please visit the [AutomationIoC Documentation Site](https://kenswan.github.io/AutomationIoC/) for installation, getting started, and API documentation.
 
 ## Samples
 
-Please visit and/or download our [AutomationIoC Sample Solution](https://github.com/AutomationIoC/Automation/tree/main/samples) to get a more in-depth view of usage.
+Please visit and/or download our [AutomationIoC Sample Solution](https://github.com/AutomationIoC/tree/main/samples) to get a more in-depth view of usage.

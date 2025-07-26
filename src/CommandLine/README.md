@@ -1,6 +1,6 @@
 [![Nuget Version](https://img.shields.io/nuget/v/AutomationIoC.CommandLine?logo=nuget)](https://www.nuget.org/packages/AutomationIoC.CommandLine)
 [![Nuget Downloads](https://img.shields.io/nuget/dt/AutomationIoC.CommandLine?logo=nuget)](https://www.nuget.org/packages/AutomationIoC.CommandLine)
-[![Continuous Integration](https://github.com/AutomationIoC/Automation/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/AutomationIoC/Automation/actions/workflows/continuous-integration.yml)
+[![Continuous Integration](https://github.com/kenswan/AutomationIoC/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/kenswan/AutomationIoC/actions/workflows/continuous-integration.yml)
 
 # AutomationIoC.Runtime
 
