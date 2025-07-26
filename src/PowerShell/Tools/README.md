@@ -1,6 +1,6 @@
 [![Nuget Version](https://img.shields.io/nuget/v/AutomationIoC.PowerShell.Tools?logo=nuget)](https://www.nuget.org/packages/AutomationIoC.PowerShell.Tools)
 [![Nuget Downloads](https://img.shields.io/nuget/dt/AutomationIoC.PowerShell.Tools?logo=nuget)](https://www.nuget.org/packages/AutomationIoC.PowerShell.Tools)
-[![Continuous Integration](https://github.com/AutomationIoC/Automation/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/AutomationIoC/Automation/actions/workflows/continuous-integration.yml)
+[![Continuous Integration](https://github.com/kenswan/AutomationIoC/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/kenswan/AutomationIoC/actions/workflows/continuous-integration.yml)
 
 # AutomationIoC.PowerShell.Tools
 
