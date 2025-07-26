@@ -9,37 +9,45 @@ namespace AutomationIoC.CommandLine.Test.TestBed.Commands;
 
 internal class BasicTestCommand : StandardCommand
 {
-    private readonly string internalTestData;
-
-    public BasicTestCommand()
-    {
-        internalTestData = "test";
-    }
+    private const string InternalTestData = "test";
 
     public override void ConfigureCommand(IServiceBinderFactory serviceBinderFactory, Command command)
     {
-        var passedInOption = new Option<string>(
-            name: "--optionOne",
-            description: "Description of option field.");
+        Option<string> passedInOption = new(name: "--optionOne")
+        {
+            Description = "Description of option one field."
+        };
 
-        var internalOption = new Option<string>(
-            name: "--optionTwo",
-            description: "Description of option field.", getDefaultValue: () => internalTestData);
+        Option<string> internalOption = new(name: "--optionTwo")
+        {
+            Description = "Description of option two field.",
+            DefaultValueFactory = _ => InternalTestData
+        };
 
-        command.AddOption(passedInOption);
-        command.AddOption(internalOption);
+        command.Options.Add(passedInOption);
+        command.Options.Add(internalOption);
 
-        command.SetHandler(TestData, passedInOption);
+        command.SetAction(parseResult =>
+        {
+            string passedInOptionString = parseResult.GetValue(passedInOption);
+            string internalOptionString = parseResult.GetValue(internalOption);
+            Console.WriteLine($"Passed in option: {passedInOptionString}");
+            Console.WriteLine($"Internal option: {internalOptionString}");
+            TestData(passedInOptionString);
+        });
     }
 
-    private void TestData(string data)
+    private static void TestData(string data)
     {
-        Console.WriteLine(internalTestData);
-        Console.WriteLine(data);
+        Console.WriteLine("options 1:" + data);
+        Console.WriteLine("option 2:" + InternalTestData);
     }
 }
 
-internal class BasicTestCommand2 : BasicTestCommand { }
+internal class BasicTestCommand2 : BasicTestCommand
+{
+}
 
-internal class BasicTestCommand3 : BasicTestCommand { }
-
+internal class BasicTestCommand3 : BasicTestCommand
+{
+}

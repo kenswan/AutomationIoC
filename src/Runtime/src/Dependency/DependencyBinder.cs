@@ -39,21 +39,20 @@ internal static class DependencyBinder
 
         foreach (FieldInfo field in fields)
         {
-            var attribute =
-                Attribute.GetCustomAttribute(field, typeof(TAttribute)) as TAttribute;
-
-            if (attribute is not null)
+            if (Attribute.GetCustomAttribute(field, typeof(TAttribute)) is not TAttribute _)
             {
-                object service = serviceProvider.GetService(field.FieldType);
-                if (service is not null)
-                {
-                    field.SetValue(instance, service);
-                }
-                else
-                {
-                    throw new ArgumentNullException(field.Name,
-                        $"Injected Member {field.Name} does not have a registered type");
-                }
+                continue;
+            }
+
+            object service = serviceProvider.GetService(field.FieldType);
+            if (service is not null)
+            {
+                field.SetValue(instance, service);
+            }
+            else
+            {
+                throw new ArgumentNullException(field.Name,
+                    $"Injected Member {field.Name} does not have a registered type");
             }
         }
     }
@@ -65,21 +64,20 @@ internal static class DependencyBinder
 
         foreach (PropertyInfo property in properties)
         {
-            var attribute =
-                Attribute.GetCustomAttribute(property, typeof(TAttribute)) as TAttribute;
-
-            if (attribute is not null)
+            if (Attribute.GetCustomAttribute(property, typeof(TAttribute)) is not TAttribute _)
             {
-                object service = serviceProvider.GetService(property.PropertyType);
-                if (service is not null)
-                {
-                    property.SetValue(instance, service, null);
-                }
-                else
-                {
-                    throw new ArgumentNullException(property.Name,
-                        $"Injected Member {property.Name} does not have a registered type");
-                }
+                continue;
+            }
+
+            object service = serviceProvider.GetService(property.PropertyType);
+            if (service is not null)
+            {
+                property.SetValue(instance, service, null);
+            }
+            else
+            {
+                throw new ArgumentNullException(property.Name,
+                    $"Injected Member {property.Name} does not have a registered type");
             }
         }
     }

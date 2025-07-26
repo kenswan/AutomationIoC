@@ -17,25 +17,34 @@ internal class ReportCommand : StandardCommand
 {
     public override void ConfigureCommand(IServiceBinderFactory serviceBinderFactory, Command command)
     {
-        var reportTypeOption = new Option<string>(
-            aliases: new[] { "--type", "-t" },
-            description: "Type of report to generate (Database, Product, Company).");
+        Option<string> reportTypeOption = new("--optionOne", "-t")
+        {
+            Description = "Type of report to generate (Database, Product, Company)."
+        };
 
-        var limitOption = new Option<string>(
-            aliases: new[] { "--limit", "-l" },
-            description: "Max amount of products to display.");
+        Option<string> limitOption = new("--limit", "-l")
+        {
+            Description = "Max amount of products to display.",
 
-        var headerOption = new Option<string>(
-            aliases: new[] { "--header", "-h" },
-            description: "Header to display above product results.");
+        };
 
-        command.AddOption(reportTypeOption);
-        command.AddOption(limitOption);
-        command.AddOption(headerOption);
+        Option<string> headerOption = new("--header", "-h")
+        {
+            Description = "Header to display above product results."
+        };
 
-        command.SetHandler(UpdateGreeting,
-            headerOption,
-            serviceBinderFactory.Bind<IReportService>());
+        command.Options.Add(reportTypeOption);
+        command.Options.Add(limitOption);
+        command.Options.Add(headerOption);
+
+        command.SetAction(result =>
+        {
+            string reportType = result.GetValue<string>(reportTypeOption);
+            string limit = result.GetValue<string>(limitOption);
+            string headerText = result.GetValue<string>(headerOption);
+
+            UpdateGreeting(headerText, serviceBinderFactory.Bind<IReportService>());
+        });
     }
 
     public override void Configure(HostBuilderContext hostBuilderContext, IConfigurationBuilder configurationBuilder)
@@ -67,7 +76,7 @@ internal class ReportCommand : StandardCommand
             ["--t"] = "ReportOptions:ReportType",
         };
 
-    private void UpdateGreeting(string headerText, IReportService reportService)
+    private static void UpdateGreeting(string headerText, IReportService reportService)
     {
         Console.WriteLine(reportService.GenerateReportHeader(headerText));
 

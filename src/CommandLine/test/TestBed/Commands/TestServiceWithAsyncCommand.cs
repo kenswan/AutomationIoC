@@ -11,7 +11,7 @@ using System.CommandLine;
 
 namespace AutomationIoC.CommandLine.Test.TestBed.Commands;
 
-internal class TestServiceWithExceptionCommand : StandardCommand
+internal class TestServiceWithAsyncCommand : StandardCommand
 {
     public override void ConfigureCommand(IServiceBinderFactory serviceBinderFactory, Command command)
     {
@@ -22,10 +22,14 @@ internal class TestServiceWithExceptionCommand : StandardCommand
 
         command.Options.Add(passedInOption);
 
-        command.SetAction(parseResult =>
+        command.SetAction(async (parseResult, cancellationToken) =>
         {
             string passedInOptionString = parseResult.GetValue(passedInOption);
-            TestExecution(serviceBinderFactory.Bind<ITestService>(), passedInOptionString);
+            await TestExecutionAsync(
+                    serviceBinderFactory.Bind<ITestService>(),
+                    passedInOptionString,
+                    cancellationToken)
+                .ConfigureAwait(false);
         });
     }
 
@@ -37,16 +41,16 @@ internal class TestServiceWithExceptionCommand : StandardCommand
         };
 
         configurationBuilder.AddInMemoryCollection(appSettings);
-
-        throw new NotImplementedException();
     }
 
-    public override void ConfigureServices(HostBuilderContext hostBuilderContext, IServiceCollection services)
-    {
+    public override void ConfigureServices(HostBuilderContext hostBuilderContext, IServiceCollection services) =>
         services.AddTransient<ITestService, TestService>();
 
-        throw new NotImplementedException();
-    }
+    private static Task TestExecutionAsync(ITestService testService, string data, CancellationToken cancellationToken)
+    {
+        Console.WriteLine($"Testing token can be cancelled: {cancellationToken.CanBeCanceled}");
+        testService.Execute(data);
 
-    private static void TestExecution(ITestService testService, string data) => testService.Execute(data);
+        return Task.CompletedTask;
+    }
 }

@@ -13,7 +13,7 @@ public partial class AutomationIoConsoleTests
     public void CreateDefaultBuilder_ShouldEstablishConsoleWithEmptyRoot()
     {
         // User passed-in args
-        string[] args = new string[] { "status", "test", "--optionOne", "testOption1" };
+        string[] args = ["status", "test", "--optionOne", "testOption1"];
 
         IAutomationConsoleBuilder builder =
             AutomationConsole.CreateDefaultBuilder("This is a test", args)
@@ -24,14 +24,14 @@ public partial class AutomationIoConsoleTests
 
         int resultCode = console.Run();
 
-        Assert.True(resultCode == 0);
+        Assert.Equal(0, resultCode);
     }
 
     [Fact]
     public void CreateDefaultBuilder_ShouldEstablishConsoleWithCommandRoot()
     {
         // User passed-in args
-        string[] args = new string[] { "testing", "--optionOne", "testOption1" };
+        string[] args = ["testing", "--optionOne", "testOption1"];
 
         IAutomationConsoleBuilder builder =
             AutomationConsole.CreateDefaultBuilder<BasicTestCommand>("This is a test", args)
@@ -42,14 +42,14 @@ public partial class AutomationIoConsoleTests
 
         int resultCode = console.Run();
 
-        Assert.True(resultCode == 0);
+        Assert.Equal(0, resultCode);
     }
 
     [Fact]
     public void CreateDefaultBuilder_ShouldFailIfCommandNotRegistered()
     {
         // User passed-in args
-        string[] args = new string[] { "not-registered", "--optionOne", "testOption1" };
+        string[] args = ["not-registered", "--optionOne", "testOption1"];
 
         IAutomationConsoleBuilder builder =
             AutomationConsole.CreateDefaultBuilder<BasicTestCommand>("This is a test", args)

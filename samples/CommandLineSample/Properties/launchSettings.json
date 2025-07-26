@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CommandLineSample - Report": {
+      "commandName": "Project",
+      "commandLineArgs": "report --header test --limit 5 -t Company"
+    }
+  }
+}
