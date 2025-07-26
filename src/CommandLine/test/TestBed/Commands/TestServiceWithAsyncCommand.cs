@@ -41,16 +41,10 @@ internal class TestServiceWithAsyncCommand : StandardCommand
         };
 
         configurationBuilder.AddInMemoryCollection(appSettings);
-
-        throw new NotImplementedException();
     }
 
-    public override void ConfigureServices(HostBuilderContext hostBuilderContext, IServiceCollection services)
-    {
+    public override void ConfigureServices(HostBuilderContext hostBuilderContext, IServiceCollection services) =>
         services.AddTransient<ITestService, TestService>();
-
-        throw new NotImplementedException();
-    }
 
     private static Task TestExecutionAsync(ITestService testService, string data, CancellationToken cancellationToken)
     {

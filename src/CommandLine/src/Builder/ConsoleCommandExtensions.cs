@@ -19,7 +19,10 @@ internal static class ConsoleCommandExtensions
         return rootCommand;
     }
 
-    internal static Command Register(this IConsoleCommand internalCommand, string name, string[]? args = null)
+    internal static Command Register(
+        this IConsoleCommand internalCommand,
+        string name,
+        string[]? args = null)
     {
         var command = new Command(name);
 
@@ -28,7 +31,9 @@ internal static class ConsoleCommandExtensions
         return command;
     }
 
-    internal static void Register(this IConsoleCommand internalCommand, Command operationalCommand,
+    internal static void Register(
+        this IConsoleCommand internalCommand,
+        Command operationalCommand,
         string[]? args = null)
     {
         IServiceBinderFactory serviceBinderFactory = InitializeServiceBinderFactory(internalCommand, args);
@@ -36,7 +41,8 @@ internal static class ConsoleCommandExtensions
         internalCommand.ConfigureCommand(serviceBinderFactory, operationalCommand);
     }
 
-    private static IServiceBinderFactory InitializeServiceBinderFactory(IConsoleCommand consoleCommand,
+    private static ServiceBinderFactory InitializeServiceBinderFactory(
+        IConsoleCommand consoleCommand,
         string[]? args = null) =>
-        new ServiceBinderFactory(consoleCommand, args);
+        new(consoleCommand, args);
 }
