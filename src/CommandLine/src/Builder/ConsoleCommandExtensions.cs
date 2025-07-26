@@ -36,13 +36,37 @@ internal static class ConsoleCommandExtensions
         Command operationalCommand,
         string[]? args = null)
     {
-        IServiceBinderFactory serviceBinderFactory = InitializeServiceBinderFactory(internalCommand, args);
+        IServiceBinderFactory serviceBinderFactory = new ServiceBinderFactory(internalCommand, args);
 
         internalCommand.ConfigureCommand(serviceBinderFactory, operationalCommand);
     }
 
-    private static ServiceBinderFactory InitializeServiceBinderFactory(
-        IConsoleCommand consoleCommand,
-        string[]? args = null) =>
-        new(consoleCommand, args);
+    internal static RootCommand Register(
+        this IConsoleCommand internalCommand,
+        IServiceBinderFactory serviceBinderFactory)
+    {
+        var rootCommand = new RootCommand();
+
+        internalCommand.Register(rootCommand, serviceBinderFactory);
+
+        return rootCommand;
+    }
+
+    internal static Command Register(
+        this IConsoleCommand internalCommand,
+        string name,
+        IServiceBinderFactory serviceBinderFactory)
+    {
+        var command = new Command(name);
+
+        internalCommand.Register(command, serviceBinderFactory);
+
+        return command;
+    }
+
+    internal static void Register(
+        this IConsoleCommand internalCommand,
+        Command operationalCommand,
+        IServiceBinderFactory serviceBinderFactory) =>
+        internalCommand.ConfigureCommand(serviceBinderFactory, operationalCommand);
 }

@@ -46,4 +46,17 @@ public class AutomationConsole
 
         return new AutomationConsoleBuilder(rootCommand, args);
     }
+
+    internal static AutomationConsoleBuilder CreateStaticDependencyBuilder<T>(
+        IServiceBinderFactory serviceBinderFactory,
+        string? appDescription = null,
+        string[]? args = null)
+        where T : IConsoleCommand, new()
+    {
+        RootCommand rootCommand = new T().Register(serviceBinderFactory);
+
+        rootCommand.Description = appDescription ?? string.Empty;
+
+        return new AutomationConsoleBuilder(rootCommand, serviceBinderFactory, args);
+    }
 }

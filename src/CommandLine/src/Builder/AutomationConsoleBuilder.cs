@@ -8,8 +8,30 @@ using System.CommandLine;
 
 namespace AutomationIoC.CommandLine.Builder;
 
-internal class AutomationConsoleBuilder(RootCommand rootCommand, string[]? args = null) : IAutomationConsoleBuilder
+internal class AutomationConsoleBuilder : IAutomationConsoleBuilder
 {
+    private readonly string[]? args;
+    private readonly RootCommand rootCommand;
+    private readonly IServiceBinderFactory? serviceBinderFactory;
+
+    public AutomationConsoleBuilder(RootCommand rootCommand, string[]? args = null)
+    {
+        this.rootCommand = rootCommand ?? throw new ArgumentNullException(nameof(rootCommand));
+        this.args = args;
+    }
+
+    public AutomationConsoleBuilder(
+        RootCommand rootCommand,
+        IServiceBinderFactory serviceBinderFactory,
+        string[]? args = null)
+    {
+        this.rootCommand = rootCommand ?? throw new ArgumentNullException(nameof(rootCommand));
+        this.args = args;
+
+        this.serviceBinderFactory =
+            serviceBinderFactory ?? throw new ArgumentNullException(nameof(serviceBinderFactory));
+    }
+
     public IAutomationConsoleBuilder AddCommand<T>(params string[] commandPath) where T : IConsoleCommand, new()
     {
         string addedCommandName = commandPath.Last();
@@ -44,14 +66,22 @@ internal class AutomationConsoleBuilder(RootCommand rootCommand, string[]? args 
         // Add new command if not found at proper path as already existing
         if (existingCommand is null)
         {
-            Command newCommand = internalCommand.Register(addedCommandName, args);
+            Command newCommand = serviceBinderFactory is null
+                ? internalCommand.Register(addedCommandName, args)
+                : internalCommand.Register(addedCommandName, serviceBinderFactory);
 
             currentCommand.Subcommands.Add(newCommand);
         }
         // Update existing command if found
         else
         {
-            internalCommand.Register(existingCommand, args);
+            Action action = serviceBinderFactory switch
+            {
+                null => () => internalCommand.Register(existingCommand, args),
+                _ => () => internalCommand.Register(existingCommand, serviceBinderFactory)
+            };
+
+            action.Invoke();
         }
 
         return this;
