@@ -23,9 +23,9 @@ internal static class DependencyFactory
 
         IServiceCollection serviceCollection =
             GenerateRuntimeDependencies(sessionState)
-            .AddScoped<IAutomationBinder, AutomationBinder>()
-            .AddSingleton(_ => startup)
-            .AddSingleton<IContextBuilder, ContextBuilder>(_ => new ContextBuilder(startup, sessionState));
+                .AddScoped<IAutomationBinder, AutomationBinder>()
+                .AddSingleton(_ => startup)
+                .AddSingleton<IContextBuilder, ContextBuilder>(_ => new ContextBuilder(startup, sessionState));
 
         IServiceProvider initialServiceProvider = serviceCollection.BuildServiceProvider();
 
@@ -33,7 +33,7 @@ internal static class DependencyFactory
         IContextBuilder contextBuilder = serviceScope.ServiceProvider.GetRequiredService<IContextBuilder>();
 
         // Append runtime services to existing service collection
-        IServiceProvider serviceProvider = contextBuilder.BuildServices((services) =>
+        IServiceProvider serviceProvider = contextBuilder.BuildServices(services =>
         {
             foreach (ServiceDescriptor service in serviceCollection)
             {
@@ -49,57 +49,50 @@ internal static class DependencyFactory
             .BuildServiceProvider();
 
     public static IHost GenerateHost(
-        Action<HostBuilderContext, IConfigurationBuilder> buildConfiguration,
-        Action<HostBuilderContext, IServiceCollection> buildServices,
-        string[] parameters = null,
-        IDictionary<string, string> parameterConfigurationMappings = null) => new HostBuilder()
-            .ConfigureAppConfiguration((hostBuilderContext, builder) =>
+        Action<HostBuilderContext, IConfigurationBuilder>? buildConfiguration,
+        Action<HostBuilderContext, IServiceCollection>? buildServices,
+        string[]? parameters = null,
+        IDictionary<string, string>? parameterConfigurationMappings = null) => new HostBuilder()
+        .ConfigureAppConfiguration((hostBuilderContext, builder) =>
+        {
+            var additionalSettings = new Dictionary<string, string>
             {
-                var additionalSettings = new Dictionary<string, string>()
-                {
-                    ["BasePath"] = Directory.GetCurrentDirectory(),
-                };
+                ["BasePath"] = Directory.GetCurrentDirectory()
+            };
 
-                builder
-                    .AddEnvironmentVariables()
-                    .AddInMemoryCollection(additionalSettings);
+            builder
+                .AddEnvironmentVariables()
+                .AddInMemoryCollection(additionalSettings);
 
-                if (buildConfiguration is not null)
-                {
-                    buildConfiguration(hostBuilderContext, builder);
-                }
-            })
-            // Placing parameters in host configuration allows for other dependencies
-            // to be driven off things like "--environment Staging" from the caller
-            // which will then be available in HostBuilderContext within
-            // "ConfigureAppConfiguration" and "ConfigureServices"
-            .ConfigureHostConfiguration((configurationBuilder) =>
+            buildConfiguration?.Invoke(hostBuilderContext, builder);
+        })
+        // Placing parameters in host configuration allows for other dependencies
+        // to be driven off things like "--environment Staging" from the caller
+        // which will then be available in HostBuilderContext within
+        // "ConfigureAppConfiguration" and "ConfigureServices"
+        .ConfigureHostConfiguration(configurationBuilder =>
+        {
+            if (parameters is null)
             {
-                if (parameters is not null)
-                {
-                    if (parameterConfigurationMappings is not null)
-                    {
-                        configurationBuilder.AddCommandLine(parameters, parameterConfigurationMappings);
-                    }
-                    else
-                    {
-                        configurationBuilder.AddCommandLine(parameters);
-                    }
-                }
-            })
-            .ConfigureLogging(loggingBuilder =>
+                return;
+            }
+
+            if (parameterConfigurationMappings is not null)
             {
-                loggingBuilder.AddDebug();
-                loggingBuilder.AddConsole();
-            })
-            .ConfigureServices((hostBuilderContext, services) =>
+                configurationBuilder.AddCommandLine(parameters, parameterConfigurationMappings);
+            }
+            else
             {
-                if (buildServices is not null)
-                {
-                    buildServices(hostBuilderContext, services);
-                }
-            })
-            .Build();
+                configurationBuilder.AddCommandLine(parameters);
+            }
+        })
+        .ConfigureLogging(loggingBuilder =>
+        {
+            loggingBuilder.AddDebug();
+            loggingBuilder.AddConsole();
+        })
+        .ConfigureServices((hostBuilderContext, services) => { buildServices?.Invoke(hostBuilderContext, services); })
+        .Build();
 
     private static IServiceCollection GenerateRuntimeDependencies(ISessionStorage sessionStorage) =>
         new ServiceCollection()
