@@ -103,4 +103,49 @@ public class AutomationServiceActivatorTests
         Assert.True(testService.GetKeyValue(fieldTwoKey, out string? actualFieldTwoValue));
         Assert.Equal(expectedFieldTwoValue, actualFieldTwoValue);
     }
+
+    [Fact]
+    public void GetServiceProvider_ShouldCachedHostOnFirstConfigure()
+    {
+        // Arrange
+        var activator = new AutomationServiceActivator();
+        int timesCalled = 0;
+
+        activator.SetServices((context, services) => { timesCalled++; });
+
+        // Act
+        activator.GetServiceProvider();
+        activator.GetServiceProvider();
+        activator.GetServiceProvider();
+
+        // Assert
+        Assert.Equal(1, timesCalled);
+    }
+
+    [Fact]
+    public void GetServiceProvider_ShouldResetCachedHostOnStructuralUpdates()
+    {
+        // Arrange
+        var originalTestService = new TestService();
+        var finalTestService = new TestService();
+
+        var activator = new AutomationServiceActivator();
+
+        activator.SetServices((context, services) => { services.AddSingleton(originalTestService); });
+        activator.SetServices((context, services) => { services.AddSingleton(finalTestService); });
+
+        // Act
+        IServiceProvider? serviceProvider = activator.GetServiceProvider();
+
+        // Assert
+        Assert.NotNull(serviceProvider);
+
+        TestService? testService =
+            serviceProvider.GetService<TestService>();
+
+        Assert.NotNull(testService);
+        Assert.Equal(finalTestService, testService);
+        Assert.NotEqual(originalTestService, testService);
+        Assert.Equal(finalTestService.Id, testService.Id);
+    }
 }

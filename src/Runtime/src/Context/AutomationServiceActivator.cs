@@ -25,6 +25,7 @@ internal class AutomationServiceActivator
             buildServices: buildServices,
             parameters: args,
             parameterConfigurationMappings: configurationMapping);
+
         return host.Services;
     }
 
