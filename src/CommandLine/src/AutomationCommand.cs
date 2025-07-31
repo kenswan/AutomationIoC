@@ -16,7 +16,7 @@ namespace AutomationIoC.CommandLine;
 /// <param name="automationContext">Automation Services and configurations</param>
 public class AutomationCommand(
     string name,
-    string description,
+    string? description,
     IAutomationContext automationContext) : Command(name, description)
 {
     /// <summary>

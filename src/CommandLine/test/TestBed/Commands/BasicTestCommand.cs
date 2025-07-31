@@ -7,11 +7,11 @@ using System.CommandLine;
 
 namespace AutomationIoC.CommandLine.Test.TestBed.Commands;
 
-internal class BasicTestCommand : StandardCommand
+internal class BasicTestCommand : IAutomationCommand
 {
     private const string InternalTestData = "test";
 
-    public override void ConfigureCommand(IServiceBinderFactory serviceBinderFactory, Command command)
+    public void Initialize(AutomationCommand command)
     {
         Option<string> passedInOption = new(name: "--optionOne")
         {

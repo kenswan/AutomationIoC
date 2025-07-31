@@ -4,13 +4,20 @@
 // -------------------------------------------------------
 
 using AutomationIoC.CommandLine.Application;
+using AutomationIoC.Runtime.Context;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System.CommandLine;
 
 namespace AutomationIoC.CommandLine.Builder;
 
-internal class AutomationConsoleBuilder(RootCommand rootCommand, string[]? args = null) : IAutomationConsoleBuilder
+internal class AutomationConsoleBuilder(
+    AutomationCommand rootCommand,
+    AutomationContext automationContext,
+    string[]? args = null) : IAutomationConsoleBuilder
 {
-    public IAutomationConsoleBuilder AddCommand<T>(params string[] commandPath) where T : IConsoleCommand, new()
+    public IAutomationConsoleBuilder AddCommand<T>(params string[] commandPath) where T : IAutomationCommand, new()
     {
         string addedCommandName = commandPath.Last();
 
@@ -39,23 +46,46 @@ internal class AutomationConsoleBuilder(RootCommand rootCommand, string[]? args 
         Command existingCommand =
             currentCommand.Subcommands.FirstOrDefault(command => command.Name == addedCommandName);
 
-        var internalCommand = new T();
+        var automationCommandInitializer = new T();
+
+        var newAutomationCommand =
+            new AutomationCommand(addedCommandName, null, automationContext);
+
+        automationCommandInitializer.Initialize(newAutomationCommand);
 
         // Add new command if not found at proper path as already existing
         if (existingCommand is null)
         {
-            Command newCommand = internalCommand.Register(addedCommandName, args);
-
-            currentCommand.Subcommands.Add(newCommand);
+            currentCommand.Subcommands.Add(newAutomationCommand);
         }
         // Update existing command if found
         else
         {
-            internalCommand.Register(existingCommand, args);
+            AutomationCommand.Clone(source: newAutomationCommand, target: existingCommand);
         }
 
         return this;
     }
 
+    public IAutomationConsoleBuilder Configure(Action<HostBuilderContext, IConfigurationBuilder> configure)
+    {
+        automationContext.SetConfigure(configure);
+        return this;
+    }
+
+    public IAutomationConsoleBuilder ConfigureServices(Action<HostBuilderContext, IServiceCollection> configureServices)
+    {
+        automationContext.SetConfigureServices(configureServices);
+        return this;
+    }
+
+    public IAutomationConsoleBuilder WithConfigurationMapping(IDictionary<string, string> configurationMapping)
+    {
+        automationContext.SetConfigurationMapping(configurationMapping);
+        return this;
+    }
+
     public IAutomationConsole Build() => new AutomationConsoleApplication(rootCommand, args);
+
+    internal AutomationCommand GetRootCommand() => rootCommand;
 }
