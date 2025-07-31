@@ -79,4 +79,48 @@ public class AutomationConsoleBuilderTests
         invocationResult.Should().Be(0);
         testServiceMock.Verify(service => service.Execute(expectedKeyValue), Times.Once);
     }
+
+    [Fact]
+    public void ShouldBuildAutomationConsoleApplication()
+    {
+        // Arrange
+        const string expectedKey = "TestTheConfigKey";
+        string expectedKeyValue = Guid.NewGuid().ToString();
+        var automationContext = new AutomationContext();
+
+        var rootCommand =
+            new AutomationCommand(RootCommand.ExecutableName, "Test Application", automationContext);
+
+        var automationConsoleBuilder =
+            new AutomationConsoleBuilder(rootCommand, automationContext, ["full-test", "--key", expectedKey]);
+
+        var testServiceMock = new Mock<ITestService>();
+
+        automationConsoleBuilder.AddCommand<FullTestCommand>("full-test");
+
+        automationConsoleBuilder.Configure((context, configurationBuilder) =>
+        {
+            var appSettings = new Dictionary<string, string>
+            {
+                {
+                    expectedKey, expectedKeyValue
+                }
+            };
+            configurationBuilder.AddInMemoryCollection(appSettings);
+        });
+
+        automationConsoleBuilder.ConfigureServices((context, services) =>
+        {
+            services.AddTransient(provider => testServiceMock.Object);
+            services.AddTransient<TestConfigurationService>();
+        });
+
+        // Act
+        int invocationResult =
+            automationConsoleBuilder.Build().Run();
+
+        // Assert
+        invocationResult.Should().Be(0);
+        testServiceMock.Verify(service => service.Execute(expectedKeyValue), Times.Once);
+    }
 }

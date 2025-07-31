@@ -4,6 +4,9 @@
 // -------------------------------------------------------
 
 using AutomationIoC.CommandLine.Test.TestBed.Commands;
+using AutomationIoC.CommandLine.Test.TestBed.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AutomationIoC.CommandLine.Test;
 
@@ -42,11 +45,24 @@ public partial class AutomationIoConsoleTests
                 .AddCommand<TestServiceWithExceptionCommand>("testing3")
                 .AddCommand<TestServiceWithoutExceptionCommand>("target");
 
+        builder.Configure((hostBuilderContext, configurationBuilder) =>
+        {
+            var appSettings = new Dictionary<string, string>
+            {
+                [TestService.CONFIG_KEY] = TestService.CONFIG_VALUE
+            };
+
+            configurationBuilder.AddInMemoryCollection(appSettings);
+        });
+
+        builder.ConfigureServices((hostBuilderContext, services) =>
+            services.AddTransient<ITestService, TestService>());
+
         IAutomationConsole console = builder.Build();
 
         int resultCode = console.Run();
 
-        // Should not encounter failure with targeted command
+        // Should not encounter failure with targeted command (set action)
         // If other commands registered services too, it would fail like in previous test
         Assert.Equal(0, resultCode);
     }

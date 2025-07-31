@@ -35,13 +35,6 @@ public interface IAutomationConsoleBuilder
     IAutomationConsoleBuilder ConfigureServices(Action<HostBuilderContext, IServiceCollection> configureServices);
 
     /// <summary>
-    ///     CConfiguration mapping to use for automation console
-    ///     This is used to map command line arguments to configuration keys
-    /// </summary>
-    /// <param name="configurationMapping">Argument -> Configuration Key Mapping</param>
-    IAutomationConsoleBuilder WithConfigurationMapping(IDictionary<string, string> configurationMapping);
-
-    /// <summary>
     ///     Finalize command registration and build automation console
     /// </summary>
     /// <returns>Automation console that will run registered process</returns>

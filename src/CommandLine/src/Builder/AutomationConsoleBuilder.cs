@@ -79,12 +79,6 @@ internal class AutomationConsoleBuilder(
         return this;
     }
 
-    public IAutomationConsoleBuilder WithConfigurationMapping(IDictionary<string, string> configurationMapping)
-    {
-        automationContext.SetConfigurationMapping(configurationMapping);
-        return this;
-    }
-
     public IAutomationConsole Build() => new AutomationConsoleApplication(rootCommand, args);
 
     internal AutomationCommand GetRootCommand() => rootCommand;

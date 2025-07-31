@@ -3,8 +3,6 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoC.CommandLine.Test.TestBed.Services;
-using Microsoft.Extensions.DependencyInjection;
 using System.CommandLine;
 
 namespace AutomationIoC.CommandLine.Test.TestBed.Commands;
@@ -20,30 +18,6 @@ internal class TestServiceWithExceptionCommand : IAutomationCommand
 
         command.Options.Add(passedInOption);
 
-        command.SetAction((parseResult, automationContext) =>
-        {
-            string passedInOptionString = parseResult.GetValue(passedInOption);
-            TestExecution(automationContext.ServiceProvider.GetService<ITestService>(), passedInOptionString);
-        });
+        command.SetAction((parseResult, automationContext) => throw new NotImplementedException());
     }
-    // public override void Configure(HostBuilderContext hostBuilderContext, IConfigurationBuilder configurationBuilder)
-    // {
-    //     var appSettings = new Dictionary<string, string>
-    //     {
-    //         [TestService.CONFIG_KEY] = TestService.CONFIG_VALUE
-    //     };
-    //
-    //     configurationBuilder.AddInMemoryCollection(appSettings);
-    //
-    //     throw new NotImplementedException();
-    // }
-    //
-    // public override void ConfigureServices(HostBuilderContext hostBuilderContext, IServiceCollection services)
-    // {
-    //     services.AddTransient<ITestService, TestService>();
-    //
-    //     throw new NotImplementedException();
-    // }
-
-    private static void TestExecution(ITestService testService, string data) => testService.Execute(data);
 }

@@ -27,18 +27,5 @@ internal class TestServiceWithoutExceptionCommand : IAutomationCommand
         });
     }
 
-    // public override void Configure(HostBuilderContext hostBuilderContext, IConfigurationBuilder configurationBuilder)
-    // {
-    //     var appSettings = new Dictionary<string, string>
-    //     {
-    //         [TestService.CONFIG_KEY] = TestService.CONFIG_VALUE
-    //     };
-    //
-    //     configurationBuilder.AddInMemoryCollection(appSettings);
-    // }
-    //
-    // public override void ConfigureServices(HostBuilderContext hostBuilderContext, IServiceCollection services) =>
-    //     services.AddTransient<ITestService, TestService>();
-
     private static void TestExecution(ITestService testService, string data) => testService.Execute(data);
 }
