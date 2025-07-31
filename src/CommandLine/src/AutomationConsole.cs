@@ -4,6 +4,7 @@
 // -------------------------------------------------------
 
 using AutomationIoC.CommandLine.Builder;
+using AutomationIoC.Runtime.Context;
 using System.CommandLine;
 
 namespace AutomationIoC.CommandLine;
@@ -22,9 +23,12 @@ public class AutomationConsole
     /// <remarks>If command line arguments are not sent, <see cref="Environment.GetCommandLineArgs" /> will be used instead</remarks>
     public static IAutomationConsoleBuilder CreateDefaultBuilder(string? appDescription = null, string[]? args = null)
     {
-        var rootCommand = new RootCommand(appDescription ?? string.Empty);
+        var automationContext = new AutomationContext();
 
-        return new AutomationConsoleBuilder(rootCommand, args);
+        var newAutomationCommand =
+            new AutomationCommand(RootCommand.ExecutableName, appDescription ?? string.Empty, automationContext);
+
+        return new AutomationConsoleBuilder(newAutomationCommand, automationContext, args);
     }
 
     /// <summary>
@@ -38,12 +42,17 @@ public class AutomationConsole
     public static IAutomationConsoleBuilder CreateDefaultBuilder<T>(
         string? appDescription = null,
         string[]? args = null)
-        where T : IConsoleCommand, new()
+        where T : IAutomationCommand, new()
     {
-        RootCommand rootCommand = new T().Register();
+        var automationContext = new AutomationContext();
+        automationContext.SetArgs(args ?? Environment.GetCommandLineArgs());
+        var automationCommandInitializer = new T();
 
-        rootCommand.Description = appDescription ?? string.Empty;
+        var newAutomationCommand =
+            new AutomationCommand(RootCommand.ExecutableName, appDescription ?? string.Empty, automationContext);
 
-        return new AutomationConsoleBuilder(rootCommand, args);
+        automationCommandInitializer.Initialize(newAutomationCommand);
+
+        return new AutomationConsoleBuilder(newAutomationCommand, automationContext, args);
     }
 }
