@@ -35,54 +35,44 @@ dotnet add package AutomationIoC.CommandLine
 Create Automation Console Command to run
 
 ```csharp
-public class TestCommand : StandardCommand
+public class TestCommand : IAutomationCommand
 {
-    public override void ConfigureCommand(IServiceBinderFactory serviceBinderFactory, Command command)
+    public void Initialize(AutomationCommand command)
     {
-        var greetingOption = new Option<string>(
-            name: "--greeting",
-            description: "New greeting to display.");
-
-        command.AddOption(greetingOption);
-
-        command.SetHandler(UpdateGreeting,
-            greetingOption,
-            serviceBinderFactory.Bind<ITestService>(),
-            serviceBinderFactory.Bind<IConfiguration>());
-    }
-
-    public override void Configure(HostBuilderContext hostBuilderContext, IConfigurationBuilder configurationBuilder)
-    {
-        var appSettings = new Dictionary<string, string>()
+        Option<string> configurationKeyOption = new(name: "--key")
         {
-            ["CurrentGreetingMessage"] = "Current Greeting: {0}",
-            ["NewGreetingMessage"] = "New Greeting: {0}"
+            Description = "Name of key to pull from configuration."
         };
 
-        configurationBuilder.AddInMemoryCollection(appSettings);
+        command.Options.Add(configurationKeyOption);
+
+        command.SetAction(async (parseResult, context, cancellationToken) =>
+        {
+            string configurationKey = parseResult.GetValue(configurationKeyOption);
+
+            IServiceProvider serviceProvider = context.ServiceProvider;
+
+            TestConfigurationService testConfigurationService =
+                serviceProvider.GetRequiredService<TestConfigurationService>();
+
+            string configurationValue =
+                await testConfigurationService
+                    .GetConfigurationValueAsync(configurationKey, cancellationToken)
+                    .ConfigureAwait(false);
+
+            Console.WriteLine($"Configuration Value Requested: {configurationValue}");
+        });
     }
+}
 
-    public override void ConfigureServices(HostBuilderContext hostBuilderContext, IServiceCollection services)
-    {
-        serviceCollection.AddScoped<ITestService, TestService>();
-    }
+// Sample test configuration service to retrieve configuration values
+public class TestConfigurationService(IConfiguration configuration)
+{
+    public string GetConfigurationValue(string key) =>
+        configuration.GetValue<string>(key) ?? throw new KeyNotFoundException($"Configuration key '{key}' not found.");
 
-    private void UpdateGreeting(
-        string newGreeting,
-        ITestService testService,
-        IConfiguration configuration)
-    {
-        string unformattedCurrentGreeting = configuration.GetValue<string>("CurrentGreetingMessage");
-        string unformattedNewGreeting = configuration.GetValue<string>("NewGreetingMessage");
-
-        string currentGreeting = testService.GetGreeting();
-
-        Console.WriteLine(unformattedCurrentGreeting, currentGreeting);
-
-        string updatedGreeting = testService.UpdateGreeting(newGreeting);
-
-        Console.WriteLine(unformattedNewGreeting, updatedGreeting);
-    }
+    public Task<string> GetConfigurationValueAsync(string key, CancellationToken cancellationToken = default) =>
+        Task.FromResult(GetConfigurationValue(key));
 }
 ```
 
@@ -97,7 +87,23 @@ class Program
             // Passing in "args" is optional
             AutomationConsole.CreateDefaultBuilder(args)
                 // Add command name/path here
-                .AddCommand<TestCommand>("greet");
+                .AddCommand<TestCommand>("check-config")
+                // Build IConfiguration
+                .Configure((context, configurationBuilder) =>
+                {
+                    var appSettings = new Dictionary<string, string>
+                    {
+                        {
+                            "MyConfigurationKey", Guid.NewGuid().ToString()
+                        }
+                    };
+                    configurationBuilder.AddInMemoryCollection(appSettings);
+                })
+                // Register services
+                .ConfigureServices((context, services) =>
+                {
+                    services.AddTransient<TestConfigurationService>();
+                });
 
         IAutomationConsole console = builder.Build();
 
@@ -109,7 +115,7 @@ class Program
 Run command
 
 ```dotnetcli
-dotnet run -- greet --greeting "Hello World"
+dotnet run -- check-config --key MyConfigurationKey
 ```
 
 ## Other Resources
