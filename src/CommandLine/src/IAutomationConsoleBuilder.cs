@@ -35,6 +35,12 @@ public interface IAutomationConsoleBuilder
     IAutomationConsoleBuilder ConfigureServices(Action<HostBuilderContext, IServiceCollection> configureServices);
 
     /// <summary>
+    /// Mapping of command line arguments to configuration keys.
+    /// </summary>
+    /// <param name="mapping">Mappings</param>
+    IAutomationConsoleBuilder WithConfigurationMapping(IDictionary<string, string> mapping);
+
+    /// <summary>
     ///     Finalize command registration and build automation console
     /// </summary>
     /// <returns>Automation console that will run registered process</returns>
