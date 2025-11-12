@@ -8,7 +8,7 @@ namespace AutomationIoC.CommandLine;
 /// <summary>
 ///     Configures runtime automation commands established in <see cref="IAutomationConsoleBuilder" />.
 /// </summary>
-public interface IAutomationCommand
+public interface IAutomationCommandInitializer
 {
     /// <summary>
     ///     Configures the command line automation command with the provided

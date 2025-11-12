@@ -4,7 +4,7 @@
 // -------------------------------------------------------
 
 using AutomationIoC.CommandLine.Builder;
-using AutomationIoC.Runtime.Context;
+using AutomationIoC.Runtime;
 using System.CommandLine;
 
 namespace AutomationIoC.CommandLine;
@@ -42,7 +42,7 @@ public class AutomationConsole
     public static IAutomationConsoleBuilder CreateDefaultBuilder<T>(
         string? appDescription = null,
         string[]? args = null)
-        where T : IAutomationCommand, new()
+        where T : IAutomationCommandInitializer, new()
     {
         var automationContext = new AutomationContext();
         automationContext.SetArgs(args ?? Environment.GetCommandLineArgs());
@@ -54,5 +54,45 @@ public class AutomationConsole
         automationCommandInitializer.Initialize(newAutomationCommand);
 
         return new AutomationConsoleBuilder(newAutomationCommand, automationContext, args);
+    }
+
+    /// <summary>
+    ///     Create a root command without a builder. This allows more flexibility in creating the command structure and
+    ///     direct control
+    /// </summary>
+    /// <param name="automationContext">Automation context responsible for services <see cref="AutomationContext" /></param>
+    /// <param name="appDescription">Description of application tooling</param>
+    /// <returns>Root Automation Command</returns>
+    public static AutomationCommand CreateRootCommand(
+        IAutomationContext automationContext,
+        string? appDescription = null)
+    {
+        var rootCommand =
+            new AutomationCommand(RootCommand.ExecutableName, appDescription ?? string.Empty, automationContext);
+
+        return rootCommand;
+    }
+
+    /// <summary>
+    ///     Create a root command without a builder. This allows more flexibility in creating the command structure and
+    ///     direct control
+    /// </summary>
+    /// <param name="automationContext">Automation context responsible for services <see cref="AutomationContext" /></param>
+    /// <param name="appDescription">Description of application tooling</param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns>Root Automation Command</returns>
+    public static AutomationCommand CreateRootCommand<T>(
+        IAutomationContext automationContext,
+        string? appDescription = null)
+        where T : IAutomationCommandInitializer, new()
+    {
+        var automationCommandInitializer = new T();
+
+        var rootCommand =
+            new AutomationCommand(RootCommand.ExecutableName, appDescription ?? string.Empty, automationContext);
+
+        automationCommandInitializer.Initialize(rootCommand);
+
+        return rootCommand;
     }
 }

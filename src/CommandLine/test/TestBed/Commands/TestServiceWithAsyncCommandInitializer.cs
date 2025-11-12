@@ -9,7 +9,7 @@ using System.CommandLine;
 
 namespace AutomationIoC.CommandLine.Test.TestBed.Commands;
 
-internal class TestServiceWithAsyncCommand : IAutomationCommand
+internal class TestServiceWithAsyncCommandInitializer : IAutomationCommandInitializer
 {
     public void Initialize(AutomationCommand command)
     {

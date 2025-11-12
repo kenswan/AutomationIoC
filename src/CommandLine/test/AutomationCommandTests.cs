@@ -4,7 +4,7 @@
 // -------------------------------------------------------
 
 using AutomationIoC.CommandLine.Test.TestBed.Services;
-using AutomationIoC.Runtime.Context;
+using AutomationIoC.Runtime;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.CommandLine;

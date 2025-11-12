@@ -4,7 +4,7 @@
 // -------------------------------------------------------
 
 using AutomationIoC.CommandLine.Application;
-using AutomationIoC.Runtime.Context;
+using AutomationIoC.Runtime;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,7 +17,8 @@ internal class AutomationConsoleBuilder(
     AutomationContext automationContext,
     string[]? args = null) : IAutomationConsoleBuilder
 {
-    public IAutomationConsoleBuilder AddCommand<T>(params string[] commandPath) where T : IAutomationCommand, new()
+    public IAutomationConsoleBuilder AddCommand<T>(params string[] commandPath)
+        where T : IAutomationCommandInitializer, new()
     {
         string addedCommandName = commandPath.Last();
 

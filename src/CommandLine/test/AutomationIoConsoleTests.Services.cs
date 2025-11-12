@@ -21,7 +21,7 @@ public partial class AutomationIoConsoleTests
         // Should not begin services here, would fail here otherwise
         IAutomationConsoleBuilder builder =
             AutomationConsole.CreateDefaultBuilder("This is a test", args)
-                .AddCommand<TestServiceWithExceptionCommand>("testing");
+                .AddCommand<TestServiceWithExceptionCommandInitializer>("testing");
 
         // Should not begin services here, would fail here otherwise
         IAutomationConsole console = builder.Build();
@@ -40,10 +40,10 @@ public partial class AutomationIoConsoleTests
 
         IAutomationConsoleBuilder builder =
             AutomationConsole.CreateDefaultBuilder("This is a test", args)
-                .AddCommand<TestServiceWithExceptionCommand>("testing1")
-                .AddCommand<TestServiceWithExceptionCommand>("testing2")
-                .AddCommand<TestServiceWithExceptionCommand>("testing3")
-                .AddCommand<TestServiceWithoutExceptionCommand>("target");
+                .AddCommand<TestServiceWithExceptionCommandInitializer>("testing1")
+                .AddCommand<TestServiceWithExceptionCommandInitializer>("testing2")
+                .AddCommand<TestServiceWithExceptionCommandInitializer>("testing3")
+                .AddCommand<TestServiceWithoutExceptionCommandInitializer>("target");
 
         builder.Configure((hostBuilderContext, configurationBuilder) =>
         {

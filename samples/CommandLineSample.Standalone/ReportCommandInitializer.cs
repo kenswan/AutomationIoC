@@ -8,9 +8,9 @@ using AutomationIoC.CommandLine;
 using Microsoft.Extensions.DependencyInjection;
 using System.CommandLine;
 
-namespace CommandLineSample;
+namespace CommandLineSample.Standalone;
 
-internal class ReportCommand : IAutomationCommandInitializer
+internal class ReportCommandInitializer : IAutomationCommandInitializer
 {
     public void Initialize(AutomationCommand command)
     {
