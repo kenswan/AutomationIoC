@@ -3,7 +3,6 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using AutomationIoC.Runtime.Context;
 using AutomationIoC.Runtime.Test.TestBed.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

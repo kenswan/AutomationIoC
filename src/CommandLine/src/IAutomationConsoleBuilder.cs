@@ -20,7 +20,7 @@ public interface IAutomationConsoleBuilder
     /// <typeparam name="T">Type of command implementation</typeparam>
     /// <param name="commandPath">Path to register command (command and subcommand path)</param>
     /// <returns>Builder pattern object used for registration continuation</returns>
-    IAutomationConsoleBuilder AddCommand<T>(params string[] commandPath) where T : IAutomationCommand, new();
+    IAutomationConsoleBuilder AddCommand<T>(params string[] commandPath) where T : IAutomationCommandInitializer, new();
 
     /// <summary>
     ///     Configure configuration for automation console
@@ -35,7 +35,7 @@ public interface IAutomationConsoleBuilder
     IAutomationConsoleBuilder ConfigureServices(Action<HostBuilderContext, IServiceCollection> configureServices);
 
     /// <summary>
-    /// Mapping of command line arguments to configuration keys.
+    ///     Mapping of command line arguments to configuration keys.
     /// </summary>
     /// <param name="mapping">Mappings</param>
     IAutomationConsoleBuilder WithConfigurationMapping(IDictionary<string, string> mapping);

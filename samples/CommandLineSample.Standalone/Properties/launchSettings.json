@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "CommandLineSample (Standalone)": {
+      "commandName": "Project"
+    },
+    "CommandLineSample (Standalone) - Report": {
+      "commandName": "Project",
+      "commandLineArgs": "report --header test --limit 5 -t Company"
+    },
+    "CommandLineSample (Standalone) - Automation": {
+      "commandName": "Project",
+      "commandLineArgs": "report-automated --header test --limit 5 -t Company"
+    }
+  }
+}

@@ -7,7 +7,7 @@ using System.CommandLine;
 
 namespace AutomationIoC.CommandLine.Test.TestBed.Commands;
 
-internal class BasicTestCommand : IAutomationCommand
+internal class BasicTestCommandInitializer : IAutomationCommandInitializer
 {
     private const string InternalTestData = "test";
 
@@ -44,10 +44,10 @@ internal class BasicTestCommand : IAutomationCommand
     }
 }
 
-internal class BasicTestCommand2 : BasicTestCommand
+internal class BasicTestCommand2 : BasicTestCommandInitializer
 {
 }
 
-internal class BasicTestCommand3 : BasicTestCommand
+internal class BasicTestCommand3 : BasicTestCommandInitializer
 {
 }

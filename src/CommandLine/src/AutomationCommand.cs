@@ -20,6 +20,11 @@ public class AutomationCommand(
     IAutomationContext automationContext) : Command(name, description)
 {
     /// <summary>
+    ///     Services and configurations for dependency injection.
+    /// </summary>
+    public IAutomationContext Context => automationContext;
+
+    /// <summary>
     ///     Set the action to be executed when the command is invoked (synchronous).
     ///     The action receives the parsed result and the automation context, allowing for dependency injection.
     /// </summary>

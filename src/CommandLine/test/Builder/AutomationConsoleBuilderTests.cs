@@ -6,7 +6,7 @@
 using AutomationIoC.CommandLine.Builder;
 using AutomationIoC.CommandLine.Test.TestBed.Commands;
 using AutomationIoC.CommandLine.Test.TestBed.Services;
-using AutomationIoC.Runtime.Context;
+using AutomationIoC.Runtime;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
@@ -24,7 +24,7 @@ public class AutomationConsoleBuilderTests
         var rootCommand = new AutomationCommand(RootCommand.ExecutableName, "Test Application", automationContext);
         var automationConsoleBuilder = new AutomationConsoleBuilder(rootCommand, automationContext);
 
-        automationConsoleBuilder.AddCommand<BasicTestCommand>("test", "subcommand");
+        automationConsoleBuilder.AddCommand<BasicTestCommandInitializer>("test", "subcommand");
 
         AutomationCommand configuredRootCommand = automationConsoleBuilder.GetRootCommand();
 
@@ -48,7 +48,7 @@ public class AutomationConsoleBuilderTests
         var automationConsoleBuilder = new AutomationConsoleBuilder(rootCommand, automationContext);
         var testServiceMock = new Mock<ITestService>();
 
-        automationConsoleBuilder.AddCommand<FullTestCommand>("full-test");
+        automationConsoleBuilder.AddCommand<FullTestCommandInitializer>("full-test");
 
         automationConsoleBuilder.Configure((context, configurationBuilder) =>
         {
@@ -95,7 +95,7 @@ public class AutomationConsoleBuilderTests
 
         var testServiceMock = new Mock<ITestService>();
 
-        automationConsoleBuilder.AddCommand<FullTestCommand>("full-test");
+        automationConsoleBuilder.AddCommand<FullTestCommandInitializer>("full-test");
 
         automationConsoleBuilder.Configure((context, configurationBuilder) =>
         {
