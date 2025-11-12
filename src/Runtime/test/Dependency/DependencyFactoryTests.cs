@@ -3,7 +3,6 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,11 +28,8 @@ public class DependencyFactoryTests
         IServiceProvider actualServiceProvider = DependencyFactory.GenerateServiceProvider(sessionStorage, startup);
 
         // Assert
-        actualServiceProvider.GetRequiredService<ISessionStorage>()
-            .Should().BeEquivalentTo(sessionStorage);
-
-        actualServiceProvider.GetRequiredService<IAutomationStartup>()
-            .Should().BeEquivalentTo(startup);
+        Assert.Equivalent(sessionStorage, actualServiceProvider.GetRequiredService<ISessionStorage>());
+        Assert.Equivalent(startup, actualServiceProvider.GetRequiredService<IAutomationStartup>());
 
         Assert.NotNull(actualServiceProvider.GetService<IAutomationBinder>());
         Assert.NotNull(actualServiceProvider.GetService<IContextBuilder>());
@@ -49,8 +45,7 @@ public class DependencyFactoryTests
         IServiceProvider actualServiceProvider = DependencyFactory.GenerateServiceProvider(sessionStorage);
 
         // Assert
-        actualServiceProvider.GetRequiredService<ISessionStorage>()
-            .Should().BeEquivalentTo(sessionStorage);
+        Assert.Equivalent(sessionStorage, actualServiceProvider.GetRequiredService<ISessionStorage>());
     }
 
     [Fact]

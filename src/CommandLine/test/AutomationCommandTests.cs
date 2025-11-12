@@ -72,9 +72,10 @@ public class AutomationCommandTests
             actualConfigurationValue = testService.GetConfigurationValue(configurationKey);
         });
 
-        new CommandLineConfiguration(command).Invoke(commandName);
+        int result = command.Parse(commandName).Invoke();
 
         // Assert
+        Assert.Equal(0, result);
         Assert.Equal(configurationValue, actualConfigurationValue);
     }
 
@@ -124,10 +125,11 @@ public class AutomationCommandTests
                     .ConfigureAwait(false);
         });
 
-        await new CommandLineConfiguration(command)
-            .InvokeAsync(commandName, TestContext.Current.CancellationToken);
+        int result = await command.Parse(commandName)
+            .InvokeAsync(cancellationToken: TestContext.Current.CancellationToken);
 
         // Assert
+        Assert.Equal(0, result);
         Assert.Equal(configurationValue, actualConfigurationValue);
     }
 
@@ -202,10 +204,12 @@ public class AutomationCommandTests
         // Act
         AutomationCommand.Clone(source: commandOne, target: commandTwo);
 
-        await new CommandLineConfiguration(commandTwo)
-            .InvokeAsync([commandTwoName, "--optionOne", commandOptionValue], TestContext.Current.CancellationToken);
+        int result = await commandTwo
+            .Parse([commandTwoName, "--optionOne", commandOptionValue])
+            .InvokeAsync(cancellationToken: TestContext.Current.CancellationToken);
 
         // Assert
+        Assert.Equal(0, result);
         Assert.Equal(configurationValue, actualConfigurationValue);
         Assert.Equal(commandOptionValue, actualOptionValue);
         Assert.Equivalent(commandOne.Options, commandTwo.Options);

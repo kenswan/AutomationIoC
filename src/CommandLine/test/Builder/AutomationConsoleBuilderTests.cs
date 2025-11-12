@@ -7,7 +7,6 @@ using AutomationIoC.CommandLine.Builder;
 using AutomationIoC.CommandLine.Test.TestBed.Commands;
 using AutomationIoC.CommandLine.Test.TestBed.Services;
 using AutomationIoC.Runtime.Context;
-using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
@@ -31,11 +30,11 @@ public class AutomationConsoleBuilderTests
 
         // Act
         int invocationResult =
-            new CommandLineConfiguration(configuredRootCommand)
-                .Invoke(["test", "subcommand", "--optionOne", "testValue"]);
+            configuredRootCommand.Parse(["test", "subcommand", "--optionOne", "testValue"])
+                .Invoke();
 
         // Assert
-        invocationResult.Should().Be(0);
+        Assert.Equal(0, invocationResult);
     }
 
     [Fact]
@@ -72,11 +71,11 @@ public class AutomationConsoleBuilderTests
 
         // Act
         int invocationResult =
-            new CommandLineConfiguration(configuredRootCommand)
-                .Invoke(["full-test", "--key", expectedKey]);
+            configuredRootCommand.Parse(["full-test", "--key", expectedKey])
+                .Invoke();
 
         // Assert
-        invocationResult.Should().Be(0);
+        Assert.Equal(0, invocationResult);
         testServiceMock.Verify(service => service.Execute(expectedKeyValue), Times.Once);
     }
 
@@ -120,7 +119,7 @@ public class AutomationConsoleBuilderTests
             automationConsoleBuilder.Build().Run();
 
         // Assert
-        invocationResult.Should().Be(0);
+        Assert.Equal(0, invocationResult);
         testServiceMock.Verify(service => service.Execute(expectedKeyValue), Times.Once);
     }
 }
