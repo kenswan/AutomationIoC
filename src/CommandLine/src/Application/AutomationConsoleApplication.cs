@@ -3,8 +3,6 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
-using System.CommandLine;
-
 namespace AutomationIoC.CommandLine.Application;
 
 internal class AutomationConsoleApplication(
@@ -13,8 +11,8 @@ internal class AutomationConsoleApplication(
 {
     private readonly string[] arguments = arguments ?? Environment.GetCommandLineArgs();
 
-    public int Run() => new CommandLineConfiguration(rootCommand).Invoke(arguments);
+    public int Run() => rootCommand.Parse(arguments).Invoke();
 
     public Task<int> RunAsync(CancellationToken cancellationToken = default) =>
-        new CommandLineConfiguration(rootCommand).InvokeAsync(arguments, cancellationToken);
+        rootCommand.Parse(arguments).InvokeAsync(cancellationToken: cancellationToken);
 }

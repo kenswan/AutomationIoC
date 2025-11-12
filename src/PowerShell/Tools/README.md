@@ -108,7 +108,6 @@ Sample Test
 
 ```csharp
 using AutomationIoC.PSCmdlets.Tools;
-using FluentAssertions;
 using Xunit;
 
 public class RequestCardTests
@@ -138,7 +137,7 @@ public class RequestCardTests
 
         var actualTestData = submitDataCommand.RunCommand<TestData>().First();
 
-        actualTestData.Should().BeEquivalentTo(expectedTestData);
+        Assert.Equivalent(expectedTestData, actualTestData);
     }
 }
 ```
