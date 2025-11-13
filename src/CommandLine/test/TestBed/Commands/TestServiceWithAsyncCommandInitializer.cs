@@ -11,14 +11,14 @@ namespace AutomationIoC.CommandLine.Test.TestBed.Commands;
 
 internal class TestServiceWithAsyncCommandInitializer : IAutomationCommandInitializer
 {
-    public void Initialize(AutomationCommand command)
+    public void Initialize(IAutomationCommand command)
     {
         Option<string> passedInOption = new(name: "--test")
         {
             Description = "Description of test option field."
         };
 
-        command.Options.Add(passedInOption);
+        command.Add(passedInOption);
 
         command.SetAction(async (parseResult, automationContext, cancellationToken) =>
         {

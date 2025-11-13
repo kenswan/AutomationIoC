@@ -5,7 +5,6 @@
 
 using AutomationIoC.CommandLine.Builder;
 using AutomationIoC.Runtime;
-using System.CommandLine;
 
 namespace AutomationIoC.CommandLine;
 
@@ -26,7 +25,7 @@ public class AutomationConsole
         var automationContext = new AutomationContext();
 
         var newAutomationCommand =
-            new AutomationCommand(RootCommand.ExecutableName, appDescription ?? string.Empty, automationContext);
+            new AutomationRootCommand(automationContext, appDescription ?? string.Empty);
 
         return new AutomationConsoleBuilder(newAutomationCommand, automationContext, args);
     }
@@ -49,7 +48,7 @@ public class AutomationConsole
         var automationCommandInitializer = new T();
 
         var newAutomationCommand =
-            new AutomationCommand(RootCommand.ExecutableName, appDescription ?? string.Empty, automationContext);
+            new AutomationRootCommand(automationContext, appDescription ?? string.Empty);
 
         automationCommandInitializer.Initialize(newAutomationCommand);
 
@@ -63,12 +62,12 @@ public class AutomationConsole
     /// <param name="automationContext">Automation context responsible for services <see cref="AutomationContext" /></param>
     /// <param name="appDescription">Description of application tooling</param>
     /// <returns>Root Automation Command</returns>
-    public static AutomationCommand CreateRootCommand(
+    public static AutomationRootCommand CreateRootCommand(
         IAutomationContext automationContext,
         string? appDescription = null)
     {
         var rootCommand =
-            new AutomationCommand(RootCommand.ExecutableName, appDescription ?? string.Empty, automationContext);
+            new AutomationRootCommand(automationContext, appDescription ?? string.Empty);
 
         return rootCommand;
     }
@@ -81,7 +80,7 @@ public class AutomationConsole
     /// <param name="appDescription">Description of application tooling</param>
     /// <typeparam name="T"></typeparam>
     /// <returns>Root Automation Command</returns>
-    public static AutomationCommand CreateRootCommand<T>(
+    public static AutomationRootCommand CreateRootCommand<T>(
         IAutomationContext automationContext,
         string? appDescription = null)
         where T : IAutomationCommandInitializer, new()
@@ -89,7 +88,7 @@ public class AutomationConsole
         var automationCommandInitializer = new T();
 
         var rootCommand =
-            new AutomationCommand(RootCommand.ExecutableName, appDescription ?? string.Empty, automationContext);
+            new AutomationRootCommand(automationContext, appDescription ?? string.Empty);
 
         automationCommandInitializer.Initialize(rootCommand);
 

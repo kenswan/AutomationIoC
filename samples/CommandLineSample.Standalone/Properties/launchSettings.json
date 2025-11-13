@@ -10,6 +10,10 @@
     "CommandLineSample (Standalone) - Automation": {
       "commandName": "Project",
       "commandLineArgs": "report-automated --header test --limit 5 -t Company"
+    },
+    "CommandLineSample (Standalone) - Help": {
+      "commandName": "Project",
+      "commandLineArgs": "report --help"
     }
   }
 }

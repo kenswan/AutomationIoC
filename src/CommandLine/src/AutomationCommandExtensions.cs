@@ -3,6 +3,8 @@
 // Licensed under the MIT License
 // -------------------------------------------------------
 
+using System.CommandLine;
+
 namespace AutomationIoC.CommandLine;
 
 /// <summary>
@@ -20,7 +22,7 @@ public static class AutomationCommandExtensions
     /// <returns>New Child Command</returns>
     /// <exception cref="InvalidOperationException">Thrown if parent does not have an established automation context</exception>
     public static AutomationCommand AddCommand<T>(
-        this AutomationCommand parentCommand,
+        this IAutomationCommand parentCommand,
         string name,
         string description)
         where T : IAutomationCommandInitializer, new()
@@ -30,10 +32,19 @@ public static class AutomationCommandExtensions
             throw new InvalidOperationException("Parent Command is missing automation context.");
         }
 
-        var childAutomationCommand = new AutomationCommand(name, description, parentCommand.Context);
+        var childAutomationCommand = new AutomationCommand(name, parentCommand.Context, description);
         var commandInitializer = new T();
         commandInitializer.Initialize(childAutomationCommand);
-        parentCommand.Subcommands.Add(childAutomationCommand);
+
+        if (parentCommand is Command parentAsCommand)
+        {
+            parentAsCommand.Add(childAutomationCommand);
+        }
+        else
+        {
+            throw new InvalidOperationException(
+                "Parent Command must inherit from System.CommandLine.Command to add subcommands.");
+        }
 
         return childAutomationCommand;
     }
@@ -47,17 +58,26 @@ public static class AutomationCommandExtensions
     /// <returns>New Child Command</returns>
     /// <exception cref="InvalidOperationException"></exception>
     public static AutomationCommand AddCommand(
-        this AutomationCommand parentCommand,
+        this IAutomationCommand parentCommand,
         string name,
         string description)
     {
-        if (parentCommand.Context is null)
+        if (parentCommand?.Context is null)
         {
             throw new InvalidOperationException("Parent Command is missing automation context.");
         }
 
-        var childAutomationCommand = new AutomationCommand(name, description, parentCommand.Context);
-        parentCommand.Subcommands.Add(childAutomationCommand);
+        var childAutomationCommand = new AutomationCommand(name, parentCommand.Context, description);
+
+        if (parentCommand is Command parentAsCommand)
+        {
+            parentAsCommand.Add(childAutomationCommand);
+        }
+        else
+        {
+            throw new InvalidOperationException(
+                "Parent Command must inherit from System.CommandLine.Command to add subcommands.");
+        }
 
         return childAutomationCommand;
     }

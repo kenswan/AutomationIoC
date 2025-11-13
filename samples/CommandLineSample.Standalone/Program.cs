@@ -54,7 +54,6 @@ Option<string> reportTypeOption = new("--optionOne", "-t")
 Option<string> limitOption = new("--limit", "-l")
 {
     Description = "Max amount of products to display.",
-
 };
 
 Option<string> headerOption = new("--header", "-h")
@@ -62,7 +61,7 @@ Option<string> headerOption = new("--header", "-h")
     Description = "Header to display above product results."
 };
 
-AutomationCommand rootCommand =
+AutomationRootCommand rootCommand =
     AutomationConsole.CreateRootCommand(
         commandAutomationContext,
         "Sample CommandLine Example (with standalone commands)");
@@ -75,16 +74,23 @@ rootCommand.SetAction((result) =>
 // Manual Command Building Example
 AutomationCommand subCommand = rootCommand.AddCommand("report", "Generate various reports");
 
-subCommand.Options.Add(reportTypeOption);
-subCommand.Options.Add(limitOption);
-subCommand.Options.Add(headerOption);
+subCommand.Add(reportTypeOption);
+subCommand.Add(limitOption);
+subCommand.Add(headerOption);
 
 subCommand.SetAction((result, automationContext) =>
 {
+    // Report Type and Limit are mapped to configuration via
+    // the AutomationContext ConfigurationMapping set in SetConfigurationMapping (above)
     string reportType = result.GetValue<string>(reportTypeOption);
     string limit = result.GetValue<string>(limitOption);
-    string headerText = result.GetValue<string>(headerOption);
 
+    Console.WriteLine($"Report Type (Override): {reportType}");
+    Console.WriteLine($"Limit (Override): {limit}");
+    Console.WriteLine("Generating report...");
+
+    string headerText = result.GetValue<string>(headerOption);
+    
     UpdateGreeting(headerText, automationContext.ServiceProvider.GetService<IReportService>());
 });
 

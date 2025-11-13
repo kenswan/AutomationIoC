@@ -6,7 +6,7 @@
 namespace AutomationIoC.CommandLine.Application;
 
 internal class AutomationConsoleApplication(
-    AutomationCommand rootCommand,
+    AutomationRootCommand rootCommand,
     string[]? arguments = null) : IAutomationConsole
 {
     private readonly string[] arguments = arguments ?? Environment.GetCommandLineArgs();

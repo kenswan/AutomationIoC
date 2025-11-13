@@ -11,7 +11,7 @@ internal class BasicTestCommandInitializer : IAutomationCommandInitializer
 {
     private const string InternalTestData = "test";
 
-    public void Initialize(AutomationCommand command)
+    public void Initialize(IAutomationCommand command)
     {
         Option<string> passedInOption = new(name: "--optionOne")
         {
@@ -24,10 +24,10 @@ internal class BasicTestCommandInitializer : IAutomationCommandInitializer
             DefaultValueFactory = _ => InternalTestData
         };
 
-        command.Options.Add(passedInOption);
-        command.Options.Add(internalOption);
+        command.Add(passedInOption);
+        command.Add(internalOption);
 
-        command.SetAction(parseResult =>
+        command.SetAction((parseResult, automationContext) =>
         {
             string passedInOptionString = parseResult.GetValue(passedInOption);
             string internalOptionString = parseResult.GetValue(internalOption);

@@ -72,7 +72,7 @@ public partial class AutomationIoConsoleTests(ITestOutputHelper testOutputHelper
         string[] args = ["--optionOne", "testOption1"];
         IAutomationContext context = new AutomationContext();
 
-        AutomationCommand rootCommand =
+        AutomationRootCommand rootCommand =
             AutomationConsole.CreateRootCommand<BasicTestCommandInitializer>(
                 automationContext: context,
                 appDescription: "Test Application");
@@ -92,7 +92,7 @@ public partial class AutomationIoConsoleTests(ITestOutputHelper testOutputHelper
         string actualOptionOneValue = string.Empty;
         IAutomationContext context = new AutomationContext();
 
-        AutomationCommand rootCommand =
+        AutomationRootCommand rootCommand =
             AutomationConsole.CreateRootCommand(
                 automationContext: context,
                 appDescription: "Test Application");

@@ -10,7 +10,6 @@ using AutomationIoC.Runtime;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
-using System.CommandLine;
 
 namespace AutomationIoC.CommandLine.Test.Builder;
 
@@ -21,12 +20,12 @@ public class AutomationConsoleBuilderTests
     {
         // Arrange
         var automationContext = new AutomationContext();
-        var rootCommand = new AutomationCommand(RootCommand.ExecutableName, "Test Application", automationContext);
+        var rootCommand = new AutomationRootCommand(automationContext, "Test Application");
         var automationConsoleBuilder = new AutomationConsoleBuilder(rootCommand, automationContext);
 
         automationConsoleBuilder.AddCommand<BasicTestCommandInitializer>("test", "subcommand");
 
-        AutomationCommand configuredRootCommand = automationConsoleBuilder.GetRootCommand();
+        AutomationRootCommand configuredRootCommand = automationConsoleBuilder.GetRootCommand();
 
         // Act
         int invocationResult =
@@ -44,7 +43,7 @@ public class AutomationConsoleBuilderTests
         const string expectedKey = "TestTheConfigKey";
         string expectedKeyValue = Guid.NewGuid().ToString();
         var automationContext = new AutomationContext();
-        var rootCommand = new AutomationCommand(RootCommand.ExecutableName, "Test Application", automationContext);
+        var rootCommand = new AutomationRootCommand(automationContext, "Test Application");
         var automationConsoleBuilder = new AutomationConsoleBuilder(rootCommand, automationContext);
         var testServiceMock = new Mock<ITestService>();
 
@@ -67,7 +66,7 @@ public class AutomationConsoleBuilderTests
             services.AddTransient<TestConfigurationService>();
         });
 
-        AutomationCommand configuredRootCommand = automationConsoleBuilder.GetRootCommand();
+        AutomationRootCommand configuredRootCommand = automationConsoleBuilder.GetRootCommand();
 
         // Act
         int invocationResult =
@@ -88,7 +87,7 @@ public class AutomationConsoleBuilderTests
         var automationContext = new AutomationContext();
 
         var rootCommand =
-            new AutomationCommand(RootCommand.ExecutableName, "Test Application", automationContext);
+            new AutomationRootCommand(automationContext, "Test Application");
 
         var automationConsoleBuilder =
             new AutomationConsoleBuilder(rootCommand, automationContext, ["full-test", "--key", expectedKey]);

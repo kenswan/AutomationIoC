@@ -21,5 +21,5 @@ public interface IAutomationCommandInitializer
     ///     allowing it to be executed as part of the command line interface.
     /// </summary>
     /// <param name="command">Automation Command being configured for use</param>
-    public void Initialize(AutomationCommand command);
+    public void Initialize(IAutomationCommand command);
 }

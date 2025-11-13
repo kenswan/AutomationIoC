@@ -13,7 +13,7 @@ using System.CommandLine;
 namespace AutomationIoC.CommandLine.Builder;
 
 internal class AutomationConsoleBuilder(
-    AutomationCommand rootCommand,
+    AutomationRootCommand rootCommand,
     AutomationContext automationContext,
     string[]? args = null) : IAutomationConsoleBuilder
 {
@@ -50,7 +50,7 @@ internal class AutomationConsoleBuilder(
         var automationCommandInitializer = new T();
 
         var newAutomationCommand =
-            new AutomationCommand(addedCommandName, null, automationContext);
+            new AutomationCommand(addedCommandName, automationContext);
 
         automationCommandInitializer.Initialize(newAutomationCommand);
 
@@ -88,5 +88,5 @@ internal class AutomationConsoleBuilder(
 
     public IAutomationConsole Build() => new AutomationConsoleApplication(rootCommand, args);
 
-    internal AutomationCommand GetRootCommand() => rootCommand;
+    internal AutomationRootCommand GetRootCommand() => rootCommand;
 }
