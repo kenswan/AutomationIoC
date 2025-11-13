@@ -16,27 +16,17 @@ namespace AutomationIoC.CommandLine;
 /// <param name="automationContext">Automation Services and configurations</param>
 public class AutomationCommand(
     string name,
-    string? description,
-    IAutomationContext automationContext) : Command(name, description)
+    IAutomationContext automationContext,
+    string? description = null) : Command(name, description), IAutomationCommand
 {
-    /// <summary>
-    ///     Services and configurations for dependency injection.
-    /// </summary>
+    /// <inheritdoc />
     public IAutomationContext Context => automationContext;
 
-    /// <summary>
-    ///     Set the action to be executed when the command is invoked (synchronous).
-    ///     The action receives the parsed result and the automation context, allowing for dependency injection.
-    /// </summary>
-    /// <param name="action">Dependency Injection Action for synchronous command invocation</param>
+    /// <inheritdoc />
     public void SetAction(Action<ParseResult, IAutomationContext> action) =>
         SetAction(parsedResult => action(parsedResult, automationContext));
 
-    /// <summary>
-    ///     Set the action to be executed when the command is invoked (asynchronous).
-    ///     The action receives the parsed result and the automation context, allowing for dependency injection.
-    /// </summary>
-    /// <param name="action">Dependency Injection Action for asynchronous command invocation</param>
+    /// <inheritdoc />
     public void SetAction(Func<ParseResult, IAutomationContext, CancellationToken, Task> action) =>
         SetAction(async (parsedResult, cancellationToken) =>
         {

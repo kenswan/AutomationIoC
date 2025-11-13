@@ -11,24 +11,22 @@ using System.CommandLine;
 
 namespace AutomationIoC.CommandLine.Test;
 
-public class AutomationCommandTests
+public class AutomationRootCommandTests
 {
     [Fact]
     public void CreateCommand_ShouldInitializeWithNameAndDescription()
     {
         // Arrange
-        const string commandName = "testCommand";
         const string commandDescription = "This is a test command";
         var automationContext = new AutomationContext();
 
         // Act
-        var command = new AutomationCommand(
-            name: commandName,
+        var command = new AutomationRootCommand(
             description: commandDescription,
             automationContext: automationContext);
 
         // Assert
-        Assert.Equal(commandName, command.Name);
+        Assert.Equal(command.Name, RootCommand.ExecutableName);
         Assert.Equal(commandDescription, command.Description);
     }
 
@@ -36,7 +34,6 @@ public class AutomationCommandTests
     public void CreateCommand_ShouldCreateCommandWithAutomationContext()
     {
         // Arrange
-        const string commandName = "testCommand";
         const string configurationKey = "keyOne";
         const string configurationValue = "valueOne";
         var automationContext = new AutomationContext();
@@ -57,8 +54,7 @@ public class AutomationCommandTests
             services.AddTransient<TestConfigurationService>();
         });
 
-        var command = new AutomationCommand(
-            name: commandName,
+        var command = new AutomationRootCommand(
             automationContext,
             description: "Test Command Description");
 
@@ -72,7 +68,7 @@ public class AutomationCommandTests
             actualConfigurationValue = testService.GetConfigurationValue(configurationKey);
         });
 
-        int result = command.Parse(commandName).Invoke();
+        int result = command.Parse(RootCommand.ExecutableName).Invoke();
 
         // Assert
         Assert.Equal(0, result);
@@ -83,7 +79,6 @@ public class AutomationCommandTests
     public async Task CreateCommand_ShouldCreateCommandWithAutomationContextAsyncAction()
     {
         // Arrange
-        const string commandName = "testCommand";
         const string configurationKey = "keyOne";
         const string configurationValue = "valueOne";
         var automationContext = new AutomationContext();
@@ -104,8 +99,7 @@ public class AutomationCommandTests
             services.AddTransient<TestConfigurationService>();
         });
 
-        var command = new AutomationCommand(
-            name: commandName,
+        var command = new AutomationRootCommand(
             automationContext,
             description: "Test Command Description");
 
@@ -125,7 +119,7 @@ public class AutomationCommandTests
                     .ConfigureAwait(false);
         });
 
-        int result = await command.Parse(commandName)
+        int result = await command.Parse(RootCommand.ExecutableName)
             .InvokeAsync(cancellationToken: TestContext.Current.CancellationToken);
 
         // Assert
@@ -160,8 +154,7 @@ public class AutomationCommandTests
             services.AddTransient<TestConfigurationService>();
         });
 
-        var commandOne = new AutomationCommand(
-            name: commandOneName,
+        var commandOne = new AutomationRootCommand(
             automationContext,
             description: "Test Command Description");
 
@@ -170,7 +163,7 @@ public class AutomationCommandTests
             automationContext,
             description: "Test Command Description");
 
-        commandOne.Subcommands.Add(commandOneSubCommand);
+        commandOne.Add(commandOneSubCommand);
 
         var commandTwo = new Command(
             name: commandTwoName,
@@ -184,7 +177,7 @@ public class AutomationCommandTests
             Description = "Description of option one field."
         };
 
-        commandOne.Options.Add(passedInOption);
+        commandOne.Add(passedInOption);
 
         commandOne.SetAction(async (parseResult, context, cancellationToken) =>
         {

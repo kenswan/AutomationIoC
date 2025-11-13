@@ -12,7 +12,7 @@ namespace CommandLineSample.Standalone;
 
 internal class ReportCommandInitializer : IAutomationCommandInitializer
 {
-    public void Initialize(AutomationCommand command)
+    public void Initialize(IAutomationCommand command)
     {
         Option<string> reportTypeOption = new("--optionOne", "-t")
         {
@@ -30,14 +30,21 @@ internal class ReportCommandInitializer : IAutomationCommandInitializer
             Description = "Header to display above product results."
         };
 
-        command.Options.Add(reportTypeOption);
-        command.Options.Add(limitOption);
-        command.Options.Add(headerOption);
+        command.Add(reportTypeOption);
+        command.Add(limitOption);
+        command.Add(headerOption);
 
         command.SetAction((result, automationContext) =>
         {
+            // Report Type and Limit are mapped to configuration via
+            // the AutomationContext ConfigurationMapping set up in Program.cs
             string reportType = result.GetValue<string>(reportTypeOption);
             string limit = result.GetValue<string>(limitOption);
+
+            Console.WriteLine($"Report Type (Override): {reportType}");
+            Console.WriteLine($"Limit (Override): {limit}");
+            Console.WriteLine("Generating report...");
+            
             string headerText = result.GetValue<string>(headerOption);
 
             UpdateGreeting(headerText, automationContext.ServiceProvider.GetService<IReportService>());

@@ -11,14 +11,14 @@ namespace AutomationIoC.CommandLine.Test.TestBed.Commands;
 
 public class FullTestCommandInitializer : IAutomationCommandInitializer
 {
-    public void Initialize(AutomationCommand command)
+    public void Initialize(IAutomationCommand command)
     {
         Option<string> configurationKeyOption = new(name: "--key")
         {
             Description = "Name of key to pull from configuration."
         };
 
-        command.Options.Add(configurationKeyOption);
+        command.Add(configurationKeyOption);
 
         command.SetAction(async (parseResult, context, cancellationToken) =>
         {

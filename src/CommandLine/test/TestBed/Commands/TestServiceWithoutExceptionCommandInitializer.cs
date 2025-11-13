@@ -11,14 +11,14 @@ namespace AutomationIoC.CommandLine.Test.TestBed.Commands;
 
 internal class TestServiceWithoutExceptionCommandInitializer : IAutomationCommandInitializer
 {
-    public void Initialize(AutomationCommand command)
+    public void Initialize(IAutomationCommand command)
     {
         Option<string> passedInOption = new(name: "--test")
         {
             Description = "Description of test."
         };
 
-        command.Options.Add(passedInOption);
+        command.Add(passedInOption);
 
         command.SetAction((parseResult, automationContext) =>
         {
